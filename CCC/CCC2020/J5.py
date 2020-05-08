@@ -1,13 +1,13 @@
-graph = {}
 def isInRange(current, matrix):
-    if current in graph:
-        return graph[current]
+    max = len(matrix) * len(matrix[1])
     res = []
     val = matrix[current[0]][current[1]]
-    for row in range(1, len(matrix)):
-        for col in range(1, len(matrix[1])):
-            if row * col == val:
-                res.append((row, col))
+    if val <= max:
+        for row in range(1, len(matrix)):
+            if val % row == 0:
+                for col in range(1, len(matrix[1])):
+                    if row * col == val:
+                        res.append((row, col))
     return res
 
 
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     lst.append([-1, -1, -1])
     for _ in range(m):
         lst.append(list(map(int, ('-1 ' + input()).split())))
-
+    graph = {}
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             graph[(i, j)] = isInRange((i, j), lst)
@@ -26,6 +26,7 @@ if __name__ == '__main__':
 
     visited = []  # List to keep track of visited nodes.
     queue = []  # Initialize a queue
+
 
     def bfs(visited, graph, node):
         visited.append(node)
@@ -45,4 +46,5 @@ if __name__ == '__main__':
 
 
     res = bfs(visited, graph, (1, 1))
+
     print(res)
