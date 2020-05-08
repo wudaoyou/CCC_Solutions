@@ -1,3 +1,6 @@
+import sys
+
+
 def isInRange(current, matrix):
     max = len(matrix) * len(matrix[1])
     res = []
@@ -12,12 +15,12 @@ def isInRange(current, matrix):
 
 
 if __name__ == '__main__':
-    m = int(input())
-    n = int(input())
+    m = int(sys.stdin.readline())
+    n = int(sys.stdin.readline())
     lst = []
     lst.append([-1, -1, -1])
     for _ in range(m):
-        lst.append(list(map(int, ('-1 ' + input()).split())))
+        lst.append(list(map(int, ('-1 ' + sys.stdin.readline()).split())))
     graph = {}
     for i in range(1, m + 1):
         for j in range(1, n + 1):
