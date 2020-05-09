@@ -1,0 +1,12 @@
+inp = input()
+mylist = inp.split(" ")
+s1 = int(mylist[0])
+s2 = int(mylist[1])
+s3 = int(mylist[2])
+s4 = int(mylist[3])
+
+print("0" + " " + str(s1) + " " + str(s1 + s2) + " " + str(s1 + s2 + s3) + " " + str(s1 + s2 + s3 + s4))
+print(str(s1) + " " + "0" + " " + str(s2) + " " + str(s2 + s3) + " " + str(s2 + s3 + s4))
+print(str(s1 + s2) + " " + str(s2) + " " + "0" + " " + str(s3) + " " + str(s3 + s4))
+print(str(s1 + s2 + s3) + " " + str(s2 + s3) + " " + str(s3) + " " + "0" + " " + str(s4))
+print(str(s1 + s2 + s3 + s4) + " " + str(s2 + s3 + s4) + " " + str(s3 + s4) + " " + str(s4) + " " + "0")
