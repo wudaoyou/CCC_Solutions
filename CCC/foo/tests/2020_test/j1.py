@@ -2,7 +2,7 @@ import unittest
 import os
 from bin.util import *
 from pathlib import Path
-from foo.ccc2020.J1 import *
+from foo.ccc2020.J1_2020 import *
 
 
 class simple_test(unittest.TestCase):
