@@ -1,1 +1,2 @@
-CCC_Solutions
+CCC Solutions for Junior Questions.
+
