@@ -31,7 +31,7 @@ if __name__ == '__main__':
     # print(current_row)
     # print(current_col)
 
-    while not (current_row == current_col == n - 1):
+    while not (current_row == current_col and current_col == n - 1):
         lst = rotate(lst)
         for i in range(n):
             for j in range(n):
