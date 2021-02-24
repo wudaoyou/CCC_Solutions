@@ -1,4 +1,3 @@
-from sys import stdin
 import operator
 
 
@@ -7,7 +6,6 @@ def isValidTime(n):
     lst = list(map(operator.sub, lst[1:], lst[:-1]))
     if len(set(lst)) == 1:
         return 1
-
     return 0
 
 

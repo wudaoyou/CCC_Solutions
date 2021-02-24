@@ -13,11 +13,11 @@ def buildGraph(lst):
 
 
 if __name__ == '__main__':
-    line = int(sys.stdin.readline())
+    line = int(input())
     allPages = [n for n in range(1, line + 1)]
     lst = []
     for _ in range(line):
-        lst.append(list(map(int, (sys.stdin.readline()).split())))
+        lst.append(list(map(int, (input()).split())))
 
     gp, ends = buildGraph(lst)
 

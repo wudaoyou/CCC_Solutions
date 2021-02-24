@@ -1,47 +1,32 @@
-def verify(a, b):
-    count = 0
-    if a == b:
-        return True
-    for i in b:
-        if i == a[0]:
-            count += 1
-        else:
+# To check if the sequence has a period of n
+# will come here at position 7, position 0 is -1 and position 7 is -1
+def verify(seq, n):
+    for i in range(n, len(seq)):
+        # n is 7 and we get the length of the sequence.
+        # [-1,-11,9,-7-89,44,0,-1,-11]
+        #  i%n                  i
+        if seq[i] != seq[i % n]:
             return False
     return True
 
 
-def findShortest(a, b):
-    if verify(a, b):
-        return len(a)
-    elif len(b) == 0:
-        return len(a)
-    else:
-        return findShortest(a + [b[0]], b[1:])
-
-
-def processSeq(seq, idx):
-    a = seq[:idx]
-    b = seq[idx:]
-    if len(a) >= len(b):
-        return findShortest(a, b)
-    else:
-        b, c = b[:len(a)], b[len(a):]
-        templen1 = findShortest(a, b)
-        result = processSeq(seq[:templen1])
-
-
-if __name__ == '__main__':
-    while True:
-        seq = list(map(int, input().split()))
-        if seq[0] == 0:
+while True:
+    # Input data, only stores "changes" in a list named "seq"
+    # example 10 100 99 88 97 90 1 45 45 44 33
+    seq = input().split()
+    if seq[0] == "0":
+        break
+    seq = seq[1:]
+    for i in range(len(seq) - 1):
+        seq[i] = int(seq[i + 1]) - int(seq[i])
+    seq.pop()
+    # seq = [-1,-11,9,-7,-89,44,0,-1,-11]
+    # t is the max number.
+    t = len(seq)
+    for i in range(1, len(seq)):
+        # first check if seq[0] is same as seq[i],
+        # if they are the same, we need go to verify if the i is a new start.
+        if seq[0] == seq[i] and verify(seq, i):
+            t = min(t, i)
             break
-        n = seq[0]
-        seq = seq[1:]
-        for i in range(n - 1):
-            seq[i] = int(seq[i + 1]) - int(seq[i])
-        seq.pop(-1)
-
-        firstNum = seq[0]
-        nextNum = seq[1:].index(firstNum)
-        len = n if nextNum == -1 else processSeq(seq, nextNum + 1)
-        print(len)
+    print(t)
