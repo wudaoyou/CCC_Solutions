@@ -1,11 +1,9 @@
 if __name__ == '__main__':
-    n = input()
+    n = int(input())
     name = ''
-    bit = 0
-    for i in n:
-        n = input()
-        d = int(input())
-        if d > bit:
-            name = n
-            bit = d
+    bid = 0
+    for i in range(n):
+        n, d = input(), int(input())
+        if d > bid:
+            name, bid = n, d
     print(name)
