@@ -1,3 +1,16 @@
+
+
+if __name__ == '__main__':
+    m = int(input())
+    n = int(input())
+    k = int(input())
+
+    canvas = {}
+    for _ in k:
+        choice, num = input().split(' ')
+        num = int(num)
+        if choice == 'R':
+            (num,)
 if __name__ == '__main__':
     c = int(input())
     r = int(input())

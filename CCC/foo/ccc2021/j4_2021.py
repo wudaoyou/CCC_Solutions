@@ -27,17 +27,16 @@ def eval_list_m(lst, left, right, time=0):
                 return eval_list_m(lst, left + 1, right - 1, time + 1)
             else:
                 return eval_list_m(lst, left, right - 1, time)
-        else:
-            return eval_list_m(lst, left + 1, right, time)
 
 
 if __name__ == '__main__':
     lst = list(input())
     if 'M' in lst:
         lst, t = eval_list_s(lst, 0, len(lst) - 1)
-        print(lst)
+        # print(lst)
+        # print(t)
         lst, t = eval_list_m(lst, 0, len(lst) - 1, t)
     else:
         lst, t = eval_list_s(lst, 0, len(lst) - 1)
-    print(lst)
+    # print(lst)
     print(t)
