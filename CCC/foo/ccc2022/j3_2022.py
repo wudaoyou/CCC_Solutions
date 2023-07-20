@@ -13,6 +13,7 @@ for i,j in enumerate(tune[:-1]):
 
 s += tune[-1]
 l.append(s)
+
 for i in l:
     if "+" in i:
         i = i.split("+")
