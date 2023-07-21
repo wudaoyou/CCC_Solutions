@@ -1,13 +1,5 @@
-# set up variables to hold inputs and output
-p, c, f = int(input()), int(input()), 0
+p, c = int(input()), int(input()) # number of delivers and number of collisions
 
-# check if the input amount is correct
-if p >= 0 and c >= 0:
-    # caculate total points earned and lost
-    f = 50 * p - 10 * c
-    # check if satisfied for bonus; if so, add 500 points
-    if p > c:
-        f += 500
+f = 50 * p - 10 * c + (500 if p > c else 0) # total amount of points earned; 50 for each deliverd, -10 for each collision, bonus 500 if delieved more than collsions
 
-# print output
-print(f)
+print(f) # print output
