@@ -9,7 +9,7 @@
       "下一个辅音：从当前辅音继续向后找一个辅音；z 没有下一个字母，所以仍选 z。"
     ],
     "steps": [
-      "按顺序读取单词里的每个字母。若它是元音，直接保留。",
+      "读取单词，用 strip 去掉行尾的换行字符，再按顺序处理每个字母。若它是元音，直接保留。",
       "若它是辅音，从 a、e、i、o、u 中找字母表距离最小的元音。候选元音按字母顺序检查，只在距离更小时更新，因此相同距离会保留较早的元音。",
       "把辅音本身、最近元音和下一个辅音依次加入结果；遇到 z 时第三个字母仍是 z。",
       "连接所有结果并输出。"
@@ -32,7 +32,7 @@
       "Next consonant: move forward to the next consonant after the original one; z stays z because no later letter exists."
     ],
     "steps": [
-      "Process the word one letter at a time. Copy a vowel unchanged.",
+      "Read the word and use strip to remove its line ending. Process one letter at a time, copying a vowel unchanged.",
       "For a consonant, find the vowel with the smallest alphabet distance among a, e, i, o, and u. Check vowels in alphabet order and update only for a smaller distance, so an equal-distance tie keeps the earlier vowel.",
       "Append the consonant, its closest vowel, and the next consonant in that order. For z, use z as the third letter.",
       "Join all pieces and print the translated word."

@@ -1,4 +1,4 @@
-word = input()
+word = input().strip()
 vowels = "aeiou"
 consonants = "bcdfghjklmnpqrstvwxyz"
 translated = []

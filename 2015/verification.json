@@ -149,23 +149,23 @@
       ],
       "case_metrics": [
         {
-          "cpu_seconds": 0.02,
-          "wall_seconds": 0.025,
+          "cpu_seconds": 0.018,
+          "wall_seconds": 0.022,
           "peak_memory_kib": 10504
         },
         {
-          "cpu_seconds": 0.018,
+          "cpu_seconds": 0.016,
+          "wall_seconds": 0.019,
+          "peak_memory_kib": 10504
+        },
+        {
+          "cpu_seconds": 0.019,
           "wall_seconds": 0.023,
           "peak_memory_kib": 10504
         },
         {
-          "cpu_seconds": 0.017,
-          "wall_seconds": 0.021,
-          "peak_memory_kib": 10504
-        },
-        {
-          "cpu_seconds": 0.02,
-          "wall_seconds": 0.024,
+          "cpu_seconds": 0.015,
+          "wall_seconds": 0.018,
           "peak_memory_kib": 10504
         },
         {
@@ -174,8 +174,8 @@
           "peak_memory_kib": 10504
         }
       ],
-      "solution_sha256": "0bef689f89a12249c4d49f93f4168e63cab0bf3ad1329a6d50753ea302b1fe8f",
-      "lesson_sha256": "2e7639ec5b367041eadb36c1fe115f6680907509e7a9382d3509101e2401cc17"
+      "solution_sha256": "6ab4a0663943142f452906fe00cb524a06e4a2e71eb702fa4c6ca4fd47babdda",
+      "lesson_sha256": "1ac149b4ac17d336d166154e2f63b64ef450098e556e07dd41a79d577024ad2a"
     },
     {
       "problem": "2015/junior/J4",
@@ -346,7 +346,8 @@
     "J5_all_allocations_n_up_to_18": 171,
     "S2_small_request_subset_oracles": 217,
     "J4_absolute_time_generated_conversations": 100,
-    "J4_hand_checked_conversations": 4
+    "J4_hand_checked_conversations": 4,
+    "J3_LF_and_CRLF_single_letter_inputs": 52
   },
   "official_archive_comparison": {
     "covered_archive_case_counts": {
@@ -359,5 +360,9 @@
     "junior/J4/tests/verify.py",
     "junior/J5/tests/verify.py",
     "senior/S2/tests/verify.py"
-  ]
+  ],
+  "local_runner": {
+    "cases": 41,
+    "passed": true
+  }
 }
