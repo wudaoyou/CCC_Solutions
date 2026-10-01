@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2024 S1 · Hat Circle · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2024 S1 · Hat Circle</h1></header><p class="eyebrow">2024 / senior / S1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc24s1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>4
+0
+1
+0
+1
+</pre></div><div><h3>样例输出</h3><pre>4
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S1: Hat Circle
+
+
+Problem Description
+
+
+At a recent social gathering,  \(N\) 
+people sit around a circular table, where  \(N\)  is even. The seats are numbered
+clockwise from  \(1\)  to  \(N\) . Each person is wearing a hat with a
+number on it. Specifically, the person at seat  \(i\)  is wearing a hat with the number  \(H_i\)  on it.
+
+
+Each person looks at the person who is directly across (diametrically
+opposite) them in the circle.
+
+
+Determine the number of people who see someone with a hat with the
+same number as their own.
+
+
+Input Specification
+
+
+The first line of input will consist of one even positive integer
+ \(N\) , representing the number of
+people at the social gathering.
+
+
+The next  \(N\)  lines each contain a
+single non-negative integer  \(H_i\) ,
+representing the hat number of person  \(i\) .
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bounds on  \(N\) 
+ Bounds on  \(H_i\) 
+ 
+ 
+ 
+ 
+ \(2\) 
+ Very small number of people; only two hat
+numbers 
+ \(N \le
+4\) 
+ \(H_i \leq
+1\) 
+ 
+ 
+ \(1\) 
+ Only one hat number 
+ \(N \le
+100\) 
+ \(H_i  =
+1\) 
+ 
+ 
+ \(2\) 
+ People in even numbered seats have hat
+number 1; people in odd numbered seats have hat number 0 
+ \(N \le
+100\) 
+ \(H_i  \leq
+1\) 
+ 
+ 
+ \(5\) 
+ Medium number of people 
+ \(N \le
+2\,000\) 
+ \(H_i \leq
+4\,000\) 
+ 
+ 
+ \(5\) 
+ Large number of people and hat
+numbers 
+ \(N \le
+1\,000\,000\) 
+ \(H_i \le
+2\,000\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output a single integer representing the number of people who see
+their hat number on the person directly across from them.
+
+
+Sample Input 1
+
+
+4
+0
+1
+0
+1 
+
+
+Output for Sample Input 1
+
+
+4
+
+
+Explanation of Output
+for Sample Input 1
+
+
+The four seats around the table are shown below. Hat numbers are
+shown inside each seat and seat numbers are shown beside each seat.
+
+
+
+ 
+
+
+
+Notice that every person sees their hat number. The people in seats
+ \(1\)  and  \(3\)  both see hat number  \(0\) , and the people in seats  \(2\)  and  \(4\)  both see hat number  \(1\) .
+
+
+Sample Input 2
+
+
+4
+1
+0
+0
+1 
+
+
+Output for Sample Input 2
+
+
+0
+
+
+Explanation of Output
+for Sample Input 2
+
+
+The four seats around the table are shown below. Hat numbers are
+shown inside each seat and seat numbers are shown beside each seat.
+
+
+
+ 
+
+
+
+Notice that no person sees their hat number. The people in seats  \(1\)  and  \(4\)  both see hat number  \(0\) , and the people in seats  \(2\)  and  \(3\)  both see hat number  \(1\) .
+</pre></details></section><section class="card"><h2>测试数据</h2><p>2 bundled cases · 52 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://s3.amazonaws.com/cemc.drupal/documents/bigfiles/2024CCCSeniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s1.sample-01.in">s1.sample-01.in</a> / <a href="tests/s1.sample-01.out">output</a></li><li><a href="tests/s1.sample-02.in">s1.sample-02.in</a> / <a href="tests/s1.sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc24s1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>4
+0
+1
+0
+1
+</pre></div><div><h3>Sample output</h3><pre>4
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S1: Hat Circle
+
+
+Problem Description
+
+
+At a recent social gathering,  \(N\) 
+people sit around a circular table, where  \(N\)  is even. The seats are numbered
+clockwise from  \(1\)  to  \(N\) . Each person is wearing a hat with a
+number on it. Specifically, the person at seat  \(i\)  is wearing a hat with the number  \(H_i\)  on it.
+
+
+Each person looks at the person who is directly across (diametrically
+opposite) them in the circle.
+
+
+Determine the number of people who see someone with a hat with the
+same number as their own.
+
+
+Input Specification
+
+
+The first line of input will consist of one even positive integer
+ \(N\) , representing the number of
+people at the social gathering.
+
+
+The next  \(N\)  lines each contain a
+single non-negative integer  \(H_i\) ,
+representing the hat number of person  \(i\) .
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bounds on  \(N\) 
+ Bounds on  \(H_i\) 
+ 
+ 
+ 
+ 
+ \(2\) 
+ Very small number of people; only two hat
+numbers 
+ \(N \le
+4\) 
+ \(H_i \leq
+1\) 
+ 
+ 
+ \(1\) 
+ Only one hat number 
+ \(N \le
+100\) 
+ \(H_i  =
+1\) 
+ 
+ 
+ \(2\) 
+ People in even numbered seats have hat
+number 1; people in odd numbered seats have hat number 0 
+ \(N \le
+100\) 
+ \(H_i  \leq
+1\) 
+ 
+ 
+ \(5\) 
+ Medium number of people 
+ \(N \le
+2\,000\) 
+ \(H_i \leq
+4\,000\) 
+ 
+ 
+ \(5\) 
+ Large number of people and hat
+numbers 
+ \(N \le
+1\,000\,000\) 
+ \(H_i \le
+2\,000\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output a single integer representing the number of people who see
+their hat number on the person directly across from them.
+
+
+Sample Input 1
+
+
+4
+0
+1
+0
+1 
+
+
+Output for Sample Input 1
+
+
+4
+
+
+Explanation of Output
+for Sample Input 1
+
+
+The four seats around the table are shown below. Hat numbers are
+shown inside each seat and seat numbers are shown beside each seat.
+
+
+
+ 
+
+
+
+Notice that every person sees their hat number. The people in seats
+ \(1\)  and  \(3\)  both see hat number  \(0\) , and the people in seats  \(2\)  and  \(4\)  both see hat number  \(1\) .
+
+
+Sample Input 2
+
+
+4
+1
+0
+0
+1 
+
+
+Output for Sample Input 2
+
+
+0
+
+
+Explanation of Output
+for Sample Input 2
+
+
+The four seats around the table are shown below. Hat numbers are
+shown inside each seat and seat numbers are shown beside each seat.
+
+
+
+ 
+
+
+
+Notice that no person sees their hat number. The people in seats  \(1\)  and  \(4\)  both see hat number  \(0\) , and the people in seats  \(2\)  and  \(3\)  both see hat number  \(1\) .
+</pre></details></section><section class="card"><h2>Test data</h2><p>2 bundled cases · 52 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://s3.amazonaws.com/cemc.drupal/documents/bigfiles/2024CCCSeniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s1.sample-01.in">s1.sample-01.in</a> / <a href="tests/s1.sample-01.out">output</a></li><li><a href="tests/s1.sample-02.in">s1.sample-02.in</a> / <a href="tests/s1.sample-02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

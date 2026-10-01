@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2024 S5 · Chocolate Bar Partition Problem Description Maxwell has a chocolate bar that he wants to share with his friends. The chocolate bar can be represented as a \(2\) by \(N\) array of integers \(T_{i,j}\) , the tastiness of each square. Maxwell would like to split the entire chocolate bar into connected parts such that the average (mean) tastiness of the chocolate bar is the same for each part. Maxwell would like to know what is the maximum number of connected parts he can split his chocolate bar into as described above. A part is considered connected if you can visit every cell by moving up, down, left or right. Input Specification The first line of input will consist of one positive integer \(N\) , representing the length of the chocolate bar. The second line of input contains \(N\) spaced integers representing the top row of the chocolate bar where the \(j\) -th integer from the left represents \(T_{1,j}\) . Similarly, the third line of input contains \(N\) spaced integers representing the bottom row of the chocolate bar where the \(j\) -th integer from the left represents \(T_{2,j}\) . The following table shows how the available \(15\) marks are distributed: Marks Bounds on \(N\) Bounds on \(T_{i,j}\) \(2\) \(N=2\) \(0 \le T_{i,j} \leq 5\) \(2\) \(1 \le N \le 8\) \(0 \le T_{i,j} \leq 20\) \(1\) \(1 \le N \le 20\) \(0 \le T_{i,j} \leq 20\) \(2\) \(1 \le N \le 100\) \(0 \le T_{i,j} \leq 20\) \(2\) \(1 \le N \le 1\ 000\) \(0 \le T_{i,j} \leq 100\) \(3\) \(1 \le N \le 2\ 000\) \(0 \le T_{i,j} \leq 100\ 000\) \(3\) \(1 \le N \le 200\ 000\) \(0 \le T_{i,j} \leq 100\ 000\ 000\) Output Specification Output a single integer, representing the maximum number of connected parts Maxwell can split his chocolate bar into. Sample Input 1 2 5 4 6 5 Output for Sample Input 1 2 Explanation of Output for Sample Input 1 An example of how to split this chocolate bar optimally into \(2\) parts is to have the bottom right corner as its own part and the rest of the chocolate as the second part, as shown below. Each piece will have an average tastiness of \(5\) . Sample Input 2 5 1 0 1 2 0 0 2 0 3 1 Output for Sample Input 2 5 Explanation of Output for Sample Input 2 One way to get the optimal split is shown in the following picture: Note that each piece has an average tastiness of \(1\) . · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2024 S5 · Chocolate Bar Partition Problem Description Maxwell has a chocolate bar that he wants to share with his friends. The chocolate bar can be represented as a \(2\) by \(N\) array of integers \(T_{i,j}\) , the tastiness of each square. Maxwell would like to split the entire chocolate bar into connected parts such that the average (mean) tastiness of the chocolate bar is the same for each part. Maxwell would like to know what is the maximum number of connected parts he can split his chocolate bar into as described above. A part is considered connected if you can visit every cell by moving up, down, left or right. Input Specification The first line of input will consist of one positive integer \(N\) , representing the length of the chocolate bar. The second line of input contains \(N\) spaced integers representing the top row of the chocolate bar where the \(j\) -th integer from the left represents \(T_{1,j}\) . Similarly, the third line of input contains \(N\) spaced integers representing the bottom row of the chocolate bar where the \(j\) -th integer from the left represents \(T_{2,j}\) . The following table shows how the available \(15\) marks are distributed: Marks Bounds on \(N\) Bounds on \(T_{i,j}\) \(2\) \(N=2\) \(0 \le T_{i,j} \leq 5\) \(2\) \(1 \le N \le 8\) \(0 \le T_{i,j} \leq 20\) \(1\) \(1 \le N \le 20\) \(0 \le T_{i,j} \leq 20\) \(2\) \(1 \le N \le 100\) \(0 \le T_{i,j} \leq 20\) \(2\) \(1 \le N \le 1\ 000\) \(0 \le T_{i,j} \leq 100\) \(3\) \(1 \le N \le 2\ 000\) \(0 \le T_{i,j} \leq 100\ 000\) \(3\) \(1 \le N \le 200\ 000\) \(0 \le T_{i,j} \leq 100\ 000\ 000\) Output Specification Output a single integer, representing the maximum number of connected parts Maxwell can split his chocolate bar into. Sample Input 1 2 5 4 6 5 Output for Sample Input 1 2 Explanation of Output for Sample Input 1 An example of how to split this chocolate bar optimally into \(2\) parts is to have the bottom right corner as its own part and the rest of the chocolate as the second part, as shown below. Each piece will have an average tastiness of \(5\) . Sample Input 2 5 1 0 1 2 0 0 2 0 3 1 Output for Sample Input 2 5 Explanation of Output for Sample Input 2 One way to get the optimal split is shown in the following picture: Note that each piece has an average tastiness of \(1\) .</h1></header><p class="eyebrow">2024 / senior / S5</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc24s5">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>2
+5 4
+6 5
+</pre></div><div><h3>样例输出</h3><pre>2
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S5: Chocolate Bar Partition
+
+
+Problem
+Description
+
+
+Maxwell has a chocolate bar that he wants to share with his friends.
+The chocolate bar can be represented as a  \(2\)  by  \(N\)  array of integers  \(T_{i,j}\) , the tastiness of each square.
+Maxwell would like to split the entire chocolate bar into connected
+parts such that the average (mean) tastiness of the chocolate bar is the
+same for each part. Maxwell would like to know what is the maximum
+number of connected parts he can split his chocolate bar into as
+described above.
+
+
+A part is considered connected if you can visit every cell by moving
+up, down, left or right.
+
+
+Input
+Specification
+
+
+The first line of input will consist of one positive integer  \(N\) , representing the length of the
+chocolate bar.
+
+
+The second line of input contains  \(N\)  spaced integers representing the top
+row of the chocolate bar where the  \(j\) -th integer from the left represents
+ \(T_{1,j}\) .
+
+
+Similarly, the third line of input contains  \(N\)  spaced integers representing the bottom
+row of the chocolate bar where the  \(j\) -th integer from the left represents
+ \(T_{2,j}\) .
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Bounds on  \(N\) 
+ Bounds on  \(T_{i,j}\) 
+ 
+ 
+ 
+ 
+ \(2\) 
+ \(N=2\) 
+ \(0 \le T_{i,j}
+\leq 5\) 
+ 
+ 
+ \(2\) 
+ \(1 \le N \le
+8\) 
+ \(0 \le T_{i,j}
+\leq 20\) 
+ 
+ 
+ \(1\) 
+ \(1 \le N \le
+20\) 
+ \(0 \le T_{i,j}
+\leq 20\) 
+ 
+ 
+ \(2\) 
+ \(1 \le N \le
+100\) 
+ \(0 \le T_{i,j}
+\leq 20\) 
+ 
+ 
+ \(2\) 
+ \(1 \le N \le 1\
+000\) 
+ \(0 \le T_{i,j}
+\leq 100\) 
+ 
+ 
+ \(3\) 
+ \(1 \le N \le 2\
+000\) 
+ \(0 \le T_{i,j}
+\leq 100\ 000\) 
+ 
+ 
+ \(3\) 
+ \(1 \le N \le
+200\ 000\) 
+ \(0 \le T_{i,j}
+\leq 100\ 000\ 000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output a single integer, representing the maximum number of connected
+parts Maxwell can split his chocolate bar into.
+
+
+Sample Input 1
+
+
+2
+5 4
+6 5
+
+
+Output for Sample Input 1
+
+
+2
+
+
+Explanation of
+Output for Sample Input 1
+
+
+An example of how to split this chocolate bar optimally into  \(2\)  parts is to have the bottom right
+corner as its own part and the rest of the chocolate as the second part,
+as shown below.
+
+
+
+ 
+
+
+
+Each piece will have an average tastiness of  \(5\) .
+
+
+Sample Input 2
+
+
+5
+1 0 1 2 0
+0 2 0 3 1  
+
+
+Output for Sample Input 2
+
+
+5
+
+
+Explanation of
+Output for Sample Input 2
+
+
+One way to get the optimal split is shown in the following
+picture:
+
+
+
+ 
+
+
+
+Note that each piece has an average tastiness of  \(1\) .
+</pre></details></section><section class="card"><h2>测试数据</h2><p>2 bundled cases · 115 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://s3.amazonaws.com/cemc.drupal/documents/bigfiles/2024CCCSeniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s5.sample-01.in">s5.sample-01.in</a> / <a href="tests/s5.sample-01.out">output</a></li><li><a href="tests/s5.sample-02.in">s5.sample-02.in</a> / <a href="tests/s5.sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc24s5">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>2
+5 4
+6 5
+</pre></div><div><h3>Sample output</h3><pre>2
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S5: Chocolate Bar Partition
+
+
+Problem
+Description
+
+
+Maxwell has a chocolate bar that he wants to share with his friends.
+The chocolate bar can be represented as a  \(2\)  by  \(N\)  array of integers  \(T_{i,j}\) , the tastiness of each square.
+Maxwell would like to split the entire chocolate bar into connected
+parts such that the average (mean) tastiness of the chocolate bar is the
+same for each part. Maxwell would like to know what is the maximum
+number of connected parts he can split his chocolate bar into as
+described above.
+
+
+A part is considered connected if you can visit every cell by moving
+up, down, left or right.
+
+
+Input
+Specification
+
+
+The first line of input will consist of one positive integer  \(N\) , representing the length of the
+chocolate bar.
+
+
+The second line of input contains  \(N\)  spaced integers representing the top
+row of the chocolate bar where the  \(j\) -th integer from the left represents
+ \(T_{1,j}\) .
+
+
+Similarly, the third line of input contains  \(N\)  spaced integers representing the bottom
+row of the chocolate bar where the  \(j\) -th integer from the left represents
+ \(T_{2,j}\) .
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Bounds on  \(N\) 
+ Bounds on  \(T_{i,j}\) 
+ 
+ 
+ 
+ 
+ \(2\) 
+ \(N=2\) 
+ \(0 \le T_{i,j}
+\leq 5\) 
+ 
+ 
+ \(2\) 
+ \(1 \le N \le
+8\) 
+ \(0 \le T_{i,j}
+\leq 20\) 
+ 
+ 
+ \(1\) 
+ \(1 \le N \le
+20\) 
+ \(0 \le T_{i,j}
+\leq 20\) 
+ 
+ 
+ \(2\) 
+ \(1 \le N \le
+100\) 
+ \(0 \le T_{i,j}
+\leq 20\) 
+ 
+ 
+ \(2\) 
+ \(1 \le N \le 1\
+000\) 
+ \(0 \le T_{i,j}
+\leq 100\) 
+ 
+ 
+ \(3\) 
+ \(1 \le N \le 2\
+000\) 
+ \(0 \le T_{i,j}
+\leq 100\ 000\) 
+ 
+ 
+ \(3\) 
+ \(1 \le N \le
+200\ 000\) 
+ \(0 \le T_{i,j}
+\leq 100\ 000\ 000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output a single integer, representing the maximum number of connected
+parts Maxwell can split his chocolate bar into.
+
+
+Sample Input 1
+
+
+2
+5 4
+6 5
+
+
+Output for Sample Input 1
+
+
+2
+
+
+Explanation of
+Output for Sample Input 1
+
+
+An example of how to split this chocolate bar optimally into  \(2\)  parts is to have the bottom right
+corner as its own part and the rest of the chocolate as the second part,
+as shown below.
+
+
+
+ 
+
+
+
+Each piece will have an average tastiness of  \(5\) .
+
+
+Sample Input 2
+
+
+5
+1 0 1 2 0
+0 2 0 3 1  
+
+
+Output for Sample Input 2
+
+
+5
+
+
+Explanation of
+Output for Sample Input 2
+
+
+One way to get the optimal split is shown in the following
+picture:
+
+
+
+ 
+
+
+
+Note that each piece has an average tastiness of  \(1\) .
+</pre></details></section><section class="card"><h2>Test data</h2><p>2 bundled cases · 115 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://s3.amazonaws.com/cemc.drupal/documents/bigfiles/2024CCCSeniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s5.sample-01.in">s5.sample-01.in</a> / <a href="tests/s5.sample-01.out">output</a></li><li><a href="tests/s5.sample-02.in">s5.sample-02.in</a> / <a href="tests/s5.sample-02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2024 J4 · Troublesome Keys Problem Description As Alex is typing, their keyboard is acting strangely. Two letter keys are causing trouble: One letter key displays the same wrong letter each time it is pressed. Alex calls this key the silly key . Oddly, Alex never actually tries to type the wrong letter displayed by the silly key. Another letter key doesn’t display anything when it is pressed. Alex calls this key the quiet key . Alex presses the silly key at least once but they don’t necessarily press the quiet key. Your job is to determine the troublesome keys and the wrong letter that is displayed. Luckily, this is possible because Alex never presses the silly key immediately after pressing the quiet key and Alex never presses the quiet key immediately after pressing the silly key. Input Specification There will be two lines of input. The first line of input represents the \(N\) keys Alex presses on the keyboard. The second line of input represents the letters displayed on the screen. Both lines of input will only contain lowercase letters of the alphabet. The following table shows how the available \(15\) marks are distributed. Marks Description Bound \(3\) The quiet key is not pressed. A small number of keys are pressed. \(N \leq 50\) \(3\) The first troublesome key pressed is the silly key. A small number of keys are pressed. \(N \leq 50\) \(5\) The first troublesome key pressed may be the silly key or the quiet key. A small number of keys are pressed. \(N \leq 50\) 4 The first troublesome key pressed may be the silly key or the quiet key. A large number of keys are pressed. \(N \leq 500\,000\) Output Specification There will be two lines of output. On the first line, output the letter corresponding to the silly key and the wrong letter displayed on the screen when it is pressed, separated by a single space. On the second line, output the letter corresponding to the quiet key if it is pressed. Output the dash character ( - ) if the quiet key is not pressed. Sample Input 1 forloops fxrlxxps Output for Sample Input 1 o x - Explanation of Sample Output 1 The letter corresponding to the silly key was the letter o . Each time it was pressed, the wrong letter x was displayed. The quiet key was not pressed. Sample Input 2 forloops fxrlxxp Output for Sample Input 2 o x s Explanation of Sample Output 2 The letter corresponding to the silly key was the letter o . Each time it was pressed, the wrong letter x was displayed. The quiet key corresponds to the letter s which was not displayed. Sample Input 3 forloops frlpz Output for Sample Input 3 s z o Explanation of Sample Output 3 The letter corresponding to the silly key was the letter s . Each time it was pressed, the wrong letter z was displayed. The quiet key corresponds to the letter o which was not displayed. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2024 J4 · Troublesome Keys Problem Description As Alex is typing, their keyboard is acting strangely. Two letter keys are causing trouble: One letter key displays the same wrong letter each time it is pressed. Alex calls this key the silly key . Oddly, Alex never actually tries to type the wrong letter displayed by the silly key. Another letter key doesn’t display anything when it is pressed. Alex calls this key the quiet key . Alex presses the silly key at least once but they don’t necessarily press the quiet key. Your job is to determine the troublesome keys and the wrong letter that is displayed. Luckily, this is possible because Alex never presses the silly key immediately after pressing the quiet key and Alex never presses the quiet key immediately after pressing the silly key. Input Specification There will be two lines of input. The first line of input represents the \(N\) keys Alex presses on the keyboard. The second line of input represents the letters displayed on the screen. Both lines of input will only contain lowercase letters of the alphabet. The following table shows how the available \(15\) marks are distributed. Marks Description Bound \(3\) The quiet key is not pressed. A small number of keys are pressed. \(N \leq 50\) \(3\) The first troublesome key pressed is the silly key. A small number of keys are pressed. \(N \leq 50\) \(5\) The first troublesome key pressed may be the silly key or the quiet key. A small number of keys are pressed. \(N \leq 50\) 4 The first troublesome key pressed may be the silly key or the quiet key. A large number of keys are pressed. \(N \leq 500\,000\) Output Specification There will be two lines of output. On the first line, output the letter corresponding to the silly key and the wrong letter displayed on the screen when it is pressed, separated by a single space. On the second line, output the letter corresponding to the quiet key if it is pressed. Output the dash character ( - ) if the quiet key is not pressed. Sample Input 1 forloops fxrlxxps Output for Sample Input 1 o x - Explanation of Sample Output 1 The letter corresponding to the silly key was the letter o . Each time it was pressed, the wrong letter x was displayed. The quiet key was not pressed. Sample Input 2 forloops fxrlxxp Output for Sample Input 2 o x s Explanation of Sample Output 2 The letter corresponding to the silly key was the letter o . Each time it was pressed, the wrong letter x was displayed. The quiet key corresponds to the letter s which was not displayed. Sample Input 3 forloops frlpz Output for Sample Input 3 s z o Explanation of Sample Output 3 The letter corresponding to the silly key was the letter s . Each time it was pressed, the wrong letter z was displayed. The quiet key corresponds to the letter o which was not displayed.</h1></header><p class="eyebrow">2024 / junior / J4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc24j4">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>forloops
+fxrlxxps
+</pre></div><div><h3>样例输出</h3><pre>o x
+-
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Troublesome Keys
+
+
+Problem
+Description
+
+
+As Alex is typing, their keyboard is acting strangely. Two letter
+keys are causing trouble:
+
+
+
+ One letter key displays the same wrong letter each time it is
+pressed. Alex calls this key the  silly key . Oddly, Alex never
+actually tries to type the wrong letter displayed by the silly
+key. 
+ Another letter key doesn’t display anything when it is pressed.
+Alex calls this key the  quiet key . 
+
+
+
+Alex presses the silly key at least once but they don’t necessarily
+press the quiet key.
+
+
+Your job is to determine the troublesome keys and the wrong letter
+that is displayed. Luckily, this is possible because Alex never presses
+the silly key immediately after pressing the quiet key and Alex never
+presses the quiet key immediately after pressing the silly key.
+
+
+Input
+Specification
+
+
+There will be two lines of input. The first line of input represents
+the  \(N\)  keys Alex presses on the
+keyboard. The second line of input represents the letters displayed on
+the screen.
+
+
+Both lines of input will only contain lowercase letters of the
+alphabet.
+
+
+The following table shows how the available  \(15\)  marks are distributed.
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bound 
+ 
+ 
+ 
+ 
+ \(3\) 
+ The quiet key is not pressed. A small
+number of keys are pressed. 
+ \(N \leq
+50\) 
+ 
+ 
+ \(3\) 
+ The first troublesome key pressed is the
+silly key. A small number of keys are pressed. 
+ \(N \leq
+50\) 
+ 
+ 
+ \(5\) 
+ The first troublesome key pressed may be
+the silly key or the quiet key. A small number of keys are pressed. 
+ \(N \leq
+50\) 
+ 
+ 
+ 4 
+ The first troublesome key pressed may be
+the silly key or the quiet key. A large number of keys are pressed. 
+ \(N \leq
+500\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+There will be two lines of output.
+
+
+On the first line, output the letter corresponding to the silly key
+and the wrong letter displayed on the screen when it is pressed,
+separated by a single space.
+
+
+On the second line, output the letter corresponding to the quiet key
+if it is pressed. Output the dash character ( - ) if the
+quiet key is not pressed.
+
+
+Sample Input 1
+
+
+forloops 
+fxrlxxps
+
+
+Output for Sample Input 1
+
+
+o x
+-
+
+
+Explanation of Sample Output
+1
+
+
+The letter corresponding to the silly key was the letter
+ o . Each time it was pressed, the wrong letter
+ x  was displayed. The quiet key was not pressed.
+
+
+Sample Input 2
+
+
+forloops 
+fxrlxxp
+
+
+Output for Sample Input 2
+
+
+o x
+s
+
+
+ Explanation of Sample Output
+2
+
+
+The letter corresponding to the silly key was the letter
+ o . Each time it was pressed, the wrong letter
+ x  was displayed. The quiet key corresponds to the letter
+ s  which was not displayed.
+
+
+Sample Input 3
+
+
+forloops 
+frlpz
+
+
+Output for Sample Input 3
+
+
+s z
+o
+
+
+Explanation of Sample Output
+3
+
+
+The letter corresponding to the silly key was the letter
+ s . Each time it was pressed, the wrong letter
+ z  was displayed. The quiet key corresponds to the letter
+ o  which was not displayed.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>3 bundled cases · 34 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024CCCJuniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j4.sample.01.in">j4.sample.01.in</a> / <a href="tests/j4.sample.01.out">output</a></li><li><a href="tests/j4.sample.02.in">j4.sample.02.in</a> / <a href="tests/j4.sample.02.out">output</a></li><li><a href="tests/j4.sample.03.in">j4.sample.03.in</a> / <a href="tests/j4.sample.03.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc24j4">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>forloops
+fxrlxxps
+</pre></div><div><h3>Sample output</h3><pre>o x
+-
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Troublesome Keys
+
+
+Problem
+Description
+
+
+As Alex is typing, their keyboard is acting strangely. Two letter
+keys are causing trouble:
+
+
+
+ One letter key displays the same wrong letter each time it is
+pressed. Alex calls this key the  silly key . Oddly, Alex never
+actually tries to type the wrong letter displayed by the silly
+key. 
+ Another letter key doesn’t display anything when it is pressed.
+Alex calls this key the  quiet key . 
+
+
+
+Alex presses the silly key at least once but they don’t necessarily
+press the quiet key.
+
+
+Your job is to determine the troublesome keys and the wrong letter
+that is displayed. Luckily, this is possible because Alex never presses
+the silly key immediately after pressing the quiet key and Alex never
+presses the quiet key immediately after pressing the silly key.
+
+
+Input
+Specification
+
+
+There will be two lines of input. The first line of input represents
+the  \(N\)  keys Alex presses on the
+keyboard. The second line of input represents the letters displayed on
+the screen.
+
+
+Both lines of input will only contain lowercase letters of the
+alphabet.
+
+
+The following table shows how the available  \(15\)  marks are distributed.
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bound 
+ 
+ 
+ 
+ 
+ \(3\) 
+ The quiet key is not pressed. A small
+number of keys are pressed. 
+ \(N \leq
+50\) 
+ 
+ 
+ \(3\) 
+ The first troublesome key pressed is the
+silly key. A small number of keys are pressed. 
+ \(N \leq
+50\) 
+ 
+ 
+ \(5\) 
+ The first troublesome key pressed may be
+the silly key or the quiet key. A small number of keys are pressed. 
+ \(N \leq
+50\) 
+ 
+ 
+ 4 
+ The first troublesome key pressed may be
+the silly key or the quiet key. A large number of keys are pressed. 
+ \(N \leq
+500\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+There will be two lines of output.
+
+
+On the first line, output the letter corresponding to the silly key
+and the wrong letter displayed on the screen when it is pressed,
+separated by a single space.
+
+
+On the second line, output the letter corresponding to the quiet key
+if it is pressed. Output the dash character ( - ) if the
+quiet key is not pressed.
+
+
+Sample Input 1
+
+
+forloops 
+fxrlxxps
+
+
+Output for Sample Input 1
+
+
+o x
+-
+
+
+Explanation of Sample Output
+1
+
+
+The letter corresponding to the silly key was the letter
+ o . Each time it was pressed, the wrong letter
+ x  was displayed. The quiet key was not pressed.
+
+
+Sample Input 2
+
+
+forloops 
+fxrlxxp
+
+
+Output for Sample Input 2
+
+
+o x
+s
+
+
+ Explanation of Sample Output
+2
+
+
+The letter corresponding to the silly key was the letter
+ o . Each time it was pressed, the wrong letter
+ x  was displayed. The quiet key corresponds to the letter
+ s  which was not displayed.
+
+
+Sample Input 3
+
+
+forloops 
+frlpz
+
+
+Output for Sample Input 3
+
+
+s z
+o
+
+
+Explanation of Sample Output
+3
+
+
+The letter corresponding to the silly key was the letter
+ s . Each time it was pressed, the wrong letter
+ z  was displayed. The quiet key corresponds to the letter
+ o  which was not displayed.
+</pre></details></section><section class="card"><h2>Test data</h2><p>3 bundled cases · 34 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024CCCJuniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j4.sample.01.in">j4.sample.01.in</a> / <a href="tests/j4.sample.01.out">output</a></li><li><a href="tests/j4.sample.02.in">j4.sample.02.in</a> / <a href="tests/j4.sample.02.out">output</a></li><li><a href="tests/j4.sample.03.in">j4.sample.03.in</a> / <a href="tests/j4.sample.03.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

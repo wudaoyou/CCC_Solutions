@@ -1,0 +1,7 @@
+# Preserve official input/output bytes, including CRLF and significant spaces.
+*.in binary
+*.out binary
+# Verbatim statements and generated pages can contain source whitespace.
+**/problem.txt -whitespace
+**/solution.html -whitespace
+archive/original-code/** -whitespace

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2018 S1 · Voronoi Villages · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2018 S1 · Voronoi Villages</h1></header><p class="eyebrow">2018 / senior / S1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc18s1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>5
+16
+0
+10
+4
+15
+</pre></div><div><h3>样例输出</h3><pre>3.0
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S1: Voronoi Villages
+
+
+Problem Description
+ 
+
+In the country of Voronoi, there are  \(N\)  villages, located at distinct points on
+a straight road. Each of these villages will be represented by an
+integer position along this road.
+
+
+Each village defines its  neighbourhood  as all
+points along the road which are closer to it than to any other village.
+A point which is equally close to two distinct villages  \(A\)  and  \(B\)  is in the neighbourhood of  \(A\)  and also in the neighbourhood of  \(B\) .
+
+
+Each neighbourhood has a  size  which is the
+difference between the minimum (leftmost) point in its neighbourhood and
+the maximum (rightmost) point in its neighbourhood.
+
+
+The neighbourhoods of the leftmost and rightmost villages are defined
+to be of infinite size, while all other neighbourhoods are finite in
+size.
+
+
+Determine the smallest size of any of the neighbourhoods (with
+exactly 1 digit after the decimal point).
+
+
+Input Specification
+ 
+
+The first line will contain the number  \(N\)   \((3 \leq N
+\leq 100)\) , the number of villages. On the next  \(N\)  lines there will be one integer per
+line, where the  \(i\) th line contains
+the integer  \(V_i\) , the position of
+the  \(i\) th village  \((-1\ 000\ 000\ 000 \leq V_i \leq 1\ 000\ 000\
+000)\) . All villages are at distinct positions.
+
+
+Output Specification
+ 
+
+Output the smallest neighbourhood size with exactly one digit after the
+decimal point.
+
+
+Sample Input
+
+
+5
+16
+0
+10
+4
+15
+
+
+Output for Sample Input
+
+
+3.0
+
+
+Explanation for Output for Sample Input
+
+
+The neighbourhoods around  \(0\)  and  \(16\)  are infinite. The neighbourhood
+around 4 is  \(5\)  units ( \(2\)  to the left, and  \(3\)  to the right). The neighbourhood around
+10 is  \(5.5\)  units ( \(3\)  to the left and  \(2.5\)  to the right). The neighbourhood
+around 15 is  \(3.0\)  units ( \(2.5\)  to the left and  \(0.5\)  to the right).
+</pre></details></section><section class="card"><h2>测试数据</h2><p>16 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s1.01.in">s1.01.in</a> / <a href="tests/s1.01.out">output</a></li><li><a href="tests/s1.02.in">s1.02.in</a> / <a href="tests/s1.02.out">output</a></li><li><a href="tests/s1.03.in">s1.03.in</a> / <a href="tests/s1.03.out">output</a></li><li><a href="tests/s1.04.in">s1.04.in</a> / <a href="tests/s1.04.out">output</a></li><li><a href="tests/s1.05.in">s1.05.in</a> / <a href="tests/s1.05.out">output</a></li><li><a href="tests/s1.06.in">s1.06.in</a> / <a href="tests/s1.06.out">output</a></li><li><a href="tests/s1.07.in">s1.07.in</a> / <a href="tests/s1.07.out">output</a></li><li><a href="tests/s1.08.in">s1.08.in</a> / <a href="tests/s1.08.out">output</a></li><li><a href="tests/s1.09.in">s1.09.in</a> / <a href="tests/s1.09.out">output</a></li><li><a href="tests/s1.10.in">s1.10.in</a> / <a href="tests/s1.10.out">output</a></li><li><a href="tests/s1.11.in">s1.11.in</a> / <a href="tests/s1.11.out">output</a></li><li><a href="tests/s1.12.in">s1.12.in</a> / <a href="tests/s1.12.out">output</a></li><li><a href="tests/s1.13.in">s1.13.in</a> / <a href="tests/s1.13.out">output</a></li><li><a href="tests/s1.14.in">s1.14.in</a> / <a href="tests/s1.14.out">output</a></li><li><a href="tests/s1.15.in">s1.15.in</a> / <a href="tests/s1.15.out">output</a></li><li><a href="tests/s1.sample.in">s1.sample.in</a> / <a href="tests/s1.sample.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc18s1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>5
+16
+0
+10
+4
+15
+</pre></div><div><h3>Sample output</h3><pre>3.0
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S1: Voronoi Villages
+
+
+Problem Description
+ 
+
+In the country of Voronoi, there are  \(N\)  villages, located at distinct points on
+a straight road. Each of these villages will be represented by an
+integer position along this road.
+
+
+Each village defines its  neighbourhood  as all
+points along the road which are closer to it than to any other village.
+A point which is equally close to two distinct villages  \(A\)  and  \(B\)  is in the neighbourhood of  \(A\)  and also in the neighbourhood of  \(B\) .
+
+
+Each neighbourhood has a  size  which is the
+difference between the minimum (leftmost) point in its neighbourhood and
+the maximum (rightmost) point in its neighbourhood.
+
+
+The neighbourhoods of the leftmost and rightmost villages are defined
+to be of infinite size, while all other neighbourhoods are finite in
+size.
+
+
+Determine the smallest size of any of the neighbourhoods (with
+exactly 1 digit after the decimal point).
+
+
+Input Specification
+ 
+
+The first line will contain the number  \(N\)   \((3 \leq N
+\leq 100)\) , the number of villages. On the next  \(N\)  lines there will be one integer per
+line, where the  \(i\) th line contains
+the integer  \(V_i\) , the position of
+the  \(i\) th village  \((-1\ 000\ 000\ 000 \leq V_i \leq 1\ 000\ 000\
+000)\) . All villages are at distinct positions.
+
+
+Output Specification
+ 
+
+Output the smallest neighbourhood size with exactly one digit after the
+decimal point.
+
+
+Sample Input
+
+
+5
+16
+0
+10
+4
+15
+
+
+Output for Sample Input
+
+
+3.0
+
+
+Explanation for Output for Sample Input
+
+
+The neighbourhoods around  \(0\)  and  \(16\)  are infinite. The neighbourhood
+around 4 is  \(5\)  units ( \(2\)  to the left, and  \(3\)  to the right). The neighbourhood around
+10 is  \(5.5\)  units ( \(3\)  to the left and  \(2.5\)  to the right). The neighbourhood
+around 15 is  \(3.0\)  units ( \(2.5\)  to the left and  \(0.5\)  to the right).
+</pre></details></section><section class="card"><h2>Test data</h2><p>16 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s1.01.in">s1.01.in</a> / <a href="tests/s1.01.out">output</a></li><li><a href="tests/s1.02.in">s1.02.in</a> / <a href="tests/s1.02.out">output</a></li><li><a href="tests/s1.03.in">s1.03.in</a> / <a href="tests/s1.03.out">output</a></li><li><a href="tests/s1.04.in">s1.04.in</a> / <a href="tests/s1.04.out">output</a></li><li><a href="tests/s1.05.in">s1.05.in</a> / <a href="tests/s1.05.out">output</a></li><li><a href="tests/s1.06.in">s1.06.in</a> / <a href="tests/s1.06.out">output</a></li><li><a href="tests/s1.07.in">s1.07.in</a> / <a href="tests/s1.07.out">output</a></li><li><a href="tests/s1.08.in">s1.08.in</a> / <a href="tests/s1.08.out">output</a></li><li><a href="tests/s1.09.in">s1.09.in</a> / <a href="tests/s1.09.out">output</a></li><li><a href="tests/s1.10.in">s1.10.in</a> / <a href="tests/s1.10.out">output</a></li><li><a href="tests/s1.11.in">s1.11.in</a> / <a href="tests/s1.11.out">output</a></li><li><a href="tests/s1.12.in">s1.12.in</a> / <a href="tests/s1.12.out">output</a></li><li><a href="tests/s1.13.in">s1.13.in</a> / <a href="tests/s1.13.out">output</a></li><li><a href="tests/s1.14.in">s1.14.in</a> / <a href="tests/s1.14.out">output</a></li><li><a href="tests/s1.15.in">s1.15.in</a> / <a href="tests/s1.15.out">output</a></li><li><a href="tests/s1.sample.in">s1.sample.in</a> / <a href="tests/s1.sample.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

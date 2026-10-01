@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2020 J3 · Art · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2020 J3 · Art</h1></header><p class="eyebrow">2020 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc20j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>5
+44,62
+34,69
+24,78
+42,44
+64,10
+</pre></div><div><h3>样例输出</h3><pre>23,9
+65,79</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Art
+
+
+Problem Description
+
+
+
+Mahima has been experimenting with a new style of art. She stands in
+front of a canvas and, using her brush, flicks drops of paint onto the
+canvas. When she thinks she has created a masterpiece, she uses her 3D
+printer to print a frame to surround the canvas.
+
+
+Your job is to help Mahima by determining the coordinates of the
+smallest possible rectangular frame such that each drop of paint lies
+inside the frame. Points on the frame are not considered inside the
+frame.
+
+
+Input Specification
+
+
+
+The first line of input contains the number of drops of paint,  \(N\) , where  \(2
+\le N \le 100\)  and  \(N\)  is an
+integer. Each of the next  \(N\)  lines
+contain exactly two positive integers  \(X\)  and  \(Y\)  separated by one comma (no spaces).
+Each of these pairs of integers represents the coordinates of a drop of
+paint on the canvas. Assume that  \(X &lt;
+100\)  and  \(Y&lt; 100\) , and
+that there will be at least two distinct points. The coordinates  \((0,0)\)  represent the bottom-left corner of
+the canvas.
+
+
+For 12 of the 15 available marks,  \(X\)  and  \(Y\)  will both be two-digit integers.
+
+
+Output Specification
+
+
+
+Output two lines. Each line must contain exactly two non-negative
+integers separated by a single comma (no spaces). The first line
+represents the coordinates of the bottom-left corner of the rectangular
+frame. The second line represents the coordinates of the top-right
+corner of the rectangular frame.
+
+
+Sample Input
+
+
+5
+44,62
+34,69
+24,78
+42,44
+64,10
+
+
+Output for Sample Input
+
+
+23,9
+65,79
+
+
+Explanation of Output for Sample Input
+
+
+The bottom-left corner of the frame is  \((23,9)\) . Notice that if the bottom-left
+corner is moved up, the paint drop at  \((64,10)\)  will not be inside the frame.
+(See the diagram below.) If the corner is moved right, the
+paint drop at  \((24,78)\)  will not be
+inside the frame. If the corner is moved down or left, then the frame
+will be larger and no longer the smallest rectangle containing all the
+drops of paint. A similar argument can be made regarding the top-right
+corner of the frame.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>16 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j3.01.in">j3.01.in</a> / <a href="tests/j3.01.out">output</a></li><li><a href="tests/j3.02.in">j3.02.in</a> / <a href="tests/j3.02.out">output</a></li><li><a href="tests/j3.03.in">j3.03.in</a> / <a href="tests/j3.03.out">output</a></li><li><a href="tests/j3.04.in">j3.04.in</a> / <a href="tests/j3.04.out">output</a></li><li><a href="tests/j3.05.in">j3.05.in</a> / <a href="tests/j3.05.out">output</a></li><li><a href="tests/j3.06.in">j3.06.in</a> / <a href="tests/j3.06.out">output</a></li><li><a href="tests/j3.07.in">j3.07.in</a> / <a href="tests/j3.07.out">output</a></li><li><a href="tests/j3.08.in">j3.08.in</a> / <a href="tests/j3.08.out">output</a></li><li><a href="tests/j3.09.in">j3.09.in</a> / <a href="tests/j3.09.out">output</a></li><li><a href="tests/j3.10.in">j3.10.in</a> / <a href="tests/j3.10.out">output</a></li><li><a href="tests/j3.11.in">j3.11.in</a> / <a href="tests/j3.11.out">output</a></li><li><a href="tests/j3.12.in">j3.12.in</a> / <a href="tests/j3.12.out">output</a></li><li><a href="tests/j3.13.in">j3.13.in</a> / <a href="tests/j3.13.out">output</a></li><li><a href="tests/j3.14.in">j3.14.in</a> / <a href="tests/j3.14.out">output</a></li><li><a href="tests/j3.15.in">j3.15.in</a> / <a href="tests/j3.15.out">output</a></li><li><a href="tests/j3.sample.01.in">j3.sample.01.in</a> / <a href="tests/j3.sample.01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc20j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>5
+44,62
+34,69
+24,78
+42,44
+64,10
+</pre></div><div><h3>Sample output</h3><pre>23,9
+65,79</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Art
+
+
+Problem Description
+
+
+
+Mahima has been experimenting with a new style of art. She stands in
+front of a canvas and, using her brush, flicks drops of paint onto the
+canvas. When she thinks she has created a masterpiece, she uses her 3D
+printer to print a frame to surround the canvas.
+
+
+Your job is to help Mahima by determining the coordinates of the
+smallest possible rectangular frame such that each drop of paint lies
+inside the frame. Points on the frame are not considered inside the
+frame.
+
+
+Input Specification
+
+
+
+The first line of input contains the number of drops of paint,  \(N\) , where  \(2
+\le N \le 100\)  and  \(N\)  is an
+integer. Each of the next  \(N\)  lines
+contain exactly two positive integers  \(X\)  and  \(Y\)  separated by one comma (no spaces).
+Each of these pairs of integers represents the coordinates of a drop of
+paint on the canvas. Assume that  \(X &lt;
+100\)  and  \(Y&lt; 100\) , and
+that there will be at least two distinct points. The coordinates  \((0,0)\)  represent the bottom-left corner of
+the canvas.
+
+
+For 12 of the 15 available marks,  \(X\)  and  \(Y\)  will both be two-digit integers.
+
+
+Output Specification
+
+
+
+Output two lines. Each line must contain exactly two non-negative
+integers separated by a single comma (no spaces). The first line
+represents the coordinates of the bottom-left corner of the rectangular
+frame. The second line represents the coordinates of the top-right
+corner of the rectangular frame.
+
+
+Sample Input
+
+
+5
+44,62
+34,69
+24,78
+42,44
+64,10
+
+
+Output for Sample Input
+
+
+23,9
+65,79
+
+
+Explanation of Output for Sample Input
+
+
+The bottom-left corner of the frame is  \((23,9)\) . Notice that if the bottom-left
+corner is moved up, the paint drop at  \((64,10)\)  will not be inside the frame.
+(See the diagram below.) If the corner is moved right, the
+paint drop at  \((24,78)\)  will not be
+inside the frame. If the corner is moved down or left, then the frame
+will be larger and no longer the smallest rectangle containing all the
+drops of paint. A similar argument can be made regarding the top-right
+corner of the frame.
+</pre></details></section><section class="card"><h2>Test data</h2><p>16 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j3.01.in">j3.01.in</a> / <a href="tests/j3.01.out">output</a></li><li><a href="tests/j3.02.in">j3.02.in</a> / <a href="tests/j3.02.out">output</a></li><li><a href="tests/j3.03.in">j3.03.in</a> / <a href="tests/j3.03.out">output</a></li><li><a href="tests/j3.04.in">j3.04.in</a> / <a href="tests/j3.04.out">output</a></li><li><a href="tests/j3.05.in">j3.05.in</a> / <a href="tests/j3.05.out">output</a></li><li><a href="tests/j3.06.in">j3.06.in</a> / <a href="tests/j3.06.out">output</a></li><li><a href="tests/j3.07.in">j3.07.in</a> / <a href="tests/j3.07.out">output</a></li><li><a href="tests/j3.08.in">j3.08.in</a> / <a href="tests/j3.08.out">output</a></li><li><a href="tests/j3.09.in">j3.09.in</a> / <a href="tests/j3.09.out">output</a></li><li><a href="tests/j3.10.in">j3.10.in</a> / <a href="tests/j3.10.out">output</a></li><li><a href="tests/j3.11.in">j3.11.in</a> / <a href="tests/j3.11.out">output</a></li><li><a href="tests/j3.12.in">j3.12.in</a> / <a href="tests/j3.12.out">output</a></li><li><a href="tests/j3.13.in">j3.13.in</a> / <a href="tests/j3.13.out">output</a></li><li><a href="tests/j3.14.in">j3.14.in</a> / <a href="tests/j3.14.out">output</a></li><li><a href="tests/j3.15.in">j3.15.in</a> / <a href="tests/j3.15.out">output</a></li><li><a href="tests/j3.sample.01.in">j3.sample.01.in</a> / <a href="tests/j3.sample.01.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

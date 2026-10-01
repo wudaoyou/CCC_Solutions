@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2019 S1 · Flipper · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2019 S1 · Flipper</h1></header><p class="eyebrow">2019 / senior / S1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc19s1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>VVHH
+</pre></div><div><h3>样例输出</h3><pre>1 2
+3 4
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4/S1: Flipper
+
+
+Problem Description
+
+
+
+You are trying to pass the time while at the optometrist. You notice
+there is a grid of four numbers:
+
+
+
+ 
+ 
+ 1 
+ 2 
+ 
+ 
+ 
+ 3 
+ 4 
+ 
+ 
+ 
+
+
+
+You see lots of mirrors and lenses at the optometrist, and wonder how
+flipping the grid horizontally or vertically would change the grid.
+
+
+Specifically, a “horizontal” flip (across the horizontal centre line)
+would take the original grid of four numbers and result in:
+
+
+
+ 
+ 
+ 3 
+ 4 
+ 
+ 
+ 
+ 1 
+ 2 
+ 
+ 
+ 
+
+
+
+A “vertical” flip (across the vertical centre line) would take the
+original grid of four numbers and result in:
+
+
+
+ 
+ 
+ 2 
+ 1 
+ 
+ 
+ 
+ 4 
+ 3 
+ 
+ 
+ 
+
+
+
+Your task is to determine the final orientation of the numbers in the
+grid after a sequence of horizontal and vertical flips.
+
+
+Input Specification
+
+The input consists of one line, composed of a sequence of at least one
+and at most 1 000 000 characters. Each character is either
+ H , representing a horizontal flip, or
+ V , representing a vertical flip.
+
+
+For 8 of the 15 available marks, there will be at most 1 000
+characters in the input.
+
+
+Output Specification
+
+
+Output the final orientation of the four numbers. Specifically, each of
+the two lines of output will contain two integers, separated by one
+space.
+
+
+Sample Input 1
+
+
+HV
+
+
+Output for Sample Input 1
+
+
+4 3
+2 1
+
+
+Sample Input 2
+
+
+VVHH
+
+
+Output for Sample Input 2
+
+
+1 2
+3 4
+</pre></details></section><section class="card"><h2>测试数据</h2><p>19 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j4.01.in">j4.01.in</a> / <a href="tests/j4.01.out">output</a></li><li><a href="tests/j4.02.in">j4.02.in</a> / <a href="tests/j4.02.out">output</a></li><li><a href="tests/j4.05.in">j4.05.in</a> / <a href="tests/j4.05.out">output</a></li><li><a href="tests/j4.06.in">j4.06.in</a> / <a href="tests/j4.06.out">output</a></li><li><a href="tests/j4.07.in">j4.07.in</a> / <a href="tests/j4.07.out">output</a></li><li><a href="tests/j4.08.in">j4.08.in</a> / <a href="tests/j4.08.out">output</a></li><li><a href="tests/j4.09.in">j4.09.in</a> / <a href="tests/j4.09.out">output</a></li><li><a href="tests/j4.10.in">j4.10.in</a> / <a href="tests/j4.10.out">output</a></li><li><a href="tests/j4.11.in">j4.11.in</a> / <a href="tests/j4.11.out">output</a></li><li><a href="tests/j4.12.in">j4.12.in</a> / <a href="tests/j4.12.out">output</a></li><li><a href="tests/j4.13.in">j4.13.in</a> / <a href="tests/j4.13.out">output</a></li><li><a href="tests/j4.14.in">j4.14.in</a> / <a href="tests/j4.14.out">output</a></li><li><a href="tests/j4.15.in">j4.15.in</a> / <a href="tests/j4.15.out">output</a></li><li><a href="tests/j4.16.in">j4.16.in</a> / <a href="tests/j4.16.out">output</a></li><li><a href="tests/j4.17.in">j4.17.in</a> / <a href="tests/j4.17.out">output</a></li><li><a href="tests/j4.18.in">j4.18.in</a> / <a href="tests/j4.18.out">output</a></li><li><a href="tests/j4.19.in">j4.19.in</a> / <a href="tests/j4.19.out">output</a></li><li><a href="tests/j4.sample01.in">j4.sample01.in</a> / <a href="tests/j4.sample01.out">output</a></li><li><a href="tests/j4.sample02.in">j4.sample02.in</a> / <a href="tests/j4.sample02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc19s1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>VVHH
+</pre></div><div><h3>Sample output</h3><pre>1 2
+3 4
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4/S1: Flipper
+
+
+Problem Description
+
+
+
+You are trying to pass the time while at the optometrist. You notice
+there is a grid of four numbers:
+
+
+
+ 
+ 
+ 1 
+ 2 
+ 
+ 
+ 
+ 3 
+ 4 
+ 
+ 
+ 
+
+
+
+You see lots of mirrors and lenses at the optometrist, and wonder how
+flipping the grid horizontally or vertically would change the grid.
+
+
+Specifically, a “horizontal” flip (across the horizontal centre line)
+would take the original grid of four numbers and result in:
+
+
+
+ 
+ 
+ 3 
+ 4 
+ 
+ 
+ 
+ 1 
+ 2 
+ 
+ 
+ 
+
+
+
+A “vertical” flip (across the vertical centre line) would take the
+original grid of four numbers and result in:
+
+
+
+ 
+ 
+ 2 
+ 1 
+ 
+ 
+ 
+ 4 
+ 3 
+ 
+ 
+ 
+
+
+
+Your task is to determine the final orientation of the numbers in the
+grid after a sequence of horizontal and vertical flips.
+
+
+Input Specification
+
+The input consists of one line, composed of a sequence of at least one
+and at most 1 000 000 characters. Each character is either
+ H , representing a horizontal flip, or
+ V , representing a vertical flip.
+
+
+For 8 of the 15 available marks, there will be at most 1 000
+characters in the input.
+
+
+Output Specification
+
+
+Output the final orientation of the four numbers. Specifically, each of
+the two lines of output will contain two integers, separated by one
+space.
+
+
+Sample Input 1
+
+
+HV
+
+
+Output for Sample Input 1
+
+
+4 3
+2 1
+
+
+Sample Input 2
+
+
+VVHH
+
+
+Output for Sample Input 2
+
+
+1 2
+3 4
+</pre></details></section><section class="card"><h2>Test data</h2><p>19 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j4.01.in">j4.01.in</a> / <a href="tests/j4.01.out">output</a></li><li><a href="tests/j4.02.in">j4.02.in</a> / <a href="tests/j4.02.out">output</a></li><li><a href="tests/j4.05.in">j4.05.in</a> / <a href="tests/j4.05.out">output</a></li><li><a href="tests/j4.06.in">j4.06.in</a> / <a href="tests/j4.06.out">output</a></li><li><a href="tests/j4.07.in">j4.07.in</a> / <a href="tests/j4.07.out">output</a></li><li><a href="tests/j4.08.in">j4.08.in</a> / <a href="tests/j4.08.out">output</a></li><li><a href="tests/j4.09.in">j4.09.in</a> / <a href="tests/j4.09.out">output</a></li><li><a href="tests/j4.10.in">j4.10.in</a> / <a href="tests/j4.10.out">output</a></li><li><a href="tests/j4.11.in">j4.11.in</a> / <a href="tests/j4.11.out">output</a></li><li><a href="tests/j4.12.in">j4.12.in</a> / <a href="tests/j4.12.out">output</a></li><li><a href="tests/j4.13.in">j4.13.in</a> / <a href="tests/j4.13.out">output</a></li><li><a href="tests/j4.14.in">j4.14.in</a> / <a href="tests/j4.14.out">output</a></li><li><a href="tests/j4.15.in">j4.15.in</a> / <a href="tests/j4.15.out">output</a></li><li><a href="tests/j4.16.in">j4.16.in</a> / <a href="tests/j4.16.out">output</a></li><li><a href="tests/j4.17.in">j4.17.in</a> / <a href="tests/j4.17.out">output</a></li><li><a href="tests/j4.18.in">j4.18.in</a> / <a href="tests/j4.18.out">output</a></li><li><a href="tests/j4.19.in">j4.19.in</a> / <a href="tests/j4.19.out">output</a></li><li><a href="tests/j4.sample01.in">j4.sample01.in</a> / <a href="tests/j4.sample01.out">output</a></li><li><a href="tests/j4.sample02.in">j4.sample02.in</a> / <a href="tests/j4.sample02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

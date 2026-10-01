@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 S2 · Beams of Light Problem Description Along one wall of a parking garage there are identical parking spots numbered from \(1\) to \(N\) . A collection of lights illuminates the parking garage. Each light shines on some number of adjacent parking spots. You will be questioned about the parking spots. For each parking spot you are questioned about, your job is to determine whether or not it is illuminated by at least one light. Input Specification The first line of input contains a positive integer, \(N\) , representing the number of parking spots. The second line contains a non-negative integer, \(L\) , representing the number of lights. The third line contains a positive integer, \(Q\) , representing the number of parking spots you will be questioned about. The next \(L\) lines provide information about the \(L\) lights. Line \(i\) will contain two integers, \(P_i\) and \(S_i\) , separated by a single space. The first integer, \(1 \leq P_i \leq N\) , represents the number of the parking spot above which a light is hung. The second integer, \(0 \leq S_i \leq N\) , represents the spread of the light&#x27;s beam. Light \(i\) shines on the parking spot that is directly below it. It also shines on the \(S_i\) parking spots located on either side, unless there are fewer than \(S_i\) spots on a side, in which case all the spots on that side will be illuminated. There could be more than one light directly above a parking spot. The next \(Q\) lines of input each contain a positive integer between \(1\) and \(N\) inclusive, representing the number of the parking spot you are questioned about. The following table shows how the \(15\) available marks are distributed: Marks Number of Spots Number of Lights Number of Questions \(1\) \(N \leq 50\) \(L \leq 1\) \(Q \leq 50\) \(2\) \(N \leq 50\) \(L \leq 50\) \(Q \leq 50\) \(3\) \(N \leq 50\) \(L \leq 500\,000\) \(Q \leq 500\,000\) \(9\) \(N \leq 500\,000\) \(L \leq 500\,000\) \(Q \leq 500\,000\) Output Specification There will be one line of output for each of the \(Q\) parking spots you are questioned about. On each of these lines, output Y if the corresponding parking spot is illuminated by at least one light, or N if the corresponding parking spot is not illuminated by any light. Sample Input 10 3 4 8 0 1 1 4 2 4 10 7 1 Output for Sample Input Y N N Y Explanation of Output for Sample Input The input describes the following picture of the parking garage. Parking spots \(4\) and \(1\) are illuminated by at least one light. Parking spots \(10\) and \(7\) are not illuminated by any light. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2026 S2 · Beams of Light Problem Description Along one wall of a parking garage there are identical parking spots numbered from \(1\) to \(N\) . A collection of lights illuminates the parking garage. Each light shines on some number of adjacent parking spots. You will be questioned about the parking spots. For each parking spot you are questioned about, your job is to determine whether or not it is illuminated by at least one light. Input Specification The first line of input contains a positive integer, \(N\) , representing the number of parking spots. The second line contains a non-negative integer, \(L\) , representing the number of lights. The third line contains a positive integer, \(Q\) , representing the number of parking spots you will be questioned about. The next \(L\) lines provide information about the \(L\) lights. Line \(i\) will contain two integers, \(P_i\) and \(S_i\) , separated by a single space. The first integer, \(1 \leq P_i \leq N\) , represents the number of the parking spot above which a light is hung. The second integer, \(0 \leq S_i \leq N\) , represents the spread of the light&#x27;s beam. Light \(i\) shines on the parking spot that is directly below it. It also shines on the \(S_i\) parking spots located on either side, unless there are fewer than \(S_i\) spots on a side, in which case all the spots on that side will be illuminated. There could be more than one light directly above a parking spot. The next \(Q\) lines of input each contain a positive integer between \(1\) and \(N\) inclusive, representing the number of the parking spot you are questioned about. The following table shows how the \(15\) available marks are distributed: Marks Number of Spots Number of Lights Number of Questions \(1\) \(N \leq 50\) \(L \leq 1\) \(Q \leq 50\) \(2\) \(N \leq 50\) \(L \leq 50\) \(Q \leq 50\) \(3\) \(N \leq 50\) \(L \leq 500\,000\) \(Q \leq 500\,000\) \(9\) \(N \leq 500\,000\) \(L \leq 500\,000\) \(Q \leq 500\,000\) Output Specification There will be one line of output for each of the \(Q\) parking spots you are questioned about. On each of these lines, output Y if the corresponding parking spot is illuminated by at least one light, or N if the corresponding parking spot is not illuminated by any light. Sample Input 10 3 4 8 0 1 1 4 2 4 10 7 1 Output for Sample Input Y N N Y Explanation of Output for Sample Input The input describes the following picture of the parking garage. Parking spots \(4\) and \(1\) are illuminated by at least one light. Parking spots \(10\) and \(7\) are not illuminated by any light.</h1></header><p class="eyebrow">2026 / senior / S2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc26s2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>10
+3
+4
+8 0
+1 1
+4 2
+4
+10
+7
+1
+</pre></div><div><h3>样例输出</h3><pre>Y
+N
+N
+Y
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5/S2: Beams of Light
+
+
+Problem
+Description
+
+
+Along one wall of a parking garage there are identical parking spots
+numbered from  \(1\)  to  \(N\) . A collection of lights illuminates the
+parking garage. Each light shines on some number of adjacent parking
+spots.
+
+
+
+     
+
+
+
+You will be questioned about the parking spots. For each parking spot
+you are questioned about, your job is to determine whether or not it is
+illuminated by at least one light.
+
+
+Input
+Specification
+
+
+The first line of input contains a positive integer,  \(N\) , representing the number of parking
+spots. The second line contains a non-negative integer,  \(L\) , representing the number of lights. The
+third line contains a positive integer,  \(Q\) , representing the number of parking
+spots you will be questioned about.
+
+
+The next  \(L\)  lines provide
+information about the  \(L\)  lights.
+Line  \(i\)  will contain two integers,
+ \(P_i\)  and  \(S_i\) , separated by a single space. The
+first integer,  \(1 \leq P_i \leq N\) ,
+represents the number of the parking spot above which a light is hung.
+The second integer,  \(0 \leq S_i \leq
+N\) , represents the spread of the light&#x27;s beam. Light  \(i\)  shines on the parking spot that is
+directly below it. It also shines on the  \(S_i\)  parking spots located on either side,
+unless there are fewer than  \(S_i\) 
+spots on a side, in which case all the spots on that side will be
+illuminated. There could be more than one light directly above a parking
+spot.
+
+
+The next  \(Q\)  lines of input each
+contain a positive integer between  \(1\)  and  \(N\)  inclusive, representing the number of
+the parking spot you are questioned about.
+
+
+The following table shows how the  \(15\)  available marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Number of Spots 
+ Number of Lights 
+ Number of Questions 
+ 
+ 
+ 
+ 
+ \(1\) 
+ \(N \leq
+50\) 
+ \(L \leq
+1\) 
+ \(Q \leq
+50\) 
+ 
+ 
+ \(2\) 
+ \(N \leq
+50\) 
+ \(L \leq
+50\) 
+ \(Q \leq
+50\) 
+ 
+ 
+ \(3\) 
+ \(N \leq
+50\) 
+ \(L \leq
+500\,000\) 
+ \(Q \leq
+500\,000\) 
+ 
+ 
+ \(9\) 
+ \(N \leq
+500\,000\) 
+ \(L \leq
+500\,000\) 
+ \(Q \leq
+500\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+There will be one line of output for each of the  \(Q\)  parking spots you are questioned
+about.
+
+
+On each of these lines, output  Y  if the corresponding
+parking spot is illuminated by at least one light, or  N  if
+the corresponding parking spot is not illuminated by any light.
+
+
+Sample Input
+
+
+10
+3
+4
+8 0
+1 1
+4 2
+4
+10
+7
+1
+
+
+Output for Sample
+Input
+
+
+Y
+N
+N
+Y
+
+
+Explanation of Output for
+Sample Input
+
+
+The input describes the following picture of the parking garage.
+
+
+
+     
+
+
+
+Parking spots  \(4\)  and  \(1\)  are illuminated by at least one
+light.
+
+
+Parking spots  \(10\)  and  \(7\)  are not illuminated by any light.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>1 bundled cases · 37 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://s3.amazonaws.com/cemc.drupal/documents/bigfiles/prod/2026CCCSeniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j5.sample.in">j5.sample.in</a> / <a href="tests/j5.sample.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc26s2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>10
+3
+4
+8 0
+1 1
+4 2
+4
+10
+7
+1
+</pre></div><div><h3>Sample output</h3><pre>Y
+N
+N
+Y
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5/S2: Beams of Light
+
+
+Problem
+Description
+
+
+Along one wall of a parking garage there are identical parking spots
+numbered from  \(1\)  to  \(N\) . A collection of lights illuminates the
+parking garage. Each light shines on some number of adjacent parking
+spots.
+
+
+
+     
+
+
+
+You will be questioned about the parking spots. For each parking spot
+you are questioned about, your job is to determine whether or not it is
+illuminated by at least one light.
+
+
+Input
+Specification
+
+
+The first line of input contains a positive integer,  \(N\) , representing the number of parking
+spots. The second line contains a non-negative integer,  \(L\) , representing the number of lights. The
+third line contains a positive integer,  \(Q\) , representing the number of parking
+spots you will be questioned about.
+
+
+The next  \(L\)  lines provide
+information about the  \(L\)  lights.
+Line  \(i\)  will contain two integers,
+ \(P_i\)  and  \(S_i\) , separated by a single space. The
+first integer,  \(1 \leq P_i \leq N\) ,
+represents the number of the parking spot above which a light is hung.
+The second integer,  \(0 \leq S_i \leq
+N\) , represents the spread of the light&#x27;s beam. Light  \(i\)  shines on the parking spot that is
+directly below it. It also shines on the  \(S_i\)  parking spots located on either side,
+unless there are fewer than  \(S_i\) 
+spots on a side, in which case all the spots on that side will be
+illuminated. There could be more than one light directly above a parking
+spot.
+
+
+The next  \(Q\)  lines of input each
+contain a positive integer between  \(1\)  and  \(N\)  inclusive, representing the number of
+the parking spot you are questioned about.
+
+
+The following table shows how the  \(15\)  available marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Number of Spots 
+ Number of Lights 
+ Number of Questions 
+ 
+ 
+ 
+ 
+ \(1\) 
+ \(N \leq
+50\) 
+ \(L \leq
+1\) 
+ \(Q \leq
+50\) 
+ 
+ 
+ \(2\) 
+ \(N \leq
+50\) 
+ \(L \leq
+50\) 
+ \(Q \leq
+50\) 
+ 
+ 
+ \(3\) 
+ \(N \leq
+50\) 
+ \(L \leq
+500\,000\) 
+ \(Q \leq
+500\,000\) 
+ 
+ 
+ \(9\) 
+ \(N \leq
+500\,000\) 
+ \(L \leq
+500\,000\) 
+ \(Q \leq
+500\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+There will be one line of output for each of the  \(Q\)  parking spots you are questioned
+about.
+
+
+On each of these lines, output  Y  if the corresponding
+parking spot is illuminated by at least one light, or  N  if
+the corresponding parking spot is not illuminated by any light.
+
+
+Sample Input
+
+
+10
+3
+4
+8 0
+1 1
+4 2
+4
+10
+7
+1
+
+
+Output for Sample
+Input
+
+
+Y
+N
+N
+Y
+
+
+Explanation of Output for
+Sample Input
+
+
+The input describes the following picture of the parking garage.
+
+
+
+     
+
+
+
+Parking spots  \(4\)  and  \(1\)  are illuminated by at least one
+light.
+
+
+Parking spots  \(10\)  and  \(7\)  are not illuminated by any light.
+</pre></details></section><section class="card"><h2>Test data</h2><p>1 bundled cases · 37 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://s3.amazonaws.com/cemc.drupal/documents/bigfiles/prod/2026CCCSeniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j5.sample.in">j5.sample.in</a> / <a href="tests/j5.sample.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 J3 · Creative Candy Consumption Problem Description Ngoc and Minh devised a creative way to eat candy that comes in three different colours: red, green, and blue. They begin by arranging some coloured candies into a line. Then, the candy at the front of Ngoc&#x27;s line is compared to the candy at the front of Minh&#x27;s line. If both candies are the same colour, then Ngoc and Minh each eat the candy at the front of their own line. If the candies are different colours, then the person with the winning candy eats the losing candy, and the winning candy stays at the front of its line. Red candy wins against green candy . Green candy wins against blue candy . Blue candy wins against red candy . This process of comparing and eating candy repeats until there is at least one empty line of candy. When that happens, if one person still has candy left in their line, then that person eats all of their leftover candy. Your job is to determine how much candy each person eats. Input Specification The first line of input contains a sequence of \(N\) letters, representing Ngoc&#x27;s line of candy. The second line of input contains a sequence of \(M\) letters, representing Minh&#x27;s line of candy. Each letter will be an uppercase R , G , or B representing the colours red, green, and blue, respectively. The first letter in each sequence represents the colour of the candy at the front of that person&#x27;s line. (There will always be at least one letter in each sequence.) The following table shows how the \(15\) available marks are distributed: Marks Description Bounds \(2\) Ngoc and Minh each have one candy. \(N = 1\) and \(M = 1\) \(4\) Either Ngoc&#x27;s line will empty first, or both lines will empty at the same time. Ngoc and Minh could have many candies. \(N \leq 50\) and \(M \leq 50\) \(7\) Ngoc and Minh could have many candies. \(N \leq 50\) and \(M \leq 50\) \(2\) Ngoc and Minh could have an absurd amount of candy. \(N \leq 1\,000\,000\) and \(M \leq 1\,000\,000\) Output Specification There will be two lines of output. On the first line, output the number of candies Ngoc eats. On the second line, output the number of candies Minh eats. Sample Input RRR RGBB Output for Sample Input 2 5 Explanation of Output for Sample Input Candy Lines Description Summary Ngoc: Minh: Both people have red candy at the front of their lines. Ngoc eats her red candy and Minh eats his red candy. So far, Ngoc has eaten \(1\) candy and Minh has eaten \(1\) candy. Ngoc: Minh: Ngoc&#x27;s red candy wins against Minh&#x27;s green candy. Ngoc eats Minh&#x27;s green candy. So far, Ngoc has eaten \(2\) candies and Minh has eaten \(1\) candy. Ngoc: Minh: Minh&#x27;s blue candy wins against Ngoc&#x27;s red candy. Minh eats Ngoc&#x27;s red candy. So far, Ngoc has eaten \(2\) candies and Minh has eaten \(2\) candies. Ngoc: Minh: Minh&#x27;s blue candy wins against Ngoc&#x27;s red candy. Minh eats Ngoc&#x27;s red candy. So far, Ngoc has eaten \(2\) candies and Minh has eaten \(3\) candies. Ngoc: Minh: Ngoc&#x27;s line of candy is empty, so the process ends. Minh eats his remaining blue candies. In total, Ngoc eats \(2\) candies and Minh eats \(5\) candies. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2026 J3 · Creative Candy Consumption Problem Description Ngoc and Minh devised a creative way to eat candy that comes in three different colours: red, green, and blue. They begin by arranging some coloured candies into a line. Then, the candy at the front of Ngoc&#x27;s line is compared to the candy at the front of Minh&#x27;s line. If both candies are the same colour, then Ngoc and Minh each eat the candy at the front of their own line. If the candies are different colours, then the person with the winning candy eats the losing candy, and the winning candy stays at the front of its line. Red candy wins against green candy . Green candy wins against blue candy . Blue candy wins against red candy . This process of comparing and eating candy repeats until there is at least one empty line of candy. When that happens, if one person still has candy left in their line, then that person eats all of their leftover candy. Your job is to determine how much candy each person eats. Input Specification The first line of input contains a sequence of \(N\) letters, representing Ngoc&#x27;s line of candy. The second line of input contains a sequence of \(M\) letters, representing Minh&#x27;s line of candy. Each letter will be an uppercase R , G , or B representing the colours red, green, and blue, respectively. The first letter in each sequence represents the colour of the candy at the front of that person&#x27;s line. (There will always be at least one letter in each sequence.) The following table shows how the \(15\) available marks are distributed: Marks Description Bounds \(2\) Ngoc and Minh each have one candy. \(N = 1\) and \(M = 1\) \(4\) Either Ngoc&#x27;s line will empty first, or both lines will empty at the same time. Ngoc and Minh could have many candies. \(N \leq 50\) and \(M \leq 50\) \(7\) Ngoc and Minh could have many candies. \(N \leq 50\) and \(M \leq 50\) \(2\) Ngoc and Minh could have an absurd amount of candy. \(N \leq 1\,000\,000\) and \(M \leq 1\,000\,000\) Output Specification There will be two lines of output. On the first line, output the number of candies Ngoc eats. On the second line, output the number of candies Minh eats. Sample Input RRR RGBB Output for Sample Input 2 5 Explanation of Output for Sample Input Candy Lines Description Summary Ngoc: Minh: Both people have red candy at the front of their lines. Ngoc eats her red candy and Minh eats his red candy. So far, Ngoc has eaten \(1\) candy and Minh has eaten \(1\) candy. Ngoc: Minh: Ngoc&#x27;s red candy wins against Minh&#x27;s green candy. Ngoc eats Minh&#x27;s green candy. So far, Ngoc has eaten \(2\) candies and Minh has eaten \(1\) candy. Ngoc: Minh: Minh&#x27;s blue candy wins against Ngoc&#x27;s red candy. Minh eats Ngoc&#x27;s red candy. So far, Ngoc has eaten \(2\) candies and Minh has eaten \(2\) candies. Ngoc: Minh: Minh&#x27;s blue candy wins against Ngoc&#x27;s red candy. Minh eats Ngoc&#x27;s red candy. So far, Ngoc has eaten \(2\) candies and Minh has eaten \(3\) candies. Ngoc: Minh: Ngoc&#x27;s line of candy is empty, so the process ends. Minh eats his remaining blue candies. In total, Ngoc eats \(2\) candies and Minh eats \(5\) candies.</h1></header><p class="eyebrow">2026 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc26j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>RRR
+RGBB
+</pre></div><div><h3>样例输出</h3><pre>2
+5
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Creative Candy Consumption
+
+
+Problem
+Description
+
+
+Ngoc and Minh devised a creative way to eat candy that comes in three
+different colours: red, green, and blue.
+
+
+They begin by arranging some coloured candies into a line. Then, the
+candy at the front of Ngoc&#x27;s line is compared to the candy at the front
+of Minh&#x27;s line. If both candies are the same colour, then Ngoc and Minh
+each eat the candy at the front of their own line. If the candies are
+different colours, then the person with the winning candy eats the
+losing candy, and the winning candy stays at the front of its line.
+
+
+
+ Red candy    wins against green candy  .  
+ Green candy    wins against blue candy  .  
+ Blue candy   wins against red candy  .  
+
+
+
+This process of comparing and eating candy repeats until there is at
+least one empty line of candy. When that happens, if one person still
+has candy left in their line, then that person eats all of their
+leftover candy.
+
+
+Your job is to determine how much candy each person eats.
+
+
+Input
+Specification
+
+
+The first line of input contains a sequence of  \(N\)  letters, representing Ngoc&#x27;s line of
+candy. The second line of input contains a sequence of  \(M\)  letters, representing Minh&#x27;s line of
+candy. Each letter will be an uppercase  R ,  G ,
+or  B  representing the colours red, green, and blue,
+respectively. The first letter in each sequence represents the colour of
+the candy at the front of that person&#x27;s line. (There will always be at
+least one letter in each sequence.)
+
+
+The following table shows how the  \(15\)  available marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bounds 
+ 
+ 
+ 
+ 
+ \(2\) 
+ Ngoc and Minh each have one candy. 
+ \(N = 1\) 
+and  \(M = 1\) 
+ 
+ 
+ \(4\) 
+ Either Ngoc&#x27;s line will empty first, or
+both lines will empty at the same time. Ngoc and Minh could have many
+candies. 
+ \(N \leq
+50\)  and  \(M \leq 50\) 
+ 
+ 
+ \(7\) 
+ Ngoc and Minh could have many
+candies. 
+ \(N \leq
+50\)  and  \(M \leq 50\) 
+ 
+ 
+ \(2\) 
+ Ngoc and Minh could have an absurd amount
+of candy. 
+ \(N \leq
+1\,000\,000\)  and  \(M \leq
+1\,000\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+There will be two lines of output.
+
+
+On the first line, output the number of candies Ngoc eats. On the
+second line, output the number of candies Minh eats.
+
+
+Sample Input
+
+
+RRR
+RGBB
+
+
+Output for Sample
+Input
+
+
+2
+5
+
+
+Explanation of Output for
+Sample Input
+
+
+
+ 
+ 
+ Candy Lines 
+ Description 
+ Summary 
+ 
+ 
+ 
+ 
+ 
+ Ngoc:      
+ Minh:    
+   
+ 
+ Both people have red candy at the front of
+their lines. Ngoc eats her red candy and Minh eats his red candy. 
+ So far, Ngoc has eaten  \(1\)  candy and Minh has eaten  \(1\)  candy. 
+ 
+ 
+ Ngoc:    
+ Minh:      
+ Ngoc&#x27;s red candy wins against Minh&#x27;s green
+candy. Ngoc eats Minh&#x27;s green candy. 
+ So far, Ngoc has eaten  \(2\)  candies and Minh has eaten  \(1\)  candy. 
+ 
+ 
+ Ngoc:    
+ Minh:    
+ Minh&#x27;s blue candy wins against Ngoc&#x27;s red
+candy. Minh eats Ngoc&#x27;s red candy. 
+ So far, Ngoc has eaten  \(2\)  candies and Minh has eaten  \(2\)  candies. 
+ 
+ 
+ Ngoc:  
+ Minh:    
+ Minh&#x27;s blue candy wins against Ngoc&#x27;s red
+candy. Minh eats Ngoc&#x27;s red candy. 
+ So far, Ngoc has eaten  \(2\)  candies and Minh has eaten  \(3\)  candies. 
+ 
+ 
+ Ngoc:  
+ Minh:    
+ Ngoc&#x27;s line of candy is empty, so the
+process ends. Minh eats his remaining blue candies. 
+ In total, Ngoc eats  \(2\)  candies and Minh eats  \(5\)  candies.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>1 bundled cases · 18 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCJuniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j3.sample.in">j3.sample.in</a> / <a href="tests/j3.sample.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc26j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>RRR
+RGBB
+</pre></div><div><h3>Sample output</h3><pre>2
+5
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Creative Candy Consumption
+
+
+Problem
+Description
+
+
+Ngoc and Minh devised a creative way to eat candy that comes in three
+different colours: red, green, and blue.
+
+
+They begin by arranging some coloured candies into a line. Then, the
+candy at the front of Ngoc&#x27;s line is compared to the candy at the front
+of Minh&#x27;s line. If both candies are the same colour, then Ngoc and Minh
+each eat the candy at the front of their own line. If the candies are
+different colours, then the person with the winning candy eats the
+losing candy, and the winning candy stays at the front of its line.
+
+
+
+ Red candy    wins against green candy  .  
+ Green candy    wins against blue candy  .  
+ Blue candy   wins against red candy  .  
+
+
+
+This process of comparing and eating candy repeats until there is at
+least one empty line of candy. When that happens, if one person still
+has candy left in their line, then that person eats all of their
+leftover candy.
+
+
+Your job is to determine how much candy each person eats.
+
+
+Input
+Specification
+
+
+The first line of input contains a sequence of  \(N\)  letters, representing Ngoc&#x27;s line of
+candy. The second line of input contains a sequence of  \(M\)  letters, representing Minh&#x27;s line of
+candy. Each letter will be an uppercase  R ,  G ,
+or  B  representing the colours red, green, and blue,
+respectively. The first letter in each sequence represents the colour of
+the candy at the front of that person&#x27;s line. (There will always be at
+least one letter in each sequence.)
+
+
+The following table shows how the  \(15\)  available marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bounds 
+ 
+ 
+ 
+ 
+ \(2\) 
+ Ngoc and Minh each have one candy. 
+ \(N = 1\) 
+and  \(M = 1\) 
+ 
+ 
+ \(4\) 
+ Either Ngoc&#x27;s line will empty first, or
+both lines will empty at the same time. Ngoc and Minh could have many
+candies. 
+ \(N \leq
+50\)  and  \(M \leq 50\) 
+ 
+ 
+ \(7\) 
+ Ngoc and Minh could have many
+candies. 
+ \(N \leq
+50\)  and  \(M \leq 50\) 
+ 
+ 
+ \(2\) 
+ Ngoc and Minh could have an absurd amount
+of candy. 
+ \(N \leq
+1\,000\,000\)  and  \(M \leq
+1\,000\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+There will be two lines of output.
+
+
+On the first line, output the number of candies Ngoc eats. On the
+second line, output the number of candies Minh eats.
+
+
+Sample Input
+
+
+RRR
+RGBB
+
+
+Output for Sample
+Input
+
+
+2
+5
+
+
+Explanation of Output for
+Sample Input
+
+
+
+ 
+ 
+ Candy Lines 
+ Description 
+ Summary 
+ 
+ 
+ 
+ 
+ 
+ Ngoc:      
+ Minh:    
+   
+ 
+ Both people have red candy at the front of
+their lines. Ngoc eats her red candy and Minh eats his red candy. 
+ So far, Ngoc has eaten  \(1\)  candy and Minh has eaten  \(1\)  candy. 
+ 
+ 
+ Ngoc:    
+ Minh:      
+ Ngoc&#x27;s red candy wins against Minh&#x27;s green
+candy. Ngoc eats Minh&#x27;s green candy. 
+ So far, Ngoc has eaten  \(2\)  candies and Minh has eaten  \(1\)  candy. 
+ 
+ 
+ Ngoc:    
+ Minh:    
+ Minh&#x27;s blue candy wins against Ngoc&#x27;s red
+candy. Minh eats Ngoc&#x27;s red candy. 
+ So far, Ngoc has eaten  \(2\)  candies and Minh has eaten  \(2\)  candies. 
+ 
+ 
+ Ngoc:  
+ Minh:    
+ Minh&#x27;s blue candy wins against Ngoc&#x27;s red
+candy. Minh eats Ngoc&#x27;s red candy. 
+ So far, Ngoc has eaten  \(2\)  candies and Minh has eaten  \(3\)  candies. 
+ 
+ 
+ Ngoc:  
+ Minh:    
+ Ngoc&#x27;s line of candy is empty, so the
+process ends. Minh eats his remaining blue candies. 
+ In total, Ngoc eats  \(2\)  candies and Minh eats  \(5\)  candies.
+</pre></details></section><section class="card"><h2>Test data</h2><p>1 bundled cases · 18 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCJuniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j3.sample.in">j3.sample.in</a> / <a href="tests/j3.sample.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

@@ -1,0 +1,12 @@
+{
+  "statement_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2013/juniorEn.pdf",
+  "pdf_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2013/juniorEn.pdf",
+  "pdf_sha256": "05e2a5b7f84f4aca674bca836a12b7b0b6c53f09aa1c46cb330b3b3d3eea2387",
+  "retrieved_on": "2026-10-01",
+  "original_statement": "problem.txt",
+  "figures": "../../_sources/junior.pdf",
+  "test_data": {
+    "kind": "samples-and-local-edges",
+    "note": "Full official test archive could not be located on the current CEMC site. sample-* cases are transcribed from the official PDF; edge-* cases are independently checked local cases."
+  }
+}

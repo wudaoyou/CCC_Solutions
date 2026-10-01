@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 J4 · Snail Path Problem Description A snail is crawling across an infinite grid of equally sized squares. It can crawl horizontally (east and west) or vertically (north and south), but it cannot crawl diagonally. As the snail crawls, it leaves a trail of slime which makes the squares of the grid it touches slimy . For example, after the snail below crawls east \(3\) squares, there will be \(4\) slimy squares as shown. Given the movements taken by the snail, your job is to determine how many times the snail enters a slimy square. Input Specification The first line of input contains a positive integer, \(M\) , representing the number of movements taken by the snail. The next \(M\) lines will specify the snail&#x27;s movements, in order. Each movement will contain an uppercase directional letter ( N , E , S , or W ), followed by a positive integer less than or equal to 20 representing the number of squares the snail crawls in that direction. The following table shows how the \(15\) available marks are distributed: Marks Description Bounds \(4\) The snail will never crawl north or west of its initial position and will stay close to its initial position. \(M \leq 20\) \(3\) The snail will stay close to its initial position. \(M \leq 20\) \(6\) The snail may crawl quite far from its initial position. \(M \leq 1200\) \(2\) The snail may crawl extremely far from its initial position. \(M \leq 200\,000\) Output Specification Output the non-negative integer, \(T\) , which is the number of times the snail enters a slimy square. Sample Input 1 3 S2 N2 S3 Output for Sample Input 1 4 Explanation of Output for Sample Input 1 The diagram shows the snail&#x27;s path. Whenever the snail enters a slimy square, a numbered circle is placed along the path. Notice that a single slimy square can be entered multiple times. Sample Input 2 3 S2 W15 N20 Output for Sample Input 2 0 Explanation of Output for Sample Input 2 The snail&#x27;s path will consist of \(38\) slimy squares. However, the snail never returns to a square after leaving it, so the snail never enters a slimy square. Technical Notes You might receive an unpredictable error message if your program uses too much memory. Python 3 submissions for this problem will be evaluated using the standard interpreter python3 (Version 3.10.12) instead of pypy3 7.3.9 (Version 3.8.13). · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2026 J4 · Snail Path Problem Description A snail is crawling across an infinite grid of equally sized squares. It can crawl horizontally (east and west) or vertically (north and south), but it cannot crawl diagonally. As the snail crawls, it leaves a trail of slime which makes the squares of the grid it touches slimy . For example, after the snail below crawls east \(3\) squares, there will be \(4\) slimy squares as shown. Given the movements taken by the snail, your job is to determine how many times the snail enters a slimy square. Input Specification The first line of input contains a positive integer, \(M\) , representing the number of movements taken by the snail. The next \(M\) lines will specify the snail&#x27;s movements, in order. Each movement will contain an uppercase directional letter ( N , E , S , or W ), followed by a positive integer less than or equal to 20 representing the number of squares the snail crawls in that direction. The following table shows how the \(15\) available marks are distributed: Marks Description Bounds \(4\) The snail will never crawl north or west of its initial position and will stay close to its initial position. \(M \leq 20\) \(3\) The snail will stay close to its initial position. \(M \leq 20\) \(6\) The snail may crawl quite far from its initial position. \(M \leq 1200\) \(2\) The snail may crawl extremely far from its initial position. \(M \leq 200\,000\) Output Specification Output the non-negative integer, \(T\) , which is the number of times the snail enters a slimy square. Sample Input 1 3 S2 N2 S3 Output for Sample Input 1 4 Explanation of Output for Sample Input 1 The diagram shows the snail&#x27;s path. Whenever the snail enters a slimy square, a numbered circle is placed along the path. Notice that a single slimy square can be entered multiple times. Sample Input 2 3 S2 W15 N20 Output for Sample Input 2 0 Explanation of Output for Sample Input 2 The snail&#x27;s path will consist of \(38\) slimy squares. However, the snail never returns to a square after leaving it, so the snail never enters a slimy square. Technical Notes You might receive an unpredictable error message if your program uses too much memory. Python 3 submissions for this problem will be evaluated using the standard interpreter python3 (Version 3.10.12) instead of pypy3 7.3.9 (Version 3.8.13).</h1></header><p class="eyebrow">2026 / junior / J4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc26j4">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3
+S2
+N2
+S3
+</pre></div><div><h3>样例输出</h3><pre>4
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Snail Path
+
+
+Problem
+Description
+
+
+A snail is crawling across an infinite grid of equally sized squares.
+It can crawl horizontally (east and west) or vertically (north and
+south), but it cannot crawl diagonally.
+
+
+As the snail crawls, it leaves a trail of slime which makes the
+squares of the grid it touches  slimy .
+
+
+
+     
+
+
+
+For example, after the snail below crawls east  \(3\)  squares, there will be  \(4\)   slimy  squares as shown.
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+Given the movements taken by the snail, your job is to determine how
+many times the snail enters a  slimy  square.
+
+
+Input
+Specification
+
+
+The first line of input contains a positive integer,  \(M\) , representing the number of movements
+taken by the snail.
+
+
+The next  \(M\)  lines will specify
+the snail&#x27;s movements, in order. Each movement will contain an uppercase
+directional letter ( N ,  E ,  S , or
+ W ), followed by a positive integer less than or equal to 20
+representing the number of squares the snail crawls in that
+direction.
+
+
+The following table shows how the  \(15\)  available marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bounds 
+ 
+ 
+ 
+ 
+ \(4\) 
+ The snail will never crawl north or west
+of its initial position and will stay close to its initial
+position. 
+ \(M \leq
+20\) 
+ 
+ 
+ \(3\) 
+ The snail will stay close to its initial
+position. 
+ \(M \leq
+20\) 
+ 
+ 
+ \(6\) 
+ The snail may crawl quite far from its
+initial position. 
+ \(M \leq
+1200\) 
+ 
+ 
+ \(2\) 
+ The snail may crawl extremely far from its
+initial position. 
+ \(M \leq
+200\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output the non-negative integer,  \(T\) , which is the number of times the snail
+enters a  slimy  square.
+
+
+Sample Input 1
+
+
+3
+S2
+N2
+S3
+
+
+Output for
+Sample Input 1
+
+
+4
+
+
+Explanation of Output
+for Sample Input 1
+
+
+The diagram shows the snail&#x27;s path. Whenever the snail enters a
+ slimy  square, a numbered circle is placed along the path.
+
+
+Notice that a single  slimy  square can be entered multiple
+times.
+
+
+
+ 
+
+
+
+Sample Input 2
+
+
+3
+S2
+W15
+N20
+
+
+Output for
+Sample Input 2
+
+
+0
+
+
+Explanation of Output
+for Sample Input 2
+
+
+The snail&#x27;s path will consist of  \(38\)   slimy  squares. However, the
+snail never returns to a square after leaving it, so the snail never
+enters a  slimy  square.
+
+
+Technical Notes
+
+
+You might receive an unpredictable error message if your program uses
+too much memory.
+
+
+Python 3 submissions for this problem will be evaluated using the
+standard interpreter  python3  (Version 3.10.12) instead of
+ pypy3 7.3.9  (Version 3.8.13).
+</pre></details></section><section class="card"><h2>测试数据</h2><p>2 bundled cases · 25 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCJuniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j4.sample.01.in">j4.sample.01.in</a> / <a href="tests/j4.sample.01.out">output</a></li><li><a href="tests/j4.sample.02.in">j4.sample.02.in</a> / <a href="tests/j4.sample.02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc26j4">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3
+S2
+N2
+S3
+</pre></div><div><h3>Sample output</h3><pre>4
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Snail Path
+
+
+Problem
+Description
+
+
+A snail is crawling across an infinite grid of equally sized squares.
+It can crawl horizontally (east and west) or vertically (north and
+south), but it cannot crawl diagonally.
+
+
+As the snail crawls, it leaves a trail of slime which makes the
+squares of the grid it touches  slimy .
+
+
+
+     
+
+
+
+For example, after the snail below crawls east  \(3\)  squares, there will be  \(4\)   slimy  squares as shown.
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+Given the movements taken by the snail, your job is to determine how
+many times the snail enters a  slimy  square.
+
+
+Input
+Specification
+
+
+The first line of input contains a positive integer,  \(M\) , representing the number of movements
+taken by the snail.
+
+
+The next  \(M\)  lines will specify
+the snail&#x27;s movements, in order. Each movement will contain an uppercase
+directional letter ( N ,  E ,  S , or
+ W ), followed by a positive integer less than or equal to 20
+representing the number of squares the snail crawls in that
+direction.
+
+
+The following table shows how the  \(15\)  available marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bounds 
+ 
+ 
+ 
+ 
+ \(4\) 
+ The snail will never crawl north or west
+of its initial position and will stay close to its initial
+position. 
+ \(M \leq
+20\) 
+ 
+ 
+ \(3\) 
+ The snail will stay close to its initial
+position. 
+ \(M \leq
+20\) 
+ 
+ 
+ \(6\) 
+ The snail may crawl quite far from its
+initial position. 
+ \(M \leq
+1200\) 
+ 
+ 
+ \(2\) 
+ The snail may crawl extremely far from its
+initial position. 
+ \(M \leq
+200\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output the non-negative integer,  \(T\) , which is the number of times the snail
+enters a  slimy  square.
+
+
+Sample Input 1
+
+
+3
+S2
+N2
+S3
+
+
+Output for
+Sample Input 1
+
+
+4
+
+
+Explanation of Output
+for Sample Input 1
+
+
+The diagram shows the snail&#x27;s path. Whenever the snail enters a
+ slimy  square, a numbered circle is placed along the path.
+
+
+Notice that a single  slimy  square can be entered multiple
+times.
+
+
+
+ 
+
+
+
+Sample Input 2
+
+
+3
+S2
+W15
+N20
+
+
+Output for
+Sample Input 2
+
+
+0
+
+
+Explanation of Output
+for Sample Input 2
+
+
+The snail&#x27;s path will consist of  \(38\)   slimy  squares. However, the
+snail never returns to a square after leaving it, so the snail never
+enters a  slimy  square.
+
+
+Technical Notes
+
+
+You might receive an unpredictable error message if your program uses
+too much memory.
+
+
+Python 3 submissions for this problem will be evaluated using the
+standard interpreter  python3  (Version 3.10.12) instead of
+ pypy3 7.3.9  (Version 3.8.13).
+</pre></details></section><section class="card"><h2>Test data</h2><p>2 bundled cases · 25 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCJuniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j4.sample.01.in">j4.sample.01.in</a> / <a href="tests/j4.sample.01.out">output</a></li><li><a href="tests/j4.sample.02.in">j4.sample.02.in</a> / <a href="tests/j4.sample.02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

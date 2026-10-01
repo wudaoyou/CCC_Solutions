@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025 J5 · Connecting Territories Problem Description Ava is playing a strategic game on a grid of tiles. Each tile has an associated cost. When the costs of the tiles are read from left to right, starting with the first row, a repeating pattern of the first \(M\) positive integers in increasing order is revealed: \(1, 2, 3, \ldots, M, 1, 2, 3, \ldots, M, 1, 2, 3, \ldots\) . In this pattern, \(M\) represents the maximum cost of a tile. In the grid of tiles shown, \(M\) is equal to \(5\) . Ava needs to purchase one tile in each row in order to make a connecting path from the upper territory (above the first row of tiles) to the lower territory (below the last row of tiles). The first tile purchased must be in the first row. Each subsequently purchased tile must share either an edge or a corner with the tile purchased previously. In the grid of tiles shown, the cost of Ava’s connecting path is \(9\). Given a grid of tiles, your job is to determine the minimum cost of a connecting path between the upper and lower territories. Input Specification The first line of input contains a positive integer, \(R\) , representing the number of rows in the grid. The second line contains a positive integer, \(C\) , representing the number of columns in the grid. The third line contains a positive integer, \(M\) where \(M \leq 100\,000\) , representing the maximum cost of a tile. The following table shows how the available \(15\) marks are distributed: Marks Description Bounds \(3\) There are two rows and at most ten columns. \(R=2\) and \(C \leq 10\) \(8\) There are at most ten rows and at most ten columns. \(R \leq 10\) and \(C \leq 10\) \(2\) There are at most \(100\) rows and at most \(100\) columns. \(R \leq 100\) and \(C \leq 100\) \(2\) The grid may be very large. \(R \leq 20\,000\) and \(C \leq 20\,000\) Output Specification Output the positive integer, \(P\) , which is the minimum cost of a connecting path between the upper and lower territories. Sample Input 3 5 7 Output for Sample Input 6 Explanation of Output for Sample Input The cost of each tile is shown. The sequence of tiles that Ava should purchase to minimize the cost of a connecting path is highlighted in green. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2025 J5 · Connecting Territories Problem Description Ava is playing a strategic game on a grid of tiles. Each tile has an associated cost. When the costs of the tiles are read from left to right, starting with the first row, a repeating pattern of the first \(M\) positive integers in increasing order is revealed: \(1, 2, 3, \ldots, M, 1, 2, 3, \ldots, M, 1, 2, 3, \ldots\) . In this pattern, \(M\) represents the maximum cost of a tile. In the grid of tiles shown, \(M\) is equal to \(5\) . Ava needs to purchase one tile in each row in order to make a connecting path from the upper territory (above the first row of tiles) to the lower territory (below the last row of tiles). The first tile purchased must be in the first row. Each subsequently purchased tile must share either an edge or a corner with the tile purchased previously. In the grid of tiles shown, the cost of Ava’s connecting path is \(9\). Given a grid of tiles, your job is to determine the minimum cost of a connecting path between the upper and lower territories. Input Specification The first line of input contains a positive integer, \(R\) , representing the number of rows in the grid. The second line contains a positive integer, \(C\) , representing the number of columns in the grid. The third line contains a positive integer, \(M\) where \(M \leq 100\,000\) , representing the maximum cost of a tile. The following table shows how the available \(15\) marks are distributed: Marks Description Bounds \(3\) There are two rows and at most ten columns. \(R=2\) and \(C \leq 10\) \(8\) There are at most ten rows and at most ten columns. \(R \leq 10\) and \(C \leq 10\) \(2\) There are at most \(100\) rows and at most \(100\) columns. \(R \leq 100\) and \(C \leq 100\) \(2\) The grid may be very large. \(R \leq 20\,000\) and \(C \leq 20\,000\) Output Specification Output the positive integer, \(P\) , which is the minimum cost of a connecting path between the upper and lower territories. Sample Input 3 5 7 Output for Sample Input 6 Explanation of Output for Sample Input The cost of each tile is shown. The sequence of tiles that Ava should purchase to minimize the cost of a connecting path is highlighted in green.</h1></header><p class="eyebrow">2025 / junior / J5</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc25j5">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3
+5
+7
+</pre></div><div><h3>样例输出</h3><pre>6
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Connecting Territories
+
+
+Problem
+Description
+
+
+Ava is playing a strategic game on a grid of tiles. Each tile has an
+associated cost. When the costs of the tiles are read from left to
+right, starting with the first row, a repeating pattern of the first
+ \(M\)  positive integers in increasing
+order is revealed:  \(1, 2, 3, \ldots, M, 1, 2,
+3, \ldots, M, 1, 2, 3, \ldots\) . In this pattern,  \(M\)  represents the maximum cost of a tile.
+In the grid of tiles shown,  \(M\)  is
+equal to  \(5\) .
+
+
+
+     
+
+
+
+Ava needs to purchase one tile in each row in order to make a
+connecting path from the upper territory (above the first row of tiles)
+to the lower territory (below the last row of tiles). The first tile
+purchased must be in the first row. Each subsequently purchased tile
+must share either an edge or a corner with the tile purchased
+previously. In the grid of tiles shown, the cost of Ava’s connecting
+path is \(9\).
+
+
+
+     
+
+
+
+Given a grid of tiles, your job is to determine the minimum cost of a
+connecting path between the upper and lower territories.
+
+
+Input
+Specification
+
+
+The first line of input contains a positive integer,  \(R\) , representing the number of rows in the
+grid. The second line contains a positive integer,  \(C\) , representing the number of columns in
+the grid. The third line contains a positive integer,  \(M\)  where  \(M
+\leq 100\,000\) , representing the maximum cost of a tile.
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bounds 
+ 
+ 
+ 
+ 
+ \(3\) 
+ There are two rows and at most ten
+columns. 
+ \(R=2\) 
+and  \(C \leq 10\) 
+ 
+ 
+ \(8\) 
+ There are at most ten rows and at most ten
+columns. 
+ \(R \leq
+10\)  and  \(C \leq 10\) 
+ 
+ 
+ \(2\) 
+ There are at most  \(100\)  rows and at most  \(100\)  columns. 
+ \(R \leq
+100\)  and  \(C \leq 100\) 
+ 
+ 
+ \(2\) 
+ The grid may be very large. 
+ \(R \leq
+20\,000\)  and  \(C \leq
+20\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output the positive integer,  \(P\) ,
+which is the minimum cost of a connecting path between the upper and
+lower territories.
+
+
+Sample Input
+
+
+3
+5
+7
+
+
+Output for Sample Input
+
+
+6
+
+
+Explanation of Output
+for Sample Input
+
+
+The cost of each tile is shown. The sequence of tiles that Ava should
+purchase to minimize the cost of a connecting path is highlighted in
+green.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>1 bundled cases · 14 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://s3.amazonaws.com/cemc.drupal/big-documents/2025CCCJuniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j5.sample.in">j5.sample.in</a> / <a href="tests/j5.sample.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc25j5">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3
+5
+7
+</pre></div><div><h3>Sample output</h3><pre>6
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Connecting Territories
+
+
+Problem
+Description
+
+
+Ava is playing a strategic game on a grid of tiles. Each tile has an
+associated cost. When the costs of the tiles are read from left to
+right, starting with the first row, a repeating pattern of the first
+ \(M\)  positive integers in increasing
+order is revealed:  \(1, 2, 3, \ldots, M, 1, 2,
+3, \ldots, M, 1, 2, 3, \ldots\) . In this pattern,  \(M\)  represents the maximum cost of a tile.
+In the grid of tiles shown,  \(M\)  is
+equal to  \(5\) .
+
+
+
+     
+
+
+
+Ava needs to purchase one tile in each row in order to make a
+connecting path from the upper territory (above the first row of tiles)
+to the lower territory (below the last row of tiles). The first tile
+purchased must be in the first row. Each subsequently purchased tile
+must share either an edge or a corner with the tile purchased
+previously. In the grid of tiles shown, the cost of Ava’s connecting
+path is \(9\).
+
+
+
+     
+
+
+
+Given a grid of tiles, your job is to determine the minimum cost of a
+connecting path between the upper and lower territories.
+
+
+Input
+Specification
+
+
+The first line of input contains a positive integer,  \(R\) , representing the number of rows in the
+grid. The second line contains a positive integer,  \(C\) , representing the number of columns in
+the grid. The third line contains a positive integer,  \(M\)  where  \(M
+\leq 100\,000\) , representing the maximum cost of a tile.
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bounds 
+ 
+ 
+ 
+ 
+ \(3\) 
+ There are two rows and at most ten
+columns. 
+ \(R=2\) 
+and  \(C \leq 10\) 
+ 
+ 
+ \(8\) 
+ There are at most ten rows and at most ten
+columns. 
+ \(R \leq
+10\)  and  \(C \leq 10\) 
+ 
+ 
+ \(2\) 
+ There are at most  \(100\)  rows and at most  \(100\)  columns. 
+ \(R \leq
+100\)  and  \(C \leq 100\) 
+ 
+ 
+ \(2\) 
+ The grid may be very large. 
+ \(R \leq
+20\,000\)  and  \(C \leq
+20\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output the positive integer,  \(P\) ,
+which is the minimum cost of a connecting path between the upper and
+lower territories.
+
+
+Sample Input
+
+
+3
+5
+7
+
+
+Output for Sample Input
+
+
+6
+
+
+Explanation of Output
+for Sample Input
+
+
+The cost of each tile is shown. The sequence of tiles that Ava should
+purchase to minimize the cost of a connecting path is highlighted in
+green.
+</pre></details></section><section class="card"><h2>Test data</h2><p>1 bundled cases · 14 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://s3.amazonaws.com/cemc.drupal/big-documents/2025CCCJuniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j5.sample.in">j5.sample.in</a> / <a href="tests/j5.sample.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

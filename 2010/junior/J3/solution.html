@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2010 J3 · Punchy · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2010 J3 · Punchy</h1></header><p class="eyebrow">2010 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Punchy
+Problem Description
+In the early days of computing, instructions had to be “punched” onto rectangular cards, one in-
+struction per card. This card deck was then fed into a card reader so the program could be read and
+executed. Students put elastic bands around their card deck, and, often, carried their cards in a box
+for fear that they would become rearranged, and thus, their program would be incorrect.
+Poor Bill though...he left his cards right near a window and the wind blew his neat deck of cards
+all over the place, and thus his program is out of order! Bill decides to pick up the cards in some
+random order and then execute the program.
+Write a program to read and execute the commands in Bill’s “new” program.
+
+Input Specification
+The programming language that Bill is using has only two variables (A and B) and seven different
+types of instructions.
+Initially, the variables A and B contain the value 0.
+There is one instruction per line. An instruction is an integer in the range 1...7, possibly followed
+by a variable name, which in turn is possibly followed by either a number or a variable.
+In all instructions below, the variable X or Y may refer to either A or B. The specific instructions
+are:
+
+   • 1 X n means set the variable X to the integer value n;
+
+   • 2 X means output the value of variable X to the screen;
+
+   • 3 X Y means calculate X + Y and store the value in variable X;
+
+   • 4 X Y means calculate X ∗ Y and store the value in variable X;
+
+   • 5 X Y means calculate X − Y and store the value in variable X;
+
+   • 6 X Y means calculate the quotient of X/Y and store the value in variable X as an integer,
+     discarding the remainder.
+
+   • 7 means stop execution of this program.
+
+You may assume that all division instructions do not cause a division by zero, and that all other
+operations (including instruction 1) do not cause the computed/stored value to be larger than 10,000
+or smaller than -10,000.
+(To clarify division of negative numbers, −3/2 and 3/ − 2 both have quotient −1 and −3/ − 2 has
+quotient 1.)
+
+                                                  6
+Output Specification
+Your program should output the value of the indicated variables, one integer per line, until the
+“stop” instruction has been read in, at which time your program should stop execution.
+
+Sample Input (with output shown in italics)
+1 A 3
+1 B 4
+2 B
+4
+2 A
+3
+3 A B
+2 A
+7
+5 A A
+2 A
+0
+2 B
+4
+7
+
+
+
+
+                                               7
+</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Punchy
+Problem Description
+In the early days of computing, instructions had to be “punched” onto rectangular cards, one in-
+struction per card. This card deck was then fed into a card reader so the program could be read and
+executed. Students put elastic bands around their card deck, and, often, carried their cards in a box
+for fear that they would become rearranged, and thus, their program would be incorrect.
+Poor Bill though...he left his cards right near a window and the wind blew his neat deck of cards
+all over the place, and thus his program is out of order! Bill decides to pick up the cards in some
+random order and then execute the program.
+Write a program to read and execute the commands in Bill’s “new” program.
+
+Input Specification
+The programming language that Bill is using has only two variables (A and B) and seven different
+types of instructions.
+Initially, the variables A and B contain the value 0.
+There is one instruction per line. An instruction is an integer in the range 1...7, possibly followed
+by a variable name, which in turn is possibly followed by either a number or a variable.
+In all instructions below, the variable X or Y may refer to either A or B. The specific instructions
+are:
+
+   • 1 X n means set the variable X to the integer value n;
+
+   • 2 X means output the value of variable X to the screen;
+
+   • 3 X Y means calculate X + Y and store the value in variable X;
+
+   • 4 X Y means calculate X ∗ Y and store the value in variable X;
+
+   • 5 X Y means calculate X − Y and store the value in variable X;
+
+   • 6 X Y means calculate the quotient of X/Y and store the value in variable X as an integer,
+     discarding the remainder.
+
+   • 7 means stop execution of this program.
+
+You may assume that all division instructions do not cause a division by zero, and that all other
+operations (including instruction 1) do not cause the computed/stored value to be larger than 10,000
+or smaller than -10,000.
+(To clarify division of negative numbers, −3/2 and 3/ − 2 both have quotient −1 and −3/ − 2 has
+quotient 1.)
+
+                                                  6
+Output Specification
+Your program should output the value of the indicated variables, one integer per line, until the
+“stop” instruction has been read in, at which time your program should stop execution.
+
+Sample Input (with output shown in italics)
+1 A 3
+1 B 4
+2 B
+4
+2 A
+3
+3 A B
+2 A
+7
+5 A A
+2 A
+0
+2 B
+4
+7
+
+
+
+
+                                               7
+</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

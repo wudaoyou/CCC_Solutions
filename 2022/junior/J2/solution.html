@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2022 J2 · Fergusonball Ratings Problem Description Fergusonball players are given a star rating based on the number of points that they score and the number of fouls that they commit. Specifically, they are awarded \(5\) stars for each point scored, and \(3\) stars are taken away for each foul committed. For every player, the number of points that they score is greater than the number of fouls that they commit. Your job is to determine how many players on a team have a star rating greater than \(40\) . You also need to determine if the team is considered a gold team which means that all the players have a star rating greater than \(40\) . Input Specification The first line of input consists of a positive integer \(N\) representing the total number of players on the team. This is followed by a pair of consecutive lines for each player. The first line in a pair is the number of points that the player scored. The second line in a pair is the number of fouls that the player committed. Both the number of points and the number of fouls, are non-negative integers. Output Specification Output the number of players that have a star rating greater than \(40\) , immediately followed by a plus sign if the team is considered a gold team. Sample Input 1 3 12 4 10 3 9 1 Output for Sample Input 1 3+ Explanation of Output for Sample Input 1 The image shows the star rating for each player. For example, the star rating for the first player is \(12 \times 5 - 4 \times 3 = 48\) . All three players have a rating greater than \(40\) so the team is considered a gold team. Sample Input 2 2 8 0 12 1 Output for Sample Input 2 1 Explanation of Output for Sample Input 2 The image shows the star rating for each player. Since only one of the two players has a rating greater than \(40\) , this team is not considered a gold team. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2022 J2 · Fergusonball Ratings Problem Description Fergusonball players are given a star rating based on the number of points that they score and the number of fouls that they commit. Specifically, they are awarded \(5\) stars for each point scored, and \(3\) stars are taken away for each foul committed. For every player, the number of points that they score is greater than the number of fouls that they commit. Your job is to determine how many players on a team have a star rating greater than \(40\) . You also need to determine if the team is considered a gold team which means that all the players have a star rating greater than \(40\) . Input Specification The first line of input consists of a positive integer \(N\) representing the total number of players on the team. This is followed by a pair of consecutive lines for each player. The first line in a pair is the number of points that the player scored. The second line in a pair is the number of fouls that the player committed. Both the number of points and the number of fouls, are non-negative integers. Output Specification Output the number of players that have a star rating greater than \(40\) , immediately followed by a plus sign if the team is considered a gold team. Sample Input 1 3 12 4 10 3 9 1 Output for Sample Input 1 3+ Explanation of Output for Sample Input 1 The image shows the star rating for each player. For example, the star rating for the first player is \(12 \times 5 - 4 \times 3 = 48\) . All three players have a rating greater than \(40\) so the team is considered a gold team. Sample Input 2 2 8 0 12 1 Output for Sample Input 2 1 Explanation of Output for Sample Input 2 The image shows the star rating for each player. Since only one of the two players has a rating greater than \(40\) , this team is not considered a gold team.</h1></header><p class="eyebrow">2022 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc22j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3
+12
+4
+10
+3
+9
+1
+</pre></div><div><h3>样例输出</h3><pre>3+
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2:
+Fergusonball Ratings
+
+
+Problem
+Description
+
+
+Fergusonball players are given a star rating based on the number of
+points that they score and the number of fouls that they commit.
+Specifically, they are awarded  \(5\) 
+stars for each point scored, and  \(3\) 
+stars are taken away for each foul committed. For every player, the
+number of points that they score is greater than the number of fouls
+that they commit.
+
+
+Your job is to determine how many players on a team have a star
+rating greater than  \(40\) . You also
+need to determine if the team is considered a gold team which means that
+ all  the players have a star rating greater than
+ \(40\) .
+
+
+Input
+Specification
+
+
+The first line of input consists of a positive integer  \(N\)  representing the total number of
+players on the team. This is followed by a pair of consecutive lines for
+each player. The first line in a pair is the number of points that the
+player scored. The second line in a pair is the number of fouls that the
+player committed. Both the number of points and the number of fouls, are
+non-negative integers.
+
+
+Output
+Specification
+
+
+Output the number of players that have a star rating greater than
+ \(40\) , immediately followed by a plus
+sign if the team is considered a gold team.
+
+
+Sample Input 1
+
+
+3
+12
+4
+10
+3
+9
+1
+
+
+Output for Sample Input 1
+
+
+3+
+
+
+Explanation of
+Output for Sample Input 1
+
+
+The image shows the star rating for each player. For example, the
+star rating for the first player is  \(12
+\times 5 - 4 \times 3 = 48\) .
+
+
+
+     
+
+
+
+All three players have a rating
+greater than  \(40\)  so the team is
+considered a gold team.
+
+
+Sample Input 2
+
+
+2
+8
+0
+12
+1
+
+
+Output for Sample Input 2
+
+
+1
+
+
+Explanation of
+Output for Sample Input 2
+
+
+The image shows the star rating for each player.
+
+
+
+     
+
+
+
+Since only one of
+the two players has a rating greater than  \(40\) , this team is not considered a gold
+team.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>7 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j2.01.in">j2.01.in</a> / <a href="tests/j2.01.out">output</a></li><li><a href="tests/j2.02.in">j2.02.in</a> / <a href="tests/j2.02.out">output</a></li><li><a href="tests/j2.03.in">j2.03.in</a> / <a href="tests/j2.03.out">output</a></li><li><a href="tests/j2.04.in">j2.04.in</a> / <a href="tests/j2.04.out">output</a></li><li><a href="tests/j2.05.in">j2.05.in</a> / <a href="tests/j2.05.out">output</a></li><li><a href="tests/j2.sample.01.in">j2.sample.01.in</a> / <a href="tests/j2.sample.01.out">output</a></li><li><a href="tests/j2.sample.02.in">j2.sample.02.in</a> / <a href="tests/j2.sample.02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc22j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3
+12
+4
+10
+3
+9
+1
+</pre></div><div><h3>Sample output</h3><pre>3+
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2:
+Fergusonball Ratings
+
+
+Problem
+Description
+
+
+Fergusonball players are given a star rating based on the number of
+points that they score and the number of fouls that they commit.
+Specifically, they are awarded  \(5\) 
+stars for each point scored, and  \(3\) 
+stars are taken away for each foul committed. For every player, the
+number of points that they score is greater than the number of fouls
+that they commit.
+
+
+Your job is to determine how many players on a team have a star
+rating greater than  \(40\) . You also
+need to determine if the team is considered a gold team which means that
+ all  the players have a star rating greater than
+ \(40\) .
+
+
+Input
+Specification
+
+
+The first line of input consists of a positive integer  \(N\)  representing the total number of
+players on the team. This is followed by a pair of consecutive lines for
+each player. The first line in a pair is the number of points that the
+player scored. The second line in a pair is the number of fouls that the
+player committed. Both the number of points and the number of fouls, are
+non-negative integers.
+
+
+Output
+Specification
+
+
+Output the number of players that have a star rating greater than
+ \(40\) , immediately followed by a plus
+sign if the team is considered a gold team.
+
+
+Sample Input 1
+
+
+3
+12
+4
+10
+3
+9
+1
+
+
+Output for Sample Input 1
+
+
+3+
+
+
+Explanation of
+Output for Sample Input 1
+
+
+The image shows the star rating for each player. For example, the
+star rating for the first player is  \(12
+\times 5 - 4 \times 3 = 48\) .
+
+
+
+     
+
+
+
+All three players have a rating
+greater than  \(40\)  so the team is
+considered a gold team.
+
+
+Sample Input 2
+
+
+2
+8
+0
+12
+1
+
+
+Output for Sample Input 2
+
+
+1
+
+
+Explanation of
+Output for Sample Input 2
+
+
+The image shows the star rating for each player.
+
+
+
+     
+
+
+
+Since only one of
+the two players has a rating greater than  \(40\) , this team is not considered a gold
+team.
+</pre></details></section><section class="card"><h2>Test data</h2><p>7 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j2.01.in">j2.01.in</a> / <a href="tests/j2.01.out">output</a></li><li><a href="tests/j2.02.in">j2.02.in</a> / <a href="tests/j2.02.out">output</a></li><li><a href="tests/j2.03.in">j2.03.in</a> / <a href="tests/j2.03.out">output</a></li><li><a href="tests/j2.04.in">j2.04.in</a> / <a href="tests/j2.04.out">output</a></li><li><a href="tests/j2.05.in">j2.05.in</a> / <a href="tests/j2.05.out">output</a></li><li><a href="tests/j2.sample.01.in">j2.sample.01.in</a> / <a href="tests/j2.sample.01.out">output</a></li><li><a href="tests/j2.sample.02.in">j2.sample.02.in</a> / <a href="tests/j2.sample.02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

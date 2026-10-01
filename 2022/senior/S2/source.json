@@ -1,0 +1,14 @@
+{
+  "statement_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022CCCSrProblemSet.html",
+  "pdf_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/seniorEF.pdf",
+  "pdf_sha256": "1085839f5fd1376a7c3b48990666c2b23f480d98f5996c264038c5f289127f38",
+  "retrieved_on": "2026-10-01",
+  "original_statement": "problem.txt",
+  "figures": "../../_sources/senior.pdf",
+  "test_data": {
+    "kind": "official",
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2022CCCSeniorTestData.zip",
+    "archive_sha256": "1df01fc257fb04b2a636bb4b381c75617251e7bd765ab1b65584f6fbf59e35ac",
+    "official_input_count": 34
+  }
+}

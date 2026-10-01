@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2018 J1 · Telemarketer or not? · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2018 J1 · Telemarketer or not?</h1></header><p class="eyebrow">2018 / junior / J1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc18j1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>9
+6
+6
+8
+</pre></div><div><h3>样例输出</h3><pre>ignore
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Telemarketer or not?
+
+
+Problem Description
+ 
+
+Here at the Concerned Citizens of Commerce (CCC), we have noted that
+telemarketers like to use seven-digit phone numbers where the last four
+digits have three properties. Looking just at the last four digits,
+these properties are:
+
+
+
+ the first of these four digits is an 8 or 9; 
+ the last digit is an 8 or 9; 
+ the second and third digits are the same. 
+
+
+
+For example, if the last four digits of the telephone number are
+8229, 8338, or 9008, these are telemarketer numbers.
+
+
+Write a program to decide if a telephone number is a telemarketer
+number or not, based on the last four digits. If the number is not a
+telemarketer number, we should answer the phone, and otherwise, we
+should ignore it.
+
+
+Input Specification
+ 
+
+The input will be 4 lines where each line contains exactly one digit in
+the range from  \(0\)  to  \(9\) .
+
+
+Output Specification
+ 
+
+Output either  ignore  if the number matches the
+pattern for a telemarketer number; otherwise, output
+ answer .
+
+
+Sample Input 1
+
+
+9
+6
+6
+8
+
+
+Output for Sample Input 1
+
+
+ignore
+
+
+Explanation of Output for Sample Input 1
+ 
+
+The first digit is  \(9\) , the last
+digit is  \(8\) , and the second and
+third digit are both  \(6\) , so this is
+a telemarketer number.
+
+
+Sample Input 2
+
+
+5
+6
+6
+8
+
+
+Output for Sample Input 2
+
+
+answer
+
+
+Explanation of Output for Sample Input 2
+
+
+The first digit is  \(5\) , and so this
+is not a telemarketer number.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>15 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j1.1.in">j1.1.in</a> / <a href="tests/j1.1.out">output</a></li><li><a href="tests/j1.10.in">j1.10.in</a> / <a href="tests/j1.10.out">output</a></li><li><a href="tests/j1.11.in">j1.11.in</a> / <a href="tests/j1.11.out">output</a></li><li><a href="tests/j1.12.in">j1.12.in</a> / <a href="tests/j1.12.out">output</a></li><li><a href="tests/j1.13.in">j1.13.in</a> / <a href="tests/j1.13.out">output</a></li><li><a href="tests/j1.2.in">j1.2.in</a> / <a href="tests/j1.2.out">output</a></li><li><a href="tests/j1.3.in">j1.3.in</a> / <a href="tests/j1.3.out">output</a></li><li><a href="tests/j1.4.in">j1.4.in</a> / <a href="tests/j1.4.out">output</a></li><li><a href="tests/j1.5.in">j1.5.in</a> / <a href="tests/j1.5.out">output</a></li><li><a href="tests/j1.6.in">j1.6.in</a> / <a href="tests/j1.6.out">output</a></li><li><a href="tests/j1.7.in">j1.7.in</a> / <a href="tests/j1.7.out">output</a></li><li><a href="tests/j1.8.in">j1.8.in</a> / <a href="tests/j1.8.out">output</a></li><li><a href="tests/j1.9.in">j1.9.in</a> / <a href="tests/j1.9.out">output</a></li><li><a href="tests/j1.sample1.in">j1.sample1.in</a> / <a href="tests/j1.sample1.out">output</a></li><li><a href="tests/j1.sample2.in">j1.sample2.in</a> / <a href="tests/j1.sample2.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc18j1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>9
+6
+6
+8
+</pre></div><div><h3>Sample output</h3><pre>ignore
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Telemarketer or not?
+
+
+Problem Description
+ 
+
+Here at the Concerned Citizens of Commerce (CCC), we have noted that
+telemarketers like to use seven-digit phone numbers where the last four
+digits have three properties. Looking just at the last four digits,
+these properties are:
+
+
+
+ the first of these four digits is an 8 or 9; 
+ the last digit is an 8 or 9; 
+ the second and third digits are the same. 
+
+
+
+For example, if the last four digits of the telephone number are
+8229, 8338, or 9008, these are telemarketer numbers.
+
+
+Write a program to decide if a telephone number is a telemarketer
+number or not, based on the last four digits. If the number is not a
+telemarketer number, we should answer the phone, and otherwise, we
+should ignore it.
+
+
+Input Specification
+ 
+
+The input will be 4 lines where each line contains exactly one digit in
+the range from  \(0\)  to  \(9\) .
+
+
+Output Specification
+ 
+
+Output either  ignore  if the number matches the
+pattern for a telemarketer number; otherwise, output
+ answer .
+
+
+Sample Input 1
+
+
+9
+6
+6
+8
+
+
+Output for Sample Input 1
+
+
+ignore
+
+
+Explanation of Output for Sample Input 1
+ 
+
+The first digit is  \(9\) , the last
+digit is  \(8\) , and the second and
+third digit are both  \(6\) , so this is
+a telemarketer number.
+
+
+Sample Input 2
+
+
+5
+6
+6
+8
+
+
+Output for Sample Input 2
+
+
+answer
+
+
+Explanation of Output for Sample Input 2
+
+
+The first digit is  \(5\) , and so this
+is not a telemarketer number.
+</pre></details></section><section class="card"><h2>Test data</h2><p>15 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j1.1.in">j1.1.in</a> / <a href="tests/j1.1.out">output</a></li><li><a href="tests/j1.10.in">j1.10.in</a> / <a href="tests/j1.10.out">output</a></li><li><a href="tests/j1.11.in">j1.11.in</a> / <a href="tests/j1.11.out">output</a></li><li><a href="tests/j1.12.in">j1.12.in</a> / <a href="tests/j1.12.out">output</a></li><li><a href="tests/j1.13.in">j1.13.in</a> / <a href="tests/j1.13.out">output</a></li><li><a href="tests/j1.2.in">j1.2.in</a> / <a href="tests/j1.2.out">output</a></li><li><a href="tests/j1.3.in">j1.3.in</a> / <a href="tests/j1.3.out">output</a></li><li><a href="tests/j1.4.in">j1.4.in</a> / <a href="tests/j1.4.out">output</a></li><li><a href="tests/j1.5.in">j1.5.in</a> / <a href="tests/j1.5.out">output</a></li><li><a href="tests/j1.6.in">j1.6.in</a> / <a href="tests/j1.6.out">output</a></li><li><a href="tests/j1.7.in">j1.7.in</a> / <a href="tests/j1.7.out">output</a></li><li><a href="tests/j1.8.in">j1.8.in</a> / <a href="tests/j1.8.out">output</a></li><li><a href="tests/j1.9.in">j1.9.in</a> / <a href="tests/j1.9.out">output</a></li><li><a href="tests/j1.sample1.in">j1.sample1.in</a> / <a href="tests/j1.sample1.out">output</a></li><li><a href="tests/j1.sample2.in">j1.sample2.in</a> / <a href="tests/j1.sample2.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

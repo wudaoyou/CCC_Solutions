@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2018 S2 · Sunflowers · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2018 S2 · Sunflowers</h1></header><p class="eyebrow">2018 / senior / S2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc18s2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>2
+1 3
+2 9
+</pre></div><div><h3>样例输出</h3><pre>1 3
+2 9
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2: Sunflowers
+
+
+Problem Description
+
+
+Barbara plants  \(N\)  different
+sunflowers, each with a unique height, ordered from smallest to largest,
+and records their heights for  \(N\) 
+consecutive days. Each day, all of her flowers grow taller than they
+were the day before.
+
+
+She records each of these measurements in a table, with one row for
+each plant, with the first row recording the shortest sunflower’s growth
+and the last row recording the tallest sunflower’s growth. The leftmost
+column is the first measurement for each sunflower, and the rightmost
+column is the last measurement for each sunflower.
+
+
+If a sunflower was smaller than another when initially planted, it
+remains smaller for every measurement.
+
+
+Unfortunately, her children may have altered her measurements by
+rotating her table by a multiple of 90 degrees.
+
+
+Your job is to help Barbara determine her original data.
+
+
+Input Specification
+ 
+
+The first line of input contains the number  \(N\)   \((2 \leq N
+\leq 100)\) . The next  \(N\) 
+lines each contain  \(N\)  positive
+integers, each of which is at most  \(10^9\) . It is guaranteed that the input
+grid represents a rotated version of Barbara’s grid.
+
+
+Output Specification
+ 
+
+Output Barbara’s original data, consisting of  \(N\)  lines, each of which contain  \(N\)  positive integers.
+
+
+Sample Input 1
+
+
+2
+1 3
+2 9
+
+
+Output for Sample Input 1
+
+
+1 3
+2 9
+
+
+Explanation of Output for Sample Input 1
+
+
+The data has been rotated a multiple of 360 degrees, meaning that the
+input arrangement is the original arrangement.
+
+
+Sample Input 2
+
+
+3
+4 3 1
+6 5 2
+9 7 3
+
+
+Output for Sample Input 2
+
+
+1 2 3
+3 5 7
+4 6 9
+
+
+Explanation of Output for Sample Input 2
+
+
+The original data was rotated 90 degrees to the right/clockwise.
+
+
+Sample Input 3
+
+
+3
+3 7 9
+2 5 6
+1 3 4
+
+
+Output for Sample Input 3
+
+
+1 2 3
+3 5 7
+4 6 9
+
+
+Explanation of Output for Sample Input 3
+
+
+The original data was rotated 90 degrees to the
+left/counter-clockwise.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>18 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s2.01.in">s2.01.in</a> / <a href="tests/s2.01.out">output</a></li><li><a href="tests/s2.02.in">s2.02.in</a> / <a href="tests/s2.02.out">output</a></li><li><a href="tests/s2.03.in">s2.03.in</a> / <a href="tests/s2.03.out">output</a></li><li><a href="tests/s2.04.in">s2.04.in</a> / <a href="tests/s2.04.out">output</a></li><li><a href="tests/s2.05.in">s2.05.in</a> / <a href="tests/s2.05.out">output</a></li><li><a href="tests/s2.06.in">s2.06.in</a> / <a href="tests/s2.06.out">output</a></li><li><a href="tests/s2.07.in">s2.07.in</a> / <a href="tests/s2.07.out">output</a></li><li><a href="tests/s2.08.in">s2.08.in</a> / <a href="tests/s2.08.out">output</a></li><li><a href="tests/s2.09.in">s2.09.in</a> / <a href="tests/s2.09.out">output</a></li><li><a href="tests/s2.10.in">s2.10.in</a> / <a href="tests/s2.10.out">output</a></li><li><a href="tests/s2.11.in">s2.11.in</a> / <a href="tests/s2.11.out">output</a></li><li><a href="tests/s2.12.in">s2.12.in</a> / <a href="tests/s2.12.out">output</a></li><li><a href="tests/s2.13.in">s2.13.in</a> / <a href="tests/s2.13.out">output</a></li><li><a href="tests/s2.14.in">s2.14.in</a> / <a href="tests/s2.14.out">output</a></li><li><a href="tests/s2.15.in">s2.15.in</a> / <a href="tests/s2.15.out">output</a></li><li><a href="tests/s2.sample01.in">s2.sample01.in</a> / <a href="tests/s2.sample01.out">output</a></li><li><a href="tests/s2.sample02.in">s2.sample02.in</a> / <a href="tests/s2.sample02.out">output</a></li><li><a href="tests/s2.sample03.in">s2.sample03.in</a> / <a href="tests/s2.sample03.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc18s2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>2
+1 3
+2 9
+</pre></div><div><h3>Sample output</h3><pre>1 3
+2 9
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2: Sunflowers
+
+
+Problem Description
+
+
+Barbara plants  \(N\)  different
+sunflowers, each with a unique height, ordered from smallest to largest,
+and records their heights for  \(N\) 
+consecutive days. Each day, all of her flowers grow taller than they
+were the day before.
+
+
+She records each of these measurements in a table, with one row for
+each plant, with the first row recording the shortest sunflower’s growth
+and the last row recording the tallest sunflower’s growth. The leftmost
+column is the first measurement for each sunflower, and the rightmost
+column is the last measurement for each sunflower.
+
+
+If a sunflower was smaller than another when initially planted, it
+remains smaller for every measurement.
+
+
+Unfortunately, her children may have altered her measurements by
+rotating her table by a multiple of 90 degrees.
+
+
+Your job is to help Barbara determine her original data.
+
+
+Input Specification
+ 
+
+The first line of input contains the number  \(N\)   \((2 \leq N
+\leq 100)\) . The next  \(N\) 
+lines each contain  \(N\)  positive
+integers, each of which is at most  \(10^9\) . It is guaranteed that the input
+grid represents a rotated version of Barbara’s grid.
+
+
+Output Specification
+ 
+
+Output Barbara’s original data, consisting of  \(N\)  lines, each of which contain  \(N\)  positive integers.
+
+
+Sample Input 1
+
+
+2
+1 3
+2 9
+
+
+Output for Sample Input 1
+
+
+1 3
+2 9
+
+
+Explanation of Output for Sample Input 1
+
+
+The data has been rotated a multiple of 360 degrees, meaning that the
+input arrangement is the original arrangement.
+
+
+Sample Input 2
+
+
+3
+4 3 1
+6 5 2
+9 7 3
+
+
+Output for Sample Input 2
+
+
+1 2 3
+3 5 7
+4 6 9
+
+
+Explanation of Output for Sample Input 2
+
+
+The original data was rotated 90 degrees to the right/clockwise.
+
+
+Sample Input 3
+
+
+3
+3 7 9
+2 5 6
+1 3 4
+
+
+Output for Sample Input 3
+
+
+1 2 3
+3 5 7
+4 6 9
+
+
+Explanation of Output for Sample Input 3
+
+
+The original data was rotated 90 degrees to the
+left/counter-clockwise.
+</pre></details></section><section class="card"><h2>Test data</h2><p>18 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s2.01.in">s2.01.in</a> / <a href="tests/s2.01.out">output</a></li><li><a href="tests/s2.02.in">s2.02.in</a> / <a href="tests/s2.02.out">output</a></li><li><a href="tests/s2.03.in">s2.03.in</a> / <a href="tests/s2.03.out">output</a></li><li><a href="tests/s2.04.in">s2.04.in</a> / <a href="tests/s2.04.out">output</a></li><li><a href="tests/s2.05.in">s2.05.in</a> / <a href="tests/s2.05.out">output</a></li><li><a href="tests/s2.06.in">s2.06.in</a> / <a href="tests/s2.06.out">output</a></li><li><a href="tests/s2.07.in">s2.07.in</a> / <a href="tests/s2.07.out">output</a></li><li><a href="tests/s2.08.in">s2.08.in</a> / <a href="tests/s2.08.out">output</a></li><li><a href="tests/s2.09.in">s2.09.in</a> / <a href="tests/s2.09.out">output</a></li><li><a href="tests/s2.10.in">s2.10.in</a> / <a href="tests/s2.10.out">output</a></li><li><a href="tests/s2.11.in">s2.11.in</a> / <a href="tests/s2.11.out">output</a></li><li><a href="tests/s2.12.in">s2.12.in</a> / <a href="tests/s2.12.out">output</a></li><li><a href="tests/s2.13.in">s2.13.in</a> / <a href="tests/s2.13.out">output</a></li><li><a href="tests/s2.14.in">s2.14.in</a> / <a href="tests/s2.14.out">output</a></li><li><a href="tests/s2.15.in">s2.15.in</a> / <a href="tests/s2.15.out">output</a></li><li><a href="tests/s2.sample01.in">s2.sample01.in</a> / <a href="tests/s2.sample01.out">output</a></li><li><a href="tests/s2.sample02.in">s2.sample02.in</a> / <a href="tests/s2.sample02.out">output</a></li><li><a href="tests/s2.sample03.in">s2.sample03.in</a> / <a href="tests/s2.sample03.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

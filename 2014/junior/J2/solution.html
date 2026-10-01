@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2014 J2 · Vote Count · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2014 J2 · Vote Count</h1></header><p class="eyebrow">2014 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc14j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Vote Count
+Problem Description
+A vote is held after singer A and singer B compete in the final round of a singing competition.
+Your job is to count the votes and determine the outcome.
+
+Input Specification
+The input will be two lines. The first line will contain V (1 ≤ V ≤ 15), the total number of
+votes. The second line of input will be a sequence of V characters, each of which will be A or B,
+representing the votes for a particular singer.
+
+Output Specification
+The output will be one of three possibilities:
+
+   • A, if there are more A votes than B votes;
+
+   • B, if there are more B votes than A votes;
+
+   • Tie, if there are an equal number of A votes and B votes.
+
+
+Sample Input 1
+6
+ABBABB
+
+Output for Sample Input 1
+B
+
+Sample Input 2
+6
+ABBABA
+
+Output for Sample Input 2
+Tie
+
+
+
+
+                                                  4
+</pre></details></section><section class="card"><h2>测试数据</h2><p>10 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j2.1a.in">j2.1a.in</a> / <a href="tests/j2.1a.out">output</a></li><li><a href="tests/j2.1b.in">j2.1b.in</a> / <a href="tests/j2.1b.out">output</a></li><li><a href="tests/j2.2a.in">j2.2a.in</a> / <a href="tests/j2.2a.out">output</a></li><li><a href="tests/j2.2b.in">j2.2b.in</a> / <a href="tests/j2.2b.out">output</a></li><li><a href="tests/j2.3a.in">j2.3a.in</a> / <a href="tests/j2.3a.out">output</a></li><li><a href="tests/j2.3b.in">j2.3b.in</a> / <a href="tests/j2.3b.out">output</a></li><li><a href="tests/j2.4a.in">j2.4a.in</a> / <a href="tests/j2.4a.out">output</a></li><li><a href="tests/j2.4b.in">j2.4b.in</a> / <a href="tests/j2.4b.out">output</a></li><li><a href="tests/j2.5a.in">j2.5a.in</a> / <a href="tests/j2.5a.out">output</a></li><li><a href="tests/j2.5b.in">j2.5b.in</a> / <a href="tests/j2.5b.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc14j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Vote Count
+Problem Description
+A vote is held after singer A and singer B compete in the final round of a singing competition.
+Your job is to count the votes and determine the outcome.
+
+Input Specification
+The input will be two lines. The first line will contain V (1 ≤ V ≤ 15), the total number of
+votes. The second line of input will be a sequence of V characters, each of which will be A or B,
+representing the votes for a particular singer.
+
+Output Specification
+The output will be one of three possibilities:
+
+   • A, if there are more A votes than B votes;
+
+   • B, if there are more B votes than A votes;
+
+   • Tie, if there are an equal number of A votes and B votes.
+
+
+Sample Input 1
+6
+ABBABB
+
+Output for Sample Input 1
+B
+
+Sample Input 2
+6
+ABBABA
+
+Output for Sample Input 2
+Tie
+
+
+
+
+                                                  4
+</pre></details></section><section class="card"><h2>Test data</h2><p>10 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j2.1a.in">j2.1a.in</a> / <a href="tests/j2.1a.out">output</a></li><li><a href="tests/j2.1b.in">j2.1b.in</a> / <a href="tests/j2.1b.out">output</a></li><li><a href="tests/j2.2a.in">j2.2a.in</a> / <a href="tests/j2.2a.out">output</a></li><li><a href="tests/j2.2b.in">j2.2b.in</a> / <a href="tests/j2.2b.out">output</a></li><li><a href="tests/j2.3a.in">j2.3a.in</a> / <a href="tests/j2.3a.out">output</a></li><li><a href="tests/j2.3b.in">j2.3b.in</a> / <a href="tests/j2.3b.out">output</a></li><li><a href="tests/j2.4a.in">j2.4a.in</a> / <a href="tests/j2.4a.out">output</a></li><li><a href="tests/j2.4b.in">j2.4b.in</a> / <a href="tests/j2.4b.out">output</a></li><li><a href="tests/j2.5a.in">j2.5a.in</a> / <a href="tests/j2.5a.out">output</a></li><li><a href="tests/j2.5b.in">j2.5b.in</a> / <a href="tests/j2.5b.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

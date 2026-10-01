@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2020 J2 · Epidemiology · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2020 J2 · Epidemiology</h1></header><p class="eyebrow">2020 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc20j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>750
+1
+5
+</pre></div><div><h3>样例输出</h3><pre>4</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Epidemiology
+
+
+Problem Description
+
+
+
+People who study epidemiology use models to analyze the spread of
+disease. In this problem, we use a simple model.
+
+
+When a person has a disease, they infect exactly  \(R\)  other people but only on the very next
+day. No person is infected more than once. We want to determine when a
+total of more than  \(P\)  people have
+had the disease.
+
+
+(This problem was designed before the current coronavirus
+outbreak, and we acknowledge the distress currently being experienced by
+many people worldwide because of this and other diseases. We hope that
+including this problem at this time highlights the important roles that
+computer science and mathematics play in solving real-world
+problems.)
+
+
+Input Specification
+
+There are three lines of input. Each line contains one positive integer.
+The first line contains the value of  \(P\) . The second line contains  \(N\) , the number of people who have the
+disease on Day  \(0\) . The third line
+contains the value of  \(R\) . Assume
+that  \(P \leq 10^7\)  and  \(N \leq P\)  and  \(R \leq 10\) .
+
+
+Output Specification
+
+
+
+Output the number of the first day on which the total number of people
+who have had the disease is greater than  \(P\) .
+
+
+Sample Input 1
+
+
+750
+1
+5
+
+
+Output for Sample Input 1
+
+
+4
+
+
+Explanation of Output for Sample Input 1
+
+
+The  \(1\)  person on Day  \(0\)  with the disease infects  \(5\)  people on Day  \(1\) . On Day  \(2\) , exactly  \(25\)  people are infected. On Day  \(3\) , exactly  \(125\)  people are infected. A total of  \(1+5+25+125+625=781\)  people have had the
+disease by the end of Day  \(4\)  and
+ \(781 &gt; 750\) .
+
+
+Sample Input 2
+
+
+10
+2
+1
+
+
+Output for Sample Input 2
+
+
+5
+
+
+Explanation of Output for Sample Input 2
+
+
+There are  \(2\)  people on Day 0 with
+the disease. On each other day, exactly  \(2\)  people are infected. By the end of Day
+ \(4\) , a total of exactly  \(10\)  people have had the disease and by the
+end of Day  \(5\) , more than  \(10\)  people have had the disease.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>17 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j2.01.in">j2.01.in</a> / <a href="tests/j2.01.out">output</a></li><li><a href="tests/j2.02.in">j2.02.in</a> / <a href="tests/j2.02.out">output</a></li><li><a href="tests/j2.03.in">j2.03.in</a> / <a href="tests/j2.03.out">output</a></li><li><a href="tests/j2.04.in">j2.04.in</a> / <a href="tests/j2.04.out">output</a></li><li><a href="tests/j2.05.in">j2.05.in</a> / <a href="tests/j2.05.out">output</a></li><li><a href="tests/j2.06.in">j2.06.in</a> / <a href="tests/j2.06.out">output</a></li><li><a href="tests/j2.07.in">j2.07.in</a> / <a href="tests/j2.07.out">output</a></li><li><a href="tests/j2.08.in">j2.08.in</a> / <a href="tests/j2.08.out">output</a></li><li><a href="tests/j2.09.in">j2.09.in</a> / <a href="tests/j2.09.out">output</a></li><li><a href="tests/j2.10.in">j2.10.in</a> / <a href="tests/j2.10.out">output</a></li><li><a href="tests/j2.11.in">j2.11.in</a> / <a href="tests/j2.11.out">output</a></li><li><a href="tests/j2.12.in">j2.12.in</a> / <a href="tests/j2.12.out">output</a></li><li><a href="tests/j2.13.in">j2.13.in</a> / <a href="tests/j2.13.out">output</a></li><li><a href="tests/j2.14.in">j2.14.in</a> / <a href="tests/j2.14.out">output</a></li><li><a href="tests/j2.15.in">j2.15.in</a> / <a href="tests/j2.15.out">output</a></li><li><a href="tests/j2.sample.01.in">j2.sample.01.in</a> / <a href="tests/j2.sample.01.out">output</a></li><li><a href="tests/j2.sample.02.in">j2.sample.02.in</a> / <a href="tests/j2.sample.02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc20j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>750
+1
+5
+</pre></div><div><h3>Sample output</h3><pre>4</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Epidemiology
+
+
+Problem Description
+
+
+
+People who study epidemiology use models to analyze the spread of
+disease. In this problem, we use a simple model.
+
+
+When a person has a disease, they infect exactly  \(R\)  other people but only on the very next
+day. No person is infected more than once. We want to determine when a
+total of more than  \(P\)  people have
+had the disease.
+
+
+(This problem was designed before the current coronavirus
+outbreak, and we acknowledge the distress currently being experienced by
+many people worldwide because of this and other diseases. We hope that
+including this problem at this time highlights the important roles that
+computer science and mathematics play in solving real-world
+problems.)
+
+
+Input Specification
+
+There are three lines of input. Each line contains one positive integer.
+The first line contains the value of  \(P\) . The second line contains  \(N\) , the number of people who have the
+disease on Day  \(0\) . The third line
+contains the value of  \(R\) . Assume
+that  \(P \leq 10^7\)  and  \(N \leq P\)  and  \(R \leq 10\) .
+
+
+Output Specification
+
+
+
+Output the number of the first day on which the total number of people
+who have had the disease is greater than  \(P\) .
+
+
+Sample Input 1
+
+
+750
+1
+5
+
+
+Output for Sample Input 1
+
+
+4
+
+
+Explanation of Output for Sample Input 1
+
+
+The  \(1\)  person on Day  \(0\)  with the disease infects  \(5\)  people on Day  \(1\) . On Day  \(2\) , exactly  \(25\)  people are infected. On Day  \(3\) , exactly  \(125\)  people are infected. A total of  \(1+5+25+125+625=781\)  people have had the
+disease by the end of Day  \(4\)  and
+ \(781 &gt; 750\) .
+
+
+Sample Input 2
+
+
+10
+2
+1
+
+
+Output for Sample Input 2
+
+
+5
+
+
+Explanation of Output for Sample Input 2
+
+
+There are  \(2\)  people on Day 0 with
+the disease. On each other day, exactly  \(2\)  people are infected. By the end of Day
+ \(4\) , a total of exactly  \(10\)  people have had the disease and by the
+end of Day  \(5\) , more than  \(10\)  people have had the disease.
+</pre></details></section><section class="card"><h2>Test data</h2><p>17 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j2.01.in">j2.01.in</a> / <a href="tests/j2.01.out">output</a></li><li><a href="tests/j2.02.in">j2.02.in</a> / <a href="tests/j2.02.out">output</a></li><li><a href="tests/j2.03.in">j2.03.in</a> / <a href="tests/j2.03.out">output</a></li><li><a href="tests/j2.04.in">j2.04.in</a> / <a href="tests/j2.04.out">output</a></li><li><a href="tests/j2.05.in">j2.05.in</a> / <a href="tests/j2.05.out">output</a></li><li><a href="tests/j2.06.in">j2.06.in</a> / <a href="tests/j2.06.out">output</a></li><li><a href="tests/j2.07.in">j2.07.in</a> / <a href="tests/j2.07.out">output</a></li><li><a href="tests/j2.08.in">j2.08.in</a> / <a href="tests/j2.08.out">output</a></li><li><a href="tests/j2.09.in">j2.09.in</a> / <a href="tests/j2.09.out">output</a></li><li><a href="tests/j2.10.in">j2.10.in</a> / <a href="tests/j2.10.out">output</a></li><li><a href="tests/j2.11.in">j2.11.in</a> / <a href="tests/j2.11.out">output</a></li><li><a href="tests/j2.12.in">j2.12.in</a> / <a href="tests/j2.12.out">output</a></li><li><a href="tests/j2.13.in">j2.13.in</a> / <a href="tests/j2.13.out">output</a></li><li><a href="tests/j2.14.in">j2.14.in</a> / <a href="tests/j2.14.out">output</a></li><li><a href="tests/j2.15.in">j2.15.in</a> / <a href="tests/j2.15.out">output</a></li><li><a href="tests/j2.sample.01.in">j2.sample.01.in</a> / <a href="tests/j2.sample.01.out">output</a></li><li><a href="tests/j2.sample.02.in">j2.sample.02.in</a> / <a href="tests/j2.sample.02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

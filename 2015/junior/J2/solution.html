@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2015 J2 · Happy or Sad · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2015 J2 · Happy or Sad</h1></header><p class="eyebrow">2015 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc15j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Happy or Sad
+Problem Description
+We often include emoticons in our text messages to indicate how we are feeling. The three con-
+secutive characters :-) indicate a happy face and the three consecutive characters :-( indicate a
+sad face. Write a program to determine the overall mood of a message.
+
+Input Specification
+There will be one line of input that contains between 1 and 255 characters.
+
+Output Specification
+The output is determined by the following rules:
+
+   • If the input line does not contain any happy or sad emoticons, output none.
+
+   • Otherwise, if the input line contains an equal number of happy and sad emoticons, output
+     unsure.
+
+   • Otherwise, if the input line contains more happy than sad emoticons, output happy.
+
+   • Otherwise, if the input line contains more sad than happy emoticons, output sad.
+
+
+Sample Input 1
+How are you :-) doing :-( today :-)?
+
+Output for Sample Input 1
+happy
+
+Sample Input 2
+:)
+
+Output for Sample Input 2
+none
+
+Sample Input 3
+This:-(is str:-(:-(ange te:-)xt.
+
+Output for Sample Input 3
+sad
+
+
+
+
+                                                4
+</pre></details></section><section class="card"><h2>测试数据</h2><p>8 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j2.1.in">j2.1.in</a> / <a href="tests/j2.1.out">output</a></li><li><a href="tests/j2.2.in">j2.2.in</a> / <a href="tests/j2.2.out">output</a></li><li><a href="tests/j2.3.in">j2.3.in</a> / <a href="tests/j2.3.out">output</a></li><li><a href="tests/j2.4.in">j2.4.in</a> / <a href="tests/j2.4.out">output</a></li><li><a href="tests/j2.5.in">j2.5.in</a> / <a href="tests/j2.5.out">output</a></li><li><a href="tests/j2.6.in">j2.6.in</a> / <a href="tests/j2.6.out">output</a></li><li><a href="tests/j2.7.in">j2.7.in</a> / <a href="tests/j2.7.out">output</a></li><li><a href="tests/j2.8.in">j2.8.in</a> / <a href="tests/j2.8.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc15j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Happy or Sad
+Problem Description
+We often include emoticons in our text messages to indicate how we are feeling. The three con-
+secutive characters :-) indicate a happy face and the three consecutive characters :-( indicate a
+sad face. Write a program to determine the overall mood of a message.
+
+Input Specification
+There will be one line of input that contains between 1 and 255 characters.
+
+Output Specification
+The output is determined by the following rules:
+
+   • If the input line does not contain any happy or sad emoticons, output none.
+
+   • Otherwise, if the input line contains an equal number of happy and sad emoticons, output
+     unsure.
+
+   • Otherwise, if the input line contains more happy than sad emoticons, output happy.
+
+   • Otherwise, if the input line contains more sad than happy emoticons, output sad.
+
+
+Sample Input 1
+How are you :-) doing :-( today :-)?
+
+Output for Sample Input 1
+happy
+
+Sample Input 2
+:)
+
+Output for Sample Input 2
+none
+
+Sample Input 3
+This:-(is str:-(:-(ange te:-)xt.
+
+Output for Sample Input 3
+sad
+
+
+
+
+                                                4
+</pre></details></section><section class="card"><h2>Test data</h2><p>8 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j2.1.in">j2.1.in</a> / <a href="tests/j2.1.out">output</a></li><li><a href="tests/j2.2.in">j2.2.in</a> / <a href="tests/j2.2.out">output</a></li><li><a href="tests/j2.3.in">j2.3.in</a> / <a href="tests/j2.3.out">output</a></li><li><a href="tests/j2.4.in">j2.4.in</a> / <a href="tests/j2.4.out">output</a></li><li><a href="tests/j2.5.in">j2.5.in</a> / <a href="tests/j2.5.out">output</a></li><li><a href="tests/j2.6.in">j2.6.in</a> / <a href="tests/j2.6.out">output</a></li><li><a href="tests/j2.7.in">j2.7.in</a> / <a href="tests/j2.7.out">output</a></li><li><a href="tests/j2.8.in">j2.8.in</a> / <a href="tests/j2.8.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2017 S2 · High Tide, Low Tide Time limit: 1 second Problem Description Joe Coder is camping near the Bay of Fundy between Nova Scotia and New Brunswick. When he arrived at the bay, he was told that the difference in height between high tide and low tide at the Bay of Fundy was the largest tidal difference in the world. Ever the skeptic, Joe decided to verify this. He chose a reference point and, after learning from the radio when the tides were highest and lowest, he went with a boat to his reference point and measured the depth of the water. Unfortunately, on the last day of his trip, a strong wind scattered his measurements. Joe has recovered all of his measurements, but they may not be in their original order. Luckily, he remembers some things about his measurements: He started measuring water levels at a low tide, his second measurement was of the water level at high tide, and after that the measurements continued to alternate between low and high tides. All high tide measurements were higher than all low tide measurements. Joe noticed that as time passed, the high tides only became higher and the low tides only became lower. Given Joe’s measurements in no particular order, you must reconstruct the correct order in which the measurements were taken. Input Specification The first line contains the integer \(N\) \((1 \leq N \leq 100)\) . The next line contains \(N\) distinct space-separated positive integers, where each integer is at most \(1\ 000\ 000\) . Output Specification Output the \(N\) integers in the unique order that Joe originally took the measurements. Sample Input 8 10 50 40 7 3 110 90 2 Output for Sample Input 10 40 7 50 3 90 2 110 Explanation of Output for Sample Input The low tide measurements (in order) were 10, 7, 3, and 2. The high tide measurements (in order) were 40, 50, 90, and 110. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2017 S2 · High Tide, Low Tide Time limit: 1 second Problem Description Joe Coder is camping near the Bay of Fundy between Nova Scotia and New Brunswick. When he arrived at the bay, he was told that the difference in height between high tide and low tide at the Bay of Fundy was the largest tidal difference in the world. Ever the skeptic, Joe decided to verify this. He chose a reference point and, after learning from the radio when the tides were highest and lowest, he went with a boat to his reference point and measured the depth of the water. Unfortunately, on the last day of his trip, a strong wind scattered his measurements. Joe has recovered all of his measurements, but they may not be in their original order. Luckily, he remembers some things about his measurements: He started measuring water levels at a low tide, his second measurement was of the water level at high tide, and after that the measurements continued to alternate between low and high tides. All high tide measurements were higher than all low tide measurements. Joe noticed that as time passed, the high tides only became higher and the low tides only became lower. Given Joe’s measurements in no particular order, you must reconstruct the correct order in which the measurements were taken. Input Specification The first line contains the integer \(N\) \((1 \leq N \leq 100)\) . The next line contains \(N\) distinct space-separated positive integers, where each integer is at most \(1\ 000\ 000\) . Output Specification Output the \(N\) integers in the unique order that Joe originally took the measurements. Sample Input 8 10 50 40 7 3 110 90 2 Output for Sample Input 10 40 7 50 3 90 2 110 Explanation of Output for Sample Input The low tide measurements (in order) were 10, 7, 3, and 2. The high tide measurements (in order) were 40, 50, 90, and 110.</h1></header><p class="eyebrow">2017 / senior / S2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc17s2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>8
+10 50 40 7 3 110 90 2
+</pre></div><div><h3>样例输出</h3><pre>10 40 7 50 3 90 2 110 
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2:
+High Tide, Low Tide
+
+
+Time limit: 1
+second
+
+
+Problem
+Description
+
+
+Joe Coder is camping near the Bay of Fundy between Nova Scotia and
+New Brunswick. When he arrived at the bay, he was told that the
+difference in height between high tide and low tide at the Bay of Fundy
+was the largest tidal difference in the world. Ever the skeptic, Joe
+decided to verify this. He chose a reference point and, after learning
+from the radio when the tides were highest and lowest, he went with a
+boat to his reference point and measured the depth of the water.
+Unfortunately, on the last day of his trip, a strong wind scattered his
+measurements.
+
+
+Joe has recovered all of his measurements, but they may not be in
+their original order. Luckily, he remembers some things about his
+measurements:
+
+
+
+ He started measuring water levels at a low tide, his second
+measurement was of the water level at high tide, and after that the
+measurements continued to alternate between low and high tides. 
+ All high tide measurements were higher than all low tide
+measurements. 
+ Joe noticed that as time passed, the high tides only became
+higher and the low tides only became lower. 
+
+
+
+Given Joe’s measurements in no particular order, you must reconstruct
+the correct order in which the measurements were taken.
+
+
+ Input
+Specification
+
+
+The first line contains the integer  \(N\)   \((1 \leq N
+\leq 100)\) . The next line contains  \(N\)  distinct space-separated positive
+integers, where each integer is at most  \(1\
+000\ 000\) .
+
+
+ Output
+Specification
+
+
+Output the  \(N\)  integers in the
+unique order that Joe originally took the measurements.
+
+
+ Sample Input
+
+
+8
+10 50 40 7 3 110 90 2
+
+
+ Output for Sample
+Input
+
+
+10 40 7 50 3 90 2 110
+
+
+
+Explanation of Output for Sample Input
+
+
+The low tide measurements (in order) were 10, 7, 3, and 2. The high
+tide measurements (in order) were 40, 50, 90, and 110.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>16 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s2.01.in">s2.01.in</a> / <a href="tests/s2.01.out">output</a></li><li><a href="tests/s2.02.in">s2.02.in</a> / <a href="tests/s2.02.out">output</a></li><li><a href="tests/s2.03.in">s2.03.in</a> / <a href="tests/s2.03.out">output</a></li><li><a href="tests/s2.04.in">s2.04.in</a> / <a href="tests/s2.04.out">output</a></li><li><a href="tests/s2.05.in">s2.05.in</a> / <a href="tests/s2.05.out">output</a></li><li><a href="tests/s2.06.in">s2.06.in</a> / <a href="tests/s2.06.out">output</a></li><li><a href="tests/s2.07.in">s2.07.in</a> / <a href="tests/s2.07.out">output</a></li><li><a href="tests/s2.08.in">s2.08.in</a> / <a href="tests/s2.08.out">output</a></li><li><a href="tests/s2.09.in">s2.09.in</a> / <a href="tests/s2.09.out">output</a></li><li><a href="tests/s2.10.in">s2.10.in</a> / <a href="tests/s2.10.out">output</a></li><li><a href="tests/s2.11.in">s2.11.in</a> / <a href="tests/s2.11.out">output</a></li><li><a href="tests/s2.12.in">s2.12.in</a> / <a href="tests/s2.12.out">output</a></li><li><a href="tests/s2.13.in">s2.13.in</a> / <a href="tests/s2.13.out">output</a></li><li><a href="tests/s2.14.in">s2.14.in</a> / <a href="tests/s2.14.out">output</a></li><li><a href="tests/s2.15.in">s2.15.in</a> / <a href="tests/s2.15.out">output</a></li><li><a href="tests/s2.sample.01.in">s2.sample.01.in</a> / <a href="tests/s2.sample.01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc17s2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>8
+10 50 40 7 3 110 90 2
+</pre></div><div><h3>Sample output</h3><pre>10 40 7 50 3 90 2 110 
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2:
+High Tide, Low Tide
+
+
+Time limit: 1
+second
+
+
+Problem
+Description
+
+
+Joe Coder is camping near the Bay of Fundy between Nova Scotia and
+New Brunswick. When he arrived at the bay, he was told that the
+difference in height between high tide and low tide at the Bay of Fundy
+was the largest tidal difference in the world. Ever the skeptic, Joe
+decided to verify this. He chose a reference point and, after learning
+from the radio when the tides were highest and lowest, he went with a
+boat to his reference point and measured the depth of the water.
+Unfortunately, on the last day of his trip, a strong wind scattered his
+measurements.
+
+
+Joe has recovered all of his measurements, but they may not be in
+their original order. Luckily, he remembers some things about his
+measurements:
+
+
+
+ He started measuring water levels at a low tide, his second
+measurement was of the water level at high tide, and after that the
+measurements continued to alternate between low and high tides. 
+ All high tide measurements were higher than all low tide
+measurements. 
+ Joe noticed that as time passed, the high tides only became
+higher and the low tides only became lower. 
+
+
+
+Given Joe’s measurements in no particular order, you must reconstruct
+the correct order in which the measurements were taken.
+
+
+ Input
+Specification
+
+
+The first line contains the integer  \(N\)   \((1 \leq N
+\leq 100)\) . The next line contains  \(N\)  distinct space-separated positive
+integers, where each integer is at most  \(1\
+000\ 000\) .
+
+
+ Output
+Specification
+
+
+Output the  \(N\)  integers in the
+unique order that Joe originally took the measurements.
+
+
+ Sample Input
+
+
+8
+10 50 40 7 3 110 90 2
+
+
+ Output for Sample
+Input
+
+
+10 40 7 50 3 90 2 110
+
+
+
+Explanation of Output for Sample Input
+
+
+The low tide measurements (in order) were 10, 7, 3, and 2. The high
+tide measurements (in order) were 40, 50, 90, and 110.
+</pre></details></section><section class="card"><h2>Test data</h2><p>16 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s2.01.in">s2.01.in</a> / <a href="tests/s2.01.out">output</a></li><li><a href="tests/s2.02.in">s2.02.in</a> / <a href="tests/s2.02.out">output</a></li><li><a href="tests/s2.03.in">s2.03.in</a> / <a href="tests/s2.03.out">output</a></li><li><a href="tests/s2.04.in">s2.04.in</a> / <a href="tests/s2.04.out">output</a></li><li><a href="tests/s2.05.in">s2.05.in</a> / <a href="tests/s2.05.out">output</a></li><li><a href="tests/s2.06.in">s2.06.in</a> / <a href="tests/s2.06.out">output</a></li><li><a href="tests/s2.07.in">s2.07.in</a> / <a href="tests/s2.07.out">output</a></li><li><a href="tests/s2.08.in">s2.08.in</a> / <a href="tests/s2.08.out">output</a></li><li><a href="tests/s2.09.in">s2.09.in</a> / <a href="tests/s2.09.out">output</a></li><li><a href="tests/s2.10.in">s2.10.in</a> / <a href="tests/s2.10.out">output</a></li><li><a href="tests/s2.11.in">s2.11.in</a> / <a href="tests/s2.11.out">output</a></li><li><a href="tests/s2.12.in">s2.12.in</a> / <a href="tests/s2.12.out">output</a></li><li><a href="tests/s2.13.in">s2.13.in</a> / <a href="tests/s2.13.out">output</a></li><li><a href="tests/s2.14.in">s2.14.in</a> / <a href="tests/s2.14.out">output</a></li><li><a href="tests/s2.15.in">s2.15.in</a> / <a href="tests/s2.15.out">output</a></li><li><a href="tests/s2.sample.01.in">s2.sample.01.in</a> / <a href="tests/s2.sample.01.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2022 S2 · Group Work Problem Description A class has been divided into groups of three. This division into groups might violate two types of constraints: some students must work together in the same group, and some students must work in separate groups. Your job is to determine how many of the constraints are violated. Input Specification The first line will contain an integer \(X\) with \(X \geq 0\) . The next \(X\) lines will each consist of two different names, separated by a single space. These two students must be in the same group. The next line will contain an integer \(Y\) with \(Y \geq 0\) . The next \(Y\) lines will each consist of two different names, separated by a single space. These two students must not be in the same group. Among these \(X+Y\) lines representing constraints, each possible pair of students appears at most once. The next line will contain an integer \(G\) with \(G \geq 1\) . The last \(G\) lines will each consist of three different names, separated by single spaces. These three students have been placed in the same group. Each name will consist of between 1 and 10 uppercase letters. No two students will have the same name and each name appearing in a constraint will appear in exactly one of the \(G\) groups. The following table shows how the available 15 marks are distributed at the Junior level. Marks Awarded Number of Groups Number of Constraints 4 marks \(G \leq 50\) \(X \leq 50\) and \(Y = 0\) 10 marks \(G \leq 50\) \(X \leq 50\) and \(Y \leq 50\) 1 mark \(G \leq 100\,000\) \(X \leq 100\,000\) and \(Y \leq 100\,000\) The following table shows how the available 15 marks are distributed at the Senior level. Marks Awarded Number of Groups Number of Constraints 3 marks \(G \leq 50\) \(X \leq 50\) and \(Y = 0\) 5 marks \(G \leq 50\) \(X \leq 50\) and \(Y \leq 50\) 7 marks \(G \leq 100\,000\) \(X \leq 100\,000\) and \(Y \leq 100\,000\) Output Specification Output an integer between \(0\) and \(X+Y\) which is the number of constraints that are violated. Sample Input 1 1 ELODIE CHI 0 2 DWAYNE BEN ANJALI CHI FRANCOIS ELODIE Output for Sample Input 1 0 Explanation of Output for Sample Input 1 There is only one constraint and it is not violated: ELODIE and CHI are in the same group. Sample Input 2 3 A B G L J K 2 D F D G 4 A C G B D F E H I J K L Output for Sample Input 2 3 Explanation of Output for Sample Input 2 The first constraint is that A and B must be in the same group. This is violated. The second constraint is that G and L must be in the same group. This is violated. The third constraint is that J and K must be in the same group. This is not violated. The fourth constraint is that D and F must not be in the same group. This is violated. The fifth constraint is that D and G must not be in the same group. This is not violated. Of the five constraints, three are violated. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2022 S2 · Group Work Problem Description A class has been divided into groups of three. This division into groups might violate two types of constraints: some students must work together in the same group, and some students must work in separate groups. Your job is to determine how many of the constraints are violated. Input Specification The first line will contain an integer \(X\) with \(X \geq 0\) . The next \(X\) lines will each consist of two different names, separated by a single space. These two students must be in the same group. The next line will contain an integer \(Y\) with \(Y \geq 0\) . The next \(Y\) lines will each consist of two different names, separated by a single space. These two students must not be in the same group. Among these \(X+Y\) lines representing constraints, each possible pair of students appears at most once. The next line will contain an integer \(G\) with \(G \geq 1\) . The last \(G\) lines will each consist of three different names, separated by single spaces. These three students have been placed in the same group. Each name will consist of between 1 and 10 uppercase letters. No two students will have the same name and each name appearing in a constraint will appear in exactly one of the \(G\) groups. The following table shows how the available 15 marks are distributed at the Junior level. Marks Awarded Number of Groups Number of Constraints 4 marks \(G \leq 50\) \(X \leq 50\) and \(Y = 0\) 10 marks \(G \leq 50\) \(X \leq 50\) and \(Y \leq 50\) 1 mark \(G \leq 100\,000\) \(X \leq 100\,000\) and \(Y \leq 100\,000\) The following table shows how the available 15 marks are distributed at the Senior level. Marks Awarded Number of Groups Number of Constraints 3 marks \(G \leq 50\) \(X \leq 50\) and \(Y = 0\) 5 marks \(G \leq 50\) \(X \leq 50\) and \(Y \leq 50\) 7 marks \(G \leq 100\,000\) \(X \leq 100\,000\) and \(Y \leq 100\,000\) Output Specification Output an integer between \(0\) and \(X+Y\) which is the number of constraints that are violated. Sample Input 1 1 ELODIE CHI 0 2 DWAYNE BEN ANJALI CHI FRANCOIS ELODIE Output for Sample Input 1 0 Explanation of Output for Sample Input 1 There is only one constraint and it is not violated: ELODIE and CHI are in the same group. Sample Input 2 3 A B G L J K 2 D F D G 4 A C G B D F E H I J K L Output for Sample Input 2 3 Explanation of Output for Sample Input 2 The first constraint is that A and B must be in the same group. This is violated. The second constraint is that G and L must be in the same group. This is violated. The third constraint is that J and K must be in the same group. This is not violated. The fourth constraint is that D and F must not be in the same group. This is violated. The fifth constraint is that D and G must not be in the same group. This is not violated. Of the five constraints, three are violated.</h1></header><p class="eyebrow">2022 / senior / S2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc22s2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>1
+ELODIE CHI
+0
+2
+DWAYNE BEN ANJALI
+CHI FRANCOIS ELODIE
+</pre></div><div><h3>样例输出</h3><pre>0
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4/S2: Group
+Work
+
+
+Problem
+Description
+
+
+A class has been divided into groups of three. This division into
+groups might violate two types of constraints: some students must work
+together in the same group, and some students must work in separate
+groups.
+
+
+Your job is to determine how many of the constraints are
+violated.
+
+
+Input
+Specification
+
+
+The first line will contain an integer  \(X\)  with  \(X \geq
+0\) . The next  \(X\)  lines will
+each consist of two different names, separated by a single space. These
+two students  must  be in the same group.
+
+
+The next line will contain an integer  \(Y\)  with  \(Y \geq
+0\) . The next  \(Y\)  lines will
+each consist of two different names, separated by a single space. These
+two students  must not  be in the same group.
+
+
+Among these  \(X+Y\)  lines
+representing constraints, each possible pair of students appears at most
+once.
+
+
+The next line will contain an integer  \(G\)  with  \(G \geq
+1\) . The last  \(G\)  lines will
+each consist of three different names, separated by single spaces. These
+three students have been placed in the same group.
+
+
+Each name will consist of between 1 and 10 uppercase letters. No two
+students will have the same name and each name appearing in a constraint
+will appear in exactly one of the  \(G\) 
+groups.
+
+
+The following table shows how the available 15 marks are distributed
+at the Junior level.
+
+
+
+ 
+ 
+ 
+ Marks Awarded 
+ Number of Groups 
+ Number of Constraints 
+ 
+ 
+ 
+ 
+ 4 marks 
+ \(G \leq
+50\) 
+ \(X \leq
+50\)  and  \(Y = 0\) 
+ 
+ 
+ 10 marks 
+ \(G \leq
+50\) 
+ \(X \leq
+50\)  and  \(Y \leq 50\) 
+ 
+ 
+ 1 mark 
+ \(G \leq
+100\,000\) 
+ \(X \leq
+100\,000\)  and  \(Y \leq
+100\,000\) 
+ 
+ 
+ 
+
+
+
+The following table shows how the available 15 marks are distributed
+at the Senior level.
+
+
+
+ 
+ 
+ 
+ Marks Awarded 
+ Number of Groups 
+ Number of Constraints 
+ 
+ 
+ 
+ 
+ 3 marks 
+ \(G \leq
+50\) 
+ \(X \leq
+50\)  and  \(Y = 0\) 
+ 
+ 
+ 5 marks 
+ \(G \leq
+50\) 
+ \(X \leq
+50\)  and  \(Y \leq 50\) 
+ 
+ 
+ 7 marks 
+ \(G \leq
+100\,000\) 
+ \(X \leq
+100\,000\)  and  \(Y \leq
+100\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output an integer between  \(0\)  and
+ \(X+Y\)  which is the number of
+constraints that are violated.
+
+
+Sample Input 1
+
+
+1
+ELODIE CHI
+0
+2
+DWAYNE BEN ANJALI
+CHI FRANCOIS ELODIE
+
+
+Output for Sample Input 1
+
+
+0
+
+
+Explanation of
+Output for Sample Input 1
+
+
+There is only one constraint and it is not violated: ELODIE and CHI
+are in the same group.
+
+
+Sample Input 2
+
+
+3
+A B
+G L
+J K
+2
+D F
+D G
+4
+A C G
+B D F
+E H I
+J K L
+
+
+Output for Sample Input 2
+
+
+3
+
+
+Explanation of
+Output for Sample Input 2
+
+
+The first constraint is that A and B must be in the same group. This
+is violated.
+
+
+The second constraint is that G and L must be in the same group. This
+is violated.
+
+
+The third constraint is that J and K must be in the same group. This
+is  not  violated.
+
+
+The fourth constraint is that D and F must not be in the same group.
+This is violated.
+
+
+The fifth constraint is that D and G must not be in the same group.
+This is  not  violated.
+
+
+Of the five constraints, three are violated.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>34 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s2.1-01.in">s2.1-01.in</a> / <a href="tests/s2.1-01.out">output</a></li><li><a href="tests/s2.1-02.in">s2.1-02.in</a> / <a href="tests/s2.1-02.out">output</a></li><li><a href="tests/s2.1-03.in">s2.1-03.in</a> / <a href="tests/s2.1-03.out">output</a></li><li><a href="tests/s2.1-04.in">s2.1-04.in</a> / <a href="tests/s2.1-04.out">output</a></li><li><a href="tests/s2.1-05.in">s2.1-05.in</a> / <a href="tests/s2.1-05.out">output</a></li><li><a href="tests/s2.1-06.in">s2.1-06.in</a> / <a href="tests/s2.1-06.out">output</a></li><li><a href="tests/s2.2-01.in">s2.2-01.in</a> / <a href="tests/s2.2-01.out">output</a></li><li><a href="tests/s2.2-02.in">s2.2-02.in</a> / <a href="tests/s2.2-02.out">output</a></li><li><a href="tests/s2.2-03.in">s2.2-03.in</a> / <a href="tests/s2.2-03.out">output</a></li><li><a href="tests/s2.2-04.in">s2.2-04.in</a> / <a href="tests/s2.2-04.out">output</a></li><li><a href="tests/s2.2-05.in">s2.2-05.in</a> / <a href="tests/s2.2-05.out">output</a></li><li><a href="tests/s2.2-06.in">s2.2-06.in</a> / <a href="tests/s2.2-06.out">output</a></li><li><a href="tests/s2.2-07.in">s2.2-07.in</a> / <a href="tests/s2.2-07.out">output</a></li><li><a href="tests/s2.2-08.in">s2.2-08.in</a> / <a href="tests/s2.2-08.out">output</a></li><li><a href="tests/s2.2-09.in">s2.2-09.in</a> / <a href="tests/s2.2-09.out">output</a></li><li><a href="tests/s2.2-10.in">s2.2-10.in</a> / <a href="tests/s2.2-10.out">output</a></li><li><a href="tests/s2.2-11.in">s2.2-11.in</a> / <a href="tests/s2.2-11.out">output</a></li><li><a href="tests/s2.2-12.in">s2.2-12.in</a> / <a href="tests/s2.2-12.out">output</a></li><li><a href="tests/s2.2-13.in">s2.2-13.in</a> / <a href="tests/s2.2-13.out">output</a></li><li><a href="tests/s2.2-14.in">s2.2-14.in</a> / <a href="tests/s2.2-14.out">output</a></li><li><a href="tests/s2.3-01.in">s2.3-01.in</a> / <a href="tests/s2.3-01.out">output</a></li><li><a href="tests/s2.3-02.in">s2.3-02.in</a> / <a href="tests/s2.3-02.out">output</a></li><li><a href="tests/s2.3-03.in">s2.3-03.in</a> / <a href="tests/s2.3-03.out">output</a></li><li><a href="tests/s2.3-04.in">s2.3-04.in</a> / <a href="tests/s2.3-04.out">output</a></li><li><a href="tests/s2.3-05.in">s2.3-05.in</a> / <a href="tests/s2.3-05.out">output</a></li><li><a href="tests/s2.3-06.in">s2.3-06.in</a> / <a href="tests/s2.3-06.out">output</a></li><li><a href="tests/s2.3-07.in">s2.3-07.in</a> / <a href="tests/s2.3-07.out">output</a></li><li><a href="tests/s2.3-08.in">s2.3-08.in</a> / <a href="tests/s2.3-08.out">output</a></li><li><a href="tests/s2.3-09.in">s2.3-09.in</a> / <a href="tests/s2.3-09.out">output</a></li><li><a href="tests/s2.3-10.in">s2.3-10.in</a> / <a href="tests/s2.3-10.out">output</a></li><li><a href="tests/s2.3-11.in">s2.3-11.in</a> / <a href="tests/s2.3-11.out">output</a></li><li><a href="tests/s2.3-12.in">s2.3-12.in</a> / <a href="tests/s2.3-12.out">output</a></li><li><a href="tests/s2.sample-01.in">s2.sample-01.in</a> / <a href="tests/s2.sample-01.out">output</a></li><li><a href="tests/s2.sample-02.in">s2.sample-02.in</a> / <a href="tests/s2.sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc22s2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>1
+ELODIE CHI
+0
+2
+DWAYNE BEN ANJALI
+CHI FRANCOIS ELODIE
+</pre></div><div><h3>Sample output</h3><pre>0
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4/S2: Group
+Work
+
+
+Problem
+Description
+
+
+A class has been divided into groups of three. This division into
+groups might violate two types of constraints: some students must work
+together in the same group, and some students must work in separate
+groups.
+
+
+Your job is to determine how many of the constraints are
+violated.
+
+
+Input
+Specification
+
+
+The first line will contain an integer  \(X\)  with  \(X \geq
+0\) . The next  \(X\)  lines will
+each consist of two different names, separated by a single space. These
+two students  must  be in the same group.
+
+
+The next line will contain an integer  \(Y\)  with  \(Y \geq
+0\) . The next  \(Y\)  lines will
+each consist of two different names, separated by a single space. These
+two students  must not  be in the same group.
+
+
+Among these  \(X+Y\)  lines
+representing constraints, each possible pair of students appears at most
+once.
+
+
+The next line will contain an integer  \(G\)  with  \(G \geq
+1\) . The last  \(G\)  lines will
+each consist of three different names, separated by single spaces. These
+three students have been placed in the same group.
+
+
+Each name will consist of between 1 and 10 uppercase letters. No two
+students will have the same name and each name appearing in a constraint
+will appear in exactly one of the  \(G\) 
+groups.
+
+
+The following table shows how the available 15 marks are distributed
+at the Junior level.
+
+
+
+ 
+ 
+ 
+ Marks Awarded 
+ Number of Groups 
+ Number of Constraints 
+ 
+ 
+ 
+ 
+ 4 marks 
+ \(G \leq
+50\) 
+ \(X \leq
+50\)  and  \(Y = 0\) 
+ 
+ 
+ 10 marks 
+ \(G \leq
+50\) 
+ \(X \leq
+50\)  and  \(Y \leq 50\) 
+ 
+ 
+ 1 mark 
+ \(G \leq
+100\,000\) 
+ \(X \leq
+100\,000\)  and  \(Y \leq
+100\,000\) 
+ 
+ 
+ 
+
+
+
+The following table shows how the available 15 marks are distributed
+at the Senior level.
+
+
+
+ 
+ 
+ 
+ Marks Awarded 
+ Number of Groups 
+ Number of Constraints 
+ 
+ 
+ 
+ 
+ 3 marks 
+ \(G \leq
+50\) 
+ \(X \leq
+50\)  and  \(Y = 0\) 
+ 
+ 
+ 5 marks 
+ \(G \leq
+50\) 
+ \(X \leq
+50\)  and  \(Y \leq 50\) 
+ 
+ 
+ 7 marks 
+ \(G \leq
+100\,000\) 
+ \(X \leq
+100\,000\)  and  \(Y \leq
+100\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output an integer between  \(0\)  and
+ \(X+Y\)  which is the number of
+constraints that are violated.
+
+
+Sample Input 1
+
+
+1
+ELODIE CHI
+0
+2
+DWAYNE BEN ANJALI
+CHI FRANCOIS ELODIE
+
+
+Output for Sample Input 1
+
+
+0
+
+
+Explanation of
+Output for Sample Input 1
+
+
+There is only one constraint and it is not violated: ELODIE and CHI
+are in the same group.
+
+
+Sample Input 2
+
+
+3
+A B
+G L
+J K
+2
+D F
+D G
+4
+A C G
+B D F
+E H I
+J K L
+
+
+Output for Sample Input 2
+
+
+3
+
+
+Explanation of
+Output for Sample Input 2
+
+
+The first constraint is that A and B must be in the same group. This
+is violated.
+
+
+The second constraint is that G and L must be in the same group. This
+is violated.
+
+
+The third constraint is that J and K must be in the same group. This
+is  not  violated.
+
+
+The fourth constraint is that D and F must not be in the same group.
+This is violated.
+
+
+The fifth constraint is that D and G must not be in the same group.
+This is  not  violated.
+
+
+Of the five constraints, three are violated.
+</pre></details></section><section class="card"><h2>Test data</h2><p>34 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s2.1-01.in">s2.1-01.in</a> / <a href="tests/s2.1-01.out">output</a></li><li><a href="tests/s2.1-02.in">s2.1-02.in</a> / <a href="tests/s2.1-02.out">output</a></li><li><a href="tests/s2.1-03.in">s2.1-03.in</a> / <a href="tests/s2.1-03.out">output</a></li><li><a href="tests/s2.1-04.in">s2.1-04.in</a> / <a href="tests/s2.1-04.out">output</a></li><li><a href="tests/s2.1-05.in">s2.1-05.in</a> / <a href="tests/s2.1-05.out">output</a></li><li><a href="tests/s2.1-06.in">s2.1-06.in</a> / <a href="tests/s2.1-06.out">output</a></li><li><a href="tests/s2.2-01.in">s2.2-01.in</a> / <a href="tests/s2.2-01.out">output</a></li><li><a href="tests/s2.2-02.in">s2.2-02.in</a> / <a href="tests/s2.2-02.out">output</a></li><li><a href="tests/s2.2-03.in">s2.2-03.in</a> / <a href="tests/s2.2-03.out">output</a></li><li><a href="tests/s2.2-04.in">s2.2-04.in</a> / <a href="tests/s2.2-04.out">output</a></li><li><a href="tests/s2.2-05.in">s2.2-05.in</a> / <a href="tests/s2.2-05.out">output</a></li><li><a href="tests/s2.2-06.in">s2.2-06.in</a> / <a href="tests/s2.2-06.out">output</a></li><li><a href="tests/s2.2-07.in">s2.2-07.in</a> / <a href="tests/s2.2-07.out">output</a></li><li><a href="tests/s2.2-08.in">s2.2-08.in</a> / <a href="tests/s2.2-08.out">output</a></li><li><a href="tests/s2.2-09.in">s2.2-09.in</a> / <a href="tests/s2.2-09.out">output</a></li><li><a href="tests/s2.2-10.in">s2.2-10.in</a> / <a href="tests/s2.2-10.out">output</a></li><li><a href="tests/s2.2-11.in">s2.2-11.in</a> / <a href="tests/s2.2-11.out">output</a></li><li><a href="tests/s2.2-12.in">s2.2-12.in</a> / <a href="tests/s2.2-12.out">output</a></li><li><a href="tests/s2.2-13.in">s2.2-13.in</a> / <a href="tests/s2.2-13.out">output</a></li><li><a href="tests/s2.2-14.in">s2.2-14.in</a> / <a href="tests/s2.2-14.out">output</a></li><li><a href="tests/s2.3-01.in">s2.3-01.in</a> / <a href="tests/s2.3-01.out">output</a></li><li><a href="tests/s2.3-02.in">s2.3-02.in</a> / <a href="tests/s2.3-02.out">output</a></li><li><a href="tests/s2.3-03.in">s2.3-03.in</a> / <a href="tests/s2.3-03.out">output</a></li><li><a href="tests/s2.3-04.in">s2.3-04.in</a> / <a href="tests/s2.3-04.out">output</a></li><li><a href="tests/s2.3-05.in">s2.3-05.in</a> / <a href="tests/s2.3-05.out">output</a></li><li><a href="tests/s2.3-06.in">s2.3-06.in</a> / <a href="tests/s2.3-06.out">output</a></li><li><a href="tests/s2.3-07.in">s2.3-07.in</a> / <a href="tests/s2.3-07.out">output</a></li><li><a href="tests/s2.3-08.in">s2.3-08.in</a> / <a href="tests/s2.3-08.out">output</a></li><li><a href="tests/s2.3-09.in">s2.3-09.in</a> / <a href="tests/s2.3-09.out">output</a></li><li><a href="tests/s2.3-10.in">s2.3-10.in</a> / <a href="tests/s2.3-10.out">output</a></li><li><a href="tests/s2.3-11.in">s2.3-11.in</a> / <a href="tests/s2.3-11.out">output</a></li><li><a href="tests/s2.3-12.in">s2.3-12.in</a> / <a href="tests/s2.3-12.out">output</a></li><li><a href="tests/s2.sample-01.in">s2.sample-01.in</a> / <a href="tests/s2.sample-01.out">output</a></li><li><a href="tests/s2.sample-02.in">s2.sample-02.in</a> / <a href="tests/s2.sample-02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

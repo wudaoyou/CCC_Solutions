@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2016 J1 · Tournament Selection · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2016 J1 · Tournament Selection</h1></header><p class="eyebrow">2016 / junior / J1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc16j1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>W
+L
+W
+W
+L
+W
+</pre></div><div><h3>样例输出</h3><pre>2
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1:
+  Tournament Selection
+
+
+Problem Description
+
+
+Each player in a tournament plays six games. There are no ties. The
+  tournament director places the players in groups based on the results of
+  games as follows:
+
+
+
+ if a player wins 5 or 6 games, they are placed in Group
+  1; 
+ if a player wins 3 or 4 games, they are placed in Group
+  2; 
+ if a player wins 1 or 2 games, they are placed in Group
+  3; 
+ if a player does not win any games, they are eliminated from the
+  tournament. 
+
+
+
+Write a program to determine which group a player is placed in.
+
+
+Input Specification
+
+
+The input consists of six lines, each with one of two possible
+  letters:  W  (to indicate a win) or
+   L  (to indicate a loss).
+
+
+Output
+  Specification
+
+
+The output will be either  1 ,
+   2 ,  3  (to indicate
+  which Group the player should be placed in) or
+   -1  (to indicate the player has been
+  eliminated).
+
+
+Sample Input 1
+
+
+W
+L
+W
+W
+L
+W
+
+
+Output for Sample
+  Input 1
+
+
+2
+
+
+Sample Input 2
+
+
+L
+L
+L
+L
+L
+L
+
+
+Output for Sample
+  Input 2
+
+
+-1
+</pre></details></section><section class="card"><h2>测试数据</h2><p>7 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j1.1.in">j1.1.in</a> / <a href="tests/j1.1.out">output</a></li><li><a href="tests/j1.2.in">j1.2.in</a> / <a href="tests/j1.2.out">output</a></li><li><a href="tests/j1.3.in">j1.3.in</a> / <a href="tests/j1.3.out">output</a></li><li><a href="tests/j1.4.in">j1.4.in</a> / <a href="tests/j1.4.out">output</a></li><li><a href="tests/j1.5.in">j1.5.in</a> / <a href="tests/j1.5.out">output</a></li><li><a href="tests/j1.samp1.in">j1.samp1.in</a> / <a href="tests/j1.samp1.out">output</a></li><li><a href="tests/j1.samp2.in">j1.samp2.in</a> / <a href="tests/j1.samp2.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc16j1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>W
+L
+W
+W
+L
+W
+</pre></div><div><h3>Sample output</h3><pre>2
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1:
+  Tournament Selection
+
+
+Problem Description
+
+
+Each player in a tournament plays six games. There are no ties. The
+  tournament director places the players in groups based on the results of
+  games as follows:
+
+
+
+ if a player wins 5 or 6 games, they are placed in Group
+  1; 
+ if a player wins 3 or 4 games, they are placed in Group
+  2; 
+ if a player wins 1 or 2 games, they are placed in Group
+  3; 
+ if a player does not win any games, they are eliminated from the
+  tournament. 
+
+
+
+Write a program to determine which group a player is placed in.
+
+
+Input Specification
+
+
+The input consists of six lines, each with one of two possible
+  letters:  W  (to indicate a win) or
+   L  (to indicate a loss).
+
+
+Output
+  Specification
+
+
+The output will be either  1 ,
+   2 ,  3  (to indicate
+  which Group the player should be placed in) or
+   -1  (to indicate the player has been
+  eliminated).
+
+
+Sample Input 1
+
+
+W
+L
+W
+W
+L
+W
+
+
+Output for Sample
+  Input 1
+
+
+2
+
+
+Sample Input 2
+
+
+L
+L
+L
+L
+L
+L
+
+
+Output for Sample
+  Input 2
+
+
+-1
+</pre></details></section><section class="card"><h2>Test data</h2><p>7 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j1.1.in">j1.1.in</a> / <a href="tests/j1.1.out">output</a></li><li><a href="tests/j1.2.in">j1.2.in</a> / <a href="tests/j1.2.out">output</a></li><li><a href="tests/j1.3.in">j1.3.in</a> / <a href="tests/j1.3.out">output</a></li><li><a href="tests/j1.4.in">j1.4.in</a> / <a href="tests/j1.4.out">output</a></li><li><a href="tests/j1.5.in">j1.5.in</a> / <a href="tests/j1.5.out">output</a></li><li><a href="tests/j1.samp1.in">j1.samp1.in</a> / <a href="tests/j1.samp1.out">output</a></li><li><a href="tests/j1.samp2.in">j1.samp2.in</a> / <a href="tests/j1.samp2.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

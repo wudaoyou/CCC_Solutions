@@ -1,0 +1,30 @@
+{
+  "statement_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCJrProblems.html",
+  "pdf_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCJuniorEF.pdf",
+  "pdf_sha256": "05499d6c3853a920b2add6dd6ebe2c00e49cec1aad849a8ad8447502e3ebe85a",
+  "retrieved_on": "2026-10-01",
+  "original_statement": "problem.txt",
+  "figures": "../../_sources/junior.pdf",
+  "test_data": {
+    "kind": "official",
+    "storage": "download",
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCJuniorTestData.zip",
+    "archive_sha256": "19fb2d14f5764f7d66eb25dec2f995e09394100ba97e2d2638b6e0214a8871f7",
+    "members": [
+      "2026CCCJuniorTestData/j2/data/j2.03.in",
+      "2026CCCJuniorTestData/j2/data/j2.02.in",
+      "2026CCCJuniorTestData/j2/data/j2.sample.in",
+      "2026CCCJuniorTestData/j2/data/j2.01.in",
+      "2026CCCJuniorTestData/j2/data/j2.sample.out",
+      "2026CCCJuniorTestData/j2/data/j2.05.in",
+      "2026CCCJuniorTestData/j2/data/j2.04.out",
+      "2026CCCJuniorTestData/j2/data/j2.05.out",
+      "2026CCCJuniorTestData/j2/data/j2.04.in",
+      "2026CCCJuniorTestData/j2/data/j2.01.out",
+      "2026CCCJuniorTestData/j2/data/j2.02.out",
+      "2026CCCJuniorTestData/j2/data/j2.03.out"
+    ],
+    "official_input_count": 6,
+    "bundled_input_count": 1
+  }
+}

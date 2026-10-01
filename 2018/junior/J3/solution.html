@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2018 J3 · Are we there yet? · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2018 J3 · Are we there yet?</h1></header><p class="eyebrow">2018 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc18j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3 10 12 5
+</pre></div><div><h3>样例输出</h3><pre>0 3 13 25 30 
+3 0 10 22 27 
+13 10 0 12 17 
+25 22 12 0 5 
+30 27 17 5 0 
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Are we there yet?
+
+
+Problem Description
+
+
+You decide to go for a very long drive on a very straight road. Along
+this road are five cities. As you travel, you record the distance
+between each pair of consecutive cities.
+
+
+You would like to calculate a distance table that indicates the
+distance between any two of the cities you have encountered.
+
+
+Input Specification
+
+
+The first line contains 4 positive integers less than 1000, each
+representing the distances between consecutive pairs of consecutive
+cities: specifically, the  \(i\) th
+integer represents the distance between city  \(i\)  and city  \(i+1\) .
+
+
+Output Specification
+ 
+
+The output should be  \(5\)  lines, with
+the  \(i\) th line  \((1 \leq i \leq 5)\)  containing the distance
+from city  \(i\)  to cities  \(1\) ,  \(2\) , ...  \(5\)  in order, separated by one space.
+
+
+Sample Input
+
+
+3 10 12 5
+
+
+Output for Sample Input
+
+
+0 3 13 25 30
+3 0 10 22 27
+13 10 0 12 17
+25 22 12 0 5
+30 27 17 5 0
+
+
+Explanation of Output for Sample
+Input
+
+
+The first line of output contains:
+
+
+
+ \(0\) , since the distance from
+city 1 to city 1 is  \(0\) ; 
+ \(3\) , since the distance
+between city 1 and city 2 is  \(3\) ; 
+ \(13\) , since the distance
+between city 1 and city 3 is  \(3+10=13\) ; 
+ \(25\) , since the distance
+between city 1 and city 4 is  \(3+10+12=25\) ; 
+ \(30\) , since the distance
+between city 1 and city 5 is  \(3+10+12+5=30\) .
+</pre></details></section><section class="card"><h2>测试数据</h2><p>4 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j3.1.in">j3.1.in</a> / <a href="tests/j3.1.out">output</a></li><li><a href="tests/j3.2.in">j3.2.in</a> / <a href="tests/j3.2.out">output</a></li><li><a href="tests/j3.3.in">j3.3.in</a> / <a href="tests/j3.3.out">output</a></li><li><a href="tests/j3.sample.in">j3.sample.in</a> / <a href="tests/j3.sample.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc18j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3 10 12 5
+</pre></div><div><h3>Sample output</h3><pre>0 3 13 25 30 
+3 0 10 22 27 
+13 10 0 12 17 
+25 22 12 0 5 
+30 27 17 5 0 
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Are we there yet?
+
+
+Problem Description
+
+
+You decide to go for a very long drive on a very straight road. Along
+this road are five cities. As you travel, you record the distance
+between each pair of consecutive cities.
+
+
+You would like to calculate a distance table that indicates the
+distance between any two of the cities you have encountered.
+
+
+Input Specification
+
+
+The first line contains 4 positive integers less than 1000, each
+representing the distances between consecutive pairs of consecutive
+cities: specifically, the  \(i\) th
+integer represents the distance between city  \(i\)  and city  \(i+1\) .
+
+
+Output Specification
+ 
+
+The output should be  \(5\)  lines, with
+the  \(i\) th line  \((1 \leq i \leq 5)\)  containing the distance
+from city  \(i\)  to cities  \(1\) ,  \(2\) , ...  \(5\)  in order, separated by one space.
+
+
+Sample Input
+
+
+3 10 12 5
+
+
+Output for Sample Input
+
+
+0 3 13 25 30
+3 0 10 22 27
+13 10 0 12 17
+25 22 12 0 5
+30 27 17 5 0
+
+
+Explanation of Output for Sample
+Input
+
+
+The first line of output contains:
+
+
+
+ \(0\) , since the distance from
+city 1 to city 1 is  \(0\) ; 
+ \(3\) , since the distance
+between city 1 and city 2 is  \(3\) ; 
+ \(13\) , since the distance
+between city 1 and city 3 is  \(3+10=13\) ; 
+ \(25\) , since the distance
+between city 1 and city 4 is  \(3+10+12=25\) ; 
+ \(30\) , since the distance
+between city 1 and city 5 is  \(3+10+12+5=30\) .
+</pre></details></section><section class="card"><h2>Test data</h2><p>4 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j3.1.in">j3.1.in</a> / <a href="tests/j3.1.out">output</a></li><li><a href="tests/j3.2.in">j3.2.in</a> / <a href="tests/j3.2.out">output</a></li><li><a href="tests/j3.3.in">j3.3.in</a> / <a href="tests/j3.3.out">output</a></li><li><a href="tests/j3.sample.in">j3.sample.in</a> / <a href="tests/j3.sample.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

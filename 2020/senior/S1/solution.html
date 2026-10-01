@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2020 S1 · Surmising a Sprinter’s Speed · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2020 S1 · Surmising a Sprinter’s Speed</h1></header><p class="eyebrow">2020 / senior / S1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc20s1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3
+0 100
+20 50
+10 120
+</pre></div><div><h3>样例输出</h3><pre>7.0
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S1: Surmising a Sprinter’s
+Speed
+
+
+Problem Description
+
+
+Trick E. Dingo is trying, as usual, to catch his nemesis the Street
+Sprinter. His past attempts using magnets, traps and explosives have
+failed miserably, so he’s catching his breath to gather observational
+data and learn more about how fast Street Sprinter is.
+
+
+Trick E. Dingo and Street Sprinter both inhabit a single straight
+west-east road with a particularly famous rock on it known
+affectionately as The Origin. Positions on this straight road are
+measured numerically according to the distance from The Origin, and
+using negative numbers for positions west of The Origin and positive
+numbers for positions east of The Origin.
+
+
+The observations by Trick E. Dingo each contain two numbers: a time,
+and the value of Street Sprinter’s position on the road at that time.
+Given this information, what speed must Street Sprinter must be capable
+of?
+
+
+Input Specification
+
+
+The first line contains a number  \(2\le N \le
+100\ 000\) , the number of observations that follow. The next
+ \(N\)  lines each contain an integer
+ \(0 \le T \le 1\ 000\ 000\ 000\) 
+indicating the time, in seconds, of when a measurement was made, and an
+integer  \(-1\ 000\ 000\ 000 \le X \le 1\ 000\
+000\ 000\)  indicating the position, in metres, of the Street
+Sprinter at that time. No two lines will have the same value of  \(T\) .
+
+
+For 7 of the 15 available marks,  \(N \le
+1000\) .
+
+
+Output Specification
+
+
+Output a single number  \(X\) , such that
+we can conclude that Street Sprinter’s speed was at least  \(X\)  metres/second at some point in time,
+and such that  \(X\)  is as large as
+possible. If the correct answer is  \(C\) , the grader will view  \(X\)  as correct if  \(|X-C|/C &lt; 10^{-5}\) .
+
+
+Sample Input 1
+
+
+3
+0 100
+20 50
+10 120
+
+
+Output for Sample Input 1
+
+
+7.0
+
+
+Explanation of Output for Sample Input 1
+
+
+Since the Street Sprinter ran from position 100 to position 120 between
+time 0 and time 10, we know its speed must have been at least  \(2\)  at some point in time: if it was always
+less than  \(2\) , then the distance of
+20 could not be covered in 10 seconds. Likewise, the speed must have
+been at least 7 in order to travel between position 120 and 50 in 10
+seconds.
+
+
+Sample Input 2
+
+
+5
+20 -5
+0 -17
+10 31
+5 -3
+30 11
+
+
+Output for Sample Input 2
+
+
+6.8
+</pre></details></section><section class="card"><h2>测试数据</h2><p>17 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s1.1-01.in">s1.1-01.in</a> / <a href="tests/s1.1-01.out">output</a></li><li><a href="tests/s1.1-02.in">s1.1-02.in</a> / <a href="tests/s1.1-02.out">output</a></li><li><a href="tests/s1.1-03.in">s1.1-03.in</a> / <a href="tests/s1.1-03.out">output</a></li><li><a href="tests/s1.1-04.in">s1.1-04.in</a> / <a href="tests/s1.1-04.out">output</a></li><li><a href="tests/s1.1-05.in">s1.1-05.in</a> / <a href="tests/s1.1-05.out">output</a></li><li><a href="tests/s1.1-06.in">s1.1-06.in</a> / <a href="tests/s1.1-06.out">output</a></li><li><a href="tests/s1.1-07.in">s1.1-07.in</a> / <a href="tests/s1.1-07.out">output</a></li><li><a href="tests/s1.2-08.in">s1.2-08.in</a> / <a href="tests/s1.2-08.out">output</a></li><li><a href="tests/s1.2-09.in">s1.2-09.in</a> / <a href="tests/s1.2-09.out">output</a></li><li><a href="tests/s1.2-10.in">s1.2-10.in</a> / <a href="tests/s1.2-10.out">output</a></li><li><a href="tests/s1.2-11.in">s1.2-11.in</a> / <a href="tests/s1.2-11.out">output</a></li><li><a href="tests/s1.2-12.in">s1.2-12.in</a> / <a href="tests/s1.2-12.out">output</a></li><li><a href="tests/s1.2-13.in">s1.2-13.in</a> / <a href="tests/s1.2-13.out">output</a></li><li><a href="tests/s1.2-14.in">s1.2-14.in</a> / <a href="tests/s1.2-14.out">output</a></li><li><a href="tests/s1.2-15.in">s1.2-15.in</a> / <a href="tests/s1.2-15.out">output</a></li><li><a href="tests/s1.sample1.in">s1.sample1.in</a> / <a href="tests/s1.sample1.out">output</a></li><li><a href="tests/s1.sample2.in">s1.sample2.in</a> / <a href="tests/s1.sample2.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc20s1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3
+0 100
+20 50
+10 120
+</pre></div><div><h3>Sample output</h3><pre>7.0
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S1: Surmising a Sprinter’s
+Speed
+
+
+Problem Description
+
+
+Trick E. Dingo is trying, as usual, to catch his nemesis the Street
+Sprinter. His past attempts using magnets, traps and explosives have
+failed miserably, so he’s catching his breath to gather observational
+data and learn more about how fast Street Sprinter is.
+
+
+Trick E. Dingo and Street Sprinter both inhabit a single straight
+west-east road with a particularly famous rock on it known
+affectionately as The Origin. Positions on this straight road are
+measured numerically according to the distance from The Origin, and
+using negative numbers for positions west of The Origin and positive
+numbers for positions east of The Origin.
+
+
+The observations by Trick E. Dingo each contain two numbers: a time,
+and the value of Street Sprinter’s position on the road at that time.
+Given this information, what speed must Street Sprinter must be capable
+of?
+
+
+Input Specification
+
+
+The first line contains a number  \(2\le N \le
+100\ 000\) , the number of observations that follow. The next
+ \(N\)  lines each contain an integer
+ \(0 \le T \le 1\ 000\ 000\ 000\) 
+indicating the time, in seconds, of when a measurement was made, and an
+integer  \(-1\ 000\ 000\ 000 \le X \le 1\ 000\
+000\ 000\)  indicating the position, in metres, of the Street
+Sprinter at that time. No two lines will have the same value of  \(T\) .
+
+
+For 7 of the 15 available marks,  \(N \le
+1000\) .
+
+
+Output Specification
+
+
+Output a single number  \(X\) , such that
+we can conclude that Street Sprinter’s speed was at least  \(X\)  metres/second at some point in time,
+and such that  \(X\)  is as large as
+possible. If the correct answer is  \(C\) , the grader will view  \(X\)  as correct if  \(|X-C|/C &lt; 10^{-5}\) .
+
+
+Sample Input 1
+
+
+3
+0 100
+20 50
+10 120
+
+
+Output for Sample Input 1
+
+
+7.0
+
+
+Explanation of Output for Sample Input 1
+
+
+Since the Street Sprinter ran from position 100 to position 120 between
+time 0 and time 10, we know its speed must have been at least  \(2\)  at some point in time: if it was always
+less than  \(2\) , then the distance of
+20 could not be covered in 10 seconds. Likewise, the speed must have
+been at least 7 in order to travel between position 120 and 50 in 10
+seconds.
+
+
+Sample Input 2
+
+
+5
+20 -5
+0 -17
+10 31
+5 -3
+30 11
+
+
+Output for Sample Input 2
+
+
+6.8
+</pre></details></section><section class="card"><h2>Test data</h2><p>17 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s1.1-01.in">s1.1-01.in</a> / <a href="tests/s1.1-01.out">output</a></li><li><a href="tests/s1.1-02.in">s1.1-02.in</a> / <a href="tests/s1.1-02.out">output</a></li><li><a href="tests/s1.1-03.in">s1.1-03.in</a> / <a href="tests/s1.1-03.out">output</a></li><li><a href="tests/s1.1-04.in">s1.1-04.in</a> / <a href="tests/s1.1-04.out">output</a></li><li><a href="tests/s1.1-05.in">s1.1-05.in</a> / <a href="tests/s1.1-05.out">output</a></li><li><a href="tests/s1.1-06.in">s1.1-06.in</a> / <a href="tests/s1.1-06.out">output</a></li><li><a href="tests/s1.1-07.in">s1.1-07.in</a> / <a href="tests/s1.1-07.out">output</a></li><li><a href="tests/s1.2-08.in">s1.2-08.in</a> / <a href="tests/s1.2-08.out">output</a></li><li><a href="tests/s1.2-09.in">s1.2-09.in</a> / <a href="tests/s1.2-09.out">output</a></li><li><a href="tests/s1.2-10.in">s1.2-10.in</a> / <a href="tests/s1.2-10.out">output</a></li><li><a href="tests/s1.2-11.in">s1.2-11.in</a> / <a href="tests/s1.2-11.out">output</a></li><li><a href="tests/s1.2-12.in">s1.2-12.in</a> / <a href="tests/s1.2-12.out">output</a></li><li><a href="tests/s1.2-13.in">s1.2-13.in</a> / <a href="tests/s1.2-13.out">output</a></li><li><a href="tests/s1.2-14.in">s1.2-14.in</a> / <a href="tests/s1.2-14.out">output</a></li><li><a href="tests/s1.2-15.in">s1.2-15.in</a> / <a href="tests/s1.2-15.out">output</a></li><li><a href="tests/s1.sample1.in">s1.sample1.in</a> / <a href="tests/s1.sample1.out">output</a></li><li><a href="tests/s1.sample2.in">s1.sample2.in</a> / <a href="tests/s1.sample2.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

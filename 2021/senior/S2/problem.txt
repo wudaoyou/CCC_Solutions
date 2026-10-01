@@ -1,0 +1,432 @@
+Problem J5/S2: Modern Art
+
+
+Problem Description
+
+
+A new and upcoming artist has a unique way to create checkered patterns.
+The idea is to use an  \(M\) -by- \(N\)  canvas which is initially entirely
+black. Then the artist repeatedly chooses a row or column and runs their
+magic brush along the row or column. The brush changes the colour of
+each cell in the row or column from black to gold or gold to black.
+
+
+Given the artist’s choices, your job is to determine how much gold
+appears in the pattern determined by these choices.
+
+
+Input Specification
+
+
+The first line of input will be a positive integer  \(M\) . The second line of input will be a
+positive integer  \(N\) . The third line
+of input will be a positive integer  \(K\) . The remaining input will be  \(K\)  lines giving the choices made by the
+artist. Each of these lines will either be  R 
+followed by a single space and then an integer which is a row number, or
+ C  followed by a single space and then an
+integer which is a column number. Rows are numbered top down from  \(1\)  to  \(M\) . Columns are numbered left to right
+from  \(1\)  to  \(N\) .
+
+
+The following table shows how the available 15 marks are
+distributed.
+
+
+
+ 
+ 
+ 
+ 1 mark 
+ \(M  =
+1\) 
+ \(N=1\) 
+ \(K \leq
+100\) 
+ only one cell, and
+up to 100 choices by the artist 
+ 
+ 
+ 4 marks 
+ \(M  =
+1\) 
+ \(N \leq
+100\) 
+ \(K \leq
+100\) 
+ only one row, and
+up to 100 choices by the artist 
+ 
+ 
+ 5 marks 
+ \(M \leq
+100\) 
+ \(N \leq
+100\) 
+ \(K \leq
+100\) 
+ up to 100 rows, up to 100 columns, and
+up to 100 choices by the artist 
+ 
+ 
+ 5 marks 
+ \(MN \leq 5\,000\,000\) 
+ \(K \leq
+1\,000\,000\) 
+ up to 5000000 cells, and
+up to 1000000 choices by the artist 
+ 
+ 
+ 
+
+
+
+Output Specification
+
+
+Output one non-negative integer which is equal to the number of cells
+that are gold in the pattern determined by the artist’s choices.
+
+
+Sample Input 1
+
+
+3
+3
+2
+R 1
+C 1
+
+
+Output for Sample Input 1
+
+
+4
+ 
+
+ Explanation of Output for Sample Input 1 
+ After running the brush along the first row, the canvas looks like
+this: 
+ GGG
+BBB
+BBB 
+ Then after running the brush along the first column, four cells are
+gold in the final pattern determined by the artist’s choices: 
+ BGG
+GBB
+GBB 
+ Sample Input 2 
+ 4
+5
+7
+R 3
+C 1
+C 2
+R 2
+R 2
+C 1
+R 4 
+ Output for Sample Input 2 
+ 10 
+ Explanation of Output for Sample Input 2 
+ Ten cells are gold in the final pattern determined by the artist’s choices: 
+ BGBBB
+BGBBB
+GBGGG
+GBGGG 
+ Problem S3: Lunch Concert 
+ Problem Description 
+ It’s lunchtime at your school! Your  \(N\)  friends are all standing on a long
+field, as they usually do. The field can be represented as a number
+line, with the  \(i\) th friend initially
+at position  \(P_i\)  metres along it.
+The  \(i\) th friend is able to walk in
+either direction along the field at a rate of one metre per  \(W_i\)  seconds, and their hearing is good
+enough to be able to hear music up to and including  \(D_i\)  metres away from their position.
+Multiple students may occupy the same positions on the field, both
+initially and after walking. 
+ You’re going to hold a little concert at some position  \(c\)  metres along the field (where  \(c\)  is any integer of your choice), and
+text all of your friends about it. Once you do, each of them will walk
+along the field for the minimum amount of time such that they end up
+being able to hear your concert (in other words, such that each friend
+ \(i\)  ends up within  \(D_i\)  units of  \(c\) ). 
+ You’d like to choose  \(c\)  such that
+you minimize the sum of all  \(N\)  of
+your friends’ walking times. What is this minimum sum (in seconds)?
+Please note that the result might not fit within a 32-bit integer. 
+ Input Specification 
+ The first line of input contains  \(N\) .   
+The next  \(N\)  lines contain three
+space-separated integers,  \(P_i\) ,
+ \(W_i\) , and  \(D_i\)   \((1 \le i \le N)\) . 
+ The following table shows how the available 15 marks are
+distributed. 
+ 
+ 
+ 
+ 4 marks 
+ \(1 \le N  \le
+2000\) 
+ \(0 \le P_i
+\le 2000\) 
+ \(1 \le W_i
+\le 1000\) 
+ \(0 \le D_i
+\le 2000\) 
+ 
+ 
+ 9 marks 
+ \(1 \le N \leq
+200\,000\) 
+ \(0 \le P_i
+\le 1\,000\,000\) 
+ \(1 \le W_i
+\le 1000\) 
+ \(0 \le D_i
+\le 1\,000\,000\) 
+ 
+ 
+ 2 marks 
+ \(1 \le N \leq
+200\,000\) 
+ \(0 \le P_i
+\leq 1\,000\,000\ 000\) 
+ \(1 \le W_i
+\le 1000\) 
+ \(0 \le D_i
+\le 1\,000\,000\,000\) 
+ 
+ 
+ 
+ Output Specification 
+ Output one integer which is the minimum possible sum of walking times
+(in seconds) for all  \(N\)  of your
+friends to be able to hear your concert. 
+ Sample Input 1 
+ 1
+0 1000 0 
+ Output for Sample Input 1 
+ 0 
+ Explanation of Output for Sample Input 1 
+ If you choose  \(c = 0\) , your single
+friend won’t need to walk at all to hear it. 
+ Sample Input 2 
+ 2
+10 4 3
+20 4 2 
+ Output for Sample Input 2 
+ 20 
+ Explanation of Output for Sample Input 2 
+ One possible optimal choice of  \(c\)  is
+ \(14\) , which would require your first
+friend to walk to position  \(11\) 
+(taking  \(4 \times 1 = 4\)  seconds) and
+your second friend to walk to position  \(16\)  (taking  \(4
+\times 4 = 16\)  seconds), for a total of  \(20\)  seconds. 
+ Sample Input 3 
+ 3
+6 8 3
+1 4 1
+14 5 2 
+ Output for Sample Input 3 
+ 43 
+ Problem S4: Daily Commute 
+ Problem Description 
+ Toronto has  \(N\)  subway stations,
+numbered from  \(1\)  to  \(N\) . You start at station  \(1\) , and every day, you need to reach
+station  \(N\)  to get to school. 
+ There are  \(W\)   one-way 
+walkways running amongst the stations, the  \(i\) th  of which allows you to
+walk  from  station  \(A_i\) 
+ to  a different station  \(B_i\) 
+ \((1 \le A_i, B_i \le N, A_i \not= B_i)\)  in 1 minute. There may be
+multiple walkways connecting any given pair of stations. 
+ The subway line follows a certain route through the  \(N\)  stations, starting at station  \(1\)  and visiting each station once.
+Initially, this route consists of stations  \(S_1, S_2, ..., S_N\) , in that order.  \(S_1 = 1\) , and  \(S_{2}, \ldots, S_{N}\)  is a permutation of
+the integers  \(2, \ldots, N\) . Only one
+subway train runs along this route per day, departing from station 1 at
+6am in the morning and taking 1 minute to reach each subsequent station.
+This means that,  \(m\)  minutes after
+6am, the train will be at station  \(S_{m+1}\)  (or at station  \(S_N\)  if  \(m \ge
+N-1\) ). 
+ Over a period of  \(D\)  days,
+however, the subway line’s route will keep changing. At the start of the
+ \(i\) th  day, the  \(X_i\) th  station and  \(Y_i\) th  station  \((2 \le X_i, Y_i \le N, X_i \not= Y_i)\)  in the route will be
+swapped. Note that, after each such change, the route will still begin
+at station  \(1\)  and will visit all
+ \(N\)  stations once each. Changes will
+carry over to subsequent days – the route will not automatically reset
+itself back to  \(S_1,\ldots,S_N\) . 
+ On each of these  \(D\)  days, you’d
+like to determine how quickly you can get to school so you can begin
+learning things. On the  \(i\) th  day, starting at 6am in
+the morning (after the  \(i\) th  update to the subway
+line’s route), you’ll begin your daily trip to station  \(N\) . Each minute, you may either ride the
+subway to its next stop (if you’re currently at the same station as the
+train and it hasn’t already completed its route), take a walkway from
+your current station to another one, or wait at your current station.
+Note that your trip begins at the same time as the train’s route,
+meaning that you may choose to immediately ride it if you’d like to, and
+that you may choose to leave and then get back on the train during your
+trip. 
+ Input Specification 
+ The first line contains three space-separated integers,  \(N\) ,  \(W\) , and  \(D\) . 
+ 
+The next  \(W\)  lines each contain two
+space-separated integers,  \(A_i\)  and
+ \(B_i\)   \((1 \le i \le W)\) . 
+ 
+The next line contains the  \(N\) 
+space-separated integers,  \(S_{1}, \ldots,
+S_{N}\) , which form the initial permutation of stations.   
+The next  \(D\)  lines each contain two
+space-separated integers,  \(X_i\)  and
+ \(Y_i\)   \((1 \le i \le D)\) . 
+ The following table shows how the available 15 marks are
+distributed. 
+ 
+ 
+ 
+ 2 marks 
+ \(3 \le N \le
+10\) 
+ \(0 \le W \leq
+10\) 
+ \(1 \le D \le
+10\) 
+ 
+ 
+ 2 marks 
+ \(3 \le N \leq
+200\) 
+ \(0 \le W \leq
+200\) 
+ \(1 \le D \le
+200\) 
+ 
+ 
+ 3 marks 
+ \(3 \le N \leq
+2000\) 
+ \(0 \le W \leq
+2000\) 
+ \(1 \le D \le
+2000\) 
+ 
+ 
+ 8 marks 
+ \(3 \le N \leq
+200\,000\) 
+ \(0 \le W \leq
+200\,000\) 
+ \(1 \le D \le
+200\,000\) 
+ 
+ 
+ 
+ Output Specification 
+ The output is  \(D\)  lines, with one integer per line. The  \(i\) th  line is the minimum number
+of minutes required to reach station  \(N\)  on the  \(i\) th  day ( \(1 \le i \le D\) ). 
+ Sample Input 
+ 4 3 3
+1 2
+3 4
+4 1
+1 4 3 2
+3 4
+4 2
+3 2 
+ Output for Sample Input 
+ 1
+2
+3 
+ Explanation of Output for Sample Input 
+ At the start of the first day, the subway line’s route will be updated
+to visit stations  \([1, 4, 2, 3]\) , in
+that order. On that day, you should simply take the subway to station
+ \(4\) , taking 1 minute. 
+ On the second day, the route will become  \([1, 3, 2, 4]\) , and you should take the
+subway to station  \(3\)  (taking 1
+minute) and then walk to station  \(4\) 
+(taking 1 more minute). 
+ On the third day, the route will become  \([1, 2, 3, 4]\) . One choice of optimal trip
+involves walking to station 2 (taking 1 minute), then boarding the train
+there and taking it through station 3 and finally to station 4 (taking
+another 2 minutes). 
+ Problem S5: Math Homework 
+ Problem Description 
+ Your math teacher has given you an assignment involving coming up with a
+sequence of  \(N\)  integers  \(A_1,\ldots, A_N\) , such that  \(1 \le A_i \le 1\ 000\ 000\ 000\)  for each
+ \(i\) . 
+ The sequence  \(A\)  must also satisfy
+ \(M\)  requirements, with the  \(i\) th  one stating that the GCD
+(Greatest Common Divisor) of the contiguous subsequence  \(A_{X_i}, \ldots, A_{Y_i}\)   \((1 \le X_i \le Y_i \le N)\)  must be equal to
+ \(Z_i\) . Note that the GCD of a
+sequence of integers is the largest integer  \(d\)  such that all the numbers in the
+sequence are divisible by  \(d\) . 
+ Find  any  valid sequence  \(A\)  consistent with all of these
+requirements, or determine that no such sequence exists. 
+ Input Specification 
+ The first line contains two space-separated integers,  \(N\)  and  \(M\) .   
+The next  \(M\)  lines each contain three
+space-separated integers,  \(X_i\) ,
+ \(Y_i\) , and  \(Z_i\)   \((1 \le i \le M)\) . 
+ The following table shows how the available 15 marks are
+distributed. 
+ 
+ 
+ 
+ 3 marks 
+ \(1 \leq
+N  \le 2000\) 
+ \(1 \le M \leq
+2000\) 
+ \(1 \le Z_i
+\le 2\)  for each  \(i\) 
+ 
+ 
+ 4 marks 
+ \(1 \leq
+N  \le 2000\) 
+ \(1 \le M \leq
+2000\) 
+ \(1 \le Z_i
+\le 16\)  for each  \(i\) 
+ 
+ 
+ 8 marks 
+ \(1 \le N \leq
+150\,000\) 
+ \(1 \le M \leq
+150\,000\) 
+ \(1 \le Z_i
+\le 16\)  for each  \(i\) 
+ 
+ 
+ 
+ Output Specification 
+ If no such sequence exists, output the string
+ Impossible  on one line. Otherwise, on one
+line, output  \(N\)  space-separated
+integers, forming the sequence  \(A_1,\ldots,A_N\) . If there are multiple
+possible valid sequences,  any  valid sequence will be
+accepted. 
+ Sample Input 1 
+ 2 2
+1 2 2
+2 2 6 
+ Output for Sample Input 1 
+ 4 6 
+ Explanation of Output for Sample Input 1 
+ If  \(A_1 =4\)  and  \(A_2 = 6\) , the GCD of  \([A_{1}, A_2]\)  is  \(2\)  and the GCD of  \([A_2]\)  is  \(6\) , as required.  Please note that
+other outputs would also be accepted. 
+ Sample Input 2 
+ 2 2
+1 2 2
+2 2 5 
+ Output for Sample Input 2 
+ Impossible 
+ Explanation of Output for Sample Input
+2 
+ There exists no sequence  \([A_1,A_2]\) 
+such that the GCD of  \([A_1,A_2]\)  is
+ \(2\)  and the GCD of  \([A_2]\)  is  \(5\) .

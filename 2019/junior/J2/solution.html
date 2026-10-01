@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2019 J2 · Time to Decompress · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2019 J2 · Time to Decompress</h1></header><p class="eyebrow">2019 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc19j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>4
+9 +
+3 -
+12 A
+2 X
+</pre></div><div><h3>样例输出</h3><pre>+++++++++
+---
+AAAAAAAAAAAA
+XX
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Time to Decompress
+
+
+Problem Description
+
+
+You and your friend have come up with a way to send messages back and
+forth.
+
+
+Your friend can encode a message to you by writing down a positive
+integer  \(N\)  and a symbol. You can
+decode that message by writing out that symbol  \(N\)  times in a row on one line.
+
+
+Given a message that your friend has encoded, decode it.
+
+
+Input Specification
+
+
+The first line of input contains  \(L\) ,
+the number of lines in the message.
+
+
+The next  \(L\)  lines each contain
+one positive integer less than 80, followed by one space, followed by a
+(non-space) character.
+
+
+Output Specification
+
+
+The output should be  \(L\)  lines long.
+Each line should contain the decoding of the corresponding line of the
+input. Specifically, if line  \(i+1\)  of
+the input contained  N x , then line  \(i\)  of the output should contain just the
+character  x  printed
+ N  times.
+
+
+Sample Input
+
+
+4
+9 +
+3 -
+12 A
+2 X
+
+
+Output for Sample Input
+
+
++++++++++
+---
+AAAAAAAAAAAA
+XX
+</pre></details></section><section class="card"><h2>测试数据</h2><p>5 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j2.01.in">j2.01.in</a> / <a href="tests/j2.01.out">output</a></li><li><a href="tests/j2.02.in">j2.02.in</a> / <a href="tests/j2.02.out">output</a></li><li><a href="tests/j2.03.in">j2.03.in</a> / <a href="tests/j2.03.out">output</a></li><li><a href="tests/j2.04.in">j2.04.in</a> / <a href="tests/j2.04.out">output</a></li><li><a href="tests/j2.sample.in">j2.sample.in</a> / <a href="tests/j2.sample.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc19j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>4
+9 +
+3 -
+12 A
+2 X
+</pre></div><div><h3>Sample output</h3><pre>+++++++++
+---
+AAAAAAAAAAAA
+XX
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Time to Decompress
+
+
+Problem Description
+
+
+You and your friend have come up with a way to send messages back and
+forth.
+
+
+Your friend can encode a message to you by writing down a positive
+integer  \(N\)  and a symbol. You can
+decode that message by writing out that symbol  \(N\)  times in a row on one line.
+
+
+Given a message that your friend has encoded, decode it.
+
+
+Input Specification
+
+
+The first line of input contains  \(L\) ,
+the number of lines in the message.
+
+
+The next  \(L\)  lines each contain
+one positive integer less than 80, followed by one space, followed by a
+(non-space) character.
+
+
+Output Specification
+
+
+The output should be  \(L\)  lines long.
+Each line should contain the decoding of the corresponding line of the
+input. Specifically, if line  \(i+1\)  of
+the input contained  N x , then line  \(i\)  of the output should contain just the
+character  x  printed
+ N  times.
+
+
+Sample Input
+
+
+4
+9 +
+3 -
+12 A
+2 X
+
+
+Output for Sample Input
+
+
++++++++++
+---
+AAAAAAAAAAAA
+XX
+</pre></details></section><section class="card"><h2>Test data</h2><p>5 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j2.01.in">j2.01.in</a> / <a href="tests/j2.01.out">output</a></li><li><a href="tests/j2.02.in">j2.02.in</a> / <a href="tests/j2.02.out">output</a></li><li><a href="tests/j2.03.in">j2.03.in</a> / <a href="tests/j2.03.out">output</a></li><li><a href="tests/j2.04.in">j2.04.in</a> / <a href="tests/j2.04.out">output</a></li><li><a href="tests/j2.sample.in">j2.sample.in</a> / <a href="tests/j2.sample.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

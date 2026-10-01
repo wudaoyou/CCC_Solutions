@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2011 J5 · Unfriend · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2011 J5 · Unfriend</h1></header><p class="eyebrow">2011 / junior / J5</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j5">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Unfriend
+Problem Description
+Mark invited some people to join his social network. Some of them invited new people, who
+invited new people, and so on. Now there are N people in the network, numbered from 1 to N .
+Mark has decided to remove some people and keep others. There is one restriction: when removing
+a person, he will also remove the people s/he invited, and the people they invited, and so on. Mark
+will never remove himself, and we do not allow people to be invited by more than one person.
+Mark can also decide to not remove anyone.
+How many different sets of people can be removed?
+Input Specification:
+The first line contains a single integer N (N ≤ 6), the number of people in the network. Next are
+N − 1 lines telling us who invited each person. To be precise, line i in this set (1 ≤ i ≤ N − 1)
+contains a single integer j (with j &gt; i), which indicates that person j is the person who invited
+person i. Person N is Mark.
+Output Specification:
+Output a single integer, the number of possible sets of people that can be removed.
+
+Sample Input 1
+3
+3
+3
+
+Output for Sample Input 1
+4
+
+Explanation for Sample 1
+The first number of the input indicates there are three people in the network. The next line tells
+us that Person 1 was invited by Mark, while the last line tells us that Person 2 was also invited by
+Mark. The sets of people that can be removed are {}, {1}, {2}, {1,2}.
+
+Sample Input 2
+4
+3
+4
+4
+
+Output for Sample Input 2
+6
+
+
+                                                10
+Explanation for Sample 2
+There are 4 people in the network. Here is a table of who invited who:
+
+                                    Person inviting Invited
+                                          1          none
+                                          2          none
+                                          3            1
+                                          4           2,3
+
+The possible sets are {}, {1}, {2}, {1,2}, {1,3}, and {1,2,3}. Notice that the sets {3} and {2,3}
+are not possible, since when you remove 3, you must also remove 1.
+
+
+
+
+                                               11
+</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j5">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Unfriend
+Problem Description
+Mark invited some people to join his social network. Some of them invited new people, who
+invited new people, and so on. Now there are N people in the network, numbered from 1 to N .
+Mark has decided to remove some people and keep others. There is one restriction: when removing
+a person, he will also remove the people s/he invited, and the people they invited, and so on. Mark
+will never remove himself, and we do not allow people to be invited by more than one person.
+Mark can also decide to not remove anyone.
+How many different sets of people can be removed?
+Input Specification:
+The first line contains a single integer N (N ≤ 6), the number of people in the network. Next are
+N − 1 lines telling us who invited each person. To be precise, line i in this set (1 ≤ i ≤ N − 1)
+contains a single integer j (with j &gt; i), which indicates that person j is the person who invited
+person i. Person N is Mark.
+Output Specification:
+Output a single integer, the number of possible sets of people that can be removed.
+
+Sample Input 1
+3
+3
+3
+
+Output for Sample Input 1
+4
+
+Explanation for Sample 1
+The first number of the input indicates there are three people in the network. The next line tells
+us that Person 1 was invited by Mark, while the last line tells us that Person 2 was also invited by
+Mark. The sets of people that can be removed are {}, {1}, {2}, {1,2}.
+
+Sample Input 2
+4
+3
+4
+4
+
+Output for Sample Input 2
+6
+
+
+                                                10
+Explanation for Sample 2
+There are 4 people in the network. Here is a table of who invited who:
+
+                                    Person inviting Invited
+                                          1          none
+                                          2          none
+                                          3            1
+                                          4           2,3
+
+The possible sets are {}, {1}, {2}, {1,2}, {1,3}, and {1,2,3}. Notice that the sets {3} and {2,3}
+are not possible, since when you remove 3, you must also remove 1.
+
+
+
+
+                                               11
+</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

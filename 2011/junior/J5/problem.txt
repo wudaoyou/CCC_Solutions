@@ -1,0 +1,57 @@
+Problem J5: Unfriend
+Problem Description
+Mark invited some people to join his social network. Some of them invited new people, who
+invited new people, and so on. Now there are N people in the network, numbered from 1 to N .
+Mark has decided to remove some people and keep others. There is one restriction: when removing
+a person, he will also remove the people s/he invited, and the people they invited, and so on. Mark
+will never remove himself, and we do not allow people to be invited by more than one person.
+Mark can also decide to not remove anyone.
+How many different sets of people can be removed?
+Input Specification:
+The first line contains a single integer N (N ≤ 6), the number of people in the network. Next are
+N − 1 lines telling us who invited each person. To be precise, line i in this set (1 ≤ i ≤ N − 1)
+contains a single integer j (with j > i), which indicates that person j is the person who invited
+person i. Person N is Mark.
+Output Specification:
+Output a single integer, the number of possible sets of people that can be removed.
+
+Sample Input 1
+3
+3
+3
+
+Output for Sample Input 1
+4
+
+Explanation for Sample 1
+The first number of the input indicates there are three people in the network. The next line tells
+us that Person 1 was invited by Mark, while the last line tells us that Person 2 was also invited by
+Mark. The sets of people that can be removed are {}, {1}, {2}, {1,2}.
+
+Sample Input 2
+4
+3
+4
+4
+
+Output for Sample Input 2
+6
+
+
+                                                10
+Explanation for Sample 2
+There are 4 people in the network. Here is a table of who invited who:
+
+                                    Person inviting Invited
+                                          1          none
+                                          2          none
+                                          3            1
+                                          4           2,3
+
+The possible sets are {}, {1}, {2}, {1,2}, {1,3}, and {1,2,3}. Notice that the sets {3} and {2,3}
+are not possible, since when you remove 3, you must also remove 1.
+
+
+
+
+                                               11

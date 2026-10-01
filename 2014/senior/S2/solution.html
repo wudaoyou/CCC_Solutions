@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2014 S2 · Assigning Partners · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2014 S2 · Assigning Partners</h1></header><p class="eyebrow">2014 / senior / S2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc14s2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2: Assigning Partners
+Problem Description
+The CEMC is organizing a workshop with an activity involving pairs of students. They decided
+to assign partners ahead of time. You need to determine if they did this consistently. That is,
+whenever A is a partner of B, then B is also a partner of A, and no one is a partner of themselves.
+
+Input Specification
+The input consists of three lines. The first line consists of an integer N (1 &lt; N ≤ 30), which is
+the number of students in the class. The second line contains the first names of the N students sep-
+arated by single spaces. (Names contain only uppercase or lowercase letters, and no two students
+have the same first name). The third line contains the same N names in some order, separated by
+single spaces.
+The positions of the names in the last two lines indicate the assignment of partners: the ith name
+on the second line is the assigned partner of the ith name on the third line.
+
+Output Specification
+The output will be good if the two lists of names are arranged consistently, and bad if the ar-
+rangement of partners is not consistent.
+
+Sample Input 1
+4
+Ada Alan Grace John
+John Grace Alan Ada
+
+Output for Sample Input 1
+good
+
+Explanation for Output for Sample Input 1
+Ada and John are partners, and Alan and Grace are partners. This arrangement is consistent.
+
+Sample Input 2
+7
+Rich Graeme Michelle Sandy Vlado Ron Jacob
+Ron Vlado Sandy Michelle Rich Graeme Jacob
+
+Output for Sample Input 2
+bad
+
+Explanation for Output for Sample Input 2
+Graeme is partnered with Vlado, but Vlado is partnered with Rich. This is not consistent. It is also
+inconsistent because Jacob is partnered with himself.
+
+
+
+                                                 5
+</pre></details></section><section class="card"><h2>测试数据</h2><p>20 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j5.1a.in">j5.1a.in</a> / <a href="tests/j5.1a.out">output</a></li><li><a href="tests/j5.1b.in">j5.1b.in</a> / <a href="tests/j5.1b.out">output</a></li><li><a href="tests/j5.2a.in">j5.2a.in</a> / <a href="tests/j5.2a.out">output</a></li><li><a href="tests/j5.2b.in">j5.2b.in</a> / <a href="tests/j5.2b.out">output</a></li><li><a href="tests/j5.3a.in">j5.3a.in</a> / <a href="tests/j5.3a.out">output</a></li><li><a href="tests/j5.3b.in">j5.3b.in</a> / <a href="tests/j5.3b.out">output</a></li><li><a href="tests/j5.4a.in">j5.4a.in</a> / <a href="tests/j5.4a.out">output</a></li><li><a href="tests/j5.4b.in">j5.4b.in</a> / <a href="tests/j5.4b.out">output</a></li><li><a href="tests/j5.5a.in">j5.5a.in</a> / <a href="tests/j5.5a.out">output</a></li><li><a href="tests/j5.5b.in">j5.5b.in</a> / <a href="tests/j5.5b.out">output</a></li><li><a href="tests/s2.1a.in">s2.1a.in</a> / <a href="tests/s2.1a.out">output</a></li><li><a href="tests/s2.1b.in">s2.1b.in</a> / <a href="tests/s2.1b.out">output</a></li><li><a href="tests/s2.2a.in">s2.2a.in</a> / <a href="tests/s2.2a.out">output</a></li><li><a href="tests/s2.2b.in">s2.2b.in</a> / <a href="tests/s2.2b.out">output</a></li><li><a href="tests/s2.3a.in">s2.3a.in</a> / <a href="tests/s2.3a.out">output</a></li><li><a href="tests/s2.3b.in">s2.3b.in</a> / <a href="tests/s2.3b.out">output</a></li><li><a href="tests/s2.4a.in">s2.4a.in</a> / <a href="tests/s2.4a.out">output</a></li><li><a href="tests/s2.4b.in">s2.4b.in</a> / <a href="tests/s2.4b.out">output</a></li><li><a href="tests/s2.5a.in">s2.5a.in</a> / <a href="tests/s2.5a.out">output</a></li><li><a href="tests/s2.5b.in">s2.5b.in</a> / <a href="tests/s2.5b.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc14s2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2: Assigning Partners
+Problem Description
+The CEMC is organizing a workshop with an activity involving pairs of students. They decided
+to assign partners ahead of time. You need to determine if they did this consistently. That is,
+whenever A is a partner of B, then B is also a partner of A, and no one is a partner of themselves.
+
+Input Specification
+The input consists of three lines. The first line consists of an integer N (1 &lt; N ≤ 30), which is
+the number of students in the class. The second line contains the first names of the N students sep-
+arated by single spaces. (Names contain only uppercase or lowercase letters, and no two students
+have the same first name). The third line contains the same N names in some order, separated by
+single spaces.
+The positions of the names in the last two lines indicate the assignment of partners: the ith name
+on the second line is the assigned partner of the ith name on the third line.
+
+Output Specification
+The output will be good if the two lists of names are arranged consistently, and bad if the ar-
+rangement of partners is not consistent.
+
+Sample Input 1
+4
+Ada Alan Grace John
+John Grace Alan Ada
+
+Output for Sample Input 1
+good
+
+Explanation for Output for Sample Input 1
+Ada and John are partners, and Alan and Grace are partners. This arrangement is consistent.
+
+Sample Input 2
+7
+Rich Graeme Michelle Sandy Vlado Ron Jacob
+Ron Vlado Sandy Michelle Rich Graeme Jacob
+
+Output for Sample Input 2
+bad
+
+Explanation for Output for Sample Input 2
+Graeme is partnered with Vlado, but Vlado is partnered with Rich. This is not consistent. It is also
+inconsistent because Jacob is partnered with himself.
+
+
+
+                                                 5
+</pre></details></section><section class="card"><h2>Test data</h2><p>20 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j5.1a.in">j5.1a.in</a> / <a href="tests/j5.1a.out">output</a></li><li><a href="tests/j5.1b.in">j5.1b.in</a> / <a href="tests/j5.1b.out">output</a></li><li><a href="tests/j5.2a.in">j5.2a.in</a> / <a href="tests/j5.2a.out">output</a></li><li><a href="tests/j5.2b.in">j5.2b.in</a> / <a href="tests/j5.2b.out">output</a></li><li><a href="tests/j5.3a.in">j5.3a.in</a> / <a href="tests/j5.3a.out">output</a></li><li><a href="tests/j5.3b.in">j5.3b.in</a> / <a href="tests/j5.3b.out">output</a></li><li><a href="tests/j5.4a.in">j5.4a.in</a> / <a href="tests/j5.4a.out">output</a></li><li><a href="tests/j5.4b.in">j5.4b.in</a> / <a href="tests/j5.4b.out">output</a></li><li><a href="tests/j5.5a.in">j5.5a.in</a> / <a href="tests/j5.5a.out">output</a></li><li><a href="tests/j5.5b.in">j5.5b.in</a> / <a href="tests/j5.5b.out">output</a></li><li><a href="tests/s2.1a.in">s2.1a.in</a> / <a href="tests/s2.1a.out">output</a></li><li><a href="tests/s2.1b.in">s2.1b.in</a> / <a href="tests/s2.1b.out">output</a></li><li><a href="tests/s2.2a.in">s2.2a.in</a> / <a href="tests/s2.2a.out">output</a></li><li><a href="tests/s2.2b.in">s2.2b.in</a> / <a href="tests/s2.2b.out">output</a></li><li><a href="tests/s2.3a.in">s2.3a.in</a> / <a href="tests/s2.3a.out">output</a></li><li><a href="tests/s2.3b.in">s2.3b.in</a> / <a href="tests/s2.3b.out">output</a></li><li><a href="tests/s2.4a.in">s2.4a.in</a> / <a href="tests/s2.4a.out">output</a></li><li><a href="tests/s2.4b.in">s2.4b.in</a> / <a href="tests/s2.4b.out">output</a></li><li><a href="tests/s2.5a.in">s2.5a.in</a> / <a href="tests/s2.5a.out">output</a></li><li><a href="tests/s2.5b.in">s2.5b.in</a> / <a href="tests/s2.5b.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

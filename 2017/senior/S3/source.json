@@ -1,0 +1,14 @@
+{
+  "statement_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017CCCSrProblemSet.html",
+  "pdf_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/seniorEF.pdf",
+  "pdf_sha256": "9c0b8eb58013eda4aea1005f39f61ef9c6ffec614ba447f8e88225afd094ab94",
+  "retrieved_on": "2026-10-01",
+  "original_statement": "problem.txt",
+  "figures": "../../_sources/senior.pdf",
+  "test_data": {
+    "kind": "official",
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2017CCCSeniorTestData.zip",
+    "archive_sha256": "fbfa45b973fcc421bfa6eb005c3712ba501ea5e21303b0057c11d7504ca18ca9",
+    "official_input_count": 30
+  }
+}

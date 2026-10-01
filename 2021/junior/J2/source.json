@@ -1,0 +1,14 @@
+{
+  "statement_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021CCCJrProblemSet.html",
+  "pdf_url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/juniorEF.pdf",
+  "pdf_sha256": "551a8b2abfee2886f7283e497f9be1acbc4a0603311bcd24dc43298b4eee2a7a",
+  "retrieved_on": "2026-10-01",
+  "original_statement": "problem.txt",
+  "figures": "../../_sources/junior.pdf",
+  "test_data": {
+    "kind": "official",
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021CCCJuniorTestData.zip",
+    "archive_sha256": "095737dddfefc287ffed239ffdca8376d6c3fb01e2b9526e9c80ce5b475f8602",
+    "official_input_count": 9
+  }
+}

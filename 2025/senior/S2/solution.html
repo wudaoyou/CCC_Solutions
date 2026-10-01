@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025 S2 · Cryptogram Cracking Club Problem Description Cyrene, the captain of the Cryptogram Cracking Club (CCC), came across a concerningly long cipher. Conveniently, this cipher is composed of lower-case characters ( a-z ). Comfortingly, the cipher is composed of a pattern that repeats infinitely. Cyrene wishes to locate the \(c\) -th character of the cipher. To make your job easier, the CCC members have extracted the repeated pattern and compressed it using the Run-Length Encoding (RLE) algorithm, which replaces consecutive repeated characters with a single occurrence of the character followed by a count of how many times it was repeated. For example, for the pattern aaaabccdddd , the RLE algorithm outputs a4b1c2d4 . You are given the output of the RLE algorithm for a certain pattern. Can you determine the \(c\) -th character of the long cipher that is formed by repeating this pattern infinitely? Input Specification The first line of input will consist of a string \(S\) , representing a pattern produced by the RLE algorithm. The length of \(S\) will be at least \(2\) and at most \(2\cdot 10^5\) . Additionally, all numbers appearing in \(S\) are between \(1\) and \(10^{12}\) . The next line of input contains a single integer \(c\) , representing the index of the character you wish to locate, starting from index \(0\) . The following table shows how the available \(15\) marks are distributed: Marks Bounds on \(c\) Additional Constraints \(6\) \(0\le c \le 2000\) All numbers appearing in \(S\) are between \(1\) and \(9\) (inclusive) and the length of the repeated pattern is at most \(2000\) characters. \(3\) \(0\le c \le 10^6\) The length of the repeated pattern is at most \(10^6\) characters. \(3\) \(0\le c \le 10^{12}\) The length of the repeated pattern is at most \(10^6\) characters. \(3\) \(0\le c \le 10^{12}\) No additional constraints. Output Specification Output the \(c\) -th character of the long cipher. Sample Input 1 r2d2 8 Output for Sample Input 1 r Explanation of Output for Sample Input 1 The output of the RLE algorithm r2d2 corresponds to the pattern rrdd , which creates the infinitely long cipher rrddrrddrrddrrdd... , where the \(c = 8\) th character is r . Sample Input 2 a4b1c2d10 100 Output for Sample Input 2 d Explanation of Output for Sample Input 2 The output of the RLE algorithm a4b1c2d10 corresponds to the pattern aaaabccdddddddddd . When repeated infinitely, the \(c = 100\) th character is d . · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2025 S2 · Cryptogram Cracking Club Problem Description Cyrene, the captain of the Cryptogram Cracking Club (CCC), came across a concerningly long cipher. Conveniently, this cipher is composed of lower-case characters ( a-z ). Comfortingly, the cipher is composed of a pattern that repeats infinitely. Cyrene wishes to locate the \(c\) -th character of the cipher. To make your job easier, the CCC members have extracted the repeated pattern and compressed it using the Run-Length Encoding (RLE) algorithm, which replaces consecutive repeated characters with a single occurrence of the character followed by a count of how many times it was repeated. For example, for the pattern aaaabccdddd , the RLE algorithm outputs a4b1c2d4 . You are given the output of the RLE algorithm for a certain pattern. Can you determine the \(c\) -th character of the long cipher that is formed by repeating this pattern infinitely? Input Specification The first line of input will consist of a string \(S\) , representing a pattern produced by the RLE algorithm. The length of \(S\) will be at least \(2\) and at most \(2\cdot 10^5\) . Additionally, all numbers appearing in \(S\) are between \(1\) and \(10^{12}\) . The next line of input contains a single integer \(c\) , representing the index of the character you wish to locate, starting from index \(0\) . The following table shows how the available \(15\) marks are distributed: Marks Bounds on \(c\) Additional Constraints \(6\) \(0\le c \le 2000\) All numbers appearing in \(S\) are between \(1\) and \(9\) (inclusive) and the length of the repeated pattern is at most \(2000\) characters. \(3\) \(0\le c \le 10^6\) The length of the repeated pattern is at most \(10^6\) characters. \(3\) \(0\le c \le 10^{12}\) The length of the repeated pattern is at most \(10^6\) characters. \(3\) \(0\le c \le 10^{12}\) No additional constraints. Output Specification Output the \(c\) -th character of the long cipher. Sample Input 1 r2d2 8 Output for Sample Input 1 r Explanation of Output for Sample Input 1 The output of the RLE algorithm r2d2 corresponds to the pattern rrdd , which creates the infinitely long cipher rrddrrddrrddrrdd... , where the \(c = 8\) th character is r . Sample Input 2 a4b1c2d10 100 Output for Sample Input 2 d Explanation of Output for Sample Input 2 The output of the RLE algorithm a4b1c2d10 corresponds to the pattern aaaabccdddddddddd . When repeated infinitely, the \(c = 100\) th character is d .</h1></header><p class="eyebrow">2025 / senior / S2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc25s2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>r2d2
+8
+</pre></div><div><h3>样例输出</h3><pre>r
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2: Cryptogram Cracking Club
+
+
+Problem
+Description
+
+
+Cyrene, the captain of the Cryptogram Cracking Club (CCC), came
+across a concerningly long cipher. Conveniently, this cipher is composed
+of lower-case characters ( a-z ). Comfortingly, the cipher is
+composed of a pattern that repeats infinitely.
+
+
+Cyrene wishes to locate the  \(c\) -th
+character of the cipher. To make your job easier, the CCC members have
+extracted the repeated pattern and compressed it using the Run-Length
+Encoding (RLE) algorithm, which replaces consecutive repeated characters
+with a single occurrence of the character followed by a count of how
+many times it was repeated. For example, for the pattern
+ aaaabccdddd , the RLE algorithm outputs
+ a4b1c2d4 .
+
+
+You are given the output of the RLE algorithm for a certain pattern.
+Can you determine the  \(c\) -th
+character of the long cipher that is formed by repeating this pattern
+infinitely?
+
+
+Input
+Specification
+
+
+The first line of input will consist of a string  \(S\) , representing a pattern produced by the
+RLE algorithm. The length of  \(S\)  will
+be at least  \(2\)  and at most  \(2\cdot 10^5\) . Additionally, all numbers
+appearing in  \(S\)  are between  \(1\)  and  \(10^{12}\) .
+
+
+The next line of input contains a single integer  \(c\) , representing the index of the
+character you wish to locate, starting from index  \(0\) .
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Bounds on  \(c\) 
+ Additional Constraints 
+ 
+ 
+ 
+ 
+ \(6\) 
+ \(0\le c \le
+2000\) 
+ All numbers appearing in  \(S\)  are between  \(1\)  and  \(9\)  (inclusive) and the length of the
+repeated pattern is at most  \(2000\) 
+characters. 
+ 
+ 
+ \(3\) 
+ \(0\le c \le
+10^6\) 
+ The length of the repeated pattern is at
+most  \(10^6\)  characters. 
+ 
+ 
+ \(3\) 
+ \(0\le c \le
+10^{12}\) 
+ The length of the repeated pattern is at
+most  \(10^6\)  characters. 
+ 
+ 
+ \(3\) 
+ \(0\le c \le
+10^{12}\) 
+ No additional constraints. 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output the  \(c\) -th character of the
+long cipher.
+
+
+Sample Input 1
+
+
+r2d2
+8
+
+
+Output for Sample Input 1
+
+
+r
+
+
+Explanation of
+Output for Sample Input 1
+
+
+The output of the RLE algorithm  r2d2  corresponds to the
+pattern  rrdd , which creates the infinitely long cipher
+ rrddrrddrrddrrdd... , where the  \(c = 8\) th character is  r .
+
+
+Sample Input 2
+
+
+a4b1c2d10
+100
+
+
+Output for Sample Input 2
+
+
+d
+
+
+Explanation of
+Output for Sample Input 2
+
+
+The output of the RLE algorithm  a4b1c2d10  corresponds to
+the pattern  aaaabccdddddddddd . When repeated infinitely,
+the  \(c = 100\) th character is
+ d .
+</pre></details></section><section class="card"><h2>测试数据</h2><p>2 bundled cases · 141 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://s3.amazonaws.com/cemc.drupal/documents/bigfiles/prod/2025CCCSeniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s2.sample-01.in">s2.sample-01.in</a> / <a href="tests/s2.sample-01.out">output</a></li><li><a href="tests/s2.sample-02.in">s2.sample-02.in</a> / <a href="tests/s2.sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc25s2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>r2d2
+8
+</pre></div><div><h3>Sample output</h3><pre>r
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2: Cryptogram Cracking Club
+
+
+Problem
+Description
+
+
+Cyrene, the captain of the Cryptogram Cracking Club (CCC), came
+across a concerningly long cipher. Conveniently, this cipher is composed
+of lower-case characters ( a-z ). Comfortingly, the cipher is
+composed of a pattern that repeats infinitely.
+
+
+Cyrene wishes to locate the  \(c\) -th
+character of the cipher. To make your job easier, the CCC members have
+extracted the repeated pattern and compressed it using the Run-Length
+Encoding (RLE) algorithm, which replaces consecutive repeated characters
+with a single occurrence of the character followed by a count of how
+many times it was repeated. For example, for the pattern
+ aaaabccdddd , the RLE algorithm outputs
+ a4b1c2d4 .
+
+
+You are given the output of the RLE algorithm for a certain pattern.
+Can you determine the  \(c\) -th
+character of the long cipher that is formed by repeating this pattern
+infinitely?
+
+
+Input
+Specification
+
+
+The first line of input will consist of a string  \(S\) , representing a pattern produced by the
+RLE algorithm. The length of  \(S\)  will
+be at least  \(2\)  and at most  \(2\cdot 10^5\) . Additionally, all numbers
+appearing in  \(S\)  are between  \(1\)  and  \(10^{12}\) .
+
+
+The next line of input contains a single integer  \(c\) , representing the index of the
+character you wish to locate, starting from index  \(0\) .
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Bounds on  \(c\) 
+ Additional Constraints 
+ 
+ 
+ 
+ 
+ \(6\) 
+ \(0\le c \le
+2000\) 
+ All numbers appearing in  \(S\)  are between  \(1\)  and  \(9\)  (inclusive) and the length of the
+repeated pattern is at most  \(2000\) 
+characters. 
+ 
+ 
+ \(3\) 
+ \(0\le c \le
+10^6\) 
+ The length of the repeated pattern is at
+most  \(10^6\)  characters. 
+ 
+ 
+ \(3\) 
+ \(0\le c \le
+10^{12}\) 
+ The length of the repeated pattern is at
+most  \(10^6\)  characters. 
+ 
+ 
+ \(3\) 
+ \(0\le c \le
+10^{12}\) 
+ No additional constraints. 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output the  \(c\) -th character of the
+long cipher.
+
+
+Sample Input 1
+
+
+r2d2
+8
+
+
+Output for Sample Input 1
+
+
+r
+
+
+Explanation of
+Output for Sample Input 1
+
+
+The output of the RLE algorithm  r2d2  corresponds to the
+pattern  rrdd , which creates the infinitely long cipher
+ rrddrrddrrddrrdd... , where the  \(c = 8\) th character is  r .
+
+
+Sample Input 2
+
+
+a4b1c2d10
+100
+
+
+Output for Sample Input 2
+
+
+d
+
+
+Explanation of
+Output for Sample Input 2
+
+
+The output of the RLE algorithm  a4b1c2d10  corresponds to
+the pattern  aaaabccdddddddddd . When repeated infinitely,
+the  \(c = 100\) th character is
+ d .
+</pre></details></section><section class="card"><h2>Test data</h2><p>2 bundled cases · 141 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://s3.amazonaws.com/cemc.drupal/documents/bigfiles/prod/2025CCCSeniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s2.sample-01.in">s2.sample-01.in</a> / <a href="tests/s2.sample-01.out">output</a></li><li><a href="tests/s2.sample-02.in">s2.sample-02.in</a> / <a href="tests/s2.sample-02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

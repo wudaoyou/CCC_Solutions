@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2015 J3 · Rövarspråket · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2015 J3 · Rövarspråket</h1></header><p class="eyebrow">2015 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc15j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Rövarspråket
+Problem Description
+In Sweden, there is a simple child’s game similar to Pig Latin called Rövarspråket (Robbers Lan-
+guage).
+In the CCC version of Rövarspråket, every consonant is replaced by three letters, in the following
+order:
+
+   • the consonant itself;
+
+   • the vowel closest to the consonant in the alphabet (e.g., if the consonant is d, then the closest
+     vowel is e), with the rule that if the consonant falls exactly between two vowels, then the
+     vowel closer to the start of the alphabet will be chosen (e.g., if the consonant is c, then the
+     closest vowel is a);
+
+   • the next consonant in the alphabet following the original consonant (e.g., if the consonant is
+     d, then the next consonant is f) except if the original consonant is z, in which case the next
+     consonant is z as well.
+
+Vowels in the word remain the same. (Vowels are a, e, i, o, u and all other letters are consonants.)
+Write a program that translates a word from English into Rövarspråket.
+
+Input Specification
+The input consists of one word entirely composed of lower-case letters. There will be at least one
+letter and no more than 30 letters in this word.
+
+Output Specification
+Output the word as it would be translated into Rövarspråket on one line.
+
+Sample Input 1
+joy
+
+Output for Sample Input 1
+jikoyuz
+
+Sample Input 2
+ham
+
+Output for Sample Input 2
+hijamon
+
+
+
+                                                 5
+</pre></details></section><section class="card"><h2>测试数据</h2><p>5 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j3.1.in">j3.1.in</a> / <a href="tests/j3.1.out">output</a></li><li><a href="tests/j3.2.in">j3.2.in</a> / <a href="tests/j3.2.out">output</a></li><li><a href="tests/j3.3.in">j3.3.in</a> / <a href="tests/j3.3.out">output</a></li><li><a href="tests/j3.4.in">j3.4.in</a> / <a href="tests/j3.4.out">output</a></li><li><a href="tests/j3.5.in">j3.5.in</a> / <a href="tests/j3.5.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc15j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Rövarspråket
+Problem Description
+In Sweden, there is a simple child’s game similar to Pig Latin called Rövarspråket (Robbers Lan-
+guage).
+In the CCC version of Rövarspråket, every consonant is replaced by three letters, in the following
+order:
+
+   • the consonant itself;
+
+   • the vowel closest to the consonant in the alphabet (e.g., if the consonant is d, then the closest
+     vowel is e), with the rule that if the consonant falls exactly between two vowels, then the
+     vowel closer to the start of the alphabet will be chosen (e.g., if the consonant is c, then the
+     closest vowel is a);
+
+   • the next consonant in the alphabet following the original consonant (e.g., if the consonant is
+     d, then the next consonant is f) except if the original consonant is z, in which case the next
+     consonant is z as well.
+
+Vowels in the word remain the same. (Vowels are a, e, i, o, u and all other letters are consonants.)
+Write a program that translates a word from English into Rövarspråket.
+
+Input Specification
+The input consists of one word entirely composed of lower-case letters. There will be at least one
+letter and no more than 30 letters in this word.
+
+Output Specification
+Output the word as it would be translated into Rövarspråket on one line.
+
+Sample Input 1
+joy
+
+Output for Sample Input 1
+jikoyuz
+
+Sample Input 2
+ham
+
+Output for Sample Input 2
+hijamon
+
+
+
+                                                 5
+</pre></details></section><section class="card"><h2>Test data</h2><p>5 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j3.1.in">j3.1.in</a> / <a href="tests/j3.1.out">output</a></li><li><a href="tests/j3.2.in">j3.2.in</a> / <a href="tests/j3.2.out">output</a></li><li><a href="tests/j3.3.in">j3.3.in</a> / <a href="tests/j3.3.out">output</a></li><li><a href="tests/j3.4.in">j3.4.in</a> / <a href="tests/j3.4.out">output</a></li><li><a href="tests/j3.5.in">j3.5.in</a> / <a href="tests/j3.5.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

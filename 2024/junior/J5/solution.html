@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2024 J5 · Harvest Waterloo Problem Description There is a wildly popular new harvest simulation game called Harvest Waterloo . The game is played on a rectangular pumpkin patch which contains bales of hay and pumpkins of different sizes. To begin the game, a farmer is placed at the location of a pumpkin. The farmer harvests all pumpkins they can reach by moving left, right, up, and down throughout the patch. The farmer cannot move diagonally. The farmer can also not move through a bale of hay nor move outside of the patch. Your job is to determine the total value of all the pumpkins harvested by the farmer. A small pumpkin is worth \(\$1\) , a medium pumpkin is worth \(\$5\) , and a large pumpkin is worth \(\$10\) dollars. Input Specification The first line of input is an integer \(R &gt; 0\) which is the number of rows within the patch. The second line of input is an integer \(C &gt; 0\) which is the number of columns within the patch. The next \(R\) lines describe the patch. Each line will contain \(C\) characters and each character will either represent a pumpkin size or a bale of hay: S for a small pumpkin, M for a medium pumpkin, L for a large pumpkin, or * for a bale of hay. The next line of input is an integer \(A\) where \(0 \leq A &lt; R\) , and the last line of input is an integer \(B\) where \(0 \leq B &lt; C\) . Row \(A\) and column \(B\) is the starting location of the farmer and the top-left corner of the patch is row \(0\) and column \(0\) . The following table shows how the available \(15\) marks are distributed: Marks Description Bound \(1\) The patch is small and there are no bales of hay. \(R \times C \leq 100\) \(4\) The patch is small and the bales of hay divide the entire patch into rectangular areas. \(R \times C \leq 100\) \(5\) The patch is small and the bales of hay can be anywhere. \(R \times C \leq 100\) \(5\) The patch is large and the bales of hay can be anywhere. \(R \times C \leq 100\,000\) Output Specification Output the integer, \(V\) , which is the total value in dollars of all the pumpkins harvested by the farmer. Sample Input 1 6 6 **LMLS S*LMMS S*SMSM ****** LLM*MS SSL*SS 5 1 Output for Sample Input 1 37 Explanation of Output for Sample Input 1 Starting at row 5 and column 1, the farmer can reach the 6 pumpkins in the highlighted area. They harvest 2 small pumpkins, 1 medium pumpkin, and 3 large pumpkins. The total value in dollars of this harvest is \(2 \times 1 + 1 \times 5 + 3 \times 10 = 37\) . Sample Input 2 6 6 **LMLS S*LMMS S*SMSM ***SLL LLM*MS SSL*SS 2 4 Output for Sample Input 2 88 Explanation of Output for Sample Input 2 Starting at row \(2\) and column \(4\) , the farmer can reach the \(19\) pumpkins in the highlighted area. They harvest \(8\) small pumpkins, \(6\) medium pumpkin, and \(5\) large pumpkins. The total value in dollars of this harvest is \(8 \times 1 + 6 \times 5 + 5 \times 10 = 88\) . · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2024 J5 · Harvest Waterloo Problem Description There is a wildly popular new harvest simulation game called Harvest Waterloo . The game is played on a rectangular pumpkin patch which contains bales of hay and pumpkins of different sizes. To begin the game, a farmer is placed at the location of a pumpkin. The farmer harvests all pumpkins they can reach by moving left, right, up, and down throughout the patch. The farmer cannot move diagonally. The farmer can also not move through a bale of hay nor move outside of the patch. Your job is to determine the total value of all the pumpkins harvested by the farmer. A small pumpkin is worth \(\$1\) , a medium pumpkin is worth \(\$5\) , and a large pumpkin is worth \(\$10\) dollars. Input Specification The first line of input is an integer \(R &gt; 0\) which is the number of rows within the patch. The second line of input is an integer \(C &gt; 0\) which is the number of columns within the patch. The next \(R\) lines describe the patch. Each line will contain \(C\) characters and each character will either represent a pumpkin size or a bale of hay: S for a small pumpkin, M for a medium pumpkin, L for a large pumpkin, or * for a bale of hay. The next line of input is an integer \(A\) where \(0 \leq A &lt; R\) , and the last line of input is an integer \(B\) where \(0 \leq B &lt; C\) . Row \(A\) and column \(B\) is the starting location of the farmer and the top-left corner of the patch is row \(0\) and column \(0\) . The following table shows how the available \(15\) marks are distributed: Marks Description Bound \(1\) The patch is small and there are no bales of hay. \(R \times C \leq 100\) \(4\) The patch is small and the bales of hay divide the entire patch into rectangular areas. \(R \times C \leq 100\) \(5\) The patch is small and the bales of hay can be anywhere. \(R \times C \leq 100\) \(5\) The patch is large and the bales of hay can be anywhere. \(R \times C \leq 100\,000\) Output Specification Output the integer, \(V\) , which is the total value in dollars of all the pumpkins harvested by the farmer. Sample Input 1 6 6 **LMLS S*LMMS S*SMSM ****** LLM*MS SSL*SS 5 1 Output for Sample Input 1 37 Explanation of Output for Sample Input 1 Starting at row 5 and column 1, the farmer can reach the 6 pumpkins in the highlighted area. They harvest 2 small pumpkins, 1 medium pumpkin, and 3 large pumpkins. The total value in dollars of this harvest is \(2 \times 1 + 1 \times 5 + 3 \times 10 = 37\) . Sample Input 2 6 6 **LMLS S*LMMS S*SMSM ***SLL LLM*MS SSL*SS 2 4 Output for Sample Input 2 88 Explanation of Output for Sample Input 2 Starting at row \(2\) and column \(4\) , the farmer can reach the \(19\) pumpkins in the highlighted area. They harvest \(8\) small pumpkins, \(6\) medium pumpkin, and \(5\) large pumpkins. The total value in dollars of this harvest is \(8 \times 1 + 6 \times 5 + 5 \times 10 = 88\) .</h1></header><p class="eyebrow">2024 / junior / J5</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc24j5">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>6
+6
+**LMLS
+S*LMMS
+S*SMSM
+******
+LLM*MS
+SSL*SS
+5
+1
+</pre></div><div><h3>样例输出</h3><pre>37
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Harvest Waterloo
+
+
+Problem
+Description
+
+
+There is a wildly popular new harvest simulation game called
+ Harvest Waterloo . The game is played on a rectangular pumpkin
+patch which contains bales of hay and pumpkins of different sizes. To
+begin the game, a farmer is placed at the location of a pumpkin.
+
+
+The farmer harvests all pumpkins they can reach by moving left,
+right, up, and down throughout the patch. The farmer cannot move
+diagonally. The farmer can also not move through a bale of hay nor move
+outside of the patch.
+
+
+Your job is to determine the total value of all the pumpkins
+harvested by the farmer. A small pumpkin is worth  \(\$1\) , a medium pumpkin is worth  \(\$5\) , and a large pumpkin is worth  \(\$10\)  dollars.
+
+
+Input
+Specification
+
+
+The first line of input is an integer  \(R
+&gt; 0\)  which is the number of rows within the patch.
+
+
+The second line of input is an integer  \(C
+&gt; 0\)  which is the number of columns within the patch.
+
+
+The next  \(R\)  lines describe the
+patch. Each line will contain  \(C\) 
+characters and each character will either represent a pumpkin size or a
+bale of hay:  S  for a small pumpkin,  M  for a
+medium pumpkin,  L  for a large pumpkin, or  * 
+for a bale of hay.
+
+
+The next line of input is an integer  \(A\)  where  \(0
+\leq A &lt; R\) , and the last line of input is an integer  \(B\)  where  \(0
+\leq B &lt; C\) . Row  \(A\)  and
+column  \(B\)  is the starting location
+of the farmer and the top-left corner of the patch is row  \(0\)  and column  \(0\) .
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bound 
+ 
+ 
+ 
+ 
+ \(1\) 
+ The patch is small and there are no bales
+of hay. 
+ \(R \times C
+\leq 100\) 
+ 
+ 
+ \(4\) 
+ The patch is small and the bales of hay
+divide the entire patch into rectangular areas. 
+ \(R \times C
+\leq 100\) 
+ 
+ 
+ \(5\) 
+ The patch is small and the bales of hay
+can be anywhere. 
+ \(R \times C
+\leq 100\) 
+ 
+ 
+ \(5\) 
+ The patch is large and the bales of hay
+can be anywhere. 
+ \(R \times C
+\leq 100\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output the integer,  \(V\) , which is
+the total value in dollars of all the pumpkins harvested by the
+farmer.
+
+
+Sample Input 1
+
+
+6 
+6
+**LMLS
+S*LMMS
+S*SMSM
+******
+LLM*MS
+SSL*SS
+5
+1
+
+
+Output for Sample Input 1
+
+
+37
+
+
+
+ 
+
+
+
+Explanation of Output
+for Sample Input 1
+
+
+Starting at row 5 and column 1, the farmer can reach the 6 pumpkins
+in the highlighted area. They harvest 2 small pumpkins, 1 medium
+pumpkin, and 3 large pumpkins. The total value in dollars of this
+harvest is  \(2 \times 1 + 1 \times 5 + 3
+\times 10 = 37\) .
+
+
+Sample Input 2
+
+
+6
+6
+**LMLS
+S*LMMS
+S*SMSM
+***SLL
+LLM*MS
+SSL*SS
+2
+4
+
+
+Output for
+Sample Input 2
+
+
+88
+
+
+
+ 
+
+
+
+Explanation of Output
+for Sample Input 2
+
+
+Starting at row  \(2\)  and column
+ \(4\) , the farmer can reach the  \(19\)  pumpkins in the highlighted area. They
+harvest  \(8\)  small pumpkins,  \(6\)  medium pumpkin, and  \(5\)  large pumpkins. The total value in
+dollars of this harvest is  \(8 \times 1 + 6
+\times 5 + 5 \times 10 = 88\) .
+</pre></details></section><section class="card"><h2>测试数据</h2><p>2 bundled cases · 35 个官方用例；页面列出随仓库附带的少量用例，完整包按需下载</p><p><a href="https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024CCCJuniorTestData.zip">下载完整官方数据</a></p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j5.sample.01.in">j5.sample.01.in</a> / <a href="tests/j5.sample.01.out">output</a></li><li><a href="tests/j5.sample.02.in">j5.sample.02.in</a> / <a href="tests/j5.sample.02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc24j5">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>6
+6
+**LMLS
+S*LMMS
+S*SMSM
+******
+LLM*MS
+SSL*SS
+5
+1
+</pre></div><div><h3>Sample output</h3><pre>37
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Harvest Waterloo
+
+
+Problem
+Description
+
+
+There is a wildly popular new harvest simulation game called
+ Harvest Waterloo . The game is played on a rectangular pumpkin
+patch which contains bales of hay and pumpkins of different sizes. To
+begin the game, a farmer is placed at the location of a pumpkin.
+
+
+The farmer harvests all pumpkins they can reach by moving left,
+right, up, and down throughout the patch. The farmer cannot move
+diagonally. The farmer can also not move through a bale of hay nor move
+outside of the patch.
+
+
+Your job is to determine the total value of all the pumpkins
+harvested by the farmer. A small pumpkin is worth  \(\$1\) , a medium pumpkin is worth  \(\$5\) , and a large pumpkin is worth  \(\$10\)  dollars.
+
+
+Input
+Specification
+
+
+The first line of input is an integer  \(R
+&gt; 0\)  which is the number of rows within the patch.
+
+
+The second line of input is an integer  \(C
+&gt; 0\)  which is the number of columns within the patch.
+
+
+The next  \(R\)  lines describe the
+patch. Each line will contain  \(C\) 
+characters and each character will either represent a pumpkin size or a
+bale of hay:  S  for a small pumpkin,  M  for a
+medium pumpkin,  L  for a large pumpkin, or  * 
+for a bale of hay.
+
+
+The next line of input is an integer  \(A\)  where  \(0
+\leq A &lt; R\) , and the last line of input is an integer  \(B\)  where  \(0
+\leq B &lt; C\) . Row  \(A\)  and
+column  \(B\)  is the starting location
+of the farmer and the top-left corner of the patch is row  \(0\)  and column  \(0\) .
+
+
+The following table shows how the available  \(15\)  marks are distributed:
+
+
+
+ 
+ 
+ 
+ Marks 
+ Description 
+ Bound 
+ 
+ 
+ 
+ 
+ \(1\) 
+ The patch is small and there are no bales
+of hay. 
+ \(R \times C
+\leq 100\) 
+ 
+ 
+ \(4\) 
+ The patch is small and the bales of hay
+divide the entire patch into rectangular areas. 
+ \(R \times C
+\leq 100\) 
+ 
+ 
+ \(5\) 
+ The patch is small and the bales of hay
+can be anywhere. 
+ \(R \times C
+\leq 100\) 
+ 
+ 
+ \(5\) 
+ The patch is large and the bales of hay
+can be anywhere. 
+ \(R \times C
+\leq 100\,000\) 
+ 
+ 
+ 
+
+
+
+Output
+Specification
+
+
+Output the integer,  \(V\) , which is
+the total value in dollars of all the pumpkins harvested by the
+farmer.
+
+
+Sample Input 1
+
+
+6 
+6
+**LMLS
+S*LMMS
+S*SMSM
+******
+LLM*MS
+SSL*SS
+5
+1
+
+
+Output for Sample Input 1
+
+
+37
+
+
+
+ 
+
+
+
+Explanation of Output
+for Sample Input 1
+
+
+Starting at row 5 and column 1, the farmer can reach the 6 pumpkins
+in the highlighted area. They harvest 2 small pumpkins, 1 medium
+pumpkin, and 3 large pumpkins. The total value in dollars of this
+harvest is  \(2 \times 1 + 1 \times 5 + 3
+\times 10 = 37\) .
+
+
+Sample Input 2
+
+
+6
+6
+**LMLS
+S*LMMS
+S*SMSM
+***SLL
+LLM*MS
+SSL*SS
+2
+4
+
+
+Output for
+Sample Input 2
+
+
+88
+
+
+
+ 
+
+
+
+Explanation of Output
+for Sample Input 2
+
+
+Starting at row  \(2\)  and column
+ \(4\) , the farmer can reach the  \(19\)  pumpkins in the highlighted area. They
+harvest  \(8\)  small pumpkins,  \(6\)  medium pumpkin, and  \(5\)  large pumpkins. The total value in
+dollars of this harvest is  \(8 \times 1 + 6
+\times 5 + 5 \times 10 = 88\) .
+</pre></details></section><section class="card"><h2>Test data</h2><p>2 bundled cases · 35 official cases; a small subset is bundled, download the full package for grading</p><p><a href="https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024CCCJuniorTestData.zip">Download full official data</a></p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j5.sample.01.in">j5.sample.01.in</a> / <a href="tests/j5.sample.01.out">output</a></li><li><a href="tests/j5.sample.02.in">j5.sample.02.in</a> / <a href="tests/j5.sample.02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

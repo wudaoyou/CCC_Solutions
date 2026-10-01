@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2017 S3 · Nailed It! Time limit: 2 seconds Problem Description Tudor is a contestant in the Canadian Carpentry Challenge (CCC). To win the CCC, Tudor must demonstrate his skill at nailing wood together to make the longest fence possible using boards. To accomplish this goal, he has \(N\) pieces of wood. The \(i^{th}\) piece of wood has integer length \(L_i\) . A board is made up of exactly two pieces of wood. The length of a board made of wood with lengths \(L_i\) and \(L_j\) is \(L_i + L_j\) . A fence consists of boards that are the same length. The length of the fence is the number of boards used to make it, and the height of the fence is the length of each board in the fence. In the example fence below, the length of the fence is 4; the height of the fence is 50; and, the length of each piece of wood is shown: Tudor would like to make the longest fence possible. Please help him determine the maximum length of any fence he could make, and the number of different heights a fence of that maximum length could have. Input Specification The first line will contain the integer \(N\) \((2 \le N \le 1\ 000\ 000)\) . The second line will contain \(N\) space-separated integers \(L_1, L_2, \ldots, L_N\) \((1 \le L_i \le 2\,000)\) . For 5 of the 15 available marks, \(N \le 100\) . For an additional 4 of the 15 available marks, \(N \le 1000\) . For an additional 3 of the 15 available marks, \(N \le 100\ 000\) . Output Specification Output two integers on a single line separated by a single space: the length of the longest fence and the number of different heights a longest fence could have. Sample Input 1 4 1 2 3 4 Output for Sample Input 1 2 1 Explanation for Output for Sample Input 1 Tudor first combines the pieces of wood with lengths \(1\) and \(4\) to form a board of length \(5\) . Then he combines the pieces of wood with lengths \(2\) and \(3\) to form another board of length \(5\) . Finally, he combines the boards to make a fence with length \(2\) and height \(5\) . Sample Input 2 5 1 10 100 1000 2000 Output for Sample Input 2 1 10 Explanation for Output for Sample Input 2 Tudor can’t make a fence longer than length \(1\) , and there are \(10\) ways to make a fence with length \(1\) by choosing any two pieces of wood to nail together. Specifically, he may have a fence of height 11, 101, 1001, 2001, 110, 1010, 2010, 1100, 2100 and 3000. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2017 S3 · Nailed It! Time limit: 2 seconds Problem Description Tudor is a contestant in the Canadian Carpentry Challenge (CCC). To win the CCC, Tudor must demonstrate his skill at nailing wood together to make the longest fence possible using boards. To accomplish this goal, he has \(N\) pieces of wood. The \(i^{th}\) piece of wood has integer length \(L_i\) . A board is made up of exactly two pieces of wood. The length of a board made of wood with lengths \(L_i\) and \(L_j\) is \(L_i + L_j\) . A fence consists of boards that are the same length. The length of the fence is the number of boards used to make it, and the height of the fence is the length of each board in the fence. In the example fence below, the length of the fence is 4; the height of the fence is 50; and, the length of each piece of wood is shown: Tudor would like to make the longest fence possible. Please help him determine the maximum length of any fence he could make, and the number of different heights a fence of that maximum length could have. Input Specification The first line will contain the integer \(N\) \((2 \le N \le 1\ 000\ 000)\) . The second line will contain \(N\) space-separated integers \(L_1, L_2, \ldots, L_N\) \((1 \le L_i \le 2\,000)\) . For 5 of the 15 available marks, \(N \le 100\) . For an additional 4 of the 15 available marks, \(N \le 1000\) . For an additional 3 of the 15 available marks, \(N \le 100\ 000\) . Output Specification Output two integers on a single line separated by a single space: the length of the longest fence and the number of different heights a longest fence could have. Sample Input 1 4 1 2 3 4 Output for Sample Input 1 2 1 Explanation for Output for Sample Input 1 Tudor first combines the pieces of wood with lengths \(1\) and \(4\) to form a board of length \(5\) . Then he combines the pieces of wood with lengths \(2\) and \(3\) to form another board of length \(5\) . Finally, he combines the boards to make a fence with length \(2\) and height \(5\) . Sample Input 2 5 1 10 100 1000 2000 Output for Sample Input 2 1 10 Explanation for Output for Sample Input 2 Tudor can’t make a fence longer than length \(1\) , and there are \(10\) ways to make a fence with length \(1\) by choosing any two pieces of wood to nail together. Specifically, he may have a fence of height 11, 101, 1001, 2001, 110, 1010, 2010, 1100, 2100 and 3000.</h1></header><p class="eyebrow">2017 / senior / S3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc17s3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>4
+1 2 3 4
+</pre></div><div><h3>样例输出</h3><pre>2 1
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S3: Nailed
+It!
+
+
+Time limit: 2 seconds
+
+
+ Problem
+Description
+
+
+Tudor is a contestant in the Canadian Carpentry Challenge (CCC). To
+win the CCC, Tudor must demonstrate his skill at nailing wood together
+to make the longest fence possible using boards. To accomplish this
+goal, he has  \(N\)  pieces of wood. The
+ \(i^{th}\)  piece of wood has integer
+length  \(L_i\) .
+
+
+A  board  is made up of  exactly
+two  pieces of wood. The length of a board made of wood with
+lengths  \(L_i\)  and  \(L_j\)  is  \(L_i +
+L_j\) . A  fence  consists of boards that are
+the same length. The  length of the fence  is the
+number of boards used to make it, and the  height of the
+fence  is the length of each board in the fence. In the
+example fence below, the length of the fence is 4; the height of the
+fence is 50; and, the length of each piece of wood is shown: 
+ 
+ 
+ 
+Tudor would
+like to make the longest fence possible. Please help him determine the
+maximum length of any fence he could make, and the number of different
+heights a fence of that maximum length could have.
+
+
+ Input
+Specification
+
+
+The first line will contain the integer  \(N\)   \((2 \le N
+\le 1\ 000\ 000)\) . 
+The second line will contain  \(N\) 
+space-separated integers  \(L_1, L_2, \ldots,
+L_N\)   \((1 \le L_i \le
+2\,000)\) .
+
+
+For 5 of the 15 available marks,  \(N \le
+100\) . 
+For an additional 4 of the 15 available marks,  \(N \le 1000\) . 
+For an additional 3 of the 15 available marks,  \(N \le 100\ 000\) .
+
+
+ Output
+Specification
+
+
+Output two integers on a single line separated by a single space: the
+length of the longest fence and the number of different heights a
+longest fence could have.
+
+
+ Sample Input 1
+
+
+4
+1 2 3 4
+
+
+ Output for
+Sample Input 1
+
+
+2 1
+
+
+
+Explanation for Output for Sample Input 1
+
+
+Tudor first combines the pieces of wood with lengths  \(1\)  and  \(4\)  to form a board of length  \(5\) . Then he combines the pieces of wood
+with lengths  \(2\)  and  \(3\)  to form another board of length  \(5\) . Finally, he combines the boards to
+make a fence with length  \(2\)  and
+height  \(5\) .
+
+
+Sample Input 2
+
+
+5
+1 10 100 1000 2000
+
+
+ Output for
+Sample Input 2
+
+
+1 10
+
+
+
+Explanation for Output for Sample Input 2
+
+
+Tudor can’t make a fence longer than length  \(1\) , and there are  \(10\)  ways to make a fence with length  \(1\)  by choosing any two pieces of wood to
+nail together. Specifically, he may have a fence of height 11, 101,
+1001, 2001, 110, 1010, 2010, 1100, 2100 and 3000.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>60 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j5.01.in">j5.01.in</a> / <a href="tests/j5.01.out">output</a></li><li><a href="tests/j5.02.in">j5.02.in</a> / <a href="tests/j5.02.out">output</a></li><li><a href="tests/j5.03.in">j5.03.in</a> / <a href="tests/j5.03.out">output</a></li><li><a href="tests/j5.04.in">j5.04.in</a> / <a href="tests/j5.04.out">output</a></li><li><a href="tests/j5.05.in">j5.05.in</a> / <a href="tests/j5.05.out">output</a></li><li><a href="tests/j5.06.in">j5.06.in</a> / <a href="tests/j5.06.out">output</a></li><li><a href="tests/j5.07.in">j5.07.in</a> / <a href="tests/j5.07.out">output</a></li><li><a href="tests/j5.08.in">j5.08.in</a> / <a href="tests/j5.08.out">output</a></li><li><a href="tests/j5.09.in">j5.09.in</a> / <a href="tests/j5.09.out">output</a></li><li><a href="tests/j5.10.in">j5.10.in</a> / <a href="tests/j5.10.out">output</a></li><li><a href="tests/j5.11.in">j5.11.in</a> / <a href="tests/j5.11.out">output</a></li><li><a href="tests/j5.12.in">j5.12.in</a> / <a href="tests/j5.12.out">output</a></li><li><a href="tests/j5.13.in">j5.13.in</a> / <a href="tests/j5.13.out">output</a></li><li><a href="tests/j5.14.in">j5.14.in</a> / <a href="tests/j5.14.out">output</a></li><li><a href="tests/j5.15.in">j5.15.in</a> / <a href="tests/j5.15.out">output</a></li><li><a href="tests/j5.16.in">j5.16.in</a> / <a href="tests/j5.16.out">output</a></li><li><a href="tests/j5.17.in">j5.17.in</a> / <a href="tests/j5.17.out">output</a></li><li><a href="tests/j5.18.in">j5.18.in</a> / <a href="tests/j5.18.out">output</a></li><li><a href="tests/j5.19.in">j5.19.in</a> / <a href="tests/j5.19.out">output</a></li><li><a href="tests/j5.20.in">j5.20.in</a> / <a href="tests/j5.20.out">output</a></li><li><a href="tests/j5.21.in">j5.21.in</a> / <a href="tests/j5.21.out">output</a></li><li><a href="tests/j5.22.in">j5.22.in</a> / <a href="tests/j5.22.out">output</a></li><li><a href="tests/j5.23.in">j5.23.in</a> / <a href="tests/j5.23.out">output</a></li><li><a href="tests/j5.24.in">j5.24.in</a> / <a href="tests/j5.24.out">output</a></li><li><a href="tests/j5.25.in">j5.25.in</a> / <a href="tests/j5.25.out">output</a></li><li><a href="tests/j5.26.in">j5.26.in</a> / <a href="tests/j5.26.out">output</a></li><li><a href="tests/j5.27.in">j5.27.in</a> / <a href="tests/j5.27.out">output</a></li><li><a href="tests/j5.28.in">j5.28.in</a> / <a href="tests/j5.28.out">output</a></li><li><a href="tests/j5_sample.01.in">j5_sample.01.in</a> / <a href="tests/j5_sample.01.out">output</a></li><li><a href="tests/j5_sample.02.in">j5_sample.02.in</a> / <a href="tests/j5_sample.02.out">output</a></li><li><a href="tests/s3.01.in">s3.01.in</a> / <a href="tests/s3.01.out">output</a></li><li><a href="tests/s3.02.in">s3.02.in</a> / <a href="tests/s3.02.out">output</a></li><li><a href="tests/s3.03.in">s3.03.in</a> / <a href="tests/s3.03.out">output</a></li><li><a href="tests/s3.04.in">s3.04.in</a> / <a href="tests/s3.04.out">output</a></li><li><a href="tests/s3.05.in">s3.05.in</a> / <a href="tests/s3.05.out">output</a></li><li><a href="tests/s3.06.in">s3.06.in</a> / <a href="tests/s3.06.out">output</a></li><li><a href="tests/s3.07.in">s3.07.in</a> / <a href="tests/s3.07.out">output</a></li><li><a href="tests/s3.08.in">s3.08.in</a> / <a href="tests/s3.08.out">output</a></li><li><a href="tests/s3.09.in">s3.09.in</a> / <a href="tests/s3.09.out">output</a></li><li><a href="tests/s3.10.in">s3.10.in</a> / <a href="tests/s3.10.out">output</a></li><li><a href="tests/s3.11.in">s3.11.in</a> / <a href="tests/s3.11.out">output</a></li><li><a href="tests/s3.12.in">s3.12.in</a> / <a href="tests/s3.12.out">output</a></li><li><a href="tests/s3.13.in">s3.13.in</a> / <a href="tests/s3.13.out">output</a></li><li><a href="tests/s3.14.in">s3.14.in</a> / <a href="tests/s3.14.out">output</a></li><li><a href="tests/s3.15.in">s3.15.in</a> / <a href="tests/s3.15.out">output</a></li><li><a href="tests/s3.16.in">s3.16.in</a> / <a href="tests/s3.16.out">output</a></li><li><a href="tests/s3.17.in">s3.17.in</a> / <a href="tests/s3.17.out">output</a></li><li><a href="tests/s3.18.in">s3.18.in</a> / <a href="tests/s3.18.out">output</a></li><li><a href="tests/s3.19.in">s3.19.in</a> / <a href="tests/s3.19.out">output</a></li><li><a href="tests/s3.20.in">s3.20.in</a> / <a href="tests/s3.20.out">output</a></li><li><a href="tests/s3.21.in">s3.21.in</a> / <a href="tests/s3.21.out">output</a></li><li><a href="tests/s3.22.in">s3.22.in</a> / <a href="tests/s3.22.out">output</a></li><li><a href="tests/s3.23.in">s3.23.in</a> / <a href="tests/s3.23.out">output</a></li><li><a href="tests/s3.24.in">s3.24.in</a> / <a href="tests/s3.24.out">output</a></li><li><a href="tests/s3.25.in">s3.25.in</a> / <a href="tests/s3.25.out">output</a></li><li><a href="tests/s3.26.in">s3.26.in</a> / <a href="tests/s3.26.out">output</a></li><li><a href="tests/s3.27.in">s3.27.in</a> / <a href="tests/s3.27.out">output</a></li><li><a href="tests/s3.28.in">s3.28.in</a> / <a href="tests/s3.28.out">output</a></li><li><a href="tests/s3_sample.01.in">s3_sample.01.in</a> / <a href="tests/s3_sample.01.out">output</a></li><li><a href="tests/s3_sample.02.in">s3_sample.02.in</a> / <a href="tests/s3_sample.02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc17s3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>4
+1 2 3 4
+</pre></div><div><h3>Sample output</h3><pre>2 1
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S3: Nailed
+It!
+
+
+Time limit: 2 seconds
+
+
+ Problem
+Description
+
+
+Tudor is a contestant in the Canadian Carpentry Challenge (CCC). To
+win the CCC, Tudor must demonstrate his skill at nailing wood together
+to make the longest fence possible using boards. To accomplish this
+goal, he has  \(N\)  pieces of wood. The
+ \(i^{th}\)  piece of wood has integer
+length  \(L_i\) .
+
+
+A  board  is made up of  exactly
+two  pieces of wood. The length of a board made of wood with
+lengths  \(L_i\)  and  \(L_j\)  is  \(L_i +
+L_j\) . A  fence  consists of boards that are
+the same length. The  length of the fence  is the
+number of boards used to make it, and the  height of the
+fence  is the length of each board in the fence. In the
+example fence below, the length of the fence is 4; the height of the
+fence is 50; and, the length of each piece of wood is shown: 
+ 
+ 
+ 
+Tudor would
+like to make the longest fence possible. Please help him determine the
+maximum length of any fence he could make, and the number of different
+heights a fence of that maximum length could have.
+
+
+ Input
+Specification
+
+
+The first line will contain the integer  \(N\)   \((2 \le N
+\le 1\ 000\ 000)\) . 
+The second line will contain  \(N\) 
+space-separated integers  \(L_1, L_2, \ldots,
+L_N\)   \((1 \le L_i \le
+2\,000)\) .
+
+
+For 5 of the 15 available marks,  \(N \le
+100\) . 
+For an additional 4 of the 15 available marks,  \(N \le 1000\) . 
+For an additional 3 of the 15 available marks,  \(N \le 100\ 000\) .
+
+
+ Output
+Specification
+
+
+Output two integers on a single line separated by a single space: the
+length of the longest fence and the number of different heights a
+longest fence could have.
+
+
+ Sample Input 1
+
+
+4
+1 2 3 4
+
+
+ Output for
+Sample Input 1
+
+
+2 1
+
+
+
+Explanation for Output for Sample Input 1
+
+
+Tudor first combines the pieces of wood with lengths  \(1\)  and  \(4\)  to form a board of length  \(5\) . Then he combines the pieces of wood
+with lengths  \(2\)  and  \(3\)  to form another board of length  \(5\) . Finally, he combines the boards to
+make a fence with length  \(2\)  and
+height  \(5\) .
+
+
+Sample Input 2
+
+
+5
+1 10 100 1000 2000
+
+
+ Output for
+Sample Input 2
+
+
+1 10
+
+
+
+Explanation for Output for Sample Input 2
+
+
+Tudor can’t make a fence longer than length  \(1\) , and there are  \(10\)  ways to make a fence with length  \(1\)  by choosing any two pieces of wood to
+nail together. Specifically, he may have a fence of height 11, 101,
+1001, 2001, 110, 1010, 2010, 1100, 2100 and 3000.
+</pre></details></section><section class="card"><h2>Test data</h2><p>60 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j5.01.in">j5.01.in</a> / <a href="tests/j5.01.out">output</a></li><li><a href="tests/j5.02.in">j5.02.in</a> / <a href="tests/j5.02.out">output</a></li><li><a href="tests/j5.03.in">j5.03.in</a> / <a href="tests/j5.03.out">output</a></li><li><a href="tests/j5.04.in">j5.04.in</a> / <a href="tests/j5.04.out">output</a></li><li><a href="tests/j5.05.in">j5.05.in</a> / <a href="tests/j5.05.out">output</a></li><li><a href="tests/j5.06.in">j5.06.in</a> / <a href="tests/j5.06.out">output</a></li><li><a href="tests/j5.07.in">j5.07.in</a> / <a href="tests/j5.07.out">output</a></li><li><a href="tests/j5.08.in">j5.08.in</a> / <a href="tests/j5.08.out">output</a></li><li><a href="tests/j5.09.in">j5.09.in</a> / <a href="tests/j5.09.out">output</a></li><li><a href="tests/j5.10.in">j5.10.in</a> / <a href="tests/j5.10.out">output</a></li><li><a href="tests/j5.11.in">j5.11.in</a> / <a href="tests/j5.11.out">output</a></li><li><a href="tests/j5.12.in">j5.12.in</a> / <a href="tests/j5.12.out">output</a></li><li><a href="tests/j5.13.in">j5.13.in</a> / <a href="tests/j5.13.out">output</a></li><li><a href="tests/j5.14.in">j5.14.in</a> / <a href="tests/j5.14.out">output</a></li><li><a href="tests/j5.15.in">j5.15.in</a> / <a href="tests/j5.15.out">output</a></li><li><a href="tests/j5.16.in">j5.16.in</a> / <a href="tests/j5.16.out">output</a></li><li><a href="tests/j5.17.in">j5.17.in</a> / <a href="tests/j5.17.out">output</a></li><li><a href="tests/j5.18.in">j5.18.in</a> / <a href="tests/j5.18.out">output</a></li><li><a href="tests/j5.19.in">j5.19.in</a> / <a href="tests/j5.19.out">output</a></li><li><a href="tests/j5.20.in">j5.20.in</a> / <a href="tests/j5.20.out">output</a></li><li><a href="tests/j5.21.in">j5.21.in</a> / <a href="tests/j5.21.out">output</a></li><li><a href="tests/j5.22.in">j5.22.in</a> / <a href="tests/j5.22.out">output</a></li><li><a href="tests/j5.23.in">j5.23.in</a> / <a href="tests/j5.23.out">output</a></li><li><a href="tests/j5.24.in">j5.24.in</a> / <a href="tests/j5.24.out">output</a></li><li><a href="tests/j5.25.in">j5.25.in</a> / <a href="tests/j5.25.out">output</a></li><li><a href="tests/j5.26.in">j5.26.in</a> / <a href="tests/j5.26.out">output</a></li><li><a href="tests/j5.27.in">j5.27.in</a> / <a href="tests/j5.27.out">output</a></li><li><a href="tests/j5.28.in">j5.28.in</a> / <a href="tests/j5.28.out">output</a></li><li><a href="tests/j5_sample.01.in">j5_sample.01.in</a> / <a href="tests/j5_sample.01.out">output</a></li><li><a href="tests/j5_sample.02.in">j5_sample.02.in</a> / <a href="tests/j5_sample.02.out">output</a></li><li><a href="tests/s3.01.in">s3.01.in</a> / <a href="tests/s3.01.out">output</a></li><li><a href="tests/s3.02.in">s3.02.in</a> / <a href="tests/s3.02.out">output</a></li><li><a href="tests/s3.03.in">s3.03.in</a> / <a href="tests/s3.03.out">output</a></li><li><a href="tests/s3.04.in">s3.04.in</a> / <a href="tests/s3.04.out">output</a></li><li><a href="tests/s3.05.in">s3.05.in</a> / <a href="tests/s3.05.out">output</a></li><li><a href="tests/s3.06.in">s3.06.in</a> / <a href="tests/s3.06.out">output</a></li><li><a href="tests/s3.07.in">s3.07.in</a> / <a href="tests/s3.07.out">output</a></li><li><a href="tests/s3.08.in">s3.08.in</a> / <a href="tests/s3.08.out">output</a></li><li><a href="tests/s3.09.in">s3.09.in</a> / <a href="tests/s3.09.out">output</a></li><li><a href="tests/s3.10.in">s3.10.in</a> / <a href="tests/s3.10.out">output</a></li><li><a href="tests/s3.11.in">s3.11.in</a> / <a href="tests/s3.11.out">output</a></li><li><a href="tests/s3.12.in">s3.12.in</a> / <a href="tests/s3.12.out">output</a></li><li><a href="tests/s3.13.in">s3.13.in</a> / <a href="tests/s3.13.out">output</a></li><li><a href="tests/s3.14.in">s3.14.in</a> / <a href="tests/s3.14.out">output</a></li><li><a href="tests/s3.15.in">s3.15.in</a> / <a href="tests/s3.15.out">output</a></li><li><a href="tests/s3.16.in">s3.16.in</a> / <a href="tests/s3.16.out">output</a></li><li><a href="tests/s3.17.in">s3.17.in</a> / <a href="tests/s3.17.out">output</a></li><li><a href="tests/s3.18.in">s3.18.in</a> / <a href="tests/s3.18.out">output</a></li><li><a href="tests/s3.19.in">s3.19.in</a> / <a href="tests/s3.19.out">output</a></li><li><a href="tests/s3.20.in">s3.20.in</a> / <a href="tests/s3.20.out">output</a></li><li><a href="tests/s3.21.in">s3.21.in</a> / <a href="tests/s3.21.out">output</a></li><li><a href="tests/s3.22.in">s3.22.in</a> / <a href="tests/s3.22.out">output</a></li><li><a href="tests/s3.23.in">s3.23.in</a> / <a href="tests/s3.23.out">output</a></li><li><a href="tests/s3.24.in">s3.24.in</a> / <a href="tests/s3.24.out">output</a></li><li><a href="tests/s3.25.in">s3.25.in</a> / <a href="tests/s3.25.out">output</a></li><li><a href="tests/s3.26.in">s3.26.in</a> / <a href="tests/s3.26.out">output</a></li><li><a href="tests/s3.27.in">s3.27.in</a> / <a href="tests/s3.27.out">output</a></li><li><a href="tests/s3.28.in">s3.28.in</a> / <a href="tests/s3.28.out">output</a></li><li><a href="tests/s3_sample.01.in">s3_sample.01.in</a> / <a href="tests/s3_sample.01.out">output</a></li><li><a href="tests/s3_sample.02.in">s3_sample.02.in</a> / <a href="tests/s3_sample.02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

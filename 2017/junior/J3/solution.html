@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2017 J3 · Exactly Electrical Time limit: 1 second Problem Description You live in Grid City, which is composed of integer-numbered streets which run east-west (parallel to the \(x\) -axis) and integer-numbered avenues which run north-south (parallel to the \(y\) -axis). The streets and avenues have infinite length, and there is a street for every integer \(y\) -coordinate and an avenue for every \(x\) -coordinate. All intersections are labelled by their integer coordinates: for example, avenue 7 and street -3 intersect at (7,-3). You drive a special electric car which uses up one unit of electrical charge moving between adjacent intersections: that is, moving either north or south to the next street, or moving east or west to the next avenue). Until your battery runs out, at each intersection, your car can turn left, turn right, go straight through, or make a U-turn. You may visit the same intersection multiple times on the same trip. Suppose you know your starting intersection, your destination intersection and the number of units of electrical charge in your battery. Determine whether you can travel from the starting intersection to the destination intersection using the charge available to you in such a way that your battery is empty when you reach your destination. Input Specification The input consists of three lines. The first line contains \(a\) followed by \(b\) , indicating the starting coordinate \((a,b)\) \((-1000 \leq a \leq 1000; -1000 \leq b \leq 1000)\) . The second line contains \(c\) followed by \(d\) , indicating the destination coordinate \((c,d)\) \((-1000 \leq c \leq 1000; -1000 \leq d \leq 1000)\) . The third line contains an integer \(t\) \((0 \leq t \leq 10\ 000)\) indicating the initial number of units of electrical charge of your battery. For 3 of the 15 available marks, \(0 \leq a, b, c, d \leq 2\) . For an additional 3 of the 15 marks available, \(t \leq 8\) . Output Specification Output Y if it is possible to move from the starting coordinate to the destination coordinate using exactly \(t\) units of electrical charge. Otherwise output N . Sample Input 1 3 4 3 3 3 Output for Sample Input 1 Y Explanation for Output for Sample Input 1 One possibility is to travel from \((3,4)\) to \((4,4)\) to \((4, 3)\) to \((3,3)\) . Sample Input 2 10 2 10 4 5 Output for Sample Input 2 N Explanation for Output for Sample Input 2 It is possible to get from \((10,2)\) to \((10,4)\) using exactly 2 units of electricity, by going north 2 units. It is also possible to travel using 4 units of electricity as in the following sequence: \[(10,2) \rightarrow (10,3) \rightarrow (11,3) \rightarrow (11,4) \rightarrow (10,4).\] It is also possible to travel using 5 units of electricity from \((10,2)\) to \((11,4)\) by the following sequence: \[(10,2) \rightarrow (10,3) \rightarrow (11,3) \rightarrow (12,3) \rightarrow (12,4) \rightarrow (11,4).\] It is not possible to move via any path of length 5 from \((10,2)\) to \((10,4)\) , however. · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2017 J3 · Exactly Electrical Time limit: 1 second Problem Description You live in Grid City, which is composed of integer-numbered streets which run east-west (parallel to the \(x\) -axis) and integer-numbered avenues which run north-south (parallel to the \(y\) -axis). The streets and avenues have infinite length, and there is a street for every integer \(y\) -coordinate and an avenue for every \(x\) -coordinate. All intersections are labelled by their integer coordinates: for example, avenue 7 and street -3 intersect at (7,-3). You drive a special electric car which uses up one unit of electrical charge moving between adjacent intersections: that is, moving either north or south to the next street, or moving east or west to the next avenue). Until your battery runs out, at each intersection, your car can turn left, turn right, go straight through, or make a U-turn. You may visit the same intersection multiple times on the same trip. Suppose you know your starting intersection, your destination intersection and the number of units of electrical charge in your battery. Determine whether you can travel from the starting intersection to the destination intersection using the charge available to you in such a way that your battery is empty when you reach your destination. Input Specification The input consists of three lines. The first line contains \(a\) followed by \(b\) , indicating the starting coordinate \((a,b)\) \((-1000 \leq a \leq 1000; -1000 \leq b \leq 1000)\) . The second line contains \(c\) followed by \(d\) , indicating the destination coordinate \((c,d)\) \((-1000 \leq c \leq 1000; -1000 \leq d \leq 1000)\) . The third line contains an integer \(t\) \((0 \leq t \leq 10\ 000)\) indicating the initial number of units of electrical charge of your battery. For 3 of the 15 available marks, \(0 \leq a, b, c, d \leq 2\) . For an additional 3 of the 15 marks available, \(t \leq 8\) . Output Specification Output Y if it is possible to move from the starting coordinate to the destination coordinate using exactly \(t\) units of electrical charge. Otherwise output N . Sample Input 1 3 4 3 3 3 Output for Sample Input 1 Y Explanation for Output for Sample Input 1 One possibility is to travel from \((3,4)\) to \((4,4)\) to \((4, 3)\) to \((3,3)\) . Sample Input 2 10 2 10 4 5 Output for Sample Input 2 N Explanation for Output for Sample Input 2 It is possible to get from \((10,2)\) to \((10,4)\) using exactly 2 units of electricity, by going north 2 units. It is also possible to travel using 4 units of electricity as in the following sequence: \[(10,2) \rightarrow (10,3) \rightarrow (11,3) \rightarrow (11,4) \rightarrow (10,4).\] It is also possible to travel using 5 units of electricity from \((10,2)\) to \((11,4)\) by the following sequence: \[(10,2) \rightarrow (10,3) \rightarrow (11,3) \rightarrow (12,3) \rightarrow (12,4) \rightarrow (11,4).\] It is not possible to move via any path of length 5 from \((10,2)\) to \((10,4)\) , however.</h1></header><p class="eyebrow">2017 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc17j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3 4
+3 3
+3
+</pre></div><div><h3>样例输出</h3><pre>Y
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3:
+Exactly Electrical
+
+
+Time limit: 1 second
+
+
+ Problem
+Description
+
+
+You live in Grid City, which is composed of integer-numbered streets
+which run east-west (parallel to the  \(x\) -axis) and integer-numbered avenues
+which run north-south (parallel to the  \(y\) -axis). The streets and avenues have
+infinite length, and there is a street for every integer  \(y\) -coordinate and an avenue for every
+ \(x\) -coordinate. All intersections are
+labelled by their integer coordinates: for example, avenue 7 and street
+-3 intersect at (7,-3).
+
+
+You drive a special electric car which uses up one unit of electrical
+charge moving between adjacent intersections: that is, moving either
+north or south to the next street, or moving east or west to the next
+avenue). Until your battery runs out, at each intersection, your car can
+turn left, turn right, go straight through, or make a U-turn. You may
+visit the same intersection multiple times on the same trip.
+
+
+Suppose you know your starting intersection, your destination
+intersection and the number of units of electrical charge in your
+battery. Determine whether you can travel from the starting intersection
+to the destination intersection using the charge available to you in
+such a way that your battery is empty when you reach your
+destination.
+
+
+Input
+Specification
+
+
+The input consists of three lines. The first line contains  \(a\)  followed by  \(b\) , indicating the starting coordinate
+ \((a,b)\)   \((-1000 \leq a \leq 1000; -1000 \leq b \leq
+1000)\) .
+
+
+The second line contains  \(c\) 
+followed by  \(d\) , indicating the
+destination coordinate  \((c,d)\)   \((-1000 \leq c \leq 1000; -1000 \leq d \leq
+1000)\) .
+
+
+The third line contains an integer  \(t\)   \((0 \leq t
+\leq 10\ 000)\)  indicating the initial number of units of
+electrical charge of your battery.
+
+
+For 3 of the 15 available marks,  \(0 \leq
+a, b, c, d \leq 2\) .
+
+
+For an additional 3 of the 15 marks available,  \(t \leq 8\) .
+
+
+ Output
+Specification
+
+
+Output  Y  if it is possible to move from the
+starting coordinate to the destination coordinate using exactly  \(t\)  units of electrical charge. Otherwise
+output  N .
+
+
+ Sample Input 1
+
+
+3 4
+3 3
+3
+
+
+Output for
+Sample Input 1
+
+
+Y
+
+
+Explanation for Output
+for Sample Input 1
+
+
+One possibility is to travel from  \((3,4)\)  to  \((4,4)\)  to  \((4,
+3)\)  to  \((3,3)\) .
+
+
+ Sample Input 2
+
+
+10 2
+10 4
+5
+
+
+ Output for
+Sample Input 2
+
+
+N
+
+
+
+Explanation for Output for Sample Input 2
+
+
+It is possible to get from  \((10,2)\)  to  \((10,4)\)  using exactly 2 units of
+electricity, by going north 2 units.
+
+
+It is also possible to travel using 4 units of electricity as in the
+following sequence:  \[(10,2) \rightarrow
+(10,3) \rightarrow (11,3) \rightarrow (11,4) \rightarrow
+(10,4).\]  It is also possible to travel using 5 units of
+electricity from  \((10,2)\)  to  \((11,4)\)  by the following sequence:  \[(10,2) \rightarrow (10,3) \rightarrow (11,3)
+\rightarrow (12,3) \rightarrow (12,4) \rightarrow (11,4).\]  It is
+not possible to move via any path of length 5 from  \((10,2)\)  to  \((10,4)\) , however.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>17 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j3.01.in">j3.01.in</a> / <a href="tests/j3.01.out">output</a></li><li><a href="tests/j3.02.in">j3.02.in</a> / <a href="tests/j3.02.out">output</a></li><li><a href="tests/j3.03.in">j3.03.in</a> / <a href="tests/j3.03.out">output</a></li><li><a href="tests/j3.04.in">j3.04.in</a> / <a href="tests/j3.04.out">output</a></li><li><a href="tests/j3.05.in">j3.05.in</a> / <a href="tests/j3.05.out">output</a></li><li><a href="tests/j3.06.in">j3.06.in</a> / <a href="tests/j3.06.out">output</a></li><li><a href="tests/j3.07.in">j3.07.in</a> / <a href="tests/j3.07.out">output</a></li><li><a href="tests/j3.08.in">j3.08.in</a> / <a href="tests/j3.08.out">output</a></li><li><a href="tests/j3.09.in">j3.09.in</a> / <a href="tests/j3.09.out">output</a></li><li><a href="tests/j3.10.in">j3.10.in</a> / <a href="tests/j3.10.out">output</a></li><li><a href="tests/j3.11.in">j3.11.in</a> / <a href="tests/j3.11.out">output</a></li><li><a href="tests/j3.12.in">j3.12.in</a> / <a href="tests/j3.12.out">output</a></li><li><a href="tests/j3.13.in">j3.13.in</a> / <a href="tests/j3.13.out">output</a></li><li><a href="tests/j3.14.in">j3.14.in</a> / <a href="tests/j3.14.out">output</a></li><li><a href="tests/j3.15.in">j3.15.in</a> / <a href="tests/j3.15.out">output</a></li><li><a href="tests/j3_sample.01.in">j3_sample.01.in</a> / <a href="tests/j3_sample.01.out">output</a></li><li><a href="tests/j3_sample.02.in">j3_sample.02.in</a> / <a href="tests/j3_sample.02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc17j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3 4
+3 3
+3
+</pre></div><div><h3>Sample output</h3><pre>Y
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3:
+Exactly Electrical
+
+
+Time limit: 1 second
+
+
+ Problem
+Description
+
+
+You live in Grid City, which is composed of integer-numbered streets
+which run east-west (parallel to the  \(x\) -axis) and integer-numbered avenues
+which run north-south (parallel to the  \(y\) -axis). The streets and avenues have
+infinite length, and there is a street for every integer  \(y\) -coordinate and an avenue for every
+ \(x\) -coordinate. All intersections are
+labelled by their integer coordinates: for example, avenue 7 and street
+-3 intersect at (7,-3).
+
+
+You drive a special electric car which uses up one unit of electrical
+charge moving between adjacent intersections: that is, moving either
+north or south to the next street, or moving east or west to the next
+avenue). Until your battery runs out, at each intersection, your car can
+turn left, turn right, go straight through, or make a U-turn. You may
+visit the same intersection multiple times on the same trip.
+
+
+Suppose you know your starting intersection, your destination
+intersection and the number of units of electrical charge in your
+battery. Determine whether you can travel from the starting intersection
+to the destination intersection using the charge available to you in
+such a way that your battery is empty when you reach your
+destination.
+
+
+Input
+Specification
+
+
+The input consists of three lines. The first line contains  \(a\)  followed by  \(b\) , indicating the starting coordinate
+ \((a,b)\)   \((-1000 \leq a \leq 1000; -1000 \leq b \leq
+1000)\) .
+
+
+The second line contains  \(c\) 
+followed by  \(d\) , indicating the
+destination coordinate  \((c,d)\)   \((-1000 \leq c \leq 1000; -1000 \leq d \leq
+1000)\) .
+
+
+The third line contains an integer  \(t\)   \((0 \leq t
+\leq 10\ 000)\)  indicating the initial number of units of
+electrical charge of your battery.
+
+
+For 3 of the 15 available marks,  \(0 \leq
+a, b, c, d \leq 2\) .
+
+
+For an additional 3 of the 15 marks available,  \(t \leq 8\) .
+
+
+ Output
+Specification
+
+
+Output  Y  if it is possible to move from the
+starting coordinate to the destination coordinate using exactly  \(t\)  units of electrical charge. Otherwise
+output  N .
+
+
+ Sample Input 1
+
+
+3 4
+3 3
+3
+
+
+Output for
+Sample Input 1
+
+
+Y
+
+
+Explanation for Output
+for Sample Input 1
+
+
+One possibility is to travel from  \((3,4)\)  to  \((4,4)\)  to  \((4,
+3)\)  to  \((3,3)\) .
+
+
+ Sample Input 2
+
+
+10 2
+10 4
+5
+
+
+ Output for
+Sample Input 2
+
+
+N
+
+
+
+Explanation for Output for Sample Input 2
+
+
+It is possible to get from  \((10,2)\)  to  \((10,4)\)  using exactly 2 units of
+electricity, by going north 2 units.
+
+
+It is also possible to travel using 4 units of electricity as in the
+following sequence:  \[(10,2) \rightarrow
+(10,3) \rightarrow (11,3) \rightarrow (11,4) \rightarrow
+(10,4).\]  It is also possible to travel using 5 units of
+electricity from  \((10,2)\)  to  \((11,4)\)  by the following sequence:  \[(10,2) \rightarrow (10,3) \rightarrow (11,3)
+\rightarrow (12,3) \rightarrow (12,4) \rightarrow (11,4).\]  It is
+not possible to move via any path of length 5 from  \((10,2)\)  to  \((10,4)\) , however.
+</pre></details></section><section class="card"><h2>Test data</h2><p>17 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j3.01.in">j3.01.in</a> / <a href="tests/j3.01.out">output</a></li><li><a href="tests/j3.02.in">j3.02.in</a> / <a href="tests/j3.02.out">output</a></li><li><a href="tests/j3.03.in">j3.03.in</a> / <a href="tests/j3.03.out">output</a></li><li><a href="tests/j3.04.in">j3.04.in</a> / <a href="tests/j3.04.out">output</a></li><li><a href="tests/j3.05.in">j3.05.in</a> / <a href="tests/j3.05.out">output</a></li><li><a href="tests/j3.06.in">j3.06.in</a> / <a href="tests/j3.06.out">output</a></li><li><a href="tests/j3.07.in">j3.07.in</a> / <a href="tests/j3.07.out">output</a></li><li><a href="tests/j3.08.in">j3.08.in</a> / <a href="tests/j3.08.out">output</a></li><li><a href="tests/j3.09.in">j3.09.in</a> / <a href="tests/j3.09.out">output</a></li><li><a href="tests/j3.10.in">j3.10.in</a> / <a href="tests/j3.10.out">output</a></li><li><a href="tests/j3.11.in">j3.11.in</a> / <a href="tests/j3.11.out">output</a></li><li><a href="tests/j3.12.in">j3.12.in</a> / <a href="tests/j3.12.out">output</a></li><li><a href="tests/j3.13.in">j3.13.in</a> / <a href="tests/j3.13.out">output</a></li><li><a href="tests/j3.14.in">j3.14.in</a> / <a href="tests/j3.14.out">output</a></li><li><a href="tests/j3.15.in">j3.15.in</a> / <a href="tests/j3.15.out">output</a></li><li><a href="tests/j3_sample.01.in">j3_sample.01.in</a> / <a href="tests/j3_sample.01.out">output</a></li><li><a href="tests/j3_sample.02.in">j3_sample.02.in</a> / <a href="tests/j3_sample.02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

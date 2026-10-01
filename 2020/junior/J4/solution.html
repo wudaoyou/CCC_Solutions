@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2020 J4 · Cyclic Shifts · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2020 J4 · Cyclic Shifts</h1></header><p class="eyebrow">2020 / junior / J4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc20j4">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>ABCCDEABAA
+ABCDE
+</pre></div><div><h3>样例输出</h3><pre>yes
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Cyclic Shifts
+
+
+Problem Description
+
+
+
+Thuc likes finding cyclic shifts of strings. A  cyclic
+shift  of a string is obtained by moving characters from the
+beginning of the string to the end of the string. We also consider a
+string to be a cyclic shift of itself. For example, the cyclic shifts of
+ ABCDE  are:
+
+
+
+ ABCDE ,  BCDEA ,
+ CDEAB ,  DEABC , and
+ EABCD . 
+
+
+
+Given some text,  \(T\) , and a
+string,  \(S\) , determine if  \(T\)  contains a cyclic shift of  \(S\) .
+
+
+Input Specification
+
+
+
+The input will consist of exactly two lines containing only uppercase
+letters. The first line will be the text  \(T\) , and the second line will be the string
+ \(S\) . Each line will contain at most
+ \(1000\)  characters.
+
+
+For 6 of the 15 available marks,  \(S\)  will be exactly  \(3\)  characters in length.
+
+
+Output Specification
+
+
+Output  yes  if the text,  \(T\) , contains a cyclic shift of the string,
+ \(S\) . Otherwise, output
+ no .
+
+
+Sample Input 1
+
+
+ABCCDEABAA
+ABCDE
+
+
+Output for Sample Input 1
+
+
+yes
+
+
+Explanation of Output for Sample Input 1
+
+
+CDEAB  is a cyclic shift of
+ ABCDE  and it is contained in the text
+ ABCCDEABAA .
+
+
+Sample Input 2
+
+
+ABCDDEBCAB
+ABA
+
+
+Output for Sample Input 2
+
+
+no
+
+
+Explanation of Output for Sample Input 2
+
+
+The cyclic shifts of  ABA  are
+ ABA ,  BAA , and
+ AAB . None of these shifts are contained in the
+text  ABCDDEBCAB .
+</pre></details></section><section class="card"><h2>测试数据</h2><p>30 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j4.01.01.in">j4.01.01.in</a> / <a href="tests/j4.01.01.out">output</a></li><li><a href="tests/j4.01.02.in">j4.01.02.in</a> / <a href="tests/j4.01.02.out">output</a></li><li><a href="tests/j4.01.03.in">j4.01.03.in</a> / <a href="tests/j4.01.03.out">output</a></li><li><a href="tests/j4.01.04.in">j4.01.04.in</a> / <a href="tests/j4.01.04.out">output</a></li><li><a href="tests/j4.02.01.in">j4.02.01.in</a> / <a href="tests/j4.02.01.out">output</a></li><li><a href="tests/j4.02.02.in">j4.02.02.in</a> / <a href="tests/j4.02.02.out">output</a></li><li><a href="tests/j4.02.03.in">j4.02.03.in</a> / <a href="tests/j4.02.03.out">output</a></li><li><a href="tests/j4.02.04.in">j4.02.04.in</a> / <a href="tests/j4.02.04.out">output</a></li><li><a href="tests/j4.03.01.in">j4.03.01.in</a> / <a href="tests/j4.03.01.out">output</a></li><li><a href="tests/j4.03.02.in">j4.03.02.in</a> / <a href="tests/j4.03.02.out">output</a></li><li><a href="tests/j4.03.03.in">j4.03.03.in</a> / <a href="tests/j4.03.03.out">output</a></li><li><a href="tests/j4.03.04.in">j4.03.04.in</a> / <a href="tests/j4.03.04.out">output</a></li><li><a href="tests/j4.04.01.in">j4.04.01.in</a> / <a href="tests/j4.04.01.out">output</a></li><li><a href="tests/j4.04.02.in">j4.04.02.in</a> / <a href="tests/j4.04.02.out">output</a></li><li><a href="tests/j4.04.03.in">j4.04.03.in</a> / <a href="tests/j4.04.03.out">output</a></li><li><a href="tests/j4.04.04.in">j4.04.04.in</a> / <a href="tests/j4.04.04.out">output</a></li><li><a href="tests/j4.05.01.in">j4.05.01.in</a> / <a href="tests/j4.05.01.out">output</a></li><li><a href="tests/j4.05.02.in">j4.05.02.in</a> / <a href="tests/j4.05.02.out">output</a></li><li><a href="tests/j4.05.03.in">j4.05.03.in</a> / <a href="tests/j4.05.03.out">output</a></li><li><a href="tests/j4.05.04.in">j4.05.04.in</a> / <a href="tests/j4.05.04.out">output</a></li><li><a href="tests/j4.06.01.in">j4.06.01.in</a> / <a href="tests/j4.06.01.out">output</a></li><li><a href="tests/j4.06.02.in">j4.06.02.in</a> / <a href="tests/j4.06.02.out">output</a></li><li><a href="tests/j4.06.03.in">j4.06.03.in</a> / <a href="tests/j4.06.03.out">output</a></li><li><a href="tests/j4.06.04.in">j4.06.04.in</a> / <a href="tests/j4.06.04.out">output</a></li><li><a href="tests/j4.07.01.in">j4.07.01.in</a> / <a href="tests/j4.07.01.out">output</a></li><li><a href="tests/j4.07.02.in">j4.07.02.in</a> / <a href="tests/j4.07.02.out">output</a></li><li><a href="tests/j4.07.03.in">j4.07.03.in</a> / <a href="tests/j4.07.03.out">output</a></li><li><a href="tests/j4.07.04.in">j4.07.04.in</a> / <a href="tests/j4.07.04.out">output</a></li><li><a href="tests/j4.sample.01.in">j4.sample.01.in</a> / <a href="tests/j4.sample.01.out">output</a></li><li><a href="tests/j4.sample.02.in">j4.sample.02.in</a> / <a href="tests/j4.sample.02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc20j4">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>ABCCDEABAA
+ABCDE
+</pre></div><div><h3>Sample output</h3><pre>yes
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Cyclic Shifts
+
+
+Problem Description
+
+
+
+Thuc likes finding cyclic shifts of strings. A  cyclic
+shift  of a string is obtained by moving characters from the
+beginning of the string to the end of the string. We also consider a
+string to be a cyclic shift of itself. For example, the cyclic shifts of
+ ABCDE  are:
+
+
+
+ ABCDE ,  BCDEA ,
+ CDEAB ,  DEABC , and
+ EABCD . 
+
+
+
+Given some text,  \(T\) , and a
+string,  \(S\) , determine if  \(T\)  contains a cyclic shift of  \(S\) .
+
+
+Input Specification
+
+
+
+The input will consist of exactly two lines containing only uppercase
+letters. The first line will be the text  \(T\) , and the second line will be the string
+ \(S\) . Each line will contain at most
+ \(1000\)  characters.
+
+
+For 6 of the 15 available marks,  \(S\)  will be exactly  \(3\)  characters in length.
+
+
+Output Specification
+
+
+Output  yes  if the text,  \(T\) , contains a cyclic shift of the string,
+ \(S\) . Otherwise, output
+ no .
+
+
+Sample Input 1
+
+
+ABCCDEABAA
+ABCDE
+
+
+Output for Sample Input 1
+
+
+yes
+
+
+Explanation of Output for Sample Input 1
+
+
+CDEAB  is a cyclic shift of
+ ABCDE  and it is contained in the text
+ ABCCDEABAA .
+
+
+Sample Input 2
+
+
+ABCDDEBCAB
+ABA
+
+
+Output for Sample Input 2
+
+
+no
+
+
+Explanation of Output for Sample Input 2
+
+
+The cyclic shifts of  ABA  are
+ ABA ,  BAA , and
+ AAB . None of these shifts are contained in the
+text  ABCDDEBCAB .
+</pre></details></section><section class="card"><h2>Test data</h2><p>30 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j4.01.01.in">j4.01.01.in</a> / <a href="tests/j4.01.01.out">output</a></li><li><a href="tests/j4.01.02.in">j4.01.02.in</a> / <a href="tests/j4.01.02.out">output</a></li><li><a href="tests/j4.01.03.in">j4.01.03.in</a> / <a href="tests/j4.01.03.out">output</a></li><li><a href="tests/j4.01.04.in">j4.01.04.in</a> / <a href="tests/j4.01.04.out">output</a></li><li><a href="tests/j4.02.01.in">j4.02.01.in</a> / <a href="tests/j4.02.01.out">output</a></li><li><a href="tests/j4.02.02.in">j4.02.02.in</a> / <a href="tests/j4.02.02.out">output</a></li><li><a href="tests/j4.02.03.in">j4.02.03.in</a> / <a href="tests/j4.02.03.out">output</a></li><li><a href="tests/j4.02.04.in">j4.02.04.in</a> / <a href="tests/j4.02.04.out">output</a></li><li><a href="tests/j4.03.01.in">j4.03.01.in</a> / <a href="tests/j4.03.01.out">output</a></li><li><a href="tests/j4.03.02.in">j4.03.02.in</a> / <a href="tests/j4.03.02.out">output</a></li><li><a href="tests/j4.03.03.in">j4.03.03.in</a> / <a href="tests/j4.03.03.out">output</a></li><li><a href="tests/j4.03.04.in">j4.03.04.in</a> / <a href="tests/j4.03.04.out">output</a></li><li><a href="tests/j4.04.01.in">j4.04.01.in</a> / <a href="tests/j4.04.01.out">output</a></li><li><a href="tests/j4.04.02.in">j4.04.02.in</a> / <a href="tests/j4.04.02.out">output</a></li><li><a href="tests/j4.04.03.in">j4.04.03.in</a> / <a href="tests/j4.04.03.out">output</a></li><li><a href="tests/j4.04.04.in">j4.04.04.in</a> / <a href="tests/j4.04.04.out">output</a></li><li><a href="tests/j4.05.01.in">j4.05.01.in</a> / <a href="tests/j4.05.01.out">output</a></li><li><a href="tests/j4.05.02.in">j4.05.02.in</a> / <a href="tests/j4.05.02.out">output</a></li><li><a href="tests/j4.05.03.in">j4.05.03.in</a> / <a href="tests/j4.05.03.out">output</a></li><li><a href="tests/j4.05.04.in">j4.05.04.in</a> / <a href="tests/j4.05.04.out">output</a></li><li><a href="tests/j4.06.01.in">j4.06.01.in</a> / <a href="tests/j4.06.01.out">output</a></li><li><a href="tests/j4.06.02.in">j4.06.02.in</a> / <a href="tests/j4.06.02.out">output</a></li><li><a href="tests/j4.06.03.in">j4.06.03.in</a> / <a href="tests/j4.06.03.out">output</a></li><li><a href="tests/j4.06.04.in">j4.06.04.in</a> / <a href="tests/j4.06.04.out">output</a></li><li><a href="tests/j4.07.01.in">j4.07.01.in</a> / <a href="tests/j4.07.01.out">output</a></li><li><a href="tests/j4.07.02.in">j4.07.02.in</a> / <a href="tests/j4.07.02.out">output</a></li><li><a href="tests/j4.07.03.in">j4.07.03.in</a> / <a href="tests/j4.07.03.out">output</a></li><li><a href="tests/j4.07.04.in">j4.07.04.in</a> / <a href="tests/j4.07.04.out">output</a></li><li><a href="tests/j4.sample.01.in">j4.sample.01.in</a> / <a href="tests/j4.sample.01.out">output</a></li><li><a href="tests/j4.sample.02.in">j4.sample.02.in</a> / <a href="tests/j4.sample.02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2019 S2 · Pretty Average Primes · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2019 S2 · Pretty Average Primes</h1></header><p class="eyebrow">2019 / senior / S2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc19s2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>4
+8
+4
+7
+21
+</pre></div><div><h3>样例输出</h3><pre>3 13
+3 5
+3 11
+5 37
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2: Pretty Average Primes
+
+
+Problem Description
+
+
+For various given positive integers  \(N &gt;
+3\) , find two primes,  \(A\)  and
+ \(B\)  such that  \(N\)  is the average (mean) of  \(A\)  and  \(B\) . That is,  \(N\)  should be equal to  \((A+B)/2\) .
+
+
+Recall that a  prime number  is an integer  \(P &gt; 1\)  which is only divisible by 1 and
+ \(P\) . For example,  \(2,\ 3,\ 5,\ 7,\ 11\)  are the first few
+primes, and  \(4, 6, 8, 9\)  are not
+prime numbers.
+
+
+Input Specification
+
+
+The first line of input is the number  \(T\)   \((1 \le T
+\le 1000)\) , which is the number of test cases. Each of the next
+ \(T\)  lines contain one integer  \(N_i\)   \((4 \le
+N_i \le 1\ 000\ 000, 1 \le i \le T)\) .
+
+
+For 6 of the available 15 marks, all  \(N_i
+&lt; 1\ 000\) .
+
+
+Output Specification
+
+The output will consist of  \(T\)  lines.
+The  \(i\) th line of output will contain
+two integers,  \(A_i\)  and  \(B_i\) , separated by one space. It should be
+the case that  \(N_i = (A_i+B_i)/2\)  and
+that  \(A_i\)  and  \(B_i\)  are prime numbers.
+
+
+If there are more than one possible  \(A_i\)  and  \(B_i\)  for a particular  \(N_i\) , output any such pair. The order of
+the pair  \(A_i\)  and  \(B_i\)  does not matter.
+
+
+It will be the case that there will always be at least one set of
+values  \(A_i\)  and  \(B_i\)  for any given  \(N_i\) .
+
+
+Sample Input
+
+
+4
+8
+4
+7
+21
+
+
+Possible Output for Sample Input
+
+
+3 13
+5 3
+7 7
+13 29
+
+
+Explanation of Possible Output for Sample Input
+
+
+Notice that:  \[\begin{align*}
+8 &amp; = (3+13)/2, \\
+4 &amp; = (5+3)/2, \\
+7 &amp; = (7+7)/2, \\
+21 &amp; = (13+29)/2. \end{align*}\]  It is interesting to
+note, that we can also write  \[\begin{align*}
+8 &amp; = (5+11)/2  \\
+21 &amp; = (5+37)/2 = (11+31)/2=(19+23)/2 \\
+7 &amp; = (3+11)/2 \\\end{align*}\]  and so any of these
+pairs could have also been used in output. There is no pairs of primes
+other than  \(3\)  and  \(5\)  which average to the value of  \(4\) .
+
+
+Footnote
+
+
+You may have heard about  Goldbach’s conjecture ,
+which states that every even integer greater than 2 can be expressed as
+the sum of two prime numbers. There is no known proof, yet, so if you
+want to be famous, prove that conjecture (after you finish the CCC).
+
+
+This problem can be used to help verify that conjecture, since every
+even integer can be written as  \(2N\) ,
+and your task is to find two primes  \(A\)  and  \(B\)  such that  \(2N = A+B\) .
+</pre></details></section><section class="card"><h2>测试数据</h2><p>20 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/s2.0-sample.in">s2.0-sample.in</a> / <a href="tests/s2.0-sample.out">output</a></li><li><a href="tests/s2.1-02.in">s2.1-02.in</a> / <a href="tests/s2.1-02.out">output</a></li><li><a href="tests/s2.1-03.in">s2.1-03.in</a> / <a href="tests/s2.1-03.out">output</a></li><li><a href="tests/s2.1-04.in">s2.1-04.in</a> / <a href="tests/s2.1-04.out">output</a></li><li><a href="tests/s2.1-05.in">s2.1-05.in</a> / <a href="tests/s2.1-05.out">output</a></li><li><a href="tests/s2.1-06.in">s2.1-06.in</a> / <a href="tests/s2.1-06.out">output</a></li><li><a href="tests/s2.1-07.in">s2.1-07.in</a> / <a href="tests/s2.1-07.out">output</a></li><li><a href="tests/s2.1-08.in">s2.1-08.in</a> / <a href="tests/s2.1-08.out">output</a></li><li><a href="tests/s2.1-09.in">s2.1-09.in</a> / <a href="tests/s2.1-09.out">output</a></li><li><a href="tests/s2.1-10.in">s2.1-10.in</a> / <a href="tests/s2.1-10.out">output</a></li><li><a href="tests/s2.1-11.in">s2.1-11.in</a> / <a href="tests/s2.1-11.out">output</a></li><li><a href="tests/s2.2-12.in">s2.2-12.in</a> / <a href="tests/s2.2-12.out">output</a></li><li><a href="tests/s2.2-13.in">s2.2-13.in</a> / <a href="tests/s2.2-13.out">output</a></li><li><a href="tests/s2.2-14.in">s2.2-14.in</a> / <a href="tests/s2.2-14.out">output</a></li><li><a href="tests/s2.2-15.in">s2.2-15.in</a> / <a href="tests/s2.2-15.out">output</a></li><li><a href="tests/s2.2-16.in">s2.2-16.in</a> / <a href="tests/s2.2-16.out">output</a></li><li><a href="tests/s2.2-17.in">s2.2-17.in</a> / <a href="tests/s2.2-17.out">output</a></li><li><a href="tests/s2.2-18.in">s2.2-18.in</a> / <a href="tests/s2.2-18.out">output</a></li><li><a href="tests/s2.2-19.in">s2.2-19.in</a> / <a href="tests/s2.2-19.out">output</a></li><li><a href="tests/s2.2-20.in">s2.2-20.in</a> / <a href="tests/s2.2-20.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc19s2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>4
+8
+4
+7
+21
+</pre></div><div><h3>Sample output</h3><pre>3 13
+3 5
+3 11
+5 37
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S2: Pretty Average Primes
+
+
+Problem Description
+
+
+For various given positive integers  \(N &gt;
+3\) , find two primes,  \(A\)  and
+ \(B\)  such that  \(N\)  is the average (mean) of  \(A\)  and  \(B\) . That is,  \(N\)  should be equal to  \((A+B)/2\) .
+
+
+Recall that a  prime number  is an integer  \(P &gt; 1\)  which is only divisible by 1 and
+ \(P\) . For example,  \(2,\ 3,\ 5,\ 7,\ 11\)  are the first few
+primes, and  \(4, 6, 8, 9\)  are not
+prime numbers.
+
+
+Input Specification
+
+
+The first line of input is the number  \(T\)   \((1 \le T
+\le 1000)\) , which is the number of test cases. Each of the next
+ \(T\)  lines contain one integer  \(N_i\)   \((4 \le
+N_i \le 1\ 000\ 000, 1 \le i \le T)\) .
+
+
+For 6 of the available 15 marks, all  \(N_i
+&lt; 1\ 000\) .
+
+
+Output Specification
+
+The output will consist of  \(T\)  lines.
+The  \(i\) th line of output will contain
+two integers,  \(A_i\)  and  \(B_i\) , separated by one space. It should be
+the case that  \(N_i = (A_i+B_i)/2\)  and
+that  \(A_i\)  and  \(B_i\)  are prime numbers.
+
+
+If there are more than one possible  \(A_i\)  and  \(B_i\)  for a particular  \(N_i\) , output any such pair. The order of
+the pair  \(A_i\)  and  \(B_i\)  does not matter.
+
+
+It will be the case that there will always be at least one set of
+values  \(A_i\)  and  \(B_i\)  for any given  \(N_i\) .
+
+
+Sample Input
+
+
+4
+8
+4
+7
+21
+
+
+Possible Output for Sample Input
+
+
+3 13
+5 3
+7 7
+13 29
+
+
+Explanation of Possible Output for Sample Input
+
+
+Notice that:  \[\begin{align*}
+8 &amp; = (3+13)/2, \\
+4 &amp; = (5+3)/2, \\
+7 &amp; = (7+7)/2, \\
+21 &amp; = (13+29)/2. \end{align*}\]  It is interesting to
+note, that we can also write  \[\begin{align*}
+8 &amp; = (5+11)/2  \\
+21 &amp; = (5+37)/2 = (11+31)/2=(19+23)/2 \\
+7 &amp; = (3+11)/2 \\\end{align*}\]  and so any of these
+pairs could have also been used in output. There is no pairs of primes
+other than  \(3\)  and  \(5\)  which average to the value of  \(4\) .
+
+
+Footnote
+
+
+You may have heard about  Goldbach’s conjecture ,
+which states that every even integer greater than 2 can be expressed as
+the sum of two prime numbers. There is no known proof, yet, so if you
+want to be famous, prove that conjecture (after you finish the CCC).
+
+
+This problem can be used to help verify that conjecture, since every
+even integer can be written as  \(2N\) ,
+and your task is to find two primes  \(A\)  and  \(B\)  such that  \(2N = A+B\) .
+</pre></details></section><section class="card"><h2>Test data</h2><p>20 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/s2.0-sample.in">s2.0-sample.in</a> / <a href="tests/s2.0-sample.out">output</a></li><li><a href="tests/s2.1-02.in">s2.1-02.in</a> / <a href="tests/s2.1-02.out">output</a></li><li><a href="tests/s2.1-03.in">s2.1-03.in</a> / <a href="tests/s2.1-03.out">output</a></li><li><a href="tests/s2.1-04.in">s2.1-04.in</a> / <a href="tests/s2.1-04.out">output</a></li><li><a href="tests/s2.1-05.in">s2.1-05.in</a> / <a href="tests/s2.1-05.out">output</a></li><li><a href="tests/s2.1-06.in">s2.1-06.in</a> / <a href="tests/s2.1-06.out">output</a></li><li><a href="tests/s2.1-07.in">s2.1-07.in</a> / <a href="tests/s2.1-07.out">output</a></li><li><a href="tests/s2.1-08.in">s2.1-08.in</a> / <a href="tests/s2.1-08.out">output</a></li><li><a href="tests/s2.1-09.in">s2.1-09.in</a> / <a href="tests/s2.1-09.out">output</a></li><li><a href="tests/s2.1-10.in">s2.1-10.in</a> / <a href="tests/s2.1-10.out">output</a></li><li><a href="tests/s2.1-11.in">s2.1-11.in</a> / <a href="tests/s2.1-11.out">output</a></li><li><a href="tests/s2.2-12.in">s2.2-12.in</a> / <a href="tests/s2.2-12.out">output</a></li><li><a href="tests/s2.2-13.in">s2.2-13.in</a> / <a href="tests/s2.2-13.out">output</a></li><li><a href="tests/s2.2-14.in">s2.2-14.in</a> / <a href="tests/s2.2-14.out">output</a></li><li><a href="tests/s2.2-15.in">s2.2-15.in</a> / <a href="tests/s2.2-15.out">output</a></li><li><a href="tests/s2.2-16.in">s2.2-16.in</a> / <a href="tests/s2.2-16.out">output</a></li><li><a href="tests/s2.2-17.in">s2.2-17.in</a> / <a href="tests/s2.2-17.out">output</a></li><li><a href="tests/s2.2-18.in">s2.2-18.in</a> / <a href="tests/s2.2-18.out">output</a></li><li><a href="tests/s2.2-19.in">s2.2-19.in</a> / <a href="tests/s2.2-19.out">output</a></li><li><a href="tests/s2.2-20.in">s2.2-20.in</a> / <a href="tests/s2.2-20.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

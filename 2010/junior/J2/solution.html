@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2010 J2 · Up and Down · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2010 J2 · Up and Down</h1></header><p class="eyebrow">2010 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Up and Down
+Problem Description
+Nikky and Byron are playing a silly game in gym class.
+Nikky is told by his teacher to walk forward a steps (1 ≤ a ≤ 100) and then walk backward b
+steps (1 ≤ b ≤ 100), after which he repeats a forward, b backward, etc. Likewise, Byron is told to
+walk forward c steps (1 ≤ c ≤ 100) and then walk backward d steps (1 ≤ d ≤ 100), after which
+he repeats c forward, d backward, etc. You may assume that a ≥ b and c ≥ d.
+Byron and Nikky have the same length of step, and they are required to take their steps simultane-
+ously (that is, Nikky and Byron will both step forward on their first steps at the same time, and this
+will continue for each step).
+Nikky and Byron start walking from one end of a soccer field. After s steps (1 ≤ s ≤ 10000),
+the gym teacher will blow the whistle. Your task is to figure out who has moved the farthest away
+from the starting position when the whistle is blown.
+
+Input Specification
+The input will be the 5 integers a, b, c, d, and s, each on a separate line.
+
+Output Specification
+The output of your program will be one of three possibilities: Nikky if Nikky is farther ahead
+after s steps are taken; Byron if Byron is farther ahead after s steps are taken; Tied if Byron and
+Nikky are at the same distance from their starting position after s steps are taken.
+
+Sample Input
+4
+2
+5
+3
+12
+
+Output for Sample Input
+Byron
+
+Explanation of Output for Sample Input
+Notice that after 12 steps, Nikky has moved 4 − 2 + 4 − 2 steps, for a total of 4 steps from the
+starting position, whereas Byron has moved 5 − 3 + 4 steps, for a total of 6 steps from the starting
+position. Thus, Byron is ahead.
+
+
+
+
+                                                   5
+</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Up and Down
+Problem Description
+Nikky and Byron are playing a silly game in gym class.
+Nikky is told by his teacher to walk forward a steps (1 ≤ a ≤ 100) and then walk backward b
+steps (1 ≤ b ≤ 100), after which he repeats a forward, b backward, etc. Likewise, Byron is told to
+walk forward c steps (1 ≤ c ≤ 100) and then walk backward d steps (1 ≤ d ≤ 100), after which
+he repeats c forward, d backward, etc. You may assume that a ≥ b and c ≥ d.
+Byron and Nikky have the same length of step, and they are required to take their steps simultane-
+ously (that is, Nikky and Byron will both step forward on their first steps at the same time, and this
+will continue for each step).
+Nikky and Byron start walking from one end of a soccer field. After s steps (1 ≤ s ≤ 10000),
+the gym teacher will blow the whistle. Your task is to figure out who has moved the farthest away
+from the starting position when the whistle is blown.
+
+Input Specification
+The input will be the 5 integers a, b, c, d, and s, each on a separate line.
+
+Output Specification
+The output of your program will be one of three possibilities: Nikky if Nikky is farther ahead
+after s steps are taken; Byron if Byron is farther ahead after s steps are taken; Tied if Byron and
+Nikky are at the same distance from their starting position after s steps are taken.
+
+Sample Input
+4
+2
+5
+3
+12
+
+Output for Sample Input
+Byron
+
+Explanation of Output for Sample Input
+Notice that after 12 steps, Nikky has moved 4 − 2 + 4 − 2 steps, for a total of 4 steps from the
+starting position, whereas Byron has moved 5 − 3 + 4 steps, for a total of 6 steps from the starting
+position. Thus, Byron is ahead.
+
+
+
+
+                                                   5
+</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>

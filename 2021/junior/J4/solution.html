@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2021 J4 · Arranging Books · CCC Solutions</title><link rel="stylesheet" href="../../../assets/site.css">
+<script src="../../../assets/language.js" defer></script></head><body><main>
+<header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
+<div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
+<h1>2021 J4 · Arranging Books</h1></header><p class="eyebrow">2021 / junior / J4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc21j4">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>LMMMS
+</pre></div><div><h3>样例输出</h3><pre>0
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Arranging Books
+
+
+Problem Description
+
+
+Valentina wants books on a shelf to be arranged in a particular way. Every time she sees a shelf of books, she rearranges the books so that
+all the large books appear on the left, followed by all the medium-sized
+books, and then all the small books on the right. She does this by
+repeatedly choosing any two books and exchanging their locations.
+Exchanging the locations of two books is called a
+ swap .
+
+
+Help Valentina determine the fewest number of swaps needed to arrange
+a shelf of books as she wishes.
+
+
+Input Specification
+
+
+The input will consist of exactly one line containing at least one
+character.
+
+
+The following table shows how the available 15 marks are
+distributed.
+
+
+
+ 
+ 
+ 7 marks 
+ at most  \(1000\)  characters 
+ each character will be
+ L  or  S 
+ 
+ 
+ 2 marks 
+ at most  \(500\,000\)  characters 
+ each character will be
+ L  or  S 
+ 
+ 
+ 4 marks 
+ at most  \(1000\)  characters 
+ each character will be
+ L ,  M , or
+ S 
+ 
+ 
+ 2 marks 
+ at most  \(500\,000\)  characters 
+ each character will be
+ L ,  M , or
+ S 
+ 
+ 
+
+
+
+Output Specification
+
+
+Output a single integer which is equal to the minimum possible number of
+swaps needed to arrange the books so that all occurrences of
+ L  come first, followed by all occurrences of
+ M , and then all occurrences of
+ S .
+
+
+Sample Input 1
+
+
+LMMMS
+
+
+Output for Sample Input 1
+
+
+0
+
+
+Explanation of Output for Sample Input 1
+
+
+The books are already arranged according to Valentina’s wishes.
+
+
+Sample Input 2
+
+
+LLSLM
+
+
+Output for Sample Input 2
+
+
+2
+
+
+Explanation of Output for Sample Input 2
+
+
+By swapping the  S  and
+ M , we end up with
+ LLMLS . Then the  M 
+can be swapped with the  L  to its right. This
+is one way to use two swaps to arrange the books as Valentina wants them
+to be. It is not possible to use fewer swaps because both
+ S  and  M  need to be
+moved but using one swap to exchange them does not leave the books
+arranged as Valentina wants them to be.
+</pre></details></section><section class="card"><h2>测试数据</h2><p>12 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j4.01.in">j4.01.in</a> / <a href="tests/j4.01.out">output</a></li><li><a href="tests/j4.02.in">j4.02.in</a> / <a href="tests/j4.02.out">output</a></li><li><a href="tests/j4.03.in">j4.03.in</a> / <a href="tests/j4.03.out">output</a></li><li><a href="tests/j4.04.in">j4.04.in</a> / <a href="tests/j4.04.out">output</a></li><li><a href="tests/j4.05.in">j4.05.in</a> / <a href="tests/j4.05.out">output</a></li><li><a href="tests/j4.06.in">j4.06.in</a> / <a href="tests/j4.06.out">output</a></li><li><a href="tests/j4.07.in">j4.07.in</a> / <a href="tests/j4.07.out">output</a></li><li><a href="tests/j4.08.in">j4.08.in</a> / <a href="tests/j4.08.out">output</a></li><li><a href="tests/j4.09.in">j4.09.in</a> / <a href="tests/j4.09.out">output</a></li><li><a href="tests/j4.10.in">j4.10.in</a> / <a href="tests/j4.10.out">output</a></li><li><a href="tests/j4.sample.01.in">j4.sample.01.in</a> / <a href="tests/j4.sample.01.out">output</a></li><li><a href="tests/j4.sample.02.in">j4.sample.02.in</a> / <a href="tests/j4.sample.02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc21j4">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>LMMMS
+</pre></div><div><h3>Sample output</h3><pre>0
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Arranging Books
+
+
+Problem Description
+
+
+Valentina wants books on a shelf to be arranged in a particular way. Every time she sees a shelf of books, she rearranges the books so that
+all the large books appear on the left, followed by all the medium-sized
+books, and then all the small books on the right. She does this by
+repeatedly choosing any two books and exchanging their locations.
+Exchanging the locations of two books is called a
+ swap .
+
+
+Help Valentina determine the fewest number of swaps needed to arrange
+a shelf of books as she wishes.
+
+
+Input Specification
+
+
+The input will consist of exactly one line containing at least one
+character.
+
+
+The following table shows how the available 15 marks are
+distributed.
+
+
+
+ 
+ 
+ 7 marks 
+ at most  \(1000\)  characters 
+ each character will be
+ L  or  S 
+ 
+ 
+ 2 marks 
+ at most  \(500\,000\)  characters 
+ each character will be
+ L  or  S 
+ 
+ 
+ 4 marks 
+ at most  \(1000\)  characters 
+ each character will be
+ L ,  M , or
+ S 
+ 
+ 
+ 2 marks 
+ at most  \(500\,000\)  characters 
+ each character will be
+ L ,  M , or
+ S 
+ 
+ 
+
+
+
+Output Specification
+
+
+Output a single integer which is equal to the minimum possible number of
+swaps needed to arrange the books so that all occurrences of
+ L  come first, followed by all occurrences of
+ M , and then all occurrences of
+ S .
+
+
+Sample Input 1
+
+
+LMMMS
+
+
+Output for Sample Input 1
+
+
+0
+
+
+Explanation of Output for Sample Input 1
+
+
+The books are already arranged according to Valentina’s wishes.
+
+
+Sample Input 2
+
+
+LLSLM
+
+
+Output for Sample Input 2
+
+
+2
+
+
+Explanation of Output for Sample Input 2
+
+
+By swapping the  S  and
+ M , we end up with
+ LLMLS . Then the  M 
+can be swapped with the  L  to its right. This
+is one way to use two swaps to arrange the books as Valentina wants them
+to be. It is not possible to use fewer swaps because both
+ S  and  M  need to be
+moved but using one swap to exchange them does not leave the books
+arranged as Valentina wants them to be.
+</pre></details></section><section class="card"><h2>Test data</h2><p>12 bundled cases · Full official test data</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/j4.01.in">j4.01.in</a> / <a href="tests/j4.01.out">output</a></li><li><a href="tests/j4.02.in">j4.02.in</a> / <a href="tests/j4.02.out">output</a></li><li><a href="tests/j4.03.in">j4.03.in</a> / <a href="tests/j4.03.out">output</a></li><li><a href="tests/j4.04.in">j4.04.in</a> / <a href="tests/j4.04.out">output</a></li><li><a href="tests/j4.05.in">j4.05.in</a> / <a href="tests/j4.05.out">output</a></li><li><a href="tests/j4.06.in">j4.06.in</a> / <a href="tests/j4.06.out">output</a></li><li><a href="tests/j4.07.in">j4.07.in</a> / <a href="tests/j4.07.out">output</a></li><li><a href="tests/j4.08.in">j4.08.in</a> / <a href="tests/j4.08.out">output</a></li><li><a href="tests/j4.09.in">j4.09.in</a> / <a href="tests/j4.09.out">output</a></li><li><a href="tests/j4.10.in">j4.10.in</a> / <a href="tests/j4.10.out">output</a></li><li><a href="tests/j4.sample.01.in">j4.sample.01.in</a> / <a href="tests/j4.sample.01.out">output</a></li><li><a href="tests/j4.sample.02.in">j4.sample.02.in</a> / <a href="tests/j4.sample.02.out">output</a></li></ul></details></section></div>
+<footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
+</main></body></html>
