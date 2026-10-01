@@ -55,7 +55,7 @@ def main():
             longest = max(longest, perf_counter() - started)
         result = {"problem": name, "cases": len(cases), "failures": failures, "max_wall_seconds": round(longest, 4)}
         results.append(result)
-        print(f"{name}: {len(cases) - len(failures)}/{len(cases)} passed", flush=True)
+        print(f"{name}: {max(0, len(cases) - len(failures))}/{len(cases)} passed", flush=True)
         for failure in failures:
             print(f"  {failure}", flush=True)
     if args.report:

@@ -1,0 +1,49 @@
+{
+  "title": "Speed fines are not fine!",
+  "zh": {
+    "summary": "用汽车速度减去限速得到超速值，再根据超速范围输出罚款；速度没有超过限速时，输出祝贺信息。",
+    "topics": [
+      "比较整数：速度差小于或等于 0 表示没有超速；正数表示超过限速。",
+      "分段判断：把超速值分成 1–20、21–30、31 及以上三个范围，每个范围对应一种罚款。",
+      "有序条件：从较小的上限开始判断，满足一个范围后就不再检查后面的范围。"
+    ],
+    "steps": [
+      "读取限速 limit 和记录速度 speed。",
+      "计算 over = speed - limit。例如限速 100、速度 121 时，over 是 21。",
+      "如果 over 小于或等于 0，输出限速内的信息；否则，依次检查 over 是否不超过 20、不超过 30，或更大，并输出对应的 100、270 或 500 美元罚款。",
+      "输出题目要求的完整句子和标点。"
+    ],
+    "example": "限速为 100、记录速度为 121 时，超速值是 121 - 100 = 21。21 不超过 20 的条件不成立，但不超过 30，所以罚款是 270 美元。",
+    "correctness": "超速值 over 等于实际速度减限速，所以它准确表示超过限速多少。所有整数 over 都只会落入一个已检查范围：小于或等于 0、1 到 20、21 到 30、或至少 31。程序为每个范围输出题目规定的信息，因此不会漏判或把一个速度放入两个罚款档。",
+    "complexity": "程序只做固定次数的减法和比较，所以运行时间是 O(1)。O(1) 表示输入数字变大时，工作量仍不会增加。额外空间也是 O(1)，因为只保存限速、速度和差值这几个数字。",
+    "pitfalls": [
+      "先算 speed - limit；不要把限速和实际速度相减反了。",
+      "等于限速时没有超速；超速 20、21、30、31 时分别要落入正确的一侧。",
+      "输出的英文句子、美元符号、数字和句号都要符合格式。",
+      "原 PDF 的会话有输入提示；自动评测只输出规定的结果句子，不输出这些提示。"
+    ]
+  },
+  "en": {
+    "summary": "Subtract the speed limit from the recorded speed, then print the fine for that amount of speeding. If the speed is at or below the limit, print the congratulatory message.",
+    "topics": [
+      "Comparing integers: a speed difference at most 0 means no speeding; a positive difference means the car is over the limit.",
+      "Range checks: split positive differences into 1–20, 21–30, and 31 or more, with one fine for each range.",
+      "Ordered conditions: check from the smaller upper limit upward; after one range matches, the later ranges are skipped."
+    ],
+    "steps": [
+      "Read the speed limit and recorded speed.",
+      "Calculate over = speed - limit. For example, a limit of 100 and a speed of 121 give over = 21.",
+      "If over is at most 0, print the within-limit message. Otherwise, check whether over is at most 20, at most 30, or larger, and print the corresponding 100, 270, or 500 dollar fine.",
+      "Print the complete required sentence with its punctuation."
+    ],
+    "example": "With a limit of 100 and a recorded speed of 121, the difference is 121 - 100 = 21. It is not at most 20, but it is at most 30, so the fine is $270.",
+    "correctness": "The value over is the recorded speed minus the limit, so it gives exactly how far above the limit the car is. Every integer over belongs to exactly one checked range: at most 0, 1 through 20, 21 through 30, or at least 31. The program prints the required message for that range, so no speed is missed or assigned two fines.",
+    "complexity": "The program performs a fixed number of subtractions and comparisons, so its running time is O(1). O(1) means the work does not grow when the input numbers grow. Extra space is also O(1), because only the limit, speed, and difference are stored.",
+    "pitfalls": [
+      "Calculate speed - limit first; reversing the subtraction gives the wrong difference.",
+      "A speed equal to the limit is not speeding. Differences of 20, 21, 30, and 31 belong on specific sides of the boundaries.",
+      "Match the required English sentence, dollar sign, amount, and period exactly.",
+      "The original PDF sessions show input prompts. For automated judging, print only the required result sentence without prompts."
+    ]
+  }
+}

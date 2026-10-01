@@ -34,7 +34,7 @@ def main():
             if not case.with_suffix(".out").exists():
                 raise ValueError(f"Missing expected answer: {case}")
         checker = "standard"
-        if name in {"2019/junior/J5", "2019/senior/S2"}:
+        if name in {"2012/junior/J3", "2019/junior/J5", "2019/senior/S2"}:
             checker = "checker.py"
             (problem_dir / checker).write_text(
                 'import sys\nsys.path.insert(0, "/repo/tools")\nfrom checkers import check_output\n'

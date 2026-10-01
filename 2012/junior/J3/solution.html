@@ -4,7 +4,26 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2012 J3 · Icon Scaling</h1></header><p class="eyebrow">2012 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Icon Scaling
+<h1>2012 J3 · Icon Scaling</h1></header><p class="eyebrow">2012 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j3">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>把给定的 3×3 字符图标放大 k 倍：每个字符横向重复 k 次，每个原始行再重复 k 次。</p></section><section class="card"><h2>考查知识点</h2><ul><li>字符串重复：Python 中 char * k 会把字符复制 k 次，例如 &#x27;x&#x27; * 3 得到 xxx。</li><li>逐行处理：图标的三行内容固定，可以按顺序分别放大。</li><li>嵌套循环：内层重复字符，外层重复整行，让每个格子扩展成 k×k 个相同字符。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>读取正整数 k，并保存原始三行：*x*、空格后接 xx、以及 * 空格 *。</li><li>对每个原始字符，把它重复 k 次并连接起来，得到放大后的单行。</li><li>把放大后的单行输出 k 次。每个原始行因此变成 k 行。</li><li>依次处理三行后，总输出行数为 3k；每行宽度也为 3k 个字符。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>当 k=2 时，原始第一行 *x* 先变成 **xx**，然后输出两次。原始第二行开头的空格也要重复两次，所以放大后是两个空格再接四个 x。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>程序按原图的顺序处理每一行，并把行内的每个字符恰好重复 k 次，所以输出行保留了原图的横向形状。每个放大后的行又恰好输出 k 次，因此原图中的每一行占 k 行，三个原始行共得到 3k 行；字符与空格都被一致放大。</p></section><section class="card"><h2>运行时间与内存</h2><p>输出有 3k 行，每行 3k 个字符，总共约 9k² 个字符，因此运行时间是 O(k²)：k 翻倍时，输出字符数约变成四倍。额外空间是 O(k)，因为程序一次只构造一行放大结果，长度为 3k；输出本身不计入额外空间。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>中间一行开头有空格；不要把它删掉。</li><li>每个原始行都要连续输出 k 次，而不只是重复整张图 k 次。</li><li>输入保证 k 为正数且小于 25，所以最大 k 是 24。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+k = int(sys.stdin.read())
+icon = (&quot;*x*&quot;, &quot; xx&quot;, &quot;* *&quot;)
+
+for row in icon:
+    scaled = &quot;&quot;.join(char * k for char in row)
+    for _ in range(k):
+        print(scaled)
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3
+</pre></div><div><h3>样例输出</h3><pre>***xxx***
+***xxx***
+***xxx***
+   xxxxxx
+   xxxxxx
+   xxxxxx
+***   ***
+***   ***
+***   ***
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Icon Scaling
 Problem Description
 You have been asked to take a small icon that appears on the screen of a smart telephone and scale
 it up so it looks bigger on a regular computer screen.
@@ -43,7 +62,26 @@ Output for Sample Input
 
 
                                                  6
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Icon Scaling
+</pre></details></section><section class="card"><h2>测试数据</h2><p>3 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j3">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Enlarge the given 3 by 3 character icon by a factor of k: repeat each character k times horizontally, then repeat each original row k times.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>String repetition: in Python, char * k copies a character k times; for example, &#x27;x&#x27; * 3 becomes xxx.</li><li>Processing rows: the icon has three fixed rows, which can be enlarged one at a time in order.</li><li>Nested loops: the inner work repeats each character, and the outer work repeats the full row, expanding each cell into k by k copies.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Read the positive integer k and store the original rows: *x*, a space followed by xx, and * space *.</li><li>For each original character, repeat it k times and join the pieces to make one enlarged row.</li><li>Print that enlarged row k times. Each original row now occupies k rows.</li><li>After processing all three rows, the output has 3k lines, each containing 3k characters.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>When k=2, the first original row *x* becomes **xx**, which is printed twice. The leading space in the second original row must also be repeated twice, so the enlarged row starts with two spaces followed by four x characters.</p></section><section class="card"><h2>Why does this work?</h2><p>The program processes the original rows in order and repeats each character exactly k times, so every output row preserves the original horizontal shape. It then prints each enlarged row exactly k times, making each original row occupy k lines. The three original rows therefore produce 3k lines, with spaces enlarged just like visible characters.</p></section><section class="card"><h2>Time and memory</h2><p>There are 3k output lines with 3k characters each, for about 9k² characters total, so the running time is O(k²): doubling k makes about four times as many characters. Extra space is O(k), because the program constructs one enlarged row at a time, with 3k characters; the output itself is not counted as extra space.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>The middle row begins with a space; keep it in the output.</li><li>Print each original row k consecutive times; do not repeat only the whole picture k times.</li><li>The input guarantees that k is positive and less than 25, so the largest value is 24.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+k = int(sys.stdin.read())
+icon = (&quot;*x*&quot;, &quot; xx&quot;, &quot;* *&quot;)
+
+for row in icon:
+    scaled = &quot;&quot;.join(char * k for char in row)
+    for _ in range(k):
+        print(scaled)
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3
+</pre></div><div><h3>Sample output</h3><pre>***xxx***
+***xxx***
+***xxx***
+   xxxxxx
+   xxxxxx
+   xxxxxx
+***   ***
+***   ***
+***   ***
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Icon Scaling
 Problem Description
 You have been asked to take a small icon that appears on the screen of a smart telephone and scale
 it up so it looks bigger on a regular computer screen.
@@ -82,6 +120,6 @@ Output for Sample Input
 
 
                                                  6
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>3 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

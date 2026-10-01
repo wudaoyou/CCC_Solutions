@@ -4,7 +4,66 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2012 S4 · A Coin Game</h1></header><p class="eyebrow">2012 / senior / S4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12s4">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S4: A Coin Game
+<h1>2012 S4 · A Coin Game</h1></header><p class="eyebrow">2012 / senior / S4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12s4">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>给定 n≤7 枚面值各不相同的硬币，每次只能把一堆最上面的硬币移到相邻位置，且不能把面值大的币放在面值小的币上。求排成 1、2、…、n 的最少步数，或判断无法完成。输入包含多局，以 0 结束。</p></section><section class="card"><h2>考查知识点</h2><ul><li>状态是游戏在某一刻的完整摆法，包括空位置和每堆硬币。例如 [3] | [1,2] | [] 表示三处位置，其中 1 在 2 上面，第三处为空。每堆必须从上到下由小到大，因此只需记录各硬币所在的位置，就能恢复堆的顺序。</li><li>把硬币 1、2、…、n 在程序中编号为 0、1、…、n−1，把位置也编号为 0、1、…、n−1。设第 c 枚硬币的位置是 p[c]，用整数 sum(p[c]×n^c) 保存整个状态。例如 n=3 时，[3] | [2] | [1] 的位置数字为 p=[2,1,0]，编码为 2+1×3+0×9=5；目标的 p=[0,1,2]，编码为 21。这像十进制用个位、十位、百位存数字，只是这里用 n 的幂。n=1 时只有一个状态，编码为 0。</li><li>图可以表示所有摆法：每个状态是一个点，一次合法移动是一条边。广度优先搜索（BFS）先找一步可到的状态，再找两步可到的状态，依次向外扩展；先进先出的队列保证这个顺序，因此第一次到达某个状态时，得到的就是最少步数。</li><li>合法移动可以撤回：移动的是小币，原来压在它下面的硬币一定更大或不存在，所以把它移回仍合法。因此从目标反向搜索，得到的距离也正是从各起点到目标的最少步数。同一个 n 的所有输入可以共享一张距离表。</li><li>状态压缩是用一个紧凑的值保存本来较复杂的数据。每枚硬币都有 n 个位置可选，所以共有 n^n 个位置编码；n=7 时是 823543 个。用整数数组按编码直接查距离，比给每个状态保存一套列表更省内存。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>对第一次遇到的 n 建立距离表，所有项先标记为 −1，表示未访问。目标是第 c 枚硬币位于位置 c，把它的距离设为 0 并放进队列。</li><li>从队列取出一个状态，用 divmod(remaining,n) 依次取出各硬币的位置数字。按硬币从小到大的顺序处理，每个位置遇到的第一枚硬币就是该堆的顶币。空位置的顶币记作 n，这个记号比所有真正的硬币编号都大。</li><li>查看每一对相邻位置。若左顶币较小，只能把它移到右边；若右顶币较小，只能把它移到左边；若两个位置都空，就没有移动。不能移动被压住的币，也不能跳过一个位置。</li><li>第 c 枚硬币向右移一格，编码增加 n^c；向左移一格，编码减少 n^c。其他硬币的位置数字不变，因此不必重新建立整个状态。</li><li>若新状态的距离还是 −1，把它记为当前距离加 1，并加入队列。直到队列为空，就找完了所有能到达目标的状态；保存这张表供同样 n 的后续输入使用。</li><li>将输入中位置 p 上的硬币值 v 编码为 p×n^(v−1)，累加后查表。查到 −1 就输出 IMPOSSIBLE，否则输出距离。读到单独的 0 就结束。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>样例 [3] | [2] | [1] 的一种开头是：[3] | [1,2] | []，再到 [1,3] | [2] | []。第一步把 1 左移到 2 上，第二步再把 1 左移到 3 上；每一步都只移动顶币到相邻位置，且小币放在大币上。BFS 不猜哪一步最好，而是逐层考虑所有合法选择；从目标搜索到这一起点的层数是 20，所以输出 20。</p><p>另一个样例 n=2，起点 [2] | [1] 只能变成 [1,2] | []。此时 2 被 1 压住，唯一移动是把 1 移回。这个由两个状态组成的小圈到不了 [1] | [2]，所以输出 IMPOSSIBLE。已经按升序排好的输入与目标相同，距离为 0。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>首先，任何合法堆都从上到下由小到大，所以各硬币的位置唯一决定整个摆法；反过来，任意位置分配按这个顺序堆好都会形成合法状态。因此位置编码没有合并不同摆法，也不会遗漏合法摆法。</p><p>其次，扫描硬币时先遇到的就是各堆最小的顶币。对一对相邻位置，若顶币大小不同，只有较小的顶币可以移到另一堆；空堆的记号 n 使移入空位也包含在这个规则中。两个位置都空时不能移动。因此程序生成的邻居恰好是全部合法的一步移动，且编码加减只改变移动硬币的位置。</p><p>再次，每次移动都能原路撤回，所以从起点到目标的任意路径反过来就是从目标到起点的等长路径，两方向的最短距离相同。BFS 按距离从小到大取出状态；距离为 d 的状态产生距离为 d+1 的邻居，第一次发现某状态前，不会遗漏更短路径。因此距离表中的非负值都是到目标的最少步数。队列耗尽后仍为 −1 的状态与目标不连通，也就确实无解。查表输出由此满足题目要求。</p></section><section class="card"><h2>运行时间与内存</h2><p>对于一个固定的 n，共有 n^n 个可能状态。每次取出状态要扫描 n 枚硬币和 n−1 对相邻位置，时间为 O(n×n^n)，距离表与队列占 O(n^n) 空间。n=7 时最多处理 823543 个状态，每个只扫描 7 枚币和 6 对相邻位置；32 位整数距离数组约占 3.14 MiB，队列还会占一些内存。</p><p>同一个 n 只搜索一次，随后每局的编码和查表只需 O(n) 时间。若输入总共有 L 个整数，总时间为 O(L+各个不同 n 的 n×n^n 之和)，空间为 O(L+各个不同 n 的 n^n 之和)，其中 L 项来自一次读取整个输入。n=1 到 7 的全部距离表共有 873612 项，约 3.33 MiB；搜索只需保存当前一个队列。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>空位置仍然存在。不能把位置删掉、让硬币跨过空位，或增加新位置。</li><li>只可移动顶币，且只能放在更大的币上或空位；把硬币当成普通相邻交换会改变游戏规则。</li><li>不能仅凭摆法是否“看起来更接近排序”决定移动，否则会漏掉绕路才能完成的最短解。</li><li>实际硬币值为 1 到 n，编码中的硬币编号为值减 1；位置编号从 0 开始。两者不要混淆。</li><li>距离 0 表示已经完成；−1 才表示未能到达目标。把 0 当作未访问会误判目标状态。</li><li>不能断言所有起点都有解，n=2 的倒序就是反例。按 n 共享反向搜索表，也避免多局输入时重复进行大搜索。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>from array import array
+from collections import deque
+import sys
+
+
+def distances_from_goal(count):
+    powers = [count ** coin for coin in range(count)]
+    goal = sum(coin * powers[coin] for coin in range(count))
+    distances = array(&#x27;i&#x27;, [-1]) * (count ** count)
+    distances[goal] = 0
+    queue = deque([goal])
+    while queue:
+        state = queue.popleft()
+        top = [count] * count
+        remaining = state
+        # Coin 0 is the smallest; each base-count digit stores its position.
+        for coin in range(count):
+            remaining, position = divmod(remaining, count)
+            if top[position] == count:
+                top[position] = coin
+        steps = distances[state] + 1
+        for position in range(count - 1):
+            left, right = top[position], top[position + 1]
+            if left &lt; right:
+                neighbor = state + powers[left]
+            elif right &lt; left:
+                neighbor = state - powers[right]
+            else:
+                continue
+            if distances[neighbor] == -1:
+                distances[neighbor] = steps
+                queue.append(neighbor)
+    return distances
+
+
+def main():
+    numbers = iter(map(int, sys.stdin.buffer.read().split()))
+    tables = {}
+    for count in numbers:
+        if count == 0:
+            break
+        order = [next(numbers) for _ in range(count)]
+        if count not in tables:
+            tables[count] = distances_from_goal(count)
+        state = sum(position * count ** (coin - 1)
+                    for position, coin in enumerate(order))
+        distance = tables[count][state]
+        print(&#x27;IMPOSSIBLE&#x27; if distance == -1 else distance)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3
+3 2 1
+2
+2 1
+0
+</pre></div><div><h3>样例输出</h3><pre>20
+IMPOSSIBLE
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S4: A Coin Game
 Problem Description
 When she is bored, Jo Coder likes to play the following game with coins on a table. She takes a set
 of distinct coins and lines them up in a row. For example, let us say that she has a penny (P, worth
@@ -77,7 +136,66 @@ IMPOSSIBLE
 
 
                                                    8
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12s4">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S4: A Coin Game
+</pre></details></section><section class="card"><h2>测试数据</h2><p>4 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12s4">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>There are n≤7 coins with distinct values. A move takes the top coin of a stack to an adjacent position, and a higher-value coin cannot go on a lower-value coin. Find the fewest moves to arrange 1,2,…,n, or report that it is impossible. Several games are given, ending with 0.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>A state is the complete arrangement at one moment, including empty positions and the stacks. For example, [3] | [1,2] | [] has coin 1 above coin 2 and an empty third position. Every stack must increase from top to bottom, so recording each coin&#x27;s position also determines the order within its stack.</li><li>Number both the coins and the positions from 0 to n−1 in the program. If p[c] is coin c&#x27;s position, encode the state as sum(p[c]×n^c). For n=3, [3] | [2] | [1] has position digits p=[2,1,0], giving 2+1×3+0×9=5. The goal has p=[0,1,2], giving 21. This works like decimal place values, except that the place values are powers of n. When n=1 there is only one state, encoded as 0.</li><li>A graph represents the arrangements: each state is a vertex and each legal move is an edge. Breadth-first search (BFS) explores states one move away, then two moves away, and so on. A first-in, first-out queue preserves this order, so the first visit to a state gives its minimum move count.</li><li>Every legal move can be undone. The coin that was underneath the moved coin is larger, or the source is empty, so moving the small coin back remains legal. Searching backward from the goal therefore finds the same minimum distances as searching toward it. All games with the same n can share one table.</li><li>State compression stores a complicated arrangement in a compact value. Each of n coins has n possible positions, giving n^n encodings: 823543 when n=7. An integer array indexed by the encoding stores distances without keeping a separate collection of stacks for every state.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>When a coin count n first appears, create a distance table filled with −1, meaning unvisited. In the goal, coin c is at position c. Set its distance to 0 and put it in the queue.</li><li>Remove a state from the queue. Repeated divmod(remaining,n) extracts the position digits. Visit coins from smallest to largest; the first coin found at a position is that stack&#x27;s top coin. Use n as the top-coin marker for an empty position, since it is larger than every real coin index.</li><li>Inspect each pair of adjacent positions. If the left top coin is smaller, it can move right. If the right top coin is smaller, it can move left. If both positions are empty, there is no move. Buried coins cannot move, and no move can skip a position.</li><li>Moving coin c one position right adds n^c to the encoding; moving it left subtracts n^c. All other position digits remain unchanged, so the complete state need not be rebuilt.</li><li>If the new state&#x27;s distance is −1, record the current distance plus 1 and enqueue it. When the queue is empty, all states that can reach the goal have been found. Cache this table for later games with the same n.</li><li>For each input coin value v at position p, add p×n^(v−1) to the starting-state encoding. Look up its distance. Print IMPOSSIBLE for −1 and otherwise print the distance. Stop when the next coin count is 0.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>One opening from the sample [3] | [2] | [1] is [3] | [1,2] | [], followed by [1,3] | [2] | []. The first move places 1 on 2; the second moves 1 onto 3. Both moves take a top coin to an adjacent position and place a smaller coin above a larger one. BFS does not guess the best next move: it considers all legal choices in distance layers. The sample&#x27;s start is reached in layer 20 from the goal, so its answer is 20.</p><p>For n=2, [2] | [1] can only become [1,2] | []. Coin 2 is then buried under 1, and the only move returns 1 to its original position. These two states cannot reach [1] | [2], so the answer is IMPOSSIBLE. An already sorted input is the goal itself and has distance 0.</p></section><section class="card"><h2>Why does this work?</h2><p>First, every legal stack increases from top to bottom, so the positions of its coins uniquely determine their order. Conversely, any assignment of coins to positions can be stacked in that order to form a legal state. Thus the encoding neither merges different arrangements nor omits legal ones.</p><p>Second, processing coins from smallest to largest identifies the top coin at every position. For adjacent positions with different top coins, only the smaller top coin can move onto the other stack. The empty marker n also permits moving into an empty position, while two empty positions permit no move. The generated neighbors are therefore exactly all legal one-move states. Adding or subtracting a place value changes only the moved coin&#x27;s position.</p><p>Third, every move is reversible, so any path from a start to the goal can be reversed into an equally long path from the goal to that start. The minimum distances in both directions are equal. BFS removes states in increasing distance order. A state at distance d discovers neighbors at distance d+1, and no shorter path can have been missed before a state&#x27;s first visit. Every recorded nonnegative distance is consequently the minimum number of moves to the goal. When the queue is exhausted, a state still marked −1 is disconnected from the goal and really is impossible. Looking up the starting state therefore gives exactly the required answer.</p></section><section class="card"><h2>Time and memory</h2><p>For a fixed n there are n^n possible states. Processing one state scans n coins and n−1 adjacent pairs, giving O(n×n^n) time and O(n^n) space for distances and the queue. At n=7, there are at most 823543 states, each requiring scans of only 7 coins and 6 adjacent pairs. Its 32-bit distance array uses about 3.14 MiB, with additional memory for the queue.</p><p>Each n is searched only once; a later game needs O(n) time to encode and look up its start. If the input contains L integers, total time is O(L+the sum of n×n^n over distinct input counts) and space is O(L+the sum of n^n over those counts). The L term comes from reading the whole input at once. All tables for n=1 through 7 contain 873612 entries, about 3.33 MiB, and only one search queue is kept at a time.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Empty positions still exist. Do not remove them, let a coin jump across them, or create new positions.</li><li>Only top coins move, and they can land only on larger coins or empty positions. Treating a move as an ordinary adjacent swap changes the game.</li><li>Choosing only moves that seem closer to sorted order can miss necessary detours and the shortest solution.</li><li>Input coin values run from 1 to n, but encoded coin indices are value minus 1. Position indices start at 0; keep these roles distinct.</li><li>Distance 0 means already solved; −1 means unreachable. Using 0 as the unvisited marker would mishandle the goal.</li><li>Some starting orders are impossible: the reversed n=2 case is a counterexample. Cache the reverse-search table by n to avoid repeating a large search for every game.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>from array import array
+from collections import deque
+import sys
+
+
+def distances_from_goal(count):
+    powers = [count ** coin for coin in range(count)]
+    goal = sum(coin * powers[coin] for coin in range(count))
+    distances = array(&#x27;i&#x27;, [-1]) * (count ** count)
+    distances[goal] = 0
+    queue = deque([goal])
+    while queue:
+        state = queue.popleft()
+        top = [count] * count
+        remaining = state
+        # Coin 0 is the smallest; each base-count digit stores its position.
+        for coin in range(count):
+            remaining, position = divmod(remaining, count)
+            if top[position] == count:
+                top[position] = coin
+        steps = distances[state] + 1
+        for position in range(count - 1):
+            left, right = top[position], top[position + 1]
+            if left &lt; right:
+                neighbor = state + powers[left]
+            elif right &lt; left:
+                neighbor = state - powers[right]
+            else:
+                continue
+            if distances[neighbor] == -1:
+                distances[neighbor] = steps
+                queue.append(neighbor)
+    return distances
+
+
+def main():
+    numbers = iter(map(int, sys.stdin.buffer.read().split()))
+    tables = {}
+    for count in numbers:
+        if count == 0:
+            break
+        order = [next(numbers) for _ in range(count)]
+        if count not in tables:
+            tables[count] = distances_from_goal(count)
+        state = sum(position * count ** (coin - 1)
+                    for position, coin in enumerate(order))
+        distance = tables[count][state]
+        print(&#x27;IMPOSSIBLE&#x27; if distance == -1 else distance)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3
+3 2 1
+2
+2 1
+0
+</pre></div><div><h3>Sample output</h3><pre>20
+IMPOSSIBLE
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S4: A Coin Game
 Problem Description
 When she is bored, Jo Coder likes to play the following game with coins on a table. She takes a set
 of distinct coins and lines them up in a row. For example, let us say that she has a penny (P, worth
@@ -150,6 +268,6 @@ IMPOSSIBLE
 
 
                                                    8
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>4 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

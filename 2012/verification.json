@@ -1,0 +1,283 @@
+{
+  "judge": "DMOJ judge-server",
+  "judge_commit": "5ef74c5d6cad9efb2e86a5bb8ff2c90aaa6e435c",
+  "executor": "PY3",
+  "results": [
+    {
+      "problem": "2012/junior/J1",
+      "cases": 6,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.025,
+          "peak_memory_kib": 10588
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10588
+        },
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10588
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10588
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10588
+        },
+        {
+          "cpu_seconds": 0.021,
+          "wall_seconds": 0.025,
+          "peak_memory_kib": 10588
+        }
+      ],
+      "solution_sha256": "a9f01f288303e1a509eb9b8de728d0d704357a2915c36a8f4af16c0bd7929303",
+      "lesson_sha256": "538e5c2e5731a6966fc049f99979e572bba820bd6d3276f2df6f522e39ce498e"
+    },
+    {
+      "problem": "2012/junior/J2",
+      "cases": 5,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.022,
+          "wall_seconds": 0.027,
+          "peak_memory_kib": 10592
+        },
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.025,
+          "peak_memory_kib": 10592
+        },
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10592
+        },
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10592
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10592
+        }
+      ],
+      "solution_sha256": "043c1e774c3b4a2c98cff2b02195f638cc7843fca6e9cbfc77ca935ff6078fe6",
+      "lesson_sha256": "6065170d6dd78b53d0e1c604d1d84fcd4b4e2c881e9ef6c22965d6da10f89164"
+    },
+    {
+      "problem": "2012/junior/J3",
+      "cases": 3,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.022,
+          "wall_seconds": 0.027,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10584
+        }
+      ],
+      "solution_sha256": "73a957962a0cbe6cf63e5ddb8e0401c36ec328f15d6c5537cadda1c973beb428",
+      "lesson_sha256": "45efc7d70b7e2bbd3083183b492d4b2267170f3956e3b0709bd42fa6eccc62da"
+    },
+    {
+      "problem": "2012/junior/J4",
+      "cases": 4,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.025,
+          "peak_memory_kib": 10596
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10596
+        },
+        {
+          "cpu_seconds": 0.018,
+          "wall_seconds": 0.022,
+          "peak_memory_kib": 10596
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10596
+        }
+      ],
+      "solution_sha256": "3d90df9eaee87b4cd4c05df029b8ac375f7a9a7979af2d74fce0129bf825c372",
+      "lesson_sha256": "2a57b76f9c01353e61d3b3604b4b715367e28ca18dc15057aa3214000f28dc45"
+    },
+    {
+      "problem": "2012/senior/S1",
+      "cases": 7,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.028,
+          "wall_seconds": 0.036,
+          "peak_memory_kib": 10704
+        },
+        {
+          "cpu_seconds": 0.027,
+          "wall_seconds": 0.033,
+          "peak_memory_kib": 10704
+        },
+        {
+          "cpu_seconds": 0.06,
+          "wall_seconds": 0.075,
+          "peak_memory_kib": 10704
+        },
+        {
+          "cpu_seconds": 0.027,
+          "wall_seconds": 0.033,
+          "peak_memory_kib": 10704
+        },
+        {
+          "cpu_seconds": 0.021,
+          "wall_seconds": 0.026,
+          "peak_memory_kib": 10704
+        },
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.025,
+          "peak_memory_kib": 10704
+        },
+        {
+          "cpu_seconds": 0.022,
+          "wall_seconds": 0.027,
+          "peak_memory_kib": 10704
+        }
+      ],
+      "solution_sha256": "9aa58e811bf5547f315224b3b0636cd6c4f2a2bf080d70d7be0d295411ce93f9",
+      "lesson_sha256": "1c18f48e2a97f816daa8bc6f8a068f287215f84975b6fc68fa376e47bbd60546"
+    },
+    {
+      "problem": "2012/senior/S4",
+      "cases": 4,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.783,
+          "wall_seconds": 0.788,
+          "peak_memory_kib": 15008
+        },
+        {
+          "cpu_seconds": 0.021,
+          "wall_seconds": 0.025,
+          "peak_memory_kib": 10888
+        },
+        {
+          "cpu_seconds": 0.745,
+          "wall_seconds": 0.749,
+          "peak_memory_kib": 15060
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10888
+        }
+      ],
+      "solution_sha256": "113317366c3745bf924e381d592f3bd2a513537cabbd104aeeeb4526247bcf40",
+      "lesson_sha256": "69cd7171959a8a16bd24d18b778ee7102c04191e777bdb62294fb0c313acf6e0"
+    }
+  ],
+  "verified_on": "2026-10-01",
+  "coverage_note": {
+    "zh": "本年已收录的 Junior J1–J4 和 Senior S1、S4；Junior J5 引用 Senior S4。用例为官方样例与独立核对的本地边界。完整官方数据未取得，未在线提交。",
+    "en": "Covers the collected Junior J1–J4 and Senior S1, S4; Junior J5 references Senior S4. Cases are official samples and independently checked local boundaries. Full official data has not been obtained; no online submissions were made."
+  },
+  "independent_checks": {
+    "J1_speed_differences": 81,
+    "J2_four_reading_sequences": 256,
+    "J3_all_scales_exact_spaces": 24,
+    "J4_key_position_letter_round_trips": 4680,
+    "S1_all_jersey_numbers": 99,
+    "S4_tuple_stack_states_N1_to_5": 3413,
+    "S4_N7_reverse_moves": 56
+  },
+  "independent_check_scripts": [
+    "senior/S1/tests/verify.py",
+    "senior/S4/tests/verify.py"
+  ]
+}

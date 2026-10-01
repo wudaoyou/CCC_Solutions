@@ -1,0 +1,47 @@
+{
+  "title": "Icon Scaling",
+  "zh": {
+    "summary": "把给定的 3×3 字符图标放大 k 倍：每个字符横向重复 k 次，每个原始行再重复 k 次。",
+    "topics": [
+      "字符串重复：Python 中 char * k 会把字符复制 k 次，例如 'x' * 3 得到 xxx。",
+      "逐行处理：图标的三行内容固定，可以按顺序分别放大。",
+      "嵌套循环：内层重复字符，外层重复整行，让每个格子扩展成 k×k 个相同字符。"
+    ],
+    "steps": [
+      "读取正整数 k，并保存原始三行：*x*、空格后接 xx、以及 * 空格 *。",
+      "对每个原始字符，把它重复 k 次并连接起来，得到放大后的单行。",
+      "把放大后的单行输出 k 次。每个原始行因此变成 k 行。",
+      "依次处理三行后，总输出行数为 3k；每行宽度也为 3k 个字符。"
+    ],
+    "example": "当 k=2 时，原始第一行 *x* 先变成 **xx**，然后输出两次。原始第二行开头的空格也要重复两次，所以放大后是两个空格再接四个 x。",
+    "correctness": "程序按原图的顺序处理每一行，并把行内的每个字符恰好重复 k 次，所以输出行保留了原图的横向形状。每个放大后的行又恰好输出 k 次，因此原图中的每一行占 k 行，三个原始行共得到 3k 行；字符与空格都被一致放大。",
+    "complexity": "输出有 3k 行，每行 3k 个字符，总共约 9k² 个字符，因此运行时间是 O(k²)：k 翻倍时，输出字符数约变成四倍。额外空间是 O(k)，因为程序一次只构造一行放大结果，长度为 3k；输出本身不计入额外空间。",
+    "pitfalls": [
+      "中间一行开头有空格；不要把它删掉。",
+      "每个原始行都要连续输出 k 次，而不只是重复整张图 k 次。",
+      "输入保证 k 为正数且小于 25，所以最大 k 是 24。"
+    ]
+  },
+  "en": {
+    "summary": "Enlarge the given 3 by 3 character icon by a factor of k: repeat each character k times horizontally, then repeat each original row k times.",
+    "topics": [
+      "String repetition: in Python, char * k copies a character k times; for example, 'x' * 3 becomes xxx.",
+      "Processing rows: the icon has three fixed rows, which can be enlarged one at a time in order.",
+      "Nested loops: the inner work repeats each character, and the outer work repeats the full row, expanding each cell into k by k copies."
+    ],
+    "steps": [
+      "Read the positive integer k and store the original rows: *x*, a space followed by xx, and * space *.",
+      "For each original character, repeat it k times and join the pieces to make one enlarged row.",
+      "Print that enlarged row k times. Each original row now occupies k rows.",
+      "After processing all three rows, the output has 3k lines, each containing 3k characters."
+    ],
+    "example": "When k=2, the first original row *x* becomes **xx**, which is printed twice. The leading space in the second original row must also be repeated twice, so the enlarged row starts with two spaces followed by four x characters.",
+    "correctness": "The program processes the original rows in order and repeats each character exactly k times, so every output row preserves the original horizontal shape. It then prints each enlarged row exactly k times, making each original row occupy k lines. The three original rows therefore produce 3k lines, with spaces enlarged just like visible characters.",
+    "complexity": "There are 3k output lines with 3k characters each, for about 9k² characters total, so the running time is O(k²): doubling k makes about four times as many characters. Extra space is O(k), because the program constructs one enlarged row at a time, with 3k characters; the output itself is not counted as extra space.",
+    "pitfalls": [
+      "The middle row begins with a space; keep it in the output.",
+      "Print each original row k consecutive times; do not repeat only the whole picture k times.",
+      "The input guarantees that k is positive and less than 25, so the largest value is 24."
+    ]
+  }
+}

@@ -8,5 +8,10 @@
   "test_data": {
     "kind": "samples-and-local-edges",
     "note": "Full official test archive could not be located on the current CEMC site. sample-* cases are transcribed from the official PDF; edge-* cases are independently checked local cases."
+  },
+  "judge_statement_url": "https://dmoj.ca/problem/ccc12j1",
+  "judge_output_note": {
+    "zh": "原试卷会话包含交互提示；本解法与测试按 DMOJ 自动评测格式，只输出规定的结果句子。",
+    "en": "The paper sessions contain interactive prompts. This solution and its tests follow DMOJ automated judging and print only the required result sentences."
   }
 }

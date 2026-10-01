@@ -4,7 +4,23 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2012 J1 · Speed fines are not fine!</h1></header><p class="eyebrow">2012 / junior / J1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Speed fines are not fine!
+<h1>2012 J1 · Speed fines are not fine!</h1></header><p class="eyebrow">2012 / junior / J1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j1">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>用汽车速度减去限速得到超速值，再根据超速范围输出罚款；速度没有超过限速时，输出祝贺信息。</p></section><section class="card"><h2>考查知识点</h2><ul><li>比较整数：速度差小于或等于 0 表示没有超速；正数表示超过限速。</li><li>分段判断：把超速值分成 1–20、21–30、31 及以上三个范围，每个范围对应一种罚款。</li><li>有序条件：从较小的上限开始判断，满足一个范围后就不再检查后面的范围。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>读取限速 limit 和记录速度 speed。</li><li>计算 over = speed - limit。例如限速 100、速度 121 时，over 是 21。</li><li>如果 over 小于或等于 0，输出限速内的信息；否则，依次检查 over 是否不超过 20、不超过 30，或更大，并输出对应的 100、270 或 500 美元罚款。</li><li>输出题目要求的完整句子和标点。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>限速为 100、记录速度为 121 时，超速值是 121 - 100 = 21。21 不超过 20 的条件不成立，但不超过 30，所以罚款是 270 美元。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>超速值 over 等于实际速度减限速，所以它准确表示超过限速多少。所有整数 over 都只会落入一个已检查范围：小于或等于 0、1 到 20、21 到 30、或至少 31。程序为每个范围输出题目规定的信息，因此不会漏判或把一个速度放入两个罚款档。</p></section><section class="card"><h2>运行时间与内存</h2><p>程序只做固定次数的减法和比较，所以运行时间是 O(1)。O(1) 表示输入数字变大时，工作量仍不会增加。额外空间也是 O(1)，因为只保存限速、速度和差值这几个数字。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>先算 speed - limit；不要把限速和实际速度相减反了。</li><li>等于限速时没有超速；超速 20、21、30、31 时分别要落入正确的一侧。</li><li>输出的英文句子、美元符号、数字和句号都要符合格式。</li><li>原 PDF 的会话有输入提示；自动评测只输出规定的结果句子，不输出这些提示。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+limit, speed = map(int, sys.stdin.read().split())
+over = speed - limit
+
+if over &lt;= 0:
+    print(&quot;Congratulations, you are within the speed limit!&quot;)
+elif over &lt;= 20:
+    print(&quot;You are speeding and your fine is $100.&quot;)
+elif over &lt;= 30:
+    print(&quot;You are speeding and your fine is $270.&quot;)
+else:
+    print(&quot;You are speeding and your fine is $500.&quot;)
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>40
+39
+</pre></div><div><h3>样例输出</h3><pre>Congratulations, you are within the speed limit!
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Speed fines are not fine!
 Problem Description
 Many communities now have “radar” signs that tell drivers what their speed is, in the hope that
 they will slow down.
@@ -45,7 +61,23 @@ Enter the recorded speed of the car:   120
 You are speeding and your fine is $100.
 
                                                    4
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Speed fines are not fine!
+</pre></details></section><section class="card"><h2>测试数据</h2><p>6 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li><li><a href="tests/sample-03.in">sample-03.in</a> / <a href="tests/sample-03.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j1">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Subtract the speed limit from the recorded speed, then print the fine for that amount of speeding. If the speed is at or below the limit, print the congratulatory message.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Comparing integers: a speed difference at most 0 means no speeding; a positive difference means the car is over the limit.</li><li>Range checks: split positive differences into 1–20, 21–30, and 31 or more, with one fine for each range.</li><li>Ordered conditions: check from the smaller upper limit upward; after one range matches, the later ranges are skipped.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Read the speed limit and recorded speed.</li><li>Calculate over = speed - limit. For example, a limit of 100 and a speed of 121 give over = 21.</li><li>If over is at most 0, print the within-limit message. Otherwise, check whether over is at most 20, at most 30, or larger, and print the corresponding 100, 270, or 500 dollar fine.</li><li>Print the complete required sentence with its punctuation.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>With a limit of 100 and a recorded speed of 121, the difference is 121 - 100 = 21. It is not at most 20, but it is at most 30, so the fine is $270.</p></section><section class="card"><h2>Why does this work?</h2><p>The value over is the recorded speed minus the limit, so it gives exactly how far above the limit the car is. Every integer over belongs to exactly one checked range: at most 0, 1 through 20, 21 through 30, or at least 31. The program prints the required message for that range, so no speed is missed or assigned two fines.</p></section><section class="card"><h2>Time and memory</h2><p>The program performs a fixed number of subtractions and comparisons, so its running time is O(1). O(1) means the work does not grow when the input numbers grow. Extra space is also O(1), because only the limit, speed, and difference are stored.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Calculate speed - limit first; reversing the subtraction gives the wrong difference.</li><li>A speed equal to the limit is not speeding. Differences of 20, 21, 30, and 31 belong on specific sides of the boundaries.</li><li>Match the required English sentence, dollar sign, amount, and period exactly.</li><li>The original PDF sessions show input prompts. For automated judging, print only the required result sentence without prompts.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+limit, speed = map(int, sys.stdin.read().split())
+over = speed - limit
+
+if over &lt;= 0:
+    print(&quot;Congratulations, you are within the speed limit!&quot;)
+elif over &lt;= 20:
+    print(&quot;You are speeding and your fine is $100.&quot;)
+elif over &lt;= 30:
+    print(&quot;You are speeding and your fine is $270.&quot;)
+else:
+    print(&quot;You are speeding and your fine is $500.&quot;)
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>40
+39
+</pre></div><div><h3>Sample output</h3><pre>Congratulations, you are within the speed limit!
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Speed fines are not fine!
 Problem Description
 Many communities now have “radar” signs that tell drivers what their speed is, in the hope that
 they will slow down.
@@ -86,6 +118,6 @@ Enter the recorded speed of the car:   120
 You are speeding and your fine is $100.
 
                                                    4
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>6 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li><li><a href="tests/sample-03.in">sample-03.in</a> / <a href="tests/sample-03.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

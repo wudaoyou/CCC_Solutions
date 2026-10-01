@@ -10,6 +10,8 @@ def is_prime(n):
 def check_output(problem, input_data, output, expected):
     """Return False for malformed or incorrect contestant output."""
     try:
+        if problem == "2012/junior/J3":
+            return output.decode().splitlines() == expected.decode().splitlines()
         if problem == "2019/senior/S2":
             values = list(map(int, input_data.split()))
             pairs = list(map(int, output.split()))

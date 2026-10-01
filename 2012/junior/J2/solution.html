@@ -4,7 +4,24 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2012 J2 · Sounds fishy!</h1></header><p class="eyebrow">2012 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Sounds fishy!
+<h1>2012 J2 · Sounds fishy!</h1></header><p class="eyebrow">2012 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j2">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>根据四个连续水深读数的顺序，判断鱼探仪应报告上升、下降、深度不变，还是没有鱼。</p></section><section class="card"><h2>考查知识点</h2><ul><li>严格递增：每个读数都比前一个大，例如 2、4、5、9；相等不算增加。</li><li>严格递减：每个读数都比前一个小，例如 9、7、4、1。</li><li>连续比较：只要四个读数中有一对不符合方向，整个序列就不是严格单调的。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>读取四个水深数值 a、b、c、d。</li><li>检查 a &lt; b &lt; c &lt; d。如果成立，四次读数都严格上升，输出 Fish Rising。</li><li>否则检查 a &gt; b &gt; c &gt; d。如果成立，输出 Fish Diving；再检查四个数是否全部相等，如果相等就输出 Fish At Constant Depth。</li><li>如果以上条件都不成立，至少有一处方向改变或相邻数值相等，输出 No Fish。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>读数 1、10、12、13 满足 1 &lt; 10、10 &lt; 12、12 &lt; 13，因此每一步都变大，输出 Fish Rising。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>严格递增判断同时要求第一数小于第二数、第二数小于第三数、第三数小于第四数，所以它恰好识别题目定义的上升序列。严格递减判断以同样方式检查每一步都变小；相等判断要求四个值全部相同。若三种情况都不成立，读数就属于题目定义的 No Fish。</p></section><section class="card"><h2>运行时间与内存</h2><p>只比较四个读数中的固定几对，因此运行时间是 O(1)。O(1) 表示读数的大小不会增加比较次数。额外空间也是 O(1)，因为程序只保存四个整数。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>上升和下降必须是严格的；例如 1、2、2、3 不是 Fish Rising。</li><li>全部相等时输出 Fish At Constant Depth，注意完整的输出文字。</li><li>不要只比较第一个和最后一个；中间任意一步都必须符合相同方向。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+a, b, c, d = map(int, sys.stdin.read().split())
+
+if a &lt; b &lt; c &lt; d:
+    print(&quot;Fish Rising&quot;)
+elif a &gt; b &gt; c &gt; d:
+    print(&quot;Fish Diving&quot;)
+elif a == b == c == d:
+    print(&quot;Fish At Constant Depth&quot;)
+else:
+    print(&quot;No Fish&quot;)
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>30
+10
+20
+20
+</pre></div><div><h3>样例输出</h3><pre>No Fish
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Sounds fishy!
 Problem Description
 A fish-finder is a device used by anglers to find fish in a lake. If the fish-finder finds a fish, it will
 sound an alarm. It uses depth readings to determine whether to sound an alarm. For our purposes,
@@ -48,7 +65,24 @@ Output for Sample Input 2
 Fish Rising
 
                                                     5
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Sounds fishy!
+</pre></details></section><section class="card"><h2>测试数据</h2><p>5 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc12j2">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Use the order of four consecutive depth readings to decide whether the fish-finder reports rising, diving, constant depth, or no fish.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Strictly increasing: every reading is greater than the one before it, such as 2, 4, 5, 9; equality does not count as an increase.</li><li>Strictly decreasing: every reading is less than the one before it, such as 9, 7, 4, 1.</li><li>Consecutive comparisons: if even one pair does not follow the direction, the whole sequence is not strictly monotone.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Read the four depth values a, b, c, and d.</li><li>Check a &lt; b &lt; c &lt; d. If true, all four readings rise strictly, so print Fish Rising.</li><li>Otherwise, check a &gt; b &gt; c &gt; d. If true, print Fish Diving. Then check whether all four values are equal; if they are, print Fish At Constant Depth.</li><li>If none of these conditions is true, some direction changes or an adjacent pair is equal, so print No Fish.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>The readings 1, 10, 12, 13 satisfy 1 &lt; 10, 10 &lt; 12, and 12 &lt; 13. Every step increases, so the output is Fish Rising.</p></section><section class="card"><h2>Why does this work?</h2><p>The strictly increasing check requires the first value to be less than the second, the second less than the third, and the third less than the fourth. That is exactly the rising rule in the statement. The decreasing check similarly requires every step to get smaller, while the constant check requires all four values to match. If none applies, the readings meet the definition of No Fish.</p></section><section class="card"><h2>Time and memory</h2><p>The program compares only a fixed number of pairs among four readings, so the running time is O(1). O(1) means the sizes of the readings do not add more comparisons. Extra space is also O(1), because only four integers are stored.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Rising and diving are strict; for example, 1, 2, 2, 3 is not Fish Rising.</li><li>For four equal readings, print Fish At Constant Depth with the complete wording.</li><li>Do not compare only the first and last readings; every middle step must follow the same direction.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+a, b, c, d = map(int, sys.stdin.read().split())
+
+if a &lt; b &lt; c &lt; d:
+    print(&quot;Fish Rising&quot;)
+elif a &gt; b &gt; c &gt; d:
+    print(&quot;Fish Diving&quot;)
+elif a == b == c == d:
+    print(&quot;Fish At Constant Depth&quot;)
+else:
+    print(&quot;No Fish&quot;)
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>30
+10
+20
+20
+</pre></div><div><h3>Sample output</h3><pre>No Fish
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Sounds fishy!
 Problem Description
 A fish-finder is a device used by anglers to find fish in a lake. If the fish-finder finds a fish, it will
 sound an alarm. It uses depth readings to determine whether to sound an alarm. For our purposes,
@@ -92,6 +126,6 @@ Output for Sample Input 2
 Fish Rising
 
                                                     5
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>5 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

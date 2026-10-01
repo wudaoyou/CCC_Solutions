@@ -4,6 +4,12 @@ from checkers import check_output
 
 
 def test_checkers():
+    icon = "2012/junior/J3"
+    picture = b"*x*\n xx\n* *\n"
+    assert check_output(icon, b"1\n", picture, picture)
+    assert check_output(icon, b"1\n", picture.replace(b"\n", b"\r\n"), picture)
+    assert not check_output(icon, b"1\n", b"*x*\nxx\n* *\n", picture)
+    assert not check_output(icon, b"1\n", b"*x*\n xx\n**\n", picture)
     prime = "2019/senior/S2"
     assert check_output(prime, b"1\n4\n", b"3 5\n", b"5 3\n")
     assert not check_output(prime, b"1\n4\n", b"4 4\n", b"3 5\n")
