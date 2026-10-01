@@ -50,11 +50,12 @@ Foundation stage: structure, official statements, provenance, available official
 | 2011 | J1–J5 解法与双语讲解完成；DMOJ 本地引擎 25/25 用例通过 / J1–J5 complete; 25/25 cases passed the local DMOJ engine |
 | 2012 | J1–J4、S1、S4 完成；J5 引用 S4；DMOJ 本地引擎 29/29 用例通过 / Six canonical problems complete; J5 refers to S4; 29/29 cases passed |
 | 2013 | J1、J2、J4、S1、S3 完成；J3/J5 引用 S1/S3；DMOJ 本地引擎 32/32 用例通过 / Five canonical problems complete; 32/32 cases passed |
-| 2014–2026 | 待逐年完成 / Pending, in year order |
+| 2014 | J1–J3、S1、S2 完成；J4/J5 引用 S1/S2；DMOJ 本地引擎完整官方数据 51/51 用例通过 / Five canonical problems complete; all 51 official cases passed |
+| 2015–2026 | 待逐年完成 / Pending, in year order |
 
-年度验证记录见 [2010](2010/verification.json)、[2011](2011/verification.json)、[2012](2012/verification.json)、[2013](2013/verification.json)，含解法/讲解哈希及独立校验结果；用例覆盖限于官方样例和本地边界。
+年度验证记录见 [2010](2010/verification.json)、[2011](2011/verification.json)、[2012](2012/verification.json)、[2013](2013/verification.json)、[2014](2014/verification.json)，含解法/讲解哈希及独立校验结果；2010–2013 用例覆盖限于官方样例和本地边界；2014 已覆盖收录题目的完整官方数据。
 
-See the [2010](2010/verification.json), [2011](2011/verification.json) [2012](2012/verification.json) and [2013](2013/verification.json) verification records for solution/lesson hashes and independent checks. Coverage is limited to official samples and local edge cases.
+See the [2010](2010/verification.json), [2011](2011/verification.json), [2012](2012/verification.json), [2013](2013/verification.json) and [2014](2014/verification.json) verification records for solution/lesson hashes and independent checks. Coverage for 2010–2013 is limited to official samples and local edge cases; 2014 covers the full official data for its collected problems.
 
 2014–2023 已下载所覆盖题目的完整官方测试数据。2020/2021 的重叠 S2 数据来自官方 Junior J5 测试包。2010–2013 的完整官方测试包未在当前官网找到，做题时加入官方样例和独立核对的边界用例，不能据此声称通过完整官方数据。
 

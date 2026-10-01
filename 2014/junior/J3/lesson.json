@@ -1,0 +1,47 @@
+{
+  "title": "Double Dice",
+  "zh": {
+    "summary": "两位玩家从 100 分开始逐轮掷骰子；每轮较小点数者扣除较大点数，平局不扣分。",
+    "topics": [
+      "状态模拟：保存当前分数，并按每一轮的规则更新。",
+      "比较两个骰子：较小点数对应输掉该轮的玩家；若两点数相等则无人输。",
+      "扣分数值：输家扣的是较大骰子的点数，不是两个点数的差。"
+    ],
+    "steps": [
+      "把 Antonia 和 David 的分数都设为 100，并读取轮数 N。",
+      "逐轮读取两人的点数 a、b。若 a<b，Antonia 扣 b 分；若 b<a，David 扣 a 分。",
+      "若 a=b，这一轮不改变任何分数。",
+      "所有轮次结束后，先输出 Antonia 的分数，再输出 David 的分数，每人一行。"
+    ],
+    "example": "样例第一轮是 5 对 6，Antonia 点数较小，因此扣较大的点数 6 分，分数从 100 降到 94。第二轮 6 对 6 是平局，不扣分。",
+    "correctness": "开始时两人的分数都按规则设为 100。每轮只有三种关系：a<b 时 Antonia 输并扣较大点数 b；b<a 时 David 输并扣较大点数 a；相等时无人扣分。程序按这三种情况更新分数，因此处理完每轮后，保存的分数正好等于实际分数。循环结束时输出的就是最终分数。",
+    "complexity": "如果有 N 轮，程序每轮读取并比较一次点数，所以时间是 O(N)。O(N) 表示每增加一轮，最多增加一次固定的处理。程序只保存两人的分数和当前轮的两个点数，额外空间是 O(1)。",
+    "pitfalls": [
+      "输家扣较高骰子的点数；例如 2 对 6 时扣 6 分，不是扣 4 分。",
+      "平局时双方都不扣分。",
+      "Antonia 的分数先输出，David 的分数后输出，每行一个整数。"
+    ]
+  },
+  "en": {
+    "summary": "Both players start with 100 points. Each round, the player with the lower die roll loses the higher roll; a tie changes neither score.",
+    "topics": [
+      "State simulation: keep each current score and update it using the rule for each round.",
+      "Comparing two rolls: the smaller roll identifies the player who loses that round; equal rolls mean nobody loses.",
+      "Penalty amount: the loser loses the higher die value, not the difference between the rolls."
+    ],
+    "steps": [
+      "Set Antonia's and David's scores to 100 and read the number of rounds N.",
+      "For each round, read their rolls a and b. If a<b, subtract b from Antonia's score; if b<a, subtract a from David's score.",
+      "If a=b, leave both scores unchanged for that round.",
+      "After all rounds, print Antonia's score first and David's score second, one per line."
+    ],
+    "example": "The first sample round is 5 versus 6. Antonia has the lower roll, so she loses the higher value, 6 points, and goes from 100 to 94. The next round, 6 versus 6, is a tie and changes neither score.",
+    "correctness": "Both scores start at the required value of 100. Each round has exactly three cases: when a<b, Antonia loses and the program subtracts the higher roll b; when b<a, David loses and the program subtracts the higher roll a; when they are equal, neither score changes. Thus after every round the stored scores match the game scores. At the end, printing them gives the final scores.",
+    "complexity": "For N rounds, the program reads and compares the rolls once per round, so the running time is O(N). O(N) means each extra round adds one fixed amount of work. It stores only the two scores and the current pair of rolls, so extra space is O(1).",
+    "pitfalls": [
+      "The loser loses the higher die value; with rolls 2 and 6, the penalty is 6, not 4.",
+      "A tie removes no points from either player.",
+      "Print Antonia's score first and David's score second, one integer on each line."
+    ]
+  }
+}

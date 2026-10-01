@@ -4,7 +4,20 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2014 J1 · Triangle Times</h1></header><p class="eyebrow">2014 / junior / J1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc14j1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Triangle Times
+<h1>2014 J1 · Triangle Times</h1></header><p class="eyebrow">2014 / junior / J1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc14j1">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>先检查三个角的和是否为 180 度，再根据相等角的数量判断三角形类型。</p></section><section class="card"><h2>考查知识点</h2><ul><li>三角形内角和：三角形的三个内角相加必须是 180 度。</li><li>相等关系：三个角全相等是等边三角形（Equilateral）；恰有一对相等是等腰三角形（Isosceles）；三个角各不相同是不等边三角形（Scalene）。</li><li>优先判断：角的和不正确时，输入不是有效三角形，因此要先输出 Error。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>读取三个角 a、b、c，并计算 total = a + b + c。</li><li>如果 total 不等于 180，输出 Error 并结束判断。</li><li>否则，如果三个角都相等，输出 Equilateral。</li><li>否则，如果任意一对角相等，输出 Isosceles；如果没有任何一对相等，输出 Scalene。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>50、50、50 虽然三个角相等，但总和只有 150，所以输出 Error。40、70、70 的总和是 180，且只有一对角相等，所以输出 Isosceles。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>若三个角的和不等于 180，程序立即输出 Error，符合三角形内角和规则。其余输入满足角和规则：三个角全相等时输出 Equilateral；否则若有一对相等，正好是 Isosceles；如果没有相等角，就是 Scalene。这些分支互不重叠并覆盖所有输入，因此只输出正确的一类。</p></section><section class="card"><h2>运行时间与内存</h2><p>程序只读取并比较三个数，工作量不随角度大小改变，所以时间是 O(1)。O(1) 表示固定数量的运算。额外空间也是 O(1)，因为只保存三个角和它们的总和。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>先判断总和；例如三个相等的 50 度角仍然要输出 Error。</li><li>有效的三个相等角只能都是 60 度；这类应输出 Equilateral，而不是 Isosceles。</li><li>输出只能是题目指定的 Equilateral、Isosceles、Scalene 或 Error。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+a, b, c = map(int, sys.stdin.read().split())
+total = a + b + c
+
+if total != 180:
+    print(&quot;Error&quot;)
+elif a == b == c:
+    print(&quot;Equilateral&quot;)
+elif a == b or a == c or b == c:
+    print(&quot;Isosceles&quot;)
+else:
+    print(&quot;Scalene&quot;)
+</code></pre></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Triangle Times
 Problem Description
 You have trouble remembering which type of triangle is which. You write a program to help.
 Your program reads in three angles (in degrees).
@@ -45,7 +58,20 @@ Error
 
 
                                                    3
-</pre></details></section><section class="card"><h2>测试数据</h2><p>6 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j1.1.in">j1.1.in</a> / <a href="tests/j1.1.out">output</a></li><li><a href="tests/j1.2.in">j1.2.in</a> / <a href="tests/j1.2.out">output</a></li><li><a href="tests/j1.3.in">j1.3.in</a> / <a href="tests/j1.3.out">output</a></li><li><a href="tests/j1.4.in">j1.4.in</a> / <a href="tests/j1.4.out">output</a></li><li><a href="tests/j1.5.in">j1.5.in</a> / <a href="tests/j1.5.out">output</a></li><li><a href="tests/j1.6.in">j1.6.in</a> / <a href="tests/j1.6.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc14j1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Triangle Times
+</pre></details></section><section class="card"><h2>测试数据</h2><p>6 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j1.1.in">j1.1.in</a> / <a href="tests/j1.1.out">output</a></li><li><a href="tests/j1.2.in">j1.2.in</a> / <a href="tests/j1.2.out">output</a></li><li><a href="tests/j1.3.in">j1.3.in</a> / <a href="tests/j1.3.out">output</a></li><li><a href="tests/j1.4.in">j1.4.in</a> / <a href="tests/j1.4.out">output</a></li><li><a href="tests/j1.5.in">j1.5.in</a> / <a href="tests/j1.5.out">output</a></li><li><a href="tests/j1.6.in">j1.6.in</a> / <a href="tests/j1.6.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc14j1">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>First check whether the three angles add to 180 degrees, then classify the triangle by which angles are equal.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Triangle angle sum: the three interior angles of a triangle must add to 180 degrees.</li><li>Equal angles: three equal angles mean Equilateral; exactly one equal pair means Isosceles; no equal pair means Scalene.</li><li>Check order: an incorrect angle sum is not a valid triangle, so print Error before classifying equal angles.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Read the three angles a, b, and c, then calculate total = a + b + c.</li><li>If total is not 180, print Error and stop the classification.</li><li>Otherwise, if all three angles are equal, print Equilateral.</li><li>Otherwise, if any pair is equal, print Isosceles. If no pair is equal, print Scalene.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>The angles 50, 50, 50 are equal, but their sum is only 150, so the answer is Error. The angles 40, 70, 70 sum to 180 and have exactly one equal pair, so the answer is Isosceles.</p></section><section class="card"><h2>Why does this work?</h2><p>If the angles do not add to 180, the program prints Error as required by the triangle angle-sum rule. Every remaining input has a valid sum: three equal angles are classified as Equilateral; otherwise, an equal pair makes the triangle Isosceles; with no equal pair it is Scalene. These cases do not overlap and cover every input, so exactly the correct classification is printed.</p></section><section class="card"><h2>Time and memory</h2><p>The program reads and compares only three numbers, so its running time is O(1). O(1) means a fixed number of operations. Extra space is also O(1), since only the three angles and their sum are stored.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Check the sum first; three equal 50-degree angles still require the answer Error.</li><li>A valid triangle with three equal angles must have three 60-degree angles; classify it as Equilateral, not Isosceles.</li><li>Print exactly one of Equilateral, Isosceles, Scalene, or Error.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+a, b, c = map(int, sys.stdin.read().split())
+total = a + b + c
+
+if total != 180:
+    print(&quot;Error&quot;)
+elif a == b == c:
+    print(&quot;Equilateral&quot;)
+elif a == b or a == c or b == c:
+    print(&quot;Isosceles&quot;)
+else:
+    print(&quot;Scalene&quot;)
+</code></pre></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: Triangle Times
 Problem Description
 You have trouble remembering which type of triangle is which. You write a program to help.
 Your program reads in three angles (in degrees).

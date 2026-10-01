@@ -1,0 +1,45 @@
+{
+  "title": "Vote Count",
+  "zh": {
+    "summary": "统计 A 和 B 的票数，输出票数较多的歌手；票数相同则输出 Tie。",
+    "topics": [
+      "计数：检查一串投票中的每个字符，统计某个符号出现多少次。",
+      "互补数量：每票只能投给 A 或 B，因此 B 票数等于总票数减去 A 票数。",
+      "比较大小：两个票数中较大的歌手获胜，数量相同时是平局。"
+    ],
+    "steps": [
+      "读取总票数 V 和由 A、B 组成的投票字符串。",
+      "计算 A 出现的次数 a_votes；再用 V - a_votes 得到 B 的票数。",
+      "比较两个数量：A 多就输出 A，B 多就输出 B，相等就输出 Tie。"
+    ],
+    "example": "投票 ABBABA 中，A 出现 3 次。总票数是 6，所以 B 也有 6-3=3 票；两人票数相同，输出 Tie。",
+    "correctness": "输入中的每一票都是 A 或 B，因此统计到的 A 票数加上 B 票数恰好等于 V。程序数出 A 后用 V 减去它，得到准确的 B 票数。随后比较两个准确数量，分别在 A 多、B 多或相等时输出对应结果，覆盖了所有可能。",
+    "complexity": "若有 V 票，count 会查看投票字符串中的每个字符一次，所以时间是 O(V)。O(V) 表示工作量随票数线性增加；例如票数翻倍，字符检查次数也约翻倍。程序保存投票字符串，额外空间是 O(V)。",
+    "pitfalls": [
+      "题目保证投票字符串长度正好是 V，且每个字符都是 A 或 B。",
+      "平局时必须输出 Tie，注意大小写。",
+      "不要只判断 A 是否过半而漏掉 B 获胜和平局。"
+    ]
+  },
+  "en": {
+    "summary": "Count the votes for A and B, print the singer with more votes, or print Tie when their counts are equal.",
+    "topics": [
+      "Counting: inspect a string and count how many times a chosen symbol appears.",
+      "Complementary counts: every vote is for A or B, so the number of B votes is the total minus the number of A votes.",
+      "Comparison: the singer with the larger count wins; equal counts make a tie."
+    ],
+    "steps": [
+      "Read the total number of votes V and the string containing the A and B votes.",
+      "Count the occurrences of A as a_votes. Calculate the B count as V - a_votes.",
+      "Compare the counts: print A if A has more, B if B has more, and Tie if they are equal."
+    ],
+    "example": "In ABBABA, A appears 3 times. The total is 6, so B has 6-3=3 votes as well. The counts match, so print Tie.",
+    "correctness": "Every input vote is either A or B, so the two counts add up to V. The program counts A and subtracts that count from V to obtain the exact number of B votes. It then compares the two exact counts and prints the required result for A winning, B winning, or a tie. These cases cover all possibilities.",
+    "complexity": "For V votes, count checks each character in the vote string once, so the running time is O(V). O(V) means the work grows in proportion to the number of votes; doubling the votes roughly doubles the checks. The program stores the vote string, so its extra space is O(V).",
+    "pitfalls": [
+      "The statement guarantees that the vote string has exactly V characters and each is A or B.",
+      "For a tie, print Tie with this capitalization.",
+      "Do not check only whether A has a majority and forget B wins and ties."
+    ]
+  }
+}

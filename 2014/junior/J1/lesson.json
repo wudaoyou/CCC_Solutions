@@ -1,0 +1,47 @@
+{
+  "title": "Triangle Times",
+  "zh": {
+    "summary": "先检查三个角的和是否为 180 度，再根据相等角的数量判断三角形类型。",
+    "topics": [
+      "三角形内角和：三角形的三个内角相加必须是 180 度。",
+      "相等关系：三个角全相等是等边三角形（Equilateral）；恰有一对相等是等腰三角形（Isosceles）；三个角各不相同是不等边三角形（Scalene）。",
+      "优先判断：角的和不正确时，输入不是有效三角形，因此要先输出 Error。"
+    ],
+    "steps": [
+      "读取三个角 a、b、c，并计算 total = a + b + c。",
+      "如果 total 不等于 180，输出 Error 并结束判断。",
+      "否则，如果三个角都相等，输出 Equilateral。",
+      "否则，如果任意一对角相等，输出 Isosceles；如果没有任何一对相等，输出 Scalene。"
+    ],
+    "example": "50、50、50 虽然三个角相等，但总和只有 150，所以输出 Error。40、70、70 的总和是 180，且只有一对角相等，所以输出 Isosceles。",
+    "correctness": "若三个角的和不等于 180，程序立即输出 Error，符合三角形内角和规则。其余输入满足角和规则：三个角全相等时输出 Equilateral；否则若有一对相等，正好是 Isosceles；如果没有相等角，就是 Scalene。这些分支互不重叠并覆盖所有输入，因此只输出正确的一类。",
+    "complexity": "程序只读取并比较三个数，工作量不随角度大小改变，所以时间是 O(1)。O(1) 表示固定数量的运算。额外空间也是 O(1)，因为只保存三个角和它们的总和。",
+    "pitfalls": [
+      "先判断总和；例如三个相等的 50 度角仍然要输出 Error。",
+      "有效的三个相等角只能都是 60 度；这类应输出 Equilateral，而不是 Isosceles。",
+      "输出只能是题目指定的 Equilateral、Isosceles、Scalene 或 Error。"
+    ]
+  },
+  "en": {
+    "summary": "First check whether the three angles add to 180 degrees, then classify the triangle by which angles are equal.",
+    "topics": [
+      "Triangle angle sum: the three interior angles of a triangle must add to 180 degrees.",
+      "Equal angles: three equal angles mean Equilateral; exactly one equal pair means Isosceles; no equal pair means Scalene.",
+      "Check order: an incorrect angle sum is not a valid triangle, so print Error before classifying equal angles."
+    ],
+    "steps": [
+      "Read the three angles a, b, and c, then calculate total = a + b + c.",
+      "If total is not 180, print Error and stop the classification.",
+      "Otherwise, if all three angles are equal, print Equilateral.",
+      "Otherwise, if any pair is equal, print Isosceles. If no pair is equal, print Scalene."
+    ],
+    "example": "The angles 50, 50, 50 are equal, but their sum is only 150, so the answer is Error. The angles 40, 70, 70 sum to 180 and have exactly one equal pair, so the answer is Isosceles.",
+    "correctness": "If the angles do not add to 180, the program prints Error as required by the triangle angle-sum rule. Every remaining input has a valid sum: three equal angles are classified as Equilateral; otherwise, an equal pair makes the triangle Isosceles; with no equal pair it is Scalene. These cases do not overlap and cover every input, so exactly the correct classification is printed.",
+    "complexity": "The program reads and compares only three numbers, so its running time is O(1). O(1) means a fixed number of operations. Extra space is also O(1), since only the three angles and their sum are stored.",
+    "pitfalls": [
+      "Check the sum first; three equal 50-degree angles still require the answer Error.",
+      "A valid triangle with three equal angles must have three 60-degree angles; classify it as Equilateral, not Isosceles.",
+      "Print exactly one of Equilateral, Isosceles, Scalene, or Error."
+    ]
+  }
+}
