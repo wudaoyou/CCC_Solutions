@@ -1,0 +1,49 @@
+{
+  "title": "Punchy",
+  "zh": {
+    "summary": "从上到下执行指令。程序有两个整数变量 A 和 B，按指令赋值、计算或输出；读到 7 时停止，不处理后面的指令。",
+    "topics": [
+      "状态模拟：A 和 B 保存执行过程中不断变化的整数。",
+      "分支处理：指令编号决定要赋值、输出，还是进行加、乘、减、除。",
+      "整数除法：商要向 0 截断，负数除法需要明确处理符号。"
+    ],
+    "steps": [
+      "把 A 和 B 初始化为 0，再一行一行读取指令。",
+      "遇到 1，就把给定整数存入变量；遇到 2，就输出该变量当前的值。",
+      "遇到 3 到 6，先读出 X 和 Y 的旧值，计算结果后再写回 X。这样即使 X 和 Y 是同一个变量，计算仍会使用写回前的值。",
+      "除法先用绝对值相除得到商的大小，再按两个操作数的符号决定商的正负，这会向 0 截断。例如 -3 除以 2 的商是 -1。遇到 7 就结束。"
+    ],
+    "example": "官方样例先令 A=3、B=4，因此输出 B 得到 4，输出 A 得到 3。接着把 B 加到 A 上，A 变为 7；指令 5 A A 再把 A 减去自身，A 变为 0。后续输出为 0 和 4。",
+    "correctness": "每次循环开始时，A 和 B 都等于按序执行完此前指令后的值。赋值直接保存指定值，输出读取当前值；加、乘、减、除先读取两个旧值，再按对应规则计算并写回 X，所以每种运算都保持这个条件。除法单独处理符号并对绝对值做整除，得到题目规定的向 0 截断商。指令 7 立即结束循环，因此它后面的指令不会执行。",
+    "complexity": "若输入有 m 条指令，程序从头到尾检查每条指令一次，所以运行时间为 O(m)，也就是输入指令数量加倍时，处理工作大约也加倍。变量和当前指令只占固定空间，额外空间为 O(1)，即不随指令数量增长。",
+    "pitfalls": [
+      "Python 的 // 会丢掉小数并给出整数商；对负数它会向负无穷取整，所以 -3 // 2 得到 -2。题目要求向 0 截断，结果应为 -1；代码先用 abs(left) // abs(right) 算商的大小，再补上正负号。",
+      "如果 X 和 Y 相同，必须先保存两个旧值再更新 X。",
+      "指令 7 不需要变量参数；应在读取变量名之前结束执行。",
+      "不要在 7 之后继续处理剩下的指令。"
+    ]
+  },
+  "en": {
+    "summary": "Execute the instructions from top to bottom. The program has two integer variables, A and B, which instructions can assign, calculate with, or print. Stop at instruction 7 and ignore anything after it.",
+    "topics": [
+      "State simulation: A and B store integer values that change as instructions run.",
+      "Branching: the instruction number selects assignment, output, addition, multiplication, subtraction, or division.",
+      "Integer division: the quotient must be truncated toward zero, so negative operands need deliberate sign handling."
+    ],
+    "steps": [
+      "Initialize A and B to 0, then read instructions one line at a time.",
+      "For instruction 1, store the given integer in the named variable. For instruction 2, print that variable's current value.",
+      "For instructions 3 through 6, first read the old values of X and Y, compute the result, and then store it in X. This also works when X and Y name the same variable.",
+      "For division, divide the absolute values to get the quotient size, then apply its sign from the two operands. This truncates toward zero; for example, -3 divided by 2 gives -1. Stop when instruction 7 appears."
+    ],
+    "example": "The official sample first sets A=3 and B=4, so printing B gives 4 and printing A gives 3. Adding B to A changes A to 7; instruction 5 A A then subtracts A from itself, making it 0. The remaining outputs are 0 and 4.",
+    "correctness": "At the start of each loop, A and B equal the values produced by all earlier instructions. Assignment stores the requested value, and output reads the current value. For addition, multiplication, subtraction, and division, the program reads both old values before computing and storing X, so each operation follows its definition even when X and Y are the same variable. Division handles the sign separately and divides absolute values, giving the required quotient truncated toward zero. Instruction 7 exits the loop immediately, so later instructions are ignored.",
+    "complexity": "With m instructions, the program checks each one once, so the running time is O(m): doubling the number of instructions roughly doubles the work. The two variables and current instruction use O(1) extra space, meaning memory does not grow with the instruction count.",
+    "pitfalls": [
+      "Python's // drops the fractional part and returns an integer quotient; for a negative value it rounds down, so -3 // 2 is -2. The problem requires truncation toward zero, which gives -1. The code divides absolute values with // and then applies the sign.",
+      "When X and Y are the same variable, save both old values before updating X.",
+      "Instruction 7 has no variable argument; stop before trying to read one.",
+      "Do not process any instructions after 7."
+    ]
+  }
+}

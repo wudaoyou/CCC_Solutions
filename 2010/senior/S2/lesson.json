@@ -1,0 +1,55 @@
+{
+  "title": "Huffman Encoding",
+  "zh": {
+    "summary": "输入已经给出每个字母的二进制编码。我们要把一条二进制消息还原成字母，不需要根据频率设计编码，也不需要构造霍夫曼树。",
+    "topics": [
+      "前缀：字符串开头的一段。例如，01 是 011 的前缀，但 10 不是。",
+      "无前缀编码：任何字母的完整编码都不是另一个字母编码的前缀。例如，0 和 10 可以同时出现，0 和 01 则不可以。",
+      "字典：以二进制编码作为键、字母作为值，方便查找当前读到的编码。",
+      "贪心解码：从左到右读位，第一次遇到完整编码就立即取出对应字母。"
+    ],
+    "steps": [
+      "读入 k 行编码表，将每一行的“字母 编码”反过来存成 codes[编码] = 字母。",
+      "创建空字符串 current，记录上一次解码之后读到的位；创建列表 decoded，记录已还原的字母。",
+      "逐位读取消息，将该位接在 current 后面。",
+      "如果 current 是字典中的完整编码，就把对应字母加入 decoded，并将 current 清空，从下一个字母重新开始。",
+      "所有位读完后，用 join 拼接 decoded，输出一行。题目保证消息有效，因此结尾不会剩下不完整编码。"
+    ],
+    "example": "官方样例的编码是 A=00、B=01、C=10、D=110、E=111。读取 00000101111 时，第一个 0 还不完整，再读一个 0 得到 00，输出 A 并清空 current。依次得到 00|00|01|01|111，还原为 AABBE。最后一段长度是 3，其余段长度是 2，所以不能固定长度切分。",
+    "correctness": "设下一字母的实际编码为 c。在 c 读完之前，current 是 c 的真前缀。它不可能是另一个完整编码，否则会违反无前缀性质。读完 c 时，字典一定匹配到它；它也不可能是更长编码的前缀，所以立即取出该字母是正确的。清空 current 后，剩余消息仍从下一个字母的编码开始。重复这一过程，就能正确且唯一地还原整条消息。",
+    "complexity": "设 k 为编码数，b 为最长编码长度，L 为消息位数。建表需要 O(kb) 时间；每次拼接字符串和查字典最多处理 b 位，因此扫描需要 O(Lb) 时间，总时间 O(kb + Lb)。字典占 O(kb)，消息和结果占 O(L)，总空间 O(kb + L)。题目中 k≤20、b≤10、L≤250，这种简单扫描足够快。",
+    "pitfalls": [
+      "编码长度可能不同，不能按固定的两位或三位切分消息。",
+      "字典应当从编码查到字母，而不是从字母查到编码。",
+      "匹配一个完整编码后必须清空 current，否则下一字母会接到上一编码后面。",
+      "大小写是输入的一部分，不能把所有字母转成大写或小写。",
+      "题目给的是编码表，解码无需构造树，也无需计算字母频率。"
+    ]
+  },
+  "en": {
+    "summary": "The input already supplies a binary code for each letter. Decode a binary message into letters; there is no need to design codes from frequencies or construct a Huffman tree.",
+    "topics": [
+      "Prefix: a beginning part of a string. For example, 01 is a prefix of 011, but 10 is not.",
+      "Prefix-free codes: no complete letter code is a prefix of another letter's code. Codes 0 and 10 may coexist; codes 0 and 01 may not.",
+      "Dictionary: use binary codes as keys and letters as values to look up the code read so far.",
+      "Greedy decoding: read bits from left to right and consume a code as soon as it is complete."
+    ],
+    "steps": [
+      "Read the k codebook lines. Reverse each letter-code pair when storing it: codes[code] = character.",
+      "Start with an empty string current for bits read since the previous match, and a list decoded for recovered letters.",
+      "Read the message one bit at a time, appending that bit to current.",
+      "When current is a dictionary key, append its letter to decoded and clear current to begin the next letter.",
+      "After all bits have been read, join decoded and print one line. The input guarantees a valid message, so no incomplete code remains."
+    ],
+    "example": "The official sample uses A=00, B=01, C=10, D=110, E=111. For 00000101111, the first 0 is incomplete; the next 0 completes 00, so append A and clear current. Continuing gives 00|00|01|01|111 and the output AABBE. The final code has length 3 while the others have length 2, so fixed-size splitting would fail.",
+    "correctness": "Let c be the actual code of the next letter. Before all of c is read, current is a proper prefix of c. It cannot be another complete code, because that would violate prefix-freeness. When c is complete, it must match the dictionary, and it cannot be the prefix of a longer code. Consuming its letter immediately is therefore correct. After clearing current, the remaining message starts with the next letter's code. Repeating this argument decodes the entire message correctly and uniquely.",
+    "complexity": "Let k be the number of codes, b the maximum code length, and L the message length in bits. Building the dictionary takes O(kb) time. Each string append and dictionary lookup handles at most b bits, so scanning takes O(Lb) time, for O(kb + Lb) total. The dictionary uses O(kb) space and the message and output use O(L), for O(kb + L) total space. With k≤20, b≤10, and L≤250, this simple scan is fast enough.",
+    "pitfalls": [
+      "Code lengths may differ; do not split the message into fixed two-bit or three-bit chunks.",
+      "The dictionary must map codes to letters, not letters to codes.",
+      "Clear current after every complete match, or the next letter's bits will remain attached to the previous code.",
+      "Letter case is part of the input; preserve both uppercase and lowercase letters.",
+      "The codebook is supplied. Decoding needs neither a tree nor frequency calculations."
+    ]
+  }
+}

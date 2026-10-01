@@ -4,7 +4,55 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2010 J3 · Punchy</h1></header><p class="eyebrow">2010 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Punchy
+<h1>2010 J3 · Punchy</h1></header><p class="eyebrow">2010 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j3">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>从上到下执行指令。程序有两个整数变量 A 和 B，按指令赋值、计算或输出；读到 7 时停止，不处理后面的指令。</p></section><section class="card"><h2>考查知识点</h2><ul><li>状态模拟：A 和 B 保存执行过程中不断变化的整数。</li><li>分支处理：指令编号决定要赋值、输出，还是进行加、乘、减、除。</li><li>整数除法：商要向 0 截断，负数除法需要明确处理符号。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>把 A 和 B 初始化为 0，再一行一行读取指令。</li><li>遇到 1，就把给定整数存入变量；遇到 2，就输出该变量当前的值。</li><li>遇到 3 到 6，先读出 X 和 Y 的旧值，计算结果后再写回 X。这样即使 X 和 Y 是同一个变量，计算仍会使用写回前的值。</li><li>除法先用绝对值相除得到商的大小，再按两个操作数的符号决定商的正负，这会向 0 截断。例如 -3 除以 2 的商是 -1。遇到 7 就结束。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>官方样例先令 A=3、B=4，因此输出 B 得到 4，输出 A 得到 3。接着把 B 加到 A 上，A 变为 7；指令 5 A A 再把 A 减去自身，A 变为 0。后续输出为 0 和 4。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>每次循环开始时，A 和 B 都等于按序执行完此前指令后的值。赋值直接保存指定值，输出读取当前值；加、乘、减、除先读取两个旧值，再按对应规则计算并写回 X，所以每种运算都保持这个条件。除法单独处理符号并对绝对值做整除，得到题目规定的向 0 截断商。指令 7 立即结束循环，因此它后面的指令不会执行。</p></section><section class="card"><h2>运行时间与内存</h2><p>若输入有 m 条指令，程序从头到尾检查每条指令一次，所以运行时间为 O(m)，也就是输入指令数量加倍时，处理工作大约也加倍。变量和当前指令只占固定空间，额外空间为 O(1)，即不随指令数量增长。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>Python 的 // 会丢掉小数并给出整数商；对负数它会向负无穷取整，所以 -3 // 2 得到 -2。题目要求向 0 截断，结果应为 -1；代码先用 abs(left) // abs(right) 算商的大小，再补上正负号。</li><li>如果 X 和 Y 相同，必须先保存两个旧值再更新 X。</li><li>指令 7 不需要变量参数；应在读取变量名之前结束执行。</li><li>不要在 7 之后继续处理剩下的指令。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+
+values = {&quot;A&quot;: 0, &quot;B&quot;: 0}
+
+for line in sys.stdin:
+    parts = line.split()
+    instruction = int(parts[0])
+
+    if instruction == 7:
+        break
+
+    x = parts[1]
+    if instruction == 1:
+        values[x] = int(parts[2])
+    elif instruction == 2:
+        print(values[x])
+    else:
+        y = parts[2]
+        left, right = values[x], values[y]
+
+        if instruction == 3:
+            result = left + right
+        elif instruction == 4:
+            result = left * right
+        elif instruction == 5:
+            result = left - right
+        else:
+            result = abs(left) // abs(right)
+            if (left &lt; 0) != (right &lt; 0):
+                result = -result
+
+        values[x] = result
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>1 A 3
+1 B 4
+2 B
+2 A
+3 A B
+2 A
+5 A A
+2 A
+2 B
+7
+</pre></div><div><h3>样例输出</h3><pre>4
+3
+7
+0
+4
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Punchy
 Problem Description
 In the early days of computing, instructions had to be “punched” onto rectangular cards, one in-
 struction per card. This card deck was then fed into a card reader so the program could be read and
@@ -71,7 +119,55 @@ Sample Input (with output shown in italics)
 
 
                                                7
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Punchy
+</pre></details></section><section class="card"><h2>测试数据</h2><p>2 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j3">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Execute the instructions from top to bottom. The program has two integer variables, A and B, which instructions can assign, calculate with, or print. Stop at instruction 7 and ignore anything after it.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>State simulation: A and B store integer values that change as instructions run.</li><li>Branching: the instruction number selects assignment, output, addition, multiplication, subtraction, or division.</li><li>Integer division: the quotient must be truncated toward zero, so negative operands need deliberate sign handling.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Initialize A and B to 0, then read instructions one line at a time.</li><li>For instruction 1, store the given integer in the named variable. For instruction 2, print that variable&#x27;s current value.</li><li>For instructions 3 through 6, first read the old values of X and Y, compute the result, and then store it in X. This also works when X and Y name the same variable.</li><li>For division, divide the absolute values to get the quotient size, then apply its sign from the two operands. This truncates toward zero; for example, -3 divided by 2 gives -1. Stop when instruction 7 appears.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>The official sample first sets A=3 and B=4, so printing B gives 4 and printing A gives 3. Adding B to A changes A to 7; instruction 5 A A then subtracts A from itself, making it 0. The remaining outputs are 0 and 4.</p></section><section class="card"><h2>Why does this work?</h2><p>At the start of each loop, A and B equal the values produced by all earlier instructions. Assignment stores the requested value, and output reads the current value. For addition, multiplication, subtraction, and division, the program reads both old values before computing and storing X, so each operation follows its definition even when X and Y are the same variable. Division handles the sign separately and divides absolute values, giving the required quotient truncated toward zero. Instruction 7 exits the loop immediately, so later instructions are ignored.</p></section><section class="card"><h2>Time and memory</h2><p>With m instructions, the program checks each one once, so the running time is O(m): doubling the number of instructions roughly doubles the work. The two variables and current instruction use O(1) extra space, meaning memory does not grow with the instruction count.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Python&#x27;s // drops the fractional part and returns an integer quotient; for a negative value it rounds down, so -3 // 2 is -2. The problem requires truncation toward zero, which gives -1. The code divides absolute values with // and then applies the sign.</li><li>When X and Y are the same variable, save both old values before updating X.</li><li>Instruction 7 has no variable argument; stop before trying to read one.</li><li>Do not process any instructions after 7.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+
+values = {&quot;A&quot;: 0, &quot;B&quot;: 0}
+
+for line in sys.stdin:
+    parts = line.split()
+    instruction = int(parts[0])
+
+    if instruction == 7:
+        break
+
+    x = parts[1]
+    if instruction == 1:
+        values[x] = int(parts[2])
+    elif instruction == 2:
+        print(values[x])
+    else:
+        y = parts[2]
+        left, right = values[x], values[y]
+
+        if instruction == 3:
+            result = left + right
+        elif instruction == 4:
+            result = left * right
+        elif instruction == 5:
+            result = left - right
+        else:
+            result = abs(left) // abs(right)
+            if (left &lt; 0) != (right &lt; 0):
+                result = -result
+
+        values[x] = result
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>1 A 3
+1 B 4
+2 B
+2 A
+3 A B
+2 A
+5 A A
+2 A
+2 B
+7
+</pre></div><div><h3>Sample output</h3><pre>4
+3
+7
+0
+4
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Punchy
 Problem Description
 In the early days of computing, instructions had to be “punched” onto rectangular cards, one in-
 struction per card. This card deck was then fed into a card reader so the program could be read and
@@ -138,6 +234,6 @@ Sample Input (with output shown in italics)
 
 
                                                7
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>2 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

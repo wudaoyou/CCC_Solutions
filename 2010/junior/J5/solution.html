@@ -4,7 +4,44 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2010 J5 · Knight Hop</h1></header><p class="eyebrow">2010 / junior / J5</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j5">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Knight Hop
+<h1>2010 J5 · Knight Hop</h1></header><p class="eyebrow">2010 / junior / J5</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j5">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>在 8 × 8 棋盘上，求骑士从起点到终点所需的最少步数。</p></section><section class="card"><h2>考查知识点</h2><ul><li>图：把棋盘格看作点，把一次合法骑士移动看作连接两点的边。</li><li>队列：像排队一样，先加入的格子先处理；append 加到队尾，popleft 从队首取出。</li><li>广度优先搜索（BFS）：先找 1 步可达的格子，再找 2 步、3 步……；每次移动都花 1 步时，这能找到最少步数。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>把每个棋盘格看作图中的一个点；从一个格出发，可以走到符合骑士 L 形规则的格子。</li><li>把起点放入队列并标记距离 0。队列按距离层次处理格子：先处理 0 步可达的位置，再处理 1 步、2 步等位置。</li><li>对每个取出的格子尝试八种可能的骑士走法，只把仍在棋盘内且未访问的格子加入队列，并记录距离加 1。</li><li>第一次取出终点时，其距离就是最少步数。起点就是终点时答案为 0。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>样例 1 从 (2, 1) 到 (3, 3)，坐标变化为 (1, 2)，一步可达，因此在 BFS 的第 1 层找到终点。样例 2 从 (4, 2) 到 (7, 5)，不是一步可达；路径 (4, 2) → (5, 4) → (7, 5) 有两步，所以终点在第 2 层。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>每一步骑士走法都由八种偏移之一产生，并且边界检查排除棋盘外的位置，所以搜索没有遗漏合法移动，也不会加入非法格子。队列按步数从小到大处理；距离为 d 的格子先于距离更大的格子扩展。每个格子第一次入队时取得最小步数，因此第一次到达终点时得到的距离最短。</p></section><section class="card"><h2>运行时间与内存</h2><p>每个格子只入队一次；处理它时最多检查 8 种移动。若 V 表示格子数（64），E 表示合法移动的连接数，时间为 O(V+E)，即工作量随格子和连接的总数增长，且 E≤8V。距离表和队列最多各保存 V 个格子，空间为 O(V)。在固定的 8×8 棋盘上，这些数量都有很小的固定上限。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>输入坐标从 1 开始，数组索引要先减 1。</li><li>一次移动的两个坐标变化绝对值必须分别为 1 和 2。</li><li>尝试移动后要检查两个坐标都仍在 0 到 7 之间。</li><li>起点和终点相同时，不需要移动，答案为 0。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>from collections import deque
+import sys
+
+
+MOVES = ((-2, -1), (-2, 1), (-1, -2), (-1, 2),
+         (1, -2), (1, 2), (2, -1), (2, 1))
+
+
+def minimum_moves(start_x, start_y, goal_x, goal_y):
+    start = (start_x - 1, start_y - 1)
+    goal = (goal_x - 1, goal_y - 1)
+    distance = [[-1] * 8 for _ in range(8)]
+    distance[start[0]][start[1]] = 0
+    queue = deque([start])
+
+    while queue:
+        x, y = queue.popleft()
+        if (x, y) == goal:
+            return distance[x][y]
+
+        for dx, dy in MOVES:
+            nx, ny = x + dx, y + dy
+            if 0 &lt;= nx &lt; 8 and 0 &lt;= ny &lt; 8 and distance[nx][ny] == -1:
+                distance[nx][ny] = distance[x][y] + 1
+                queue.append((nx, ny))
+
+
+def main():
+    start_x, start_y, goal_x, goal_y = map(int, sys.stdin.buffer.read().split())
+    print(minimum_moves(start_x, start_y, goal_x, goal_y))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>2 1
+3 3
+</pre></div><div><h3>样例输出</h3><pre>1
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Knight Hop
 Problem Description
 Below is an 8 × 8 chessboard on which we will designate square locations using the ordered pairs
 as indicated. For example, notice that piece A is at position (2, 2) and piece B is at position (4, 3).
@@ -51,7 +88,44 @@ Output for Sample Input 2
 
 
                                                  10
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j5">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Knight Hop
+</pre></details></section><section class="card"><h2>测试数据</h2><p>4 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01-same-square.in">edge-01-same-square.in</a> / <a href="tests/edge-01-same-square.out">output</a></li><li><a href="tests/edge-02-opposite-corners.in">edge-02-opposite-corners.in</a> / <a href="tests/edge-02-opposite-corners.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j5">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Find the fewest knight moves from a start square to a target square on an 8 × 8 board.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Graph: treat squares as vertices and legal one-move connections as edges.</li><li>Queue: like a line of people, the first square added is processed first; append adds at the back and popleft removes from the front.</li><li>Breadth-first search (BFS): find squares reachable in 1 move, then 2, then 3, and so on. When every move costs one step, this finds the fewest moves.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Treat each board square as a graph vertex. From a square, edges lead to squares a knight can reach in one L-shaped move.</li><li>Put the start square in a queue with distance 0. The queue processes layers of moves: squares reachable in 0 moves, then 1, then 2, and so on.</li><li>For each removed square, try all eight knight offsets. Add each unvisited square that remains on the board and record its distance as one more move.</li><li>The first time the target is removed, its distance is the minimum. If start and target are the same, the answer is 0.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>In sample 1, (2, 1) to (3, 3) changes the coordinates by (1, 2), so the target is in BFS layer 1. In sample 2, (4, 2) to (7, 5) is not one move; the path (4, 2) → (5, 4) → (7, 5) has two moves, so the target is in layer 2.</p></section><section class="card"><h2>Why does this work?</h2><p>Each of the eight knight offsets is tried, and the bounds check excludes squares outside the board. Thus the search includes every legal move and no illegal square. The queue processes squares in increasing move layers, so all squares at distance d are expanded before any square at a larger distance. A square&#x27;s first recorded distance is therefore minimal, and the first distance recorded for the target is the shortest path.</p></section><section class="card"><h2>Time and memory</h2><p>Each square enters the queue once, and processing it checks at most 8 moves. With V squares (64) and E legal move connections, time is O(V+E): work grows with the total number of squares and connections, and E≤8V. The distance grid and queue each hold at most V squares, using O(V) space. On the fixed 8×8 board, these are small fixed bounds.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Input coordinates start at 1, so subtract 1 before using them as array indices.</li><li>A knight move changes the coordinates by absolute values 1 and 2, in either order.</li><li>Check that both coordinates remain between 0 and 7 after a move.</li><li>If start and target match, no moves are needed; the answer is 0.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>from collections import deque
+import sys
+
+
+MOVES = ((-2, -1), (-2, 1), (-1, -2), (-1, 2),
+         (1, -2), (1, 2), (2, -1), (2, 1))
+
+
+def minimum_moves(start_x, start_y, goal_x, goal_y):
+    start = (start_x - 1, start_y - 1)
+    goal = (goal_x - 1, goal_y - 1)
+    distance = [[-1] * 8 for _ in range(8)]
+    distance[start[0]][start[1]] = 0
+    queue = deque([start])
+
+    while queue:
+        x, y = queue.popleft()
+        if (x, y) == goal:
+            return distance[x][y]
+
+        for dx, dy in MOVES:
+            nx, ny = x + dx, y + dy
+            if 0 &lt;= nx &lt; 8 and 0 &lt;= ny &lt; 8 and distance[nx][ny] == -1:
+                distance[nx][ny] = distance[x][y] + 1
+                queue.append((nx, ny))
+
+
+def main():
+    start_x, start_y, goal_x, goal_y = map(int, sys.stdin.buffer.read().split())
+    print(minimum_moves(start_x, start_y, goal_x, goal_y))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>2 1
+3 3
+</pre></div><div><h3>Sample output</h3><pre>1
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Knight Hop
 Problem Description
 Below is an 8 × 8 chessboard on which we will designate square locations using the ordered pairs
 as indicated. For example, notice that piece A is at position (2, 2) and piece B is at position (4, 3).
@@ -98,6 +172,6 @@ Output for Sample Input 2
 
 
                                                  10
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>4 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01-same-square.in">edge-01-same-square.in</a> / <a href="tests/edge-01-same-square.out">output</a></li><li><a href="tests/edge-02-opposite-corners.in">edge-02-opposite-corners.in</a> / <a href="tests/edge-02-opposite-corners.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

@@ -46,7 +46,12 @@ Foundation stage: structure, official statements, provenance, available official
 
 | 年份 / Year | 解法与双语讲解 / Solutions and bilingual lessons |
 | --- | --- |
-| 2010–2026 | 待逐年完成 / Pending, in year order |
+| 2010 | J1–J5、S2 解法与双语讲解完成；DMOJ 本地引擎 22/22 用例通过 / J1–J5, S2 complete; 22/22 cases passed the local DMOJ engine |
+| 2011–2026 | 待逐年完成 / Pending, in year order |
+
+2010 的验证记录见 [verification.json](2010/verification.json)，含解法/讲解哈希及独立校验结果；用例覆盖限于官方样例和本地边界。
+
+See [2010 verification.json](2010/verification.json) for solution/lesson hashes and independent checks. Coverage is limited to official samples and local edge cases.
 
 2014–2023 已下载所覆盖题目的完整官方测试数据。2020/2021 的重叠 S2 数据来自官方 Junior J5 测试包。2010–2013 的完整官方测试包未在当前官网找到，做题时加入官方样例和独立核对的边界用例，不能据此声称通过完整官方数据。
 

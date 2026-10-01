@@ -1,0 +1,43 @@
+{
+  "title": "What is n, Daddy?",
+  "zh": {
+    "summary": "计算 Natalie 能用一只或两只手摆出整数 n 的多少种方式。每只手最多举五根手指；两只手一起用时，把较大的数量放在前面，因此同一组合只算一次。",
+    "topics": [
+      "有界枚举：手指数量只有 0 到 5，可以逐一检查所有可能。",
+      "组合计数：固定较大的那只手，再检查较小那只手，避免把左右交换的同一组重复计算。"
+    ],
+    "steps": [
+      "把一只手的表示法看成 first_hand 加 0；第二只手的数量为 0 表示只用第一只手。",
+      "枚举 first_hand 从 1 到 5，再枚举 second_hand 从 0 到 first_hand。这个顺序保证先写较大的数量。",
+      "每当两只手的数量之和是 n，就把答案加一。"
+    ],
+    "example": "n=4 时，枚举会找到 4+0、3+1 和 2+2，一共三种。像 1+3 不会再算一次，因为较大的一手必须排在前面。",
+    "correctness": "每只手的数量都在 0 到 5 之间，且 first_hand 不小于 second_hand，所以循环只访问符合题意的表示法。每个符合条件的表示法有唯一的 first_hand 和 second_hand，因此会被计数一次；总数等于 n 的表示法恰好被加一。",
+    "complexity": "最多检查 20 个组合，时间为 O(1)，意思是 n 变大时检查次数也不会增加；只使用固定的几个整数，额外空间也是 O(1)。",
+    "pitfalls": [
+      "不要把 3+1 和 1+3 当成两种答案；题目要求较大的一手先写。",
+      "每只手最多五根手指，所以 6 不能由一只手表示，但可以用两只手表示。",
+      "second_hand 为 0 是只用一只手的写法，不代表还要把 0+4 另算一遍。"
+    ]
+  },
+  "en": {
+    "summary": "Count the ways Natalie can show n fingers using one or two hands. Each hand can show at most five fingers. When both hands are used, list the larger number first so that swapping hands does not create another answer.",
+    "topics": [
+      "Bounded enumeration: each hand can show only 0 through 5 fingers, so every possibility can be checked.",
+      "Counting combinations: choose the larger hand first, which prevents counting the same pair in both orders."
+    ],
+    "steps": [
+      "Represent a one-hand answer as first_hand plus 0; a second-hand count of zero means only the first hand is used.",
+      "Try first_hand from 1 through 5, then try second_hand from 0 through first_hand. This keeps the larger count first.",
+      "Add one to the answer whenever the two counts sum to n."
+    ],
+    "example": "For n=4, the loop finds 4+0, 3+1, and 2+2, for three ways. It does not count 1+3 again because the larger hand must be listed first.",
+    "correctness": "Each hand count is between 0 and 5, and first_hand is at least second_hand, so the loops visit only valid representations. Every valid representation has one unique ordered pair of counts, so it is counted exactly once. The program adds one exactly for the pairs whose sum is n.",
+    "complexity": "At most 20 pairs are checked, so the running time is O(1): making n larger does not increase the number of checks. Only a fixed number of integers are stored, so extra space is also O(1).",
+    "pitfalls": [
+      "Do not count 3+1 and 1+3 separately; the larger hand must be written first.",
+      "A hand can show at most five fingers, so 6 cannot be shown on one hand even though it can be shown on two.",
+      "A second-hand count of 0 represents using one hand; do not count the reversed pair as another answer."
+    ]
+  }
+}

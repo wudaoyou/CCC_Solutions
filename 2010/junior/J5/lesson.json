@@ -1,0 +1,49 @@
+{
+  "title": "Knight Hop",
+  "zh": {
+    "summary": "在 8 × 8 棋盘上，求骑士从起点到终点所需的最少步数。",
+    "topics": [
+      "图：把棋盘格看作点，把一次合法骑士移动看作连接两点的边。",
+      "队列：像排队一样，先加入的格子先处理；append 加到队尾，popleft 从队首取出。",
+      "广度优先搜索（BFS）：先找 1 步可达的格子，再找 2 步、3 步……；每次移动都花 1 步时，这能找到最少步数。"
+    ],
+    "steps": [
+      "把每个棋盘格看作图中的一个点；从一个格出发，可以走到符合骑士 L 形规则的格子。",
+      "把起点放入队列并标记距离 0。队列按距离层次处理格子：先处理 0 步可达的位置，再处理 1 步、2 步等位置。",
+      "对每个取出的格子尝试八种可能的骑士走法，只把仍在棋盘内且未访问的格子加入队列，并记录距离加 1。",
+      "第一次取出终点时，其距离就是最少步数。起点就是终点时答案为 0。"
+    ],
+    "example": "样例 1 从 (2, 1) 到 (3, 3)，坐标变化为 (1, 2)，一步可达，因此在 BFS 的第 1 层找到终点。样例 2 从 (4, 2) 到 (7, 5)，不是一步可达；路径 (4, 2) → (5, 4) → (7, 5) 有两步，所以终点在第 2 层。",
+    "correctness": "每一步骑士走法都由八种偏移之一产生，并且边界检查排除棋盘外的位置，所以搜索没有遗漏合法移动，也不会加入非法格子。队列按步数从小到大处理；距离为 d 的格子先于距离更大的格子扩展。每个格子第一次入队时取得最小步数，因此第一次到达终点时得到的距离最短。",
+    "complexity": "每个格子只入队一次；处理它时最多检查 8 种移动。若 V 表示格子数（64），E 表示合法移动的连接数，时间为 O(V+E)，即工作量随格子和连接的总数增长，且 E≤8V。距离表和队列最多各保存 V 个格子，空间为 O(V)。在固定的 8×8 棋盘上，这些数量都有很小的固定上限。",
+    "pitfalls": [
+      "输入坐标从 1 开始，数组索引要先减 1。",
+      "一次移动的两个坐标变化绝对值必须分别为 1 和 2。",
+      "尝试移动后要检查两个坐标都仍在 0 到 7 之间。",
+      "起点和终点相同时，不需要移动，答案为 0。"
+    ]
+  },
+  "en": {
+    "summary": "Find the fewest knight moves from a start square to a target square on an 8 × 8 board.",
+    "topics": [
+      "Graph: treat squares as vertices and legal one-move connections as edges.",
+      "Queue: like a line of people, the first square added is processed first; append adds at the back and popleft removes from the front.",
+      "Breadth-first search (BFS): find squares reachable in 1 move, then 2, then 3, and so on. When every move costs one step, this finds the fewest moves."
+    ],
+    "steps": [
+      "Treat each board square as a graph vertex. From a square, edges lead to squares a knight can reach in one L-shaped move.",
+      "Put the start square in a queue with distance 0. The queue processes layers of moves: squares reachable in 0 moves, then 1, then 2, and so on.",
+      "For each removed square, try all eight knight offsets. Add each unvisited square that remains on the board and record its distance as one more move.",
+      "The first time the target is removed, its distance is the minimum. If start and target are the same, the answer is 0."
+    ],
+    "example": "In sample 1, (2, 1) to (3, 3) changes the coordinates by (1, 2), so the target is in BFS layer 1. In sample 2, (4, 2) to (7, 5) is not one move; the path (4, 2) → (5, 4) → (7, 5) has two moves, so the target is in layer 2.",
+    "correctness": "Each of the eight knight offsets is tried, and the bounds check excludes squares outside the board. Thus the search includes every legal move and no illegal square. The queue processes squares in increasing move layers, so all squares at distance d are expanded before any square at a larger distance. A square's first recorded distance is therefore minimal, and the first distance recorded for the target is the shortest path.",
+    "complexity": "Each square enters the queue once, and processing it checks at most 8 moves. With V squares (64) and E legal move connections, time is O(V+E): work grows with the total number of squares and connections, and E≤8V. The distance grid and queue each hold at most V squares, using O(V) space. On the fixed 8×8 board, these are small fixed bounds.",
+    "pitfalls": [
+      "Input coordinates start at 1, so subtract 1 before using them as array indices.",
+      "A knight move changes the coordinates by absolute values 1 and 2, in either order.",
+      "Check that both coordinates remain between 0 and 7 after a move.",
+      "If start and target match, no moves are needed; the answer is 0."
+    ]
+  }
+}

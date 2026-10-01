@@ -1,0 +1,47 @@
+{
+  "title": "Up and Down",
+  "zh": {
+    "summary": "在口哨响起的第 s 步，分别算出 Nikky 和 Byron 离起点多远，再输出走得更远的人；距离相同就输出 Tied。",
+    "topics": [
+      "周期分解：每个人按固定的前进步数和后退步数重复行动。",
+      "余步模拟：先算完整周期的净移动，再按周期开头的顺序处理剩余步数。",
+      "位置比较：题目保证每个周期结束时不落后于起点，所以当前位置就是离起点的距离。"
+    ],
+    "steps": [
+      "对一个人，把前进和后退步数相加得到周期长度。divmod(s, 周期长度) 会给出两个数：完整周期数，以及除去这些周期后剩下的步数；后者也就是 s % 周期长度 的结果。",
+      "每个完整周期净前进 forward-backward 步，因此先把这个净移动乘以完整周期数。",
+      "剩余动作先前进，最多 forward 步；之后才后退。将这两部分加到完整周期的净移动上。",
+      "对两个人各算一次位置，然后比较数值，输出 Nikky、Byron 或 Tied。"
+    ],
+    "example": "官方样例中，Nikky 每 6 步净前进 2 步，12 步后在 4 的位置。Byron 每 8 步净前进 2 步，12 步包含一个完整周期和 4 个前进步，所以在 6 的位置，答案是 Byron。",
+    "correctness": "每个完整周期按题目给定的顺序前进 forward 步、后退 backward 步，净位置变化正好是 forward-backward。周期结束后，剩余步数从下一周期的前进阶段开始；min 和 max 两项分别计算剩余的前进与后退。因此函数返回的就是 s 步后的实际位置。由于 forward 不小于 backward，完整周期的净移动非负，周期内后退也不会走过起点，所以比较位置等价于比较离起点的距离。",
+    "complexity": "每个人只做固定数量的整数运算，不随 s 增长，所以时间是 O(1)：即使 s 从 12 增加到 10000，运算次数也不会随之增加。额外空间也是 O(1)，因为只保存固定数量的整数。",
+    "pitfalls": [
+      "剩余步数超过前进阶段时，超出的部分是后退步，不能把所有剩余步都当成前进。",
+      "s 恰好是周期长度的倍数时，剩余步数为 0，位置只由完整周期决定。",
+      "题目要求比较离起点的距离；这里能直接比较位置，是因为给定条件保证位置不会低于 0。"
+    ]
+  },
+  "en": {
+    "summary": "Find how far Nikky and Byron are from the start after step s, then print who is farther away or Tied if their distances match.",
+    "topics": [
+      "Cycle decomposition: each person repeats a fixed number of forward steps followed by backward steps.",
+      "Remainder simulation: count the net movement of full cycles, then handle the leftover steps in order.",
+      "Position comparison: the input guarantees that a person never ends a cycle behind the start, so the position is the distance from the start."
+    ],
+    "steps": [
+      "For one person, add the forward and backward counts to get the cycle length. divmod(s, cycle length) returns two numbers: the number of full cycles and the steps left over; that second number is also what s % cycle_length would return.",
+      "A full cycle moves forward by forward-backward steps, so multiply that net movement by the number of full cycles.",
+      "The leftover actions move forward first, for up to forward steps, and then move backward. Add those movements to the full-cycle result.",
+      "Compute both positions and compare them to print Nikky, Byron, or Tied."
+    ],
+    "example": "In the official sample, Nikky moves forward by 2 net steps every 6 steps, so after 12 steps he is at position 4. Byron moves forward by 2 net steps every 8 steps; 12 steps contain one full cycle and 4 forward steps, putting him at position 6. The answer is Byron.",
+    "correctness": "Each full cycle follows the required order of forward then backward steps, for a net change of forward-backward. Any remaining steps begin with the next forward phase; the min and max terms count the remaining forward and backward steps separately. Thus the function returns the actual position after s steps. Since forward is at least backward, a full cycle never has negative net movement, and the backward phase never carries the walker past the start. Comparing positions therefore compares their distances from the start.",
+    "complexity": "Each person uses a fixed number of integer operations, regardless of s, so time is O(1): raising s from 12 to 10000 does not add more operations. Extra space is also O(1), because only a fixed number of integers are stored.",
+    "pitfalls": [
+      "If the remainder is longer than the forward phase, the extra steps are backward steps; do not count them all as forward.",
+      "When s is an exact multiple of the cycle length, the remainder is zero and only full-cycle movement counts.",
+      "The problem asks for distance from the start. Position can be compared directly here because the given conditions keep it at or above zero."
+    ]
+  }
+}

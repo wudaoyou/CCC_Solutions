@@ -1,0 +1,114 @@
+{
+  "judge": "DMOJ judge-server",
+  "judge_commit": "5ef74c5d6cad9efb2e86a5bb8ff2c90aaa6e435c",
+  "executor": "PY3",
+  "results": [
+    {
+      "problem": "2010/junior/J1",
+      "cases": 3,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "6cf4530a0fb7c0cbd204f9446812a781688329d91b1c836bd4924a639a605cf3",
+      "lesson_sha256": "32c70bb6a8346c9c2149ee57b221f48cef8ce55ca32b47765276d85718a52f0e"
+    },
+    {
+      "problem": "2010/junior/J2",
+      "cases": 4,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "06dd9f10dd7fe3176dae5163efe82d8eb34f1a601b36b8afa89ffc39fbdf6a00",
+      "lesson_sha256": "0a090bc3406708a90df97f445be22c1257c0359c7a3beeeda9459528b0c6de13"
+    },
+    {
+      "problem": "2010/junior/J3",
+      "cases": 2,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "09fbc93e098206276e57e4d54e39b5943b028d731eb82d6cf5f327262987f7ba",
+      "lesson_sha256": "0797cd40d6b30f1d6427cf0ce7042e6f99c3a01007c57a425d0b74ffe22eb296"
+    },
+    {
+      "problem": "2010/junior/J4",
+      "cases": 3,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "7d3a2847360bd2ccb54149bc85c953bf00a61cf78351e5940ae4813375d714ba",
+      "lesson_sha256": "ec90716c50d99baa1e7162b8144f9f0b376022fad20ceea81c95b378cd7bf07f"
+    },
+    {
+      "problem": "2010/junior/J5",
+      "cases": 4,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "43a95a58af1b3d282fb1cbe35b937b1511f44b475d5cd2640e6e0231c8f390c5",
+      "lesson_sha256": "04f2c53adc005ba56084cc3281d7996c7138de9d9189ca37633121f0fcd51e00"
+    },
+    {
+      "problem": "2010/senior/S2",
+      "cases": 6,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "87b2c23b5721ab4ac9f423dcdec7f74c0a1f097310b01f84a2dee77e0e074fdb",
+      "lesson_sha256": "82526163d9c4880b077c6a8126aa1fe5ec59b170bacb27f50f10666b618ff4f7"
+    }
+  ],
+  "verified_on": "2026-10-01",
+  "coverage_note": {
+    "zh": "验证范围为本年已收录的 Junior J1–J5 和 Senior S2；只含官方样例及独立核对的本地用例。完整官方数据尚未取得，未进行在线提交。",
+    "en": "Covers the collected Junior J1–J5 and Senior S2 only, using official samples and independently checked local cases. Full official data has not been obtained; no online submissions were made."
+  },
+  "independent_checks": {
+    "J1_all_inputs": 10,
+    "J2_independent_step_simulations": 120,
+    "J3_signed_quotients": 54,
+    "J4_difference_sequences": 1093,
+    "J5_all_start_goal_pairs": 4096,
+    "S2_prefix_free_round_trips": 40
+  }
+}

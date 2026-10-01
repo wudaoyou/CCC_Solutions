@@ -1,0 +1,49 @@
+{
+  "title": "Global Warming",
+  "zh": {
+    "summary": "读取多组温度序列，找出连续温差的最短循环长度；输入 0 时结束。",
+    "topics": [
+      "差分：用后一个温度减前一个温度，例如 3 到 5 的温差为 +2。",
+      "枚举：按 1、2、3……的顺序尝试所有可能的周期长度。",
+      "取余：i % p 表示 i 除以 p 的余数，用它找第 i 项在循环中的位置。"
+    ],
+    "steps": [
+      "计算相邻温度之差，把上升和下降都保留为有符号整数。",
+      "依次尝试长度为 1 到温差数量的周期。前 p 个温差定义长度为 p 的循环。",
+      "从第 p 项开始，检查 changes[i] 是否等于 changes[i % p]。例如 p=3 时，下标 3、4、5 对应循环中的下标 0、1、2。第一个全部通过的 p 就是答案。",
+      "如果只有一个温度，就没有温差，输出 0。"
+    ],
+    "example": "温度 3, 4, 6, 4, 5, 7, 5 的温差是 +1, +2, -2, +1, +2, -2，最短循环长度为 3。另一个序列 0, -2, 3, 1, 6, 4 的温差是 -2, +5, -2, +5, -2；长度 2 的循环重复两次后，末尾再出现一个匹配的部分循环。",
+    "correctness": "对候选长度 p，前 p 个温差定义循环。程序逐个检查其余位置 i 是否等于 changes[i % p]，因此通过检查就说明这个循环覆盖了完整序列，包括末尾可能不完整的一次重复。候选长度按从小到大检查，所以第一个通过的长度最短；温差总数本身一定可行。没有温差时答案为 0。",
+    "complexity": "一组数据有 m=n−1 个温差。最多尝试 m 个周期，每个至多检查 m 项，时间为 O(m²)，意思是检查次数最多按 m 的平方增长。多组数据分别计算，再把工作量相加。代码一次读入所有 U 个输入整数，并保存 T 个答案，因此整个程序的空间为 O(U+T)；当前这一组的温差列表另需 O(m) 空间，已包含在这个总量中。题目每组最多 20 个温度，枚举足够快。",
+    "pitfalls": [
+      "比较的是相邻温度之差，不是温度本身。",
+      "下降对应负差值，不能只记录变化的绝对值。",
+      "最后一次重复可以不完整，但其中已有的每一项都必须匹配周期。",
+      "单个温度产生零个温差，答案是 0。"
+    ]
+  },
+  "en": {
+    "summary": "For each temperature sequence, find the shortest repeating cycle of consecutive changes. Input ends with 0.",
+    "topics": [
+      "Differences: subtract the previous temperature from the next one; a change from 3 to 5 is +2.",
+      "Enumeration: try each possible cycle length in order, starting with 1, 2, 3, and so on.",
+      "Remainder: i % p is the remainder when i is divided by p; it gives position i within the repeating cycle."
+    ],
+    "steps": [
+      "Compute each change between adjacent temperatures, keeping increases and decreases as signed integers.",
+      "Try cycle lengths p from 1 through the number of changes. The first p changes define a cycle of length p.",
+      "Starting at position p, check changes[i] against changes[i % p]. For p=3, positions 3, 4, 5 correspond to cycle positions 0, 1, 2. The first p that passes every check is the answer.",
+      "With one temperature there are no changes, so output 0."
+    ],
+    "example": "For temperatures 3, 4, 6, 4, 5, 7, 5, the changes are +1, +2, -2, +1, +2, -2, so the shortest cycle has length 3. For 0, -2, 3, 1, 6, 4, the changes are -2, +5, -2, +5, -2: a length-2 cycle repeats twice and ends with one matching part of a third repetition.",
+    "correctness": "For a candidate length p, the first p changes define the cycle. The program checks each later position i against changes[i % p], so a passing candidate covers the whole sequence, including any truncated final repetition. Candidates are checked in increasing order, making the first passing length shortest; the full change sequence always works. With no changes, the answer is 0.",
+    "complexity": "One case has m=n−1 changes. There are at most m candidate lengths, each checking at most m entries, so time is O(m²): the number of checks grows at most like the square of m. Add the work for all cases. This code reads all U input integers at once and stores T answers, so total program space is O(U+T). The current list of m changes fits within that bound. With at most 20 temperatures per case, enumeration is easily fast enough.",
+    "pitfalls": [
+      "Compare consecutive temperature changes, not the temperatures themselves.",
+      "Keep changes signed so a decrease remains negative.",
+      "The final repetition may be truncated, but every change it contains must match the cycle.",
+      "One temperature gives zero changes and an answer of 0."
+    ]
+  }
+}

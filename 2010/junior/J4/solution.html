@@ -4,7 +4,50 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2010 J4 · Global Warming</h1></header><p class="eyebrow">2010 / junior / J4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j4">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Global Warming
+<h1>2010 J4 · Global Warming</h1></header><p class="eyebrow">2010 / junior / J4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j4">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>读取多组温度序列，找出连续温差的最短循环长度；输入 0 时结束。</p></section><section class="card"><h2>考查知识点</h2><ul><li>差分：用后一个温度减前一个温度，例如 3 到 5 的温差为 +2。</li><li>枚举：按 1、2、3……的顺序尝试所有可能的周期长度。</li><li>取余：i % p 表示 i 除以 p 的余数，用它找第 i 项在循环中的位置。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>计算相邻温度之差，把上升和下降都保留为有符号整数。</li><li>依次尝试长度为 1 到温差数量的周期。前 p 个温差定义长度为 p 的循环。</li><li>从第 p 项开始，检查 changes[i] 是否等于 changes[i % p]。例如 p=3 时，下标 3、4、5 对应循环中的下标 0、1、2。第一个全部通过的 p 就是答案。</li><li>如果只有一个温度，就没有温差，输出 0。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>温度 3, 4, 6, 4, 5, 7, 5 的温差是 +1, +2, -2, +1, +2, -2，最短循环长度为 3。另一个序列 0, -2, 3, 1, 6, 4 的温差是 -2, +5, -2, +5, -2；长度 2 的循环重复两次后，末尾再出现一个匹配的部分循环。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>对候选长度 p，前 p 个温差定义循环。程序逐个检查其余位置 i 是否等于 changes[i % p]，因此通过检查就说明这个循环覆盖了完整序列，包括末尾可能不完整的一次重复。候选长度按从小到大检查，所以第一个通过的长度最短；温差总数本身一定可行。没有温差时答案为 0。</p></section><section class="card"><h2>运行时间与内存</h2><p>一组数据有 m=n−1 个温差。最多尝试 m 个周期，每个至多检查 m 项，时间为 O(m²)，意思是检查次数最多按 m 的平方增长。多组数据分别计算，再把工作量相加。代码一次读入所有 U 个输入整数，并保存 T 个答案，因此整个程序的空间为 O(U+T)；当前这一组的温差列表另需 O(m) 空间，已包含在这个总量中。题目每组最多 20 个温度，枚举足够快。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>比较的是相邻温度之差，不是温度本身。</li><li>下降对应负差值，不能只记录变化的绝对值。</li><li>最后一次重复可以不完整，但其中已有的每一项都必须匹配周期。</li><li>单个温度产生零个温差，答案是 0。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+
+def main():
+    data = list(map(int, sys.stdin.buffer.read().split()))
+    answers = []
+    pos = 0
+
+    while pos &lt; len(data):
+        n = data[pos]
+        pos += 1
+        if n == 0:
+            break
+
+        temperatures = data[pos:pos + n]
+        pos += n
+        changes = [b - a for a, b in zip(temperatures, temperatures[1:])]
+
+        if not changes:
+            answers.append(&quot;0&quot;)
+            continue
+
+        for period in range(1, len(changes) + 1):
+            if all(changes[i] == changes[i % period] for i in range(period, len(changes))):
+                answers.append(str(period))
+                break
+
+    sys.stdout.write(&quot;\n&quot;.join(answers))
+    if answers:
+        sys.stdout.write(&quot;\n&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>7 3 4 6 4 5 7 5
+3 1 3 5
+3 1 4 5
+4 3 4 6 7
+0
+</pre></div><div><h3>样例输出</h3><pre>3
+1
+2
+2
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Global Warming
 Problem Description
 Your task is to help scientists predict the trend of the global warming. One of the hypotheses they
 are considering is that over long periods of time, the average temperature follows certain cycles,
@@ -45,7 +88,50 @@ since the whole sequence could be treated as one long cycle.
 
 
                                                    8
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j4">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Global Warming
+</pre></details></section><section class="card"><h2>测试数据</h2><p>3 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01-single-reading.in">edge-01-single-reading.in</a> / <a href="tests/edge-01-single-reading.out">output</a></li><li><a href="tests/edge-02-truncated-repeat.in">edge-02-truncated-repeat.in</a> / <a href="tests/edge-02-truncated-repeat.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j4">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>For each temperature sequence, find the shortest repeating cycle of consecutive changes. Input ends with 0.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Differences: subtract the previous temperature from the next one; a change from 3 to 5 is +2.</li><li>Enumeration: try each possible cycle length in order, starting with 1, 2, 3, and so on.</li><li>Remainder: i % p is the remainder when i is divided by p; it gives position i within the repeating cycle.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Compute each change between adjacent temperatures, keeping increases and decreases as signed integers.</li><li>Try cycle lengths p from 1 through the number of changes. The first p changes define a cycle of length p.</li><li>Starting at position p, check changes[i] against changes[i % p]. For p=3, positions 3, 4, 5 correspond to cycle positions 0, 1, 2. The first p that passes every check is the answer.</li><li>With one temperature there are no changes, so output 0.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>For temperatures 3, 4, 6, 4, 5, 7, 5, the changes are +1, +2, -2, +1, +2, -2, so the shortest cycle has length 3. For 0, -2, 3, 1, 6, 4, the changes are -2, +5, -2, +5, -2: a length-2 cycle repeats twice and ends with one matching part of a third repetition.</p></section><section class="card"><h2>Why does this work?</h2><p>For a candidate length p, the first p changes define the cycle. The program checks each later position i against changes[i % p], so a passing candidate covers the whole sequence, including any truncated final repetition. Candidates are checked in increasing order, making the first passing length shortest; the full change sequence always works. With no changes, the answer is 0.</p></section><section class="card"><h2>Time and memory</h2><p>One case has m=n−1 changes. There are at most m candidate lengths, each checking at most m entries, so time is O(m²): the number of checks grows at most like the square of m. Add the work for all cases. This code reads all U input integers at once and stores T answers, so total program space is O(U+T). The current list of m changes fits within that bound. With at most 20 temperatures per case, enumeration is easily fast enough.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Compare consecutive temperature changes, not the temperatures themselves.</li><li>Keep changes signed so a decrease remains negative.</li><li>The final repetition may be truncated, but every change it contains must match the cycle.</li><li>One temperature gives zero changes and an answer of 0.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+
+def main():
+    data = list(map(int, sys.stdin.buffer.read().split()))
+    answers = []
+    pos = 0
+
+    while pos &lt; len(data):
+        n = data[pos]
+        pos += 1
+        if n == 0:
+            break
+
+        temperatures = data[pos:pos + n]
+        pos += n
+        changes = [b - a for a, b in zip(temperatures, temperatures[1:])]
+
+        if not changes:
+            answers.append(&quot;0&quot;)
+            continue
+
+        for period in range(1, len(changes) + 1):
+            if all(changes[i] == changes[i % period] for i in range(period, len(changes))):
+                answers.append(str(period))
+                break
+
+    sys.stdout.write(&quot;\n&quot;.join(answers))
+    if answers:
+        sys.stdout.write(&quot;\n&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>7 3 4 6 4 5 7 5
+3 1 3 5
+3 1 4 5
+4 3 4 6 7
+0
+</pre></div><div><h3>Sample output</h3><pre>3
+1
+2
+2
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Global Warming
 Problem Description
 Your task is to help scientists predict the trend of the global warming. One of the hypotheses they
 are considering is that over long periods of time, the average temperature follows certain cycles,
@@ -86,6 +172,6 @@ since the whole sequence could be treated as one long cycle.
 
 
                                                    8
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>3 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01-single-reading.in">edge-01-single-reading.in</a> / <a href="tests/edge-01-single-reading.out">output</a></li><li><a href="tests/edge-02-truncated-repeat.in">edge-02-truncated-repeat.in</a> / <a href="tests/edge-02-truncated-repeat.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

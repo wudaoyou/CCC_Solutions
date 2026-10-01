@@ -4,7 +4,35 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2010 J2 · Up and Down</h1></header><p class="eyebrow">2010 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Up and Down
+<h1>2010 J2 · Up and Down</h1></header><p class="eyebrow">2010 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j2">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>在口哨响起的第 s 步，分别算出 Nikky 和 Byron 离起点多远，再输出走得更远的人；距离相同就输出 Tied。</p></section><section class="card"><h2>考查知识点</h2><ul><li>周期分解：每个人按固定的前进步数和后退步数重复行动。</li><li>余步模拟：先算完整周期的净移动，再按周期开头的顺序处理剩余步数。</li><li>位置比较：题目保证每个周期结束时不落后于起点，所以当前位置就是离起点的距离。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>对一个人，把前进和后退步数相加得到周期长度。divmod(s, 周期长度) 会给出两个数：完整周期数，以及除去这些周期后剩下的步数；后者也就是 s % 周期长度 的结果。</li><li>每个完整周期净前进 forward-backward 步，因此先把这个净移动乘以完整周期数。</li><li>剩余动作先前进，最多 forward 步；之后才后退。将这两部分加到完整周期的净移动上。</li><li>对两个人各算一次位置，然后比较数值，输出 Nikky、Byron 或 Tied。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>官方样例中，Nikky 每 6 步净前进 2 步，12 步后在 4 的位置。Byron 每 8 步净前进 2 步，12 步包含一个完整周期和 4 个前进步，所以在 6 的位置，答案是 Byron。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>每个完整周期按题目给定的顺序前进 forward 步、后退 backward 步，净位置变化正好是 forward-backward。周期结束后，剩余步数从下一周期的前进阶段开始；min 和 max 两项分别计算剩余的前进与后退。因此函数返回的就是 s 步后的实际位置。由于 forward 不小于 backward，完整周期的净移动非负，周期内后退也不会走过起点，所以比较位置等价于比较离起点的距离。</p></section><section class="card"><h2>运行时间与内存</h2><p>每个人只做固定数量的整数运算，不随 s 增长，所以时间是 O(1)：即使 s 从 12 增加到 10000，运算次数也不会随之增加。额外空间也是 O(1)，因为只保存固定数量的整数。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>剩余步数超过前进阶段时，超出的部分是后退步，不能把所有剩余步都当成前进。</li><li>s 恰好是周期长度的倍数时，剩余步数为 0，位置只由完整周期决定。</li><li>题目要求比较离起点的距离；这里能直接比较位置，是因为给定条件保证位置不会低于 0。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+
+def position(forward, backward, steps):
+    cycle_length = forward + backward
+    complete_cycles, remaining = divmod(steps, cycle_length)
+    distance = complete_cycles * (forward - backward)
+    distance += min(remaining, forward)
+    distance -= max(0, remaining - forward)
+    return distance
+
+
+a, b, c, d, steps = map(int, sys.stdin.buffer.read().split())
+nikky = position(a, b, steps)
+byron = position(c, d, steps)
+
+if nikky &gt; byron:
+    print(&quot;Nikky&quot;)
+elif byron &gt; nikky:
+    print(&quot;Byron&quot;)
+else:
+    print(&quot;Tied&quot;)
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>4
+2
+5
+3
+12
+</pre></div><div><h3>样例输出</h3><pre>Byron
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Up and Down
 Problem Description
 Nikky and Byron are playing a silly game in gym class.
 Nikky is told by his teacher to walk forward a steps (1 ≤ a ≤ 100) and then walk backward b
@@ -45,7 +73,35 @@ position. Thus, Byron is ahead.
 
 
                                                    5
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Up and Down
+</pre></details></section><section class="card"><h2>测试数据</h2><p>4 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j2">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Find how far Nikky and Byron are from the start after step s, then print who is farther away or Tied if their distances match.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Cycle decomposition: each person repeats a fixed number of forward steps followed by backward steps.</li><li>Remainder simulation: count the net movement of full cycles, then handle the leftover steps in order.</li><li>Position comparison: the input guarantees that a person never ends a cycle behind the start, so the position is the distance from the start.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>For one person, add the forward and backward counts to get the cycle length. divmod(s, cycle length) returns two numbers: the number of full cycles and the steps left over; that second number is also what s % cycle_length would return.</li><li>A full cycle moves forward by forward-backward steps, so multiply that net movement by the number of full cycles.</li><li>The leftover actions move forward first, for up to forward steps, and then move backward. Add those movements to the full-cycle result.</li><li>Compute both positions and compare them to print Nikky, Byron, or Tied.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>In the official sample, Nikky moves forward by 2 net steps every 6 steps, so after 12 steps he is at position 4. Byron moves forward by 2 net steps every 8 steps; 12 steps contain one full cycle and 4 forward steps, putting him at position 6. The answer is Byron.</p></section><section class="card"><h2>Why does this work?</h2><p>Each full cycle follows the required order of forward then backward steps, for a net change of forward-backward. Any remaining steps begin with the next forward phase; the min and max terms count the remaining forward and backward steps separately. Thus the function returns the actual position after s steps. Since forward is at least backward, a full cycle never has negative net movement, and the backward phase never carries the walker past the start. Comparing positions therefore compares their distances from the start.</p></section><section class="card"><h2>Time and memory</h2><p>Each person uses a fixed number of integer operations, regardless of s, so time is O(1): raising s from 12 to 10000 does not add more operations. Extra space is also O(1), because only a fixed number of integers are stored.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>If the remainder is longer than the forward phase, the extra steps are backward steps; do not count them all as forward.</li><li>When s is an exact multiple of the cycle length, the remainder is zero and only full-cycle movement counts.</li><li>The problem asks for distance from the start. Position can be compared directly here because the given conditions keep it at or above zero.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+
+def position(forward, backward, steps):
+    cycle_length = forward + backward
+    complete_cycles, remaining = divmod(steps, cycle_length)
+    distance = complete_cycles * (forward - backward)
+    distance += min(remaining, forward)
+    distance -= max(0, remaining - forward)
+    return distance
+
+
+a, b, c, d, steps = map(int, sys.stdin.buffer.read().split())
+nikky = position(a, b, steps)
+byron = position(c, d, steps)
+
+if nikky &gt; byron:
+    print(&quot;Nikky&quot;)
+elif byron &gt; nikky:
+    print(&quot;Byron&quot;)
+else:
+    print(&quot;Tied&quot;)
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>4
+2
+5
+3
+12
+</pre></div><div><h3>Sample output</h3><pre>Byron
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Up and Down
 Problem Description
 Nikky and Byron are playing a silly game in gym class.
 Nikky is told by his teacher to walk forward a steps (1 ≤ a ≤ 100) and then walk backward b
@@ -86,6 +142,6 @@ position. Thus, Byron is ahead.
 
 
                                                    5
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>4 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

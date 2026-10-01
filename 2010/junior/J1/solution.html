@@ -4,7 +4,18 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2010 J1 · What is n, Daddy?</h1></header><p class="eyebrow">2010 / junior / J1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j1">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: What is n, Daddy?
+<h1>2010 J1 · What is n, Daddy?</h1></header><p class="eyebrow">2010 / junior / J1</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j1">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>计算 Natalie 能用一只或两只手摆出整数 n 的多少种方式。每只手最多举五根手指；两只手一起用时，把较大的数量放在前面，因此同一组合只算一次。</p></section><section class="card"><h2>考查知识点</h2><ul><li>有界枚举：手指数量只有 0 到 5，可以逐一检查所有可能。</li><li>组合计数：固定较大的那只手，再检查较小那只手，避免把左右交换的同一组重复计算。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>把一只手的表示法看成 first_hand 加 0；第二只手的数量为 0 表示只用第一只手。</li><li>枚举 first_hand 从 1 到 5，再枚举 second_hand 从 0 到 first_hand。这个顺序保证先写较大的数量。</li><li>每当两只手的数量之和是 n，就把答案加一。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>n=4 时，枚举会找到 4+0、3+1 和 2+2，一共三种。像 1+3 不会再算一次，因为较大的一手必须排在前面。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>每只手的数量都在 0 到 5 之间，且 first_hand 不小于 second_hand，所以循环只访问符合题意的表示法。每个符合条件的表示法有唯一的 first_hand 和 second_hand，因此会被计数一次；总数等于 n 的表示法恰好被加一。</p></section><section class="card"><h2>运行时间与内存</h2><p>最多检查 20 个组合，时间为 O(1)，意思是 n 变大时检查次数也不会增加；只使用固定的几个整数，额外空间也是 O(1)。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>不要把 3+1 和 1+3 当成两种答案；题目要求较大的一手先写。</li><li>每只手最多五根手指，所以 6 不能由一只手表示，但可以用两只手表示。</li><li>second_hand 为 0 是只用一只手的写法，不代表还要把 0+4 另算一遍。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>n = int(input())
+
+ways = 0
+for first_hand in range(1, 6):
+    for second_hand in range(first_hand + 1):
+        if first_hand + second_hand == n:
+            ways += 1
+
+print(ways)
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>4
+</pre></div><div><h3>样例输出</h3><pre>3
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: What is n, Daddy?
 Problem Description
 Natalie is learning to count on her fingers. When her Daddy tells her a number n (1 ≤ n ≤ 10),
 she asks “What is n, Daddy?”, by which she means “How many fingers should I hold up on each
@@ -43,7 +54,18 @@ Output for Sample Input
 
 
                                                   4
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j1">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: What is n, Daddy?
+</pre></details></section><section class="card"><h2>测试数据</h2><p>3 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc10j1">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Count the ways Natalie can show n fingers using one or two hands. Each hand can show at most five fingers. When both hands are used, list the larger number first so that swapping hands does not create another answer.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Bounded enumeration: each hand can show only 0 through 5 fingers, so every possibility can be checked.</li><li>Counting combinations: choose the larger hand first, which prevents counting the same pair in both orders.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Represent a one-hand answer as first_hand plus 0; a second-hand count of zero means only the first hand is used.</li><li>Try first_hand from 1 through 5, then try second_hand from 0 through first_hand. This keeps the larger count first.</li><li>Add one to the answer whenever the two counts sum to n.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>For n=4, the loop finds 4+0, 3+1, and 2+2, for three ways. It does not count 1+3 again because the larger hand must be listed first.</p></section><section class="card"><h2>Why does this work?</h2><p>Each hand count is between 0 and 5, and first_hand is at least second_hand, so the loops visit only valid representations. Every valid representation has one unique ordered pair of counts, so it is counted exactly once. The program adds one exactly for the pairs whose sum is n.</p></section><section class="card"><h2>Time and memory</h2><p>At most 20 pairs are checked, so the running time is O(1): making n larger does not increase the number of checks. Only a fixed number of integers are stored, so extra space is also O(1).</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Do not count 3+1 and 1+3 separately; the larger hand must be written first.</li><li>A hand can show at most five fingers, so 6 cannot be shown on one hand even though it can be shown on two.</li><li>A second-hand count of 0 represents using one hand; do not count the reversed pair as another answer.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>n = int(input())
+
+ways = 0
+for first_hand in range(1, 6):
+    for second_hand in range(first_hand + 1):
+        if first_hand + second_hand == n:
+            ways += 1
+
+print(ways)
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>4
+</pre></div><div><h3>Sample output</h3><pre>3
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J1: What is n, Daddy?
 Problem Description
 Natalie is learning to count on her fingers. When her Daddy tells her a number n (1 ≤ n ≤ 10),
 she asks “What is n, Daddy?”, by which she means “How many fingers should I hold up on each
@@ -82,6 +104,6 @@ Output for Sample Input
 
 
                                                   4
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>3 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>
