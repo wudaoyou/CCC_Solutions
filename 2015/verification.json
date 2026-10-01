@@ -1,0 +1,363 @@
+{
+  "judge": "DMOJ judge-server",
+  "judge_commit": "5ef74c5d6cad9efb2e86a5bb8ff2c90aaa6e435c",
+  "executor": "PY3",
+  "results": [
+    {
+      "problem": "2015/junior/J1",
+      "cases": 9,
+      "passed": true,
+      "test_data_kind": "official",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.016,
+          "wall_seconds": 0.02,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.02,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.016,
+          "wall_seconds": 0.019,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.016,
+          "wall_seconds": 0.02,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.02,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.022,
+          "peak_memory_kib": 10584
+        },
+        {
+          "cpu_seconds": 0.018,
+          "wall_seconds": 0.022,
+          "peak_memory_kib": 10584
+        }
+      ],
+      "solution_sha256": "1c6a54be41996590552e31272feebf41a837b36d28bd0d192fc81fd31b633fbc",
+      "lesson_sha256": "264b03ee5a3cc2c8b9e6ca2591dd98e3e34164d751ba4713913734904c5cbfbe"
+    },
+    {
+      "problem": "2015/junior/J2",
+      "cases": 8,
+      "passed": true,
+      "test_data_kind": "official",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10532
+        },
+        {
+          "cpu_seconds": 0.016,
+          "wall_seconds": 0.02,
+          "peak_memory_kib": 10532
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10532
+        },
+        {
+          "cpu_seconds": 0.016,
+          "wall_seconds": 0.02,
+          "peak_memory_kib": 10532
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10532
+        },
+        {
+          "cpu_seconds": 0.016,
+          "wall_seconds": 0.02,
+          "peak_memory_kib": 10532
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10532
+        },
+        {
+          "cpu_seconds": 0.026,
+          "wall_seconds": 0.031,
+          "peak_memory_kib": 10532
+        }
+      ],
+      "solution_sha256": "c44207d077cc11c98f1214f9b824b0599efed2a99c2c9acdbb91cb1a0a9be442",
+      "lesson_sha256": "24b13a95b85b4f0e7872dff83f5f77f91489d5ab59ed673c50109e73e1e6ca23"
+    },
+    {
+      "problem": "2015/junior/J3",
+      "cases": 5,
+      "passed": true,
+      "test_data_kind": "official",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.025,
+          "peak_memory_kib": 10504
+        },
+        {
+          "cpu_seconds": 0.018,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10504
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10504
+        },
+        {
+          "cpu_seconds": 0.02,
+          "wall_seconds": 0.024,
+          "peak_memory_kib": 10504
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10504
+        }
+      ],
+      "solution_sha256": "0bef689f89a12249c4d49f93f4168e63cab0bf3ad1329a6d50753ea302b1fe8f",
+      "lesson_sha256": "2e7639ec5b367041eadb36c1fe115f6680907509e7a9382d3509101e2401cc17"
+    },
+    {
+      "problem": "2015/junior/J4",
+      "cases": 3,
+      "passed": true,
+      "test_data_kind": "official",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.018,
+          "wall_seconds": 0.022,
+          "peak_memory_kib": 10720
+        },
+        {
+          "cpu_seconds": 0.018,
+          "wall_seconds": 0.022,
+          "peak_memory_kib": 10720
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10720
+        }
+      ],
+      "solution_sha256": "35e3e22faf4f653588d9acefba6ffd0a6ee42f838b810eb47318d36ddaefe9e2",
+      "lesson_sha256": "4a81284ec593e73c274c2384b097c5b0eff2bf1222c236e4d0aff3cfe4a3fd8e"
+    },
+    {
+      "problem": "2015/junior/J5",
+      "cases": 10,
+      "passed": true,
+      "test_data_kind": "official",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.018,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10688
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 11672
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10688
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10688
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10688
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10728
+        },
+        {
+          "cpu_seconds": 0.018,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10688
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10708
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10788
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10756
+        }
+      ],
+      "solution_sha256": "e028d94c56a4f4776a59b9330b018aa0fb492fb0e6803c56a45366eb2bf71c0e",
+      "lesson_sha256": "d2618c5903c0b2e2c2d9ffa1165cb5e93f9a2b7d04460b31b2eded668331199b"
+    },
+    {
+      "problem": "2015/senior/S2",
+      "cases": 6,
+      "passed": true,
+      "test_data_kind": "official",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "case_metrics": [
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.02,
+          "peak_memory_kib": 10688
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10688
+        },
+        {
+          "cpu_seconds": 0.019,
+          "wall_seconds": 0.023,
+          "peak_memory_kib": 10688
+        },
+        {
+          "cpu_seconds": 0.017,
+          "wall_seconds": 0.021,
+          "peak_memory_kib": 10696
+        },
+        {
+          "cpu_seconds": 0.05,
+          "wall_seconds": 0.054,
+          "peak_memory_kib": 10824
+        },
+        {
+          "cpu_seconds": 0.357,
+          "wall_seconds": 0.362,
+          "peak_memory_kib": 11272
+        }
+      ],
+      "solution_sha256": "7e9fa096193946f42723467a72b5cc199ef899eb700961560a74f98d430a529c",
+      "lesson_sha256": "d98d28e7f42715ad04edf405fdabaf1ac28546925fa028eb4ea2b04df4640688"
+    }
+  ],
+  "verified_on": "2026-10-01",
+  "coverage_note": {
+    "zh": "本年已收录的 Junior J1–J5 和 Senior S2，覆盖这些题在官方测试包中的全部 41 个用例；Senior S2 包含百万球衣、百万请求用例。未在线提交，不包含未收录的 Senior S1、S3–S5。",
+    "en": "Covers the collected Junior J1–J5 and Senior S2, including all 41 cases for these problems in the official archives. S2 includes a case with one million jerseys and one million requests. No online submissions were made; uncollected Senior S1 and S3–S5 are excluded."
+  },
+  "independent_checks": {
+    "J1_all_valid_dates": 365,
+    "J2_all_short_messages": 97655,
+    "J3_all_alphabet_letters": 26,
+    "J5_all_allocations_n_up_to_18": 171,
+    "S2_small_request_subset_oracles": 217,
+    "J4_absolute_time_generated_conversations": 100,
+    "J4_hand_checked_conversations": 4
+  },
+  "official_archive_comparison": {
+    "covered_archive_case_counts": {
+      "junior": 35,
+      "senior": 6
+    },
+    "preserved_legacy_files_with_CRLF_LF_differences": []
+  },
+  "independent_check_scripts": [
+    "junior/J4/tests/verify.py",
+    "junior/J5/tests/verify.py",
+    "senior/S2/tests/verify.py"
+  ]
+}

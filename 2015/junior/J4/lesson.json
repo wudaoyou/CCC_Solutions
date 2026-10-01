@@ -1,0 +1,55 @@
+{
+  "title": "Wait Time",
+  "zh": {
+    "summary": "按消息出现的先后记录时间；每个朋友的 R 开始一段等待，匹配的 S 结束等待并把秒数加到总和。最后仍在等待的朋友输出 -1。",
+    "topics": [
+      "时间线：把第一条消息的时刻定为 0。相邻两条消息之间没有 W 时经过 1 秒；有 W x 时经过 x 秒，x 已经替代这 1 秒，不要再多加 1。",
+      "字典可以按朋友编号保存信息。pending 记录每位朋友尚未回复的消息时刻，waits 记录已经完成的等待秒数。朋友不能在收到回复前再发下一条，所以同一朋友最多有一条未回复消息。",
+      "一次扫描：从左到右读每条记录，只更新当前时刻、等待中的消息和总等待时间。扫描一遍就能处理完全部记录。",
+      "排序：字典不保证题目要求的输出顺序，因此最后把出现过的朋友编号从小到大排列后输出。"
+    ],
+    "steps": [
+      "读入 M 条记录。把第一条 R 或 S 的时刻设为 0；把下一段消息间隔先设为默认的 1 秒。",
+      "读到 W x 时，把下一段消息间隔改成 x 秒。它替代默认的 1 秒，只对紧接着的下一条消息生效。",
+      "读到 R X 时，先按上一段间隔更新时刻，再把朋友 X 的收到时刻存入 pending。若 X 首次出现，把累计等待设为 0；否则保留之前已累计的时间。",
+      "读到 S X 时，先更新时刻，再用当前时刻减去 pending[X]，累加到 waits[X]，然后清除这条待回复记录。",
+      "处理完所有记录后，按朋友编号排序。若朋友还在 pending 中，输出 -1；否则输出其已完成等待时间的总和。"
+    ],
+    "example": "官方样例 1：记录为 R 2、R 3、W 5、S 2、S 3。第一条消息时刻是 0；第二条因没有 W，在时刻 1 收到。W 5 表示下一条消息与前一条相隔 5 秒，所以 S 2 在时刻 6，S 3 因没有 W 在时刻 7。朋友 2 等了 6 秒，朋友 3 也等了 6 秒，输出 2 6 和 3 6。W 5 已包含这段间隔，不是 1+5 秒。",
+    "correctness": "在每条消息前，now 等于题目记录的实际时刻：第一条消息时刻为 0；之后若有 W，就加 W 的秒数，否则加 1 秒。读到 R 时，程序保存该消息的时刻。根据题目规则，同一朋友在收到回复前不会再发消息，因此 pending 中保存的正是该朋友目前唯一需要回复的消息。读到 S 时，当前时刻减去保存时刻恰好是这条消息的等待时间，程序将它加进该朋友的总和并删除待回复记录。逐条处理后，每个朋友的总和正好包含其所有已回复消息的等待时间；最后仍在 pending 中的朋友恰有未回复消息，应输出 -1。排序只改变输出顺序，不改变这些结果。",
+    "complexity": "设 M 为记录数，F 为出现过的朋友数。程序读取并处理每条记录一次，最后排序朋友编号，因此时间为 O(M + F log F)。字典保存每位朋友的等待总和和待回复时刻；分词后的输入占 O(M)，所以总空间为 O(M + F)。 F log F 描述排序的工作量，比把每对朋友都比较一次的 F² 增长慢。本题最多 20 条记录、100 个朋友编号，直接处理足够快。",
+    "pitfalls": [
+      "W x 是下一对消息之间的完整间隔，使用 x 秒；不能把它当成默认 1 秒之外的额外时间。",
+      "第一条消息从时刻 0 开始。不要在它之前再加默认的 1 秒。",
+      "R 是收到朋友发来的消息，S 是回复朋友；等待从 R 开始，在对应的 S 结束。",
+      "只要某朋友最后还有未回复消息，该朋友的总结果就是 -1，即使之前已经有几次回复。",
+      "按朋友编号升序输出；不要按他们发消息或回复的先后排序。"
+    ]
+  },
+  "en": {
+    "summary": "Track the time of each message. An R starts a friend's wait; its matching S ends that wait and adds the elapsed seconds to the total. Print -1 for any friend who still has an unanswered message.",
+    "topics": [
+      "A timeline: Set the first message's time to 0. Consecutive messages are 1 second apart when there is no W; W x means they are x seconds apart, replacing that default second.",
+      "A dictionary can store information by friend number. pending stores the time of each unanswered message, and waits stores completed wait time. A friend cannot send again before getting a reply, so they have at most one unanswered message.",
+      "One pass: Read the records from left to right, updating the current time, pending messages, and totals. Each record needs to be processed only once.",
+      "Sorting: A dictionary does not promise the output order required by the problem, so sort the friend numbers before printing."
+    ],
+    "steps": [
+      "Read the M records. Set the first R or S message's time to 0, and start with a default gap of 1 second before the next message.",
+      "When W x appears, set the next message gap to x seconds. It replaces the default second and applies only to the next message.",
+      "For R X, first advance the clock using the last gap, then save the time in pending for friend X and set X's total wait to 0 if needed.",
+      "For S X, first advance the clock, then add the current time minus pending[X] to waits[X] and remove that pending message.",
+      "After all records, sort the friend numbers. Print -1 if a friend is still in pending; otherwise print the completed total wait."
+    ],
+    "example": "Official sample 1 has R 2, R 3, W 5, S 2, S 3. The first message is at time 0; with no W, the second is at time 1. W 5 says the next message is 5 seconds after the previous one, so S 2 is at time 6. With no W after that, S 3 is at time 7. Friend 2 waited 6 seconds and friend 3 also waited 6 seconds, so print 2 6 and 3 6. W 5 already gives the full gap; it is not 1+5 seconds.",
+    "correctness": "Before each message, now is its correct time: the first message is at time 0, and every later message advances by W's value when W is present or by 1 otherwise. When an R appears, the program saves its time. By the problem rules, that friend cannot send another message before receiving a reply, so pending holds exactly the one message that needs a reply. At S, subtracting the saved time from the current time gives that message's wait, which the program adds to the friend's total before removing the pending entry. Thus each total contains exactly the waits of all answered messages. Any friend still in pending has an unanswered message and must receive -1. Sorting changes only output order, not the computed values.",
+    "complexity": "Let M be the number of records and F the number of friends who appear. The program processes each record once and sorts the friend numbers, for O(M + F log F) time. The dictionaries use O(F) space, and splitting the input uses O(M), for O(M + F) total space. F log F describes the sorting work and grows more slowly than comparing every pair, which takes F² checks. There are at most 20 records and 100 possible friend numbers, so direct processing is easily fast enough.",
+    "pitfalls": [
+      "W x is the whole gap to the next message. Use x seconds; do not add it on top of the default second.",
+      "The first message starts at time 0. Do not add a default second before it.",
+      "R means a message arrived from a friend; S is the reply. The wait begins at R and ends at its matching S.",
+      "If a friend has any unanswered message at the end, that friend's result is -1 even if earlier messages were answered.",
+      "Print friends in increasing numerical order, not in message or reply order."
+    ]
+  }
+}

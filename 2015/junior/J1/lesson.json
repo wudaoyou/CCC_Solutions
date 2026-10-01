@@ -1,0 +1,45 @@
+{
+  "title": "Special Day",
+  "zh": {
+    "summary": "将输入日期和 2 月 18 日比较：更早输出 Before，同一天输出 Special，更晚输出 After。",
+    "topics": [
+      "日期顺序：先比较月份；月份相同时，再比较日数。例如 1 月 31 日仍早于 2 月 18 日。",
+      "边界值：2 月 18 日是题目指定的特殊日期；前一天和后一天要分到两侧。",
+      "条件分支：把日期分为早于、等于、晚于参考日期的三种情况。"
+    ],
+    "steps": [
+      "读取月份 month 和日数 day。",
+      "如果月份早于 2 月，日期一定在 2 月 18 日之前；如果是 2 月，则检查 day 是否小于 18。",
+      "如果日期恰好是 2 月 18 日，输出 Special；其余日期都在这一天之后，输出 After。"
+    ],
+    "example": "1 月 31 日的月份小于 2，所以输出 Before。2 月 17 日也在特殊日期前；2 月 18 日输出 Special；2 月 19 日和 3 月 1 日都输出 After。",
+    "correctness": "输入是 2015 年的有效日期。月份小于 2 时日期必定较早；月份等于 2 时，日数小于 18、等于 18、大于 18 分别对应 Before、Special、After；月份大于 2 时日期必定较晚。代码依次处理这些互斥情况，覆盖所有有效日期并输出正确结果。",
+    "complexity": "程序只读取并比较两个整数，工作量固定，所以时间是 O(1)。O(1) 表示输入日期变化时运算次数不增加。额外空间也是 O(1)，只保存月份和日数。",
+    "pitfalls": [
+      "不能只看日数；先看月份，例如 3 月 1 日晚于 2 月 18 日。",
+      "2 月 18 日本身是 Special；小于它才是 Before，大于它才是 After。",
+      "输出单词要使用题目规定的大小写。"
+    ]
+  },
+  "en": {
+    "summary": "Compare the input date with February 18: print Before for an earlier date, Special for that exact date, and After for a later date.",
+    "topics": [
+      "Date order: compare months first; if the months match, compare the day numbers. For example, January 31 is still before February 18.",
+      "Boundary value: February 18 is the special date; the day before and the day after belong on opposite sides.",
+      "Conditional branches: every date is earlier than, equal to, or later than the reference date."
+    ],
+    "steps": [
+      "Read the month and day.",
+      "If the month is before February, the date is before February 18. If it is February, compare the day with 18.",
+      "If the date is exactly February 18, print Special. Every remaining date is later, so print After."
+    ],
+    "example": "January 31 has a month before 2, so print Before. February 17 is also earlier; February 18 is Special; February 19 and March 1 are both After.",
+    "correctness": "The input is a valid date in 2015. A month before 2 always gives an earlier date. In February, a day below 18, equal to 18, or above 18 gives Before, Special, or After respectively. A month after 2 always gives a later date. These mutually exclusive cases cover every valid date, and the program prints the required result for each one.",
+    "complexity": "The program reads and compares two integers, so its running time is O(1). O(1) means the number of operations does not grow as the date changes. Extra space is also O(1), since only the month and day are stored.",
+    "pitfalls": [
+      "Do not compare only the day number; check the month first. March 1 is after February 18.",
+      "February 18 itself is Special; only earlier dates are Before and only later dates are After.",
+      "Use the exact capitalization required for the output words."
+    ]
+  }
+}

@@ -4,7 +4,29 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2015 J3 · Rövarspråket</h1></header><p class="eyebrow">2015 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc15j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Rövarspråket
+<h1>2015 J3 · Rövarspråket</h1></header><p class="eyebrow">2015 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc15j3">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>把每个辅音扩展为三个字母：原辅音、字母表中最近的元音、以及后面的辅音；元音保持不变。</p></section><section class="card"><h2>考查知识点</h2><ul><li>元音和辅音：元音是 a、e、i、o、u；小写字母表中的其他字母都是辅音。</li><li>字母表距离：比较字母在字母表中的位置来找最近元音。例如 d 离 e 一格，所以最近元音是 e。</li><li>平局规则：若两个元音距离相同，选字母表中靠前的那个；例如 c 在 a 和 e 正中间，所以选 a。</li><li>下一个辅音：从当前辅音继续向后找一个辅音；z 没有下一个字母，所以仍选 z。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>按顺序读取单词里的每个字母。若它是元音，直接保留。</li><li>若它是辅音，从 a、e、i、o、u 中找字母表距离最小的元音。候选元音按字母顺序检查，只在距离更小时更新，因此相同距离会保留较早的元音。</li><li>把辅音本身、最近元音和下一个辅音依次加入结果；遇到 z 时第三个字母仍是 z。</li><li>连接所有结果并输出。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>单词 joy 中，j 变成 jik：最近元音是 i，下一个辅音是 k；o 是元音，保持不变；y 变成 yuz。因此输出 jikoyuz。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>程序从左到右处理每个输入字母。元音直接复制，符合规则。对辅音，它比较与五个元音的字母距离，并在距离相等时保留更早检查的元音；候选顺序 a、e、i、o、u 正好是字母表顺序，所以符合平局规则。程序再追加后一个辅音，且对 z 特别保留 z。每个输入字母都按规定转换一次，因此连接后的单词正确。</p></section><section class="card"><h2>运行时间与内存</h2><p>设输入单词长度为 L。每个字母最多检查固定的 5 个元音和 21 个辅音，因此工作量随 L 成正比，运行时间是 O(L)。O(L) 表示单词长度翻倍时，处理量也大约翻倍。结果最多有 3L 个字母，所以额外空间是 O(L)。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>元音原样保留；不要为元音添加两个字母。</li><li>c、g、l、r 等字母可能与两个元音等距，必须选字母表中较早的元音。</li><li>z 的下一个辅音仍是 z；其他辅音要跳过后续元音找到下一个辅音。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>word = input()
+vowels = &quot;aeiou&quot;
+consonants = &quot;bcdfghjklmnpqrstvwxyz&quot;
+translated = []
+
+for letter in word:
+    if letter in vowels:
+        translated.append(letter)
+        continue
+
+    closest = vowels[0]
+    for vowel in vowels[1:]:
+        if abs(ord(letter) - ord(vowel)) &lt; abs(ord(letter) - ord(closest)):
+            closest = vowel
+
+    if letter == &quot;z&quot;:
+        next_consonant = &quot;z&quot;
+    else:
+        next_consonant = consonants[consonants.index(letter) + 1]
+    translated.extend((letter, closest, next_consonant))
+
+print(&quot;&quot;.join(translated))
+</code></pre></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Rövarspråket
 Problem Description
 In Sweden, there is a simple child’s game similar to Pig Latin called Rövarspråket (Robbers Lan-
 guage).
@@ -47,7 +69,29 @@ hijamon
 
 
                                                  5
-</pre></details></section><section class="card"><h2>测试数据</h2><p>5 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j3.1.in">j3.1.in</a> / <a href="tests/j3.1.out">output</a></li><li><a href="tests/j3.2.in">j3.2.in</a> / <a href="tests/j3.2.out">output</a></li><li><a href="tests/j3.3.in">j3.3.in</a> / <a href="tests/j3.3.out">output</a></li><li><a href="tests/j3.4.in">j3.4.in</a> / <a href="tests/j3.4.out">output</a></li><li><a href="tests/j3.5.in">j3.5.in</a> / <a href="tests/j3.5.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc15j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Rövarspråket
+</pre></details></section><section class="card"><h2>测试数据</h2><p>5 bundled cases · 完整官方测试数据</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/j3.1.in">j3.1.in</a> / <a href="tests/j3.1.out">output</a></li><li><a href="tests/j3.2.in">j3.2.in</a> / <a href="tests/j3.2.out">output</a></li><li><a href="tests/j3.3.in">j3.3.in</a> / <a href="tests/j3.3.out">output</a></li><li><a href="tests/j3.4.in">j3.4.in</a> / <a href="tests/j3.4.out">output</a></li><li><a href="tests/j3.5.in">j3.5.in</a> / <a href="tests/j3.5.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc15j3">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Expand each consonant into three letters: itself, the closest vowel in the alphabet, and the next consonant; leave vowels unchanged.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Vowels and consonants: the vowels are a, e, i, o, and u; every other lowercase letter is a consonant.</li><li>Alphabet distance: compare letter positions to find the nearest vowel. For example, e is one alphabet step from d, so it is d&#x27;s closest vowel.</li><li>Tie rule: if two vowels are equally close, choose the one earlier in the alphabet. For example, c is halfway between a and e, so choose a.</li><li>Next consonant: move forward to the next consonant after the original one; z stays z because no later letter exists.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Process the word one letter at a time. Copy a vowel unchanged.</li><li>For a consonant, find the vowel with the smallest alphabet distance among a, e, i, o, and u. Check vowels in alphabet order and update only for a smaller distance, so an equal-distance tie keeps the earlier vowel.</li><li>Append the consonant, its closest vowel, and the next consonant in that order. For z, use z as the third letter.</li><li>Join all pieces and print the translated word.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>In joy, j becomes jik: its closest vowel is i and its next consonant is k. The vowel o stays unchanged, and y becomes yuz. The result is jikoyuz.</p></section><section class="card"><h2>Why does this work?</h2><p>The program processes every input letter from left to right. A vowel is copied unchanged, as required. For a consonant, it compares alphabet distances to all five vowels; when distances tie, it keeps the first one checked. Since the vowels are checked in alphabet order a, e, i, o, u, this implements the tie rule. It then appends the next consonant, with the required special case for z. Thus every input letter is translated according to the statement, and joining the pieces gives the correct word.</p></section><section class="card"><h2>Time and memory</h2><p>Let L be the input length. Each letter checks at most five vowels and 21 consonants, both fixed-size lists, so the running time is O(L). O(L) means doubling the word length roughly doubles the work. The result has at most 3L letters, so extra space is O(L).</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Keep vowels unchanged; do not add two more letters after them.</li><li>Letters such as c, g, l, and r are equally close to two vowels; choose the earlier vowel in the alphabet.</li><li>The next consonant after z is z itself; for other consonants, skip over any vowels.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>word = input()
+vowels = &quot;aeiou&quot;
+consonants = &quot;bcdfghjklmnpqrstvwxyz&quot;
+translated = []
+
+for letter in word:
+    if letter in vowels:
+        translated.append(letter)
+        continue
+
+    closest = vowels[0]
+    for vowel in vowels[1:]:
+        if abs(ord(letter) - ord(vowel)) &lt; abs(ord(letter) - ord(closest)):
+            closest = vowel
+
+    if letter == &quot;z&quot;:
+        next_consonant = &quot;z&quot;
+    else:
+        next_consonant = consonants[consonants.index(letter) + 1]
+    translated.extend((letter, closest, next_consonant))
+
+print(&quot;&quot;.join(translated))
+</code></pre></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Rövarspråket
 Problem Description
 In Sweden, there is a simple child’s game similar to Pig Latin called Rövarspråket (Robbers Lan-
 guage).

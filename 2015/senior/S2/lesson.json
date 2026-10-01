@@ -1,0 +1,57 @@
+{
+  "title": "Jerseys",
+  "zh": {
+    "summary": "学生必须得到指定编号的球衣，大小可以等于或大于要求。每件球衣最多满足一人。按输入顺序处理请求，遇到尚未使用且足够大的指定球衣就分配，并计数。",
+    "topics": [
+      "大小有顺序 S<M<L。用整数 1、2、3 分别表示这三个大小，就能用 >= 判断是否够大。例如 M 的值是 2，能够满足 S 的要求 1，但不能满足 L 的要求 3。",
+      "编号是硬性条件：请求 S 3 只能使用编号 3 的球衣，即使编号 4 的球衣更大也不能替代。不同编号的请求因此不会争用同一件球衣。J 表示球衣数，A 表示学生数。",
+      "贪心算法在每一步立即采取一个局部选择。这里的选择是把未用且合适的球衣交给当前学生。这个选择成立是因为每件球衣只能贡献一次成功分配；留给以后另一个学生也至多贡献一次。",
+      "用一个数组按编号查状态：jerseys[3] 保存编号 3 的大小。分配后改成 0，表示已用；所有要求都是 1、2、3，因此 0 永远不能再次满足要求。数组多留一个位置 0，不使用它，使编号与下标一致。",
+      "bytearray 是 Python 内置的紧凑整数数组，每项占一个字节，能保存 0…255。这里只有 0、1、2、3，正好适用。逐行读取称为流式读取：处理一个请求后就不再保存它，避免同时存下最多一百万个请求。buffer.readline 读取字节，所以大小字典的键写成 b'S'、b'M'、b'L'。"
+    ],
+    "steps": [
+      "读取 J、A，创建长度为 J+1 的 bytearray。再读 J 行球衣大小，把 S、M、L 转为 1、2、3，按编号存入数组。",
+      "把满足人数 satisfied 初始化为 0。每次只读取一个学生要求的大小和编号。",
+      "检查指定编号的状态是否 >= 要求大小。若成立，满足人数加 1，并把这件球衣状态改为 0。若不成立，保持球衣状态不变。",
+      "处理完 A 个请求后输出满足人数。无需排序请求，也无需寻找其它编号的球衣。"
+    ],
+    "example": "官方样例有 4 件球衣，按编号大小为 [M,S,S,L]，有 3 个请求。L 3：编号 3 是 S，太小，不分配，仍可留给别人。S 3：编号 3 的 S 刚好满足，人数变为 1，并将编号 3 标记为已用。L 1：编号 1 是 M，太小，不分配。最终输出 1。编号 4 虽然是 L，也不能满足 L 1，因为编号错误。\n再看竞争情况：若编号 7 的球衣是 L，先后收到 S 7 和 L 7，算法会把它给第一人，第二人无法再使用。反过来把它给第二人也仍只能满足一人，所以立即分配不会降低答案。",
+    "correctness": "把请求按指定编号分组。任何请求都只能使用本组编号的球衣，而且每件球衣只能分配一次，所以每组最多满足一人，不同组互不影响。若某组没有任何大小合适的请求，不论怎样分配都只能满足零人，程序也不会分配这件球衣。若某组至少有一个合适请求，程序会跳过所有太大的要求，在第一个合适请求出现时分配这件球衣，此后拒绝重复使用，恰好满足一人。这已经达到该组的最大值。程序在每组都达到最大值，将各组的成功数相加，就是全体请求能满足的最大人数。",
+    "complexity": "读取 J 件球衣和 A 个请求各一次，每次进行常数次查数组、比较和更新，时间为 O(J+A)。这表示运行量随两种输入数量的总和增长，不会枚举所有学生与所有球衣的组合。编号最大为 10^6，解析它最多处理 7 位数字。数组有 J+1 个字节，请求只保留当前一行，额外空间为 O(J)；J=10^6 时状态数组本身占 1,000,001 字节，约 1 MB，Python 运行时另有开销。",
+    "pitfalls": [
+      "大小够大仍不够：球衣编号必须与请求编号相同，不能从其它编号挑选。",
+      "S、M、L 的字母顺序不是大小顺序；明确映射为 1、2、3，不能直接比较字符大小。",
+      "一次成功分配后必须标记已用，否则同一件球衣会被给多个学生。",
+      "失败的请求不能消耗球衣。太小的球衣可能满足后面要求较小的学生，官方样例的编号 3 就是这种情况。",
+      "不要为大要求专门保留球衣。目标是满足人数，不是优先满足某一种大小；一个固定编号最多贡献一人。",
+      "J、A 可达一百万。逐行处理请求，避免读取并保存全部输入词语或建立学生与球衣之间的配对表。"
+    ]
+  },
+  "en": {
+    "summary": "An athlete must receive the requested jersey number, with a size at least as large as requested. Each jersey can satisfy at most one athlete. Process requests in input order, assigning the numbered jersey whenever it is unused and large enough.",
+    "topics": [
+      "Sizes have the order S<M<L. Encode them as 1, 2, and 3 so that >= tests whether a jersey is large enough. For example, medium is 2: it satisfies a small request, 1, but not a large request, 3.",
+      "The number is mandatory. A request S 3 can use only jersey 3, even if jersey 4 is larger. Requests for different numbers therefore never compete for the same jersey. J is the number of jerseys and A is the number of athletes.",
+      "A greedy algorithm makes an immediate local choice at each step. Here we give an unused, suitable jersey to the current athlete. This works because that jersey can contribute only one successful assignment; saving it for a later athlete can contribute at most one as well.",
+      "An array stores state by jersey number: jerseys[3] is the size of jersey 3. After assignment, replace its value with 0 to mean used. Every requested size is 1, 2, or 3, so 0 cannot satisfy another request. Leave index 0 unused so each number equals its array index.",
+      "Python's built-in bytearray is a compact integer array with one byte per entry, storing values from 0 through 255. Our states are only 0, 1, 2, and 3. Streaming input means reading and processing one line at a time, then discarding the request, instead of storing up to a million requests. buffer.readline reads bytes, so the size dictionary uses keys b'S', b'M', and b'L'."
+    ],
+    "steps": [
+      "Read J and A, then create a bytearray of length J+1. Read the J jersey sizes, encode S, M, and L as 1, 2, and 3, and store each size at its jersey number.",
+      "Start satisfied at 0. Read one athlete's requested size and number at a time.",
+      "Check whether the state at that number is >= the requested size. If so, add 1 to satisfied and change the jersey state to 0. Otherwise leave its state unchanged.",
+      "After all A requests, print satisfied. No sorting or search for other jersey numbers is needed."
+    ],
+    "example": "The official sample has four jerseys with sizes [M,S,S,L] by number, and three requests. L 3: jersey 3 is small, so reject this request without using the jersey. S 3: jersey 3 is exactly large enough, so satisfy one athlete and mark it used. L 1: jersey 1 is medium, so reject the request. The answer is 1. Jersey 4 is large, but it cannot satisfy L 1 because its number is wrong.\nFor competing requests, suppose jersey 7 is large and the requests are S 7 followed by L 7. The algorithm gives it to the first athlete and cannot give it again. Saving it for the second athlete would still satisfy only one person, so the immediate choice does not reduce the answer.",
+    "correctness": "Group requests by their required jersey number. Each request can use only the jersey with that number, and a jersey can be assigned only once, so every group can satisfy at most one athlete. Different groups do not interfere. If a group has no request whose size fits, every possible assignment satisfies zero athletes in that group, and the algorithm does the same. If there is a fitting request, the algorithm skips oversized requests and assigns the jersey at the first fitting request. It rejects later reuse and satisfies exactly one athlete, reaching the group's maximum. Since it reaches the maximum in every independent group, the sum it prints is the maximum number of satisfied athletes overall.",
+    "complexity": "Read J jerseys and A requests once, doing a constant number of array accesses, comparisons, and updates per entry. Time is O(J+A): work grows with the sum of the two input counts, rather than checking every athlete against every jersey. Numbers are at most 10^6, so parsing a number processes at most 7 digits. The array uses J+1 bytes, and only the current request line is retained, giving O(J) extra space. At J=10^6 the state array itself uses 1,000,001 bytes, about 1 MB; Python's runtime adds separate overhead.",
+    "pitfalls": [
+      "A large enough size is insufficient: the jersey number must also match. A different numbered jersey cannot be substituted.",
+      "Alphabetical order is not size order. Explicitly encode S, M, and L as 1, 2, and 3 instead of comparing letters.",
+      "Mark a successfully assigned jersey as used, or the same jersey might be given to several athletes.",
+      "An unsuccessful request must not consume the jersey. It might fit a later, smaller request, as jersey 3 does in the official sample.",
+      "Do not reserve jerseys for larger requests. The objective is the number of athletes satisfied, and each fixed jersey number can contribute at most one.",
+      "J and A can reach one million. Stream the requests instead of storing all input tokens or constructing an athlete-by-jersey assignment table."
+    ]
+  }
+}

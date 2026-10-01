@@ -1,0 +1,55 @@
+{
+  "title": "π-day",
+  "zh": {
+    "summary": "用动态规划计算把 n 块派分给 k 个人的非递减分配数。每个人至少得到 1 块，前面的人不能比后面的人多。",
+    "topics": [
+      "非递减分配：沿队伍从前往后看，每个人拿到的块数只会相同或增加。例如 [1,2,2,3] 合法；[2,1,3,2] 不合法。顺序已经由题目限制，所以不把同一组数字的重新排列算作另一种方法。",
+      "动态规划：把一个大计数拆成更小计数。ways[s][p] 表示把 s 块派给恰好 p 个人的合法方法数，表格把较小的总数先算好，再用来算较大的总数。",
+      "分类计数：一个分配要么至少有一个人拿 1 块，要么没有人拿 1 块。这两类互不重叠，覆盖所有分配，因此两类方法数可以相加。",
+      "边界值：ways[0][0]=1 表示还没有派出任何派、也没有人时，有一种空的开始状态，方便递推。其他不可能的情况保留为 0。"
+    ],
+    "steps": [
+      "建立 ways[s][p] 表格，先全部设为 0，再把 ways[0][0] 设为 1。",
+      "从总块数 s=1 算到 n；对每个 s，只计算 p 不超过 s 的人数，因为每人至少要有 1 块。",
+      "如果至少有一个人拿 1 块，就拿掉一个 1：剩下 s-1 块分给 p-1 个人，方法数是 ways[s-1][p-1]。",
+      "如果没有人拿 1 块，每个人至少有 2 块。先从每个人手里拿走 1 块，剩下 s-p 块仍分给 p 个人，方法数是 ways[s-p][p]。",
+      "两类相加得到 ways[s][p]。最后输出 ways[n][k]。"
+    ],
+    "example": "n=8、k=4 时，ways[8][4]=ways[7][3]+ways[4][4]=4+1=5。第一类至少有一份 1；去掉一份后，7 块给 3 人有四种：[1,1,5]、[1,2,4]、[1,3,3]、[2,2,3]。第二类没有 1；每人先拿走 1 块，4 块给 4 人只有 [1,1,1,1] 一种。加回去得到 [2,2,2,2]。合计 5 种。",
+    "correctness": "对任意 s 和 p，合法分配恰好属于两类之一：至少有一人拿 1 块，或所有人都至少拿 2 块。第一类从递增顺序最前面去掉一个 1，会得到 s-1 块分给 p-1 人的合法非递减分配；反过来给这种分配加一个 1 并按顺序排好，就唯一还原原分配。因此第一类有 ways[s-1][p-1] 种。第二类从每个人的份额各减 1，会得到 s-p 块分给 p 人的合法非递减分配；反过来每份加 1 可唯一还原，所以第二类有 ways[s-p][p] 种。两类互不重叠且包含所有分配，故相加的递推正确。空状态 ways[0][0]=1 且其他不可能状态为 0，为递推提供正确起点；由小到大填表，因此输出的 ways[n][k] 正是所求数量。",
+    "complexity": "表格最多有 (n+1)(k+1) 个数。n≤250、k≤250 时最多约 251×251 个格子；每个有效格只做一次加法，所以时间为 O(nk)，空间为 O(nk)。这远少于枚举所有分配方法。",
+    "pitfalls": [
+      "每个人至少得到 1 块，不能把 0 块的人放进分配。",
+      "必须正好分给 k 个人，不是数所有人数的分配。",
+      "一个分配按从前到后的份额非递减排列；不要把相同份额的重新排列重复计数。",
+      "递推的第一类是 ways[s-1][p-1]，因为拿走一个 1 后少了一块也少了一个人。",
+      "第二类要从 p 个人每人拿走 1 块，所以剩余总数是 s-p，不是 s-1。"
+    ]
+  },
+  "en": {
+    "summary": "Use dynamic programming to count non-decreasing ways to give n pieces of pie to k people. Everyone gets at least one piece, and each person gets at least as many as the person before them.",
+    "topics": [
+      "A non-decreasing distribution: Along the line, each person's number of pieces stays the same or increases. [1,2,2,3] is allowed; [2,1,3,2] is not. The order is fixed by the rule, so rearranging the same numbers does not make a new way.",
+      "Dynamic programming: Break a large count into smaller counts. ways[s][p] means the number of allowed ways to give s pieces to exactly p people. Fill smaller totals first and use them to get larger totals.",
+      "Counting by cases: A distribution either has at least one person who gets 1 piece, or nobody gets 1. The cases do not overlap and cover every distribution, so their counts can be added.",
+      "A starting value: ways[0][0]=1 means there is one empty starting arrangement when no pieces and no people have been assigned. Other impossible situations stay at 0."
+    ],
+    "steps": [
+      "Create the ways[s][p] table, fill it with 0, and set ways[0][0] to 1.",
+      "Compute totals s from 1 to n. For each s, only compute p≤s because each person needs at least one piece.",
+      "If at least one person gets 1 piece, remove one such piece. The remaining s-1 pieces go to p-1 people, giving ways[s-1][p-1] possibilities.",
+      "If nobody gets 1 piece, everyone has at least 2. Take 1 piece away from each person; the remaining s-p pieces still go to p people, giving ways[s-p][p] possibilities.",
+      "Add the two case counts to get ways[s][p]. Print ways[n][k]."
+    ],
+    "example": "For n=8 and k=4, ways[8][4]=ways[7][3]+ways[4][4]=4+1=5. In the first case, there is at least one 1; remove one 1 and distribute 7 pieces to 3 people in four ways: [1,1,5], [1,2,4], [1,3,3], and [2,2,3]. In the second case, nobody gets 1; first take one piece from each person, leaving 4 pieces for 4 people in one way: [1,1,1,1]. Adding a piece back to each gives [2,2,2,2]. There are 5 ways total.",
+    "correctness": "For any s and p, every allowed distribution belongs to exactly one of two cases: at least one person gets 1 piece, or everyone gets at least 2. In the first case, remove one 1 from the beginning of the non-decreasing list. This gives an allowed distribution of s-1 pieces to p-1 people; adding one 1 to any such distribution and keeping the order restores exactly one original distribution. So this case has ways[s-1][p-1] possibilities. In the second case, subtract 1 from every person's share. This gives an allowed distribution of s-p pieces to p people; adding 1 to every share reverses the change, so this case has ways[s-p][p] possibilities. The cases are disjoint and cover all distributions, so their counts add. The empty starting state ways[0][0]=1 and zero for impossible states give the recurrence a correct base. Filling the table from smaller totals to larger ones therefore makes ways[n][k] the required count.",
+    "complexity": "The table has at most (n+1)(k+1) entries. With n≤250 and k≤250, it has at most about 251×251 cells; each valid cell takes one addition, so time is O(nk) and space is O(nk). This is far smaller than enumerating every possible distribution.",
+    "pitfalls": [
+      "Everyone must receive at least 1 piece; do not allow a person to receive 0.",
+      "Count distributions for exactly k people, not for any number of people.",
+      "Shares must be non-decreasing along the line. Do not count rearrangements of the same shares as separate ways.",
+      "The first case uses ways[s-1][p-1] because removing a 1 removes both one piece and one person from the smaller problem.",
+      "The second case removes one piece from each of p people, so the remaining total is s-p, not s-1."
+    ]
+  }
+}
