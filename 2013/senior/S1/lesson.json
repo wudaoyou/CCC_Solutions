@@ -1,0 +1,51 @@
+{
+  "title": "From 1987 to 2013",
+  "zh": {
+    "summary": "给定起始年份 Y，找严格大于 Y 的最小年份，使它的十进制数字互不重复。年份不一定有四位；输入可以是 0，答案也可能有五位。",
+    "topics": [
+      "数字互不重复表示每个数字只出现一次。例如 2013 的 2、0、1、3 都不同，而 2012 中的 2 出现两次。0 也是普通数字，出现一次没有问题。",
+      "集合只保留不同的元素。例如 set('2012') 中只有 '2'、'0'、'1'，大小为 3，但原字符串长度为 4。若集合大小与字符串长度相同，就说明每个数字恰好出现一次。",
+      "枚举是按顺序逐一尝试候选答案。本题从 Y+1 开始检查 Y+2、Y+3 等年份；第一次通过检查的就是要求的最小答案。",
+      "while 循环在条件成立时继续执行。这里的条件是“数字集合的大小不等于数字个数”，也就是当前年份仍有重复数字；此时把年份加 1，再检查。"
+    ],
+    "steps": [
+      "读取年份后先加 1，因为答案必须在输入年份之后；即使 Y 本身数字不重复，也不能输出 Y。",
+      "将当前候选年份转成字符串，比较它的长度与字符集合的大小。",
+      "若大小不同，说明至少一个数字重复，候选年份加 1；重复这个检查。",
+      "遇到数字全部不同的年份时，结束循环并输出。不要把年份限制成四位，也不要补前导零。"
+    ],
+    "example": "样例 Y=1987：先检查 1988，其中 8 重复；1989 的 9 重复。继续逐年检查，直到 2013 的 2、0、1、3 全部不同。2012 仍有两个 2，所以答案是 2013。\n样例 Y=999：从 1000 开始检查，重复的 0 使它不合格；继续检查后，第一个合格年份是 1023。另如 Y=9，下一年 10 的两个数字不同，答案就是 10。\n最大输入 Y=10000 时，答案是 10234，它包含五个不同数字。这也证明搜索不必人为停在 9999 或 10000。",
+    "correctness": "把年份转成字符串后，集合会删除所有重复字符。集合大小等于字符串长度，当且仅当没有任何数字重复，所以检查条件准确。算法从 Y+1 开始，每次只增加 1，因而按照严格递增的顺序检查了所有大于 Y 的候选年份。结束时，当前年份通过数字检查；所有更小但仍大于 Y 的年份都已检查并失败，因此它正是最小合法答案。对于所有允许输入 Y≤10000，10234 都比 Y 大且数字互不重复，所以循环一定能找到答案并结束。",
+    "complexity": "设 k 为实际检查的候选年份数，d 为候选年份的数字个数。转换字符串和建立集合都需要 O(d) 时间，总时间为 O(k×d)；字符串和集合需要 O(d) 额外空间。题目范围内答案不超过 10234，所以 d≤5，候选数也有很小的有限上界。算法每次只保存当前一个年份及其数字，没有保存所有尝试过的年份。",
+    "pitfalls": [
+      "必须从 Y+1 开始。输入年份已经合格时，也要继续找下一年。",
+      "不要只检查相邻数字；2012 中两个 2 隔着其他数字，仍然算重复。",
+      "年份可以是一位、四位或五位，不能固定取四个数字，也不能限制答案≤10000。",
+      "0 可以出现一次。使用正常的十进制字符串，不补前导零，否则会添加原年份没有的数字。"
+    ]
+  },
+  "en": {
+    "summary": "Find the smallest year strictly greater than Y whose decimal digits are all different. A year need not have four digits: the input can be 0 and the answer can have five digits.",
+    "topics": [
+      "Distinct digits means each digit occurs once. The digits 2, 0, 1, 3 in 2013 are different, but 2012 contains two copies of 2. Zero is an ordinary digit and is allowed once.",
+      "A set keeps only distinct elements. For example, set('2012') contains only '2', '0', and '1', giving size 3 although the string has length 4. The sizes are equal exactly when no digit repeats.",
+      "Enumeration tries candidate answers one by one. Here we inspect Y+1, then Y+2, Y+3, and so on. The first successful candidate is the smallest possible answer.",
+      "A while loop continues while its condition is true. Our condition says that the digit set's size differs from the number of digits, meaning the current year still has a repeated digit. We then increase the year and check again."
+    ],
+    "steps": [
+      "Read Y and add 1 immediately. The answer must come after the starting year, even if Y itself already has distinct digits.",
+      "Convert the candidate to a string and compare its length with the size of its character set.",
+      "If the sizes differ, a digit repeats. Increase the candidate by 1 and repeat the check.",
+      "Stop at the first year with distinct digits and print it. Do not restrict years to four digits or pad them with leading zeros."
+    ],
+    "example": "For sample Y=1987, we first test 1988, which repeats 8; 1989 repeats 9. Continuing year by year, the first success is 2013, whose digits 2, 0, 1, 3 are different. The preceding year 2012 still repeats 2, so the answer is 2013.\nFor sample Y=999, the search starts at 1000, which repeats 0. The first successful candidate is eventually 1023. For Y=9, the very next year 10 has two different digits, so the answer is 10.\nFor the maximum input Y=10000, the answer is 10234, with five distinct digits. This is why the search must not stop at 9999 or 10000.",
+    "correctness": "Converting the candidate to a string exposes its decimal digits. A set removes repeated characters, so its size equals the string length if and only if all digits are distinct. Thus the test is exact. The algorithm starts at Y+1 and increases by 1, inspecting every greater year in increasing order. When it stops, the current candidate passes the test; every smaller candidate above Y was tested and failed. The returned year is therefore the smallest valid one. For every allowed Y≤10000, the year 10234 is greater than Y and has distinct digits, so the loop is guaranteed to terminate.",
+    "complexity": "Let k be the number of candidates actually tested and d their digit count. String conversion and set construction take O(d) time per candidate, for O(k×d) time in total. The string and set use O(d) extra space. Within the input range, the answer is at most 10234, so d≤5 and the number of candidates has a small finite bound. Only the current candidate and its digits are stored, rather than all previously tested years.",
+    "pitfalls": [
+      "Start at Y+1. Even a valid starting year cannot be returned as its own next year.",
+      "Checking only neighboring digits is insufficient: the two copies of 2 in 2012 are separated but still repeat.",
+      "Years can have one, four, or five digits. Do not extract exactly four digits or require the answer to be at most 10000.",
+      "Zero may appear once. Use the normal decimal representation without leading-zero padding, which would add digits not present in the year."
+    ]
+  }
+}

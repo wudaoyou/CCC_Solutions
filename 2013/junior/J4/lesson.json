@@ -1,0 +1,49 @@
+{
+  "title": "Time on task",
+  "zh": {
+    "summary": "给定可用时间 T 和 C 件家务所需的时间，求最多能完成几件。把用时从短到长排序，再依次做最短的家务，直到下一件会超时。",
+    "topics": [
+      "排序：把家务用时从短到长排列，先看到最省时间的任务。",
+      "贪心算法：每一步选择最短的家务，给后面的任务留下更多时间。",
+      "交换论证：把已选的长任务换成未选的短任务，件数不变、总时间不会增加，用这种替换说明选择最短任务是正确的。"
+    ],
+    "steps": [
+      "读取总时间 T、家务数量 C，以及每件家务的用时。排序是把这些用时按从小到大排列。",
+      "从最短的家务开始，若完成它后总用时不超过 T，就把它计入并继续；若总用时会超过 T，就停止。刚好等于 T 仍然可以完成。",
+      "这是一种贪心算法：每一步都选择当前最短、最省时间的家务，以便尽量给更多家务留下时间。",
+      "交换论证可以说明这个选择不会漏掉更好的答案。假设某个方案选了 k 件家务；如果它选了较长的一件，却漏掉较短的一件，就用较短的替换。总用时不会增加。重复交换后，就得到最短的 k 件。因此，如果任何 k 件家务能完成，最短的 k 件也能完成。"
+    ],
+    "example": "样例 2 的 T = 6，用时是 5、4、3、2、1。排序后为 1、2、3、4、5。先做 1、2、3 分钟的三件家务，总共正好 6 分钟；下一件要 4 分钟，会超时，所以答案是 3。",
+    "correctness": "设排序后的用时为 a1 ≤ a2 ≤ ... ≤ aC。对于任意 k 件家务，把它们的用时从小到大写成 b1 到 bk，则第 i 件至少和全部家务中第 i 短的一样长，所以 bi ≥ ai；这说明任意 k 件的总用时至少是 a1 到 ak 的总和。程序按顺序累加最短的家务，并在下一件会超过 T 时停止。因为后面的家务不会比当前这件更短，任何再多做一件的方案都会超过 T。程序已经完成的家务都在 T 内，而更多家务不可能在 T 内，因此输出的数量最大。",
+    "complexity": "令 C 为家务数量。C 至少为 2 时，将 C 个用时排序需要 O(C log C) 时间；log C 大致表示把 C 连续减半到 1 所需的次数。若 C 小于 2，排序只需固定工作量。之后最多扫描 C 件家务，需 O(C) 时间，因此 C 至少为 2 时总时间为 O(C log C)，C 小于 2 时为 O(1)。程序保存用时列表，使用 O(C) 空间。若 C = 0，列表为空，答案自然是 0；若 T = 0，因为每件家务都需要正时间，答案也是 0。",
+    "pitfalls": [
+      "目标是完成最多件，不是尽量用满时间；先选最短的家务。",
+      "累计时间刚好等于 T 时仍可完成；只有超过 T 才停止。",
+      "排序后，一旦下一件放不下，后面的家务只会更长，不需要继续检查。",
+      "C = 0 时没有家务；T = 0 时正用时的家务一件也做不了。"
+    ]
+  },
+  "en": {
+    "summary": "Given the available time T and the time needed for each of C chores, find the greatest number of chores that can be finished. Sort the times from shortest to longest, then take that prefix until the next chore would exceed the limit.",
+    "topics": [
+      "Sorting: arrange chore durations from shortest to longest, putting the least time-consuming tasks first.",
+      "Greedy choice: pick the shortest chore at each step to leave more time for later tasks.",
+      "Exchange argument: replace a chosen long chore with an unchosen shorter one; the count stays the same and the total time cannot increase. This proves that taking the shortest chores is safe."
+    ],
+    "steps": [
+      "Read the time limit T, the number of chores C, and each chore's duration. Sorting means arranging the durations from smallest to largest.",
+      "Start with the shortest chore. If adding it keeps the total at most T, count it and continue. Stop when the next chore would make the total exceed T. A total exactly equal to T is allowed.",
+      "This is a greedy algorithm: at each step it chooses the shortest available chore, using as little time as possible so more chores can fit.",
+      "An exchange argument shows why this choice does not miss a better answer. Suppose some plan chooses k chores. If it chooses a longer chore while leaving out a shorter one, swap them; total time cannot increase. Repeating this swap gives the k shortest chores. So whenever any k chores fit, the k shortest also fit."
+    ],
+    "example": "In sample 2, T = 6 and the durations are 5, 4, 3, 2, 1. After sorting they are 1, 2, 3, 4, 5. The first three chores take exactly 6 minutes; the next takes 4 more and will not fit, so the answer is 3.",
+    "correctness": "Let the sorted durations be a1 ≤ a2 ≤ ... ≤ aC. For any choice of k chores, write their durations in increasing order as b1 through bk. The i-th chosen duration is at least the i-th shortest duration overall, so bi ≥ ai. Thus any k chores take at least as long as a1 through ak. The program adds the shortest chores in order and stops when the next one would exceed T. Every later chore is at least as long as that one, so a plan with even more chores cannot fit. The program's chosen chores fit within T, and no larger choice can fit, so its count is maximum.",
+    "complexity": "Let C be the number of chores. For C ≥ 2, sorting C durations takes O(C log C) time; log C is roughly the number of times C can be halved before it reaches 1. If C < 2, sorting takes a fixed amount of work. The scan takes at most O(C), so total time is O(C log C) for C ≥ 2 and O(1) for C < 2. The program stores the duration list, using O(C) space. If C = 0, the list is empty and the answer is naturally 0. If T = 0, every chore takes positive time, so the answer is also 0.",
+    "pitfalls": [
+      "The goal is to finish the most chores, not to use the most time; choose the shortest chores first.",
+      "A total exactly equal to T is allowed; stop only when the total would exceed T.",
+      "After sorting, once the next chore does not fit, later chores are no shorter and do not need to be checked.",
+      "If C = 0 there are no chores; if T = 0, no positive-duration chore can be done."
+    ]
+  }
+}

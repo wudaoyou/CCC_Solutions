@@ -1,0 +1,45 @@
+{
+  "title": "Rotating letters",
+  "zh": {
+    "summary": "检查单词中的每个大写字母是否都属于旋转 180 度后外形不变的字母集合；全部符合就输出 YES。",
+    "topics": [
+      "集合：集合是一组允许的值；本题允许的字母只有 I、O、S、H、Z、X、N。",
+      "成员检查：判断一个字母是否在集合中，例如 I 在集合里，A 不在。",
+      "逐项检查：单词只有在每个字母都符合条件时才有效；发现一个不允许的字母就可以回答 NO。"
+    ],
+    "steps": [
+      "读取一个没有空格的大写单词。",
+      "把题目列出的七个字母记为允许集合。",
+      "逐个检查单词里的字母。如果每个字母都在允许集合中，输出 YES；否则输出 NO。"
+    ],
+    "example": "SHINS 的字母 S、H、I、N、S 都在允许集合中，因此可以用于标牌，输出 YES。NOISE 含有 E，而 E 不在集合中，所以输出 NO。",
+    "correctness": "题目规定单词可用，当且仅当其中每个字母都属于 I、O、S、H、Z、X、N。程序对单词中的每个字母检查集合成员关系；只有所有检查都通过时才输出 YES。若有字母不在集合中，检查结果为假并输出 NO，正好符合题目规则。",
+    "complexity": "若单词长度为 n，程序检查每个字母一次，因此运行时间是 O(n)。O(n) 表示单词每多一个字母，最多多做一次检查。允许集合固定只有七个字母；除了保存输入单词外，额外空间是 O(1)。",
+    "pitfalls": [
+      "七个允许字母必须完整：I、O、S、H、Z、X、N。",
+      "只要有一个字母不在集合中，就必须输出 NO；不要求单词是回文或重新排列。",
+      "输出大写的 YES 或 NO，不要输出解释文字。"
+    ]
+  },
+  "en": {
+    "summary": "Check whether every uppercase letter in the word belongs to the set of letters unchanged by a 180-degree rotation; print YES only if they all do.",
+    "topics": [
+      "A set: a set is a collection of allowed values. The allowed letters here are I, O, S, H, Z, X, and N.",
+      "Membership: check whether a letter belongs to the set; for example, I is in it and A is not.",
+      "Checking every item: a word is valid only when every letter passes; one disallowed letter is enough to answer NO."
+    ],
+    "steps": [
+      "Read one uppercase word with no spaces.",
+      "Store the seven letters from the statement as the allowed set.",
+      "Check each letter in the word. Print YES if every letter is in the set; otherwise print NO."
+    ],
+    "example": "Every letter in SHINS—S, H, I, N, and S—is in the allowed set, so print YES. NOISE contains E, which is not in the set, so print NO.",
+    "correctness": "The statement says a word can be used exactly when each of its letters belongs to I, O, S, H, Z, X, or N. The program checks set membership for every letter and prints YES only when all checks pass. If any letter is outside the set, it prints NO, as required.",
+    "complexity": "For a word of length n, the program checks each letter once, so the running time is O(n). O(n) means one more letter adds at most one more check. The allowed set always has seven letters, so extra space beyond the stored input word is O(1).",
+    "pitfalls": [
+      "Include all seven allowed letters: I, O, S, H, Z, X, and N.",
+      "One letter outside the set means NO; the word does not need to be a palindrome or rearranged.",
+      "Print uppercase YES or NO with no explanation text."
+    ]
+  }
+}

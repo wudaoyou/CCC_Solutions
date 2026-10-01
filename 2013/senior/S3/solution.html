@@ -4,7 +4,47 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2013 S3 · Chances of winning</h1></header><p class="eyebrow">2013 / senior / S3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc13s3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S3: Chances of winning
+<h1>2013 S3 · Chances of winning</h1></header><p class="eyebrow">2013 / senior / S3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc13s3">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>四支队伍两两各赛一场。根据已赛结果，统计剩余比赛所有胜、负、平组合中，目标队最终积分严格超过另外三队的组合数。题目要求计数，不要求计算概率。</p></section><section class="card"><h2>考查知识点</h2><ul><li>比赛比分和联赛积分不同：比分只用来判断胜负。即使以 100:99 获胜，胜方也只得 3 积分，负方得 0；2:2 平局则双方各得 1 分。不能把进球数直接加到积分表。</li><li>四支队伍的无序两两组合是 (1,2)、(1,3)、(1,4)、(2,3)、(2,4)、(3,4)，一共六场。这里组合不区分先后，例如 (1,2) 和 (2,1) 是同一场。程序用 combinations 生成这六对，再排除已赛场次。</li><li>每场未赛比赛只有三种积分结果：左队胜为 (3,0)，右队胜为 (0,3)，平局为 (1,1)。两场比赛共有 3×3=9 种结果组合；r 场共有 3^r 种。枚举就是逐一检查这些完整组合，而不是猜每场最有利的结果。</li><li>笛卡尔积是从每一组选择中各取一个，形成所有可能的组合。例如两场的“胜、负、平”选择会组成九个结果对。Python 的 product(..., repeat=r) 逐个生成 r 场的完整结果，不必一次存下全部 3^r 个组合。</li><li>严格第一表示目标队积分必须比每个对手都多。例如目标队 7 分、另一队也是 7 分，即使其余队伍更低，仍不算冠军。all(...) 用来检查三个比较是否全部成立。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>读入目标队 T 和已赛 G 场。积分表按队号 1 到 4 保存，初始全为 0；程序的下标 0 留空不用。</li><li>处理已赛比赛：比较 SA 与 SB，给胜方加 3，或平局双方各加 1。记录已赛的队伍对。</li><li>生成四队的全部六个队伍对，并去掉已经比赛的，得到 r=6−G 场未赛比赛。</li><li>用 product 枚举每场 (3,0)、(0,3)、(1,1) 的所有组合。每次都复制已赛积分表，确保不同组合互不影响。</li><li>把当前组合分配的积分逐场加到副本上。然后比较目标队与另外三队；若三个严格大于比较都成立，答案加 1。</li><li>所有组合检查结束后输出计数。不同具体比分只要胜负平相同，就属于同一种积分结果，不要重复计数。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>样例 2 的已赛积分为队 1 得 1 分、队 2 得 2 分、队 3 得 6 分、队 4 得 1 分。剩余比赛是 (1,4) 和 (2,3)。队 1、2、4 即使赢下自己的最后一场，也最多分别有 4、5、4 分；目标队 3 即使输掉，也仍有 6 分。因此两场比赛各自三种结果的 3×3=9 个组合全部合格，输出 9。</p><p>再看一个只剩 (1,2) 的例子：当前积分为 [6,6,1,1]，目标是队 1。若队 1 胜，最终为 [9,6,1,1]，算一次；若队 2 胜，队 1 不是第一；若平局，最终为 [7,7,1,1]，也不合格。因此答案是 1。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>首先，已赛每场比较实际比分，按规则加上胜方 3 分或双方各 1 分，所以初始积分表准确。每对队伍只赛一次，生成全部六对并去掉已赛场次后，剩余列表恰好包含全部未赛比赛。</p><p>其次，每场未赛比赛的积分结果恰好是三种之一。product 为每场选择一种结果，且每个完整结果序列只生成一次，因此没有遗漏或重复。对每个序列，从已赛积分的副本出发，把每场所选积分加上，得到的正是该序列下的最终积分。复制表确保别的序列不会留下额外积分。</p><p>最后，目标队严格超过三个对手，当且仅当它是唯一积分最高的队伍。程序只在这三个比较全部成立时计数，排除了所有并列情况。全部可能序列都恰好检查一次，所以累计值就是题目要求的冠军结果数。</p></section><section class="card"><h2>运行时间与内存</h2><p>令 r=6−G≤6。处理已赛比赛需 O(G) 时间。剩余比赛共有 3^r 个结果序列；每个序列复制四队积分、处理 r 场并比较三个对手，需 O(r+4) 时间，总计 O(G+(r+4)×3^r)。最大搜索只有 3^6=729 个序列，每个至多处理六场，非常小。</p><p>输入记录、未赛列表、积分表和 product 当前生成的结果共占 O(G+r+4) 空间；没有保存全部结果，因而空间不是 O(3^r)。四队且最多六场的本题中，实际只需几个很小的列表与元组。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>输入的 SA、SB 是比分，不是积分。它们只决定给谁 3 分或双方各 1 分。</li><li>目标队必须严格超过每个对手。使用 ≥ 会把并列冠军误算进去。</li><li>每次枚举都要从相同的已赛积分重新开始，不能让前一个组合的积分残留。</li><li>也要枚举不涉及目标队的比赛；那些比赛会改变对手积分，可能决定谁是冠军。</li><li>未赛的每场都需要胜、负、平三种结果。只枚举两种胜负会漏掉平局。</li><li>数的是积分结果组合，不是具体比分或概率；比分无限多，但每场只有三种需要计数的结果。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>from itertools import combinations, product
+
+
+def count_championships(favorite, games):
+    points = [0] * 5
+    played = set()
+    for a, b, score_a, score_b in games:
+        played.add((a, b))
+        if score_a &gt; score_b:
+            points[a] += 3
+        elif score_b &gt; score_a:
+            points[b] += 3
+        else:
+            points[a] += 1
+            points[b] += 1
+    remaining = [pair for pair in combinations(range(1, 5), 2)
+                 if pair not in played]
+    answer = 0
+    for outcomes in product(((3, 0), (0, 3), (1, 1)), repeat=len(remaining)):
+        final = points.copy()
+        for (a, b), (add_a, add_b) in zip(remaining, outcomes):
+            final[a] += add_a
+            final[b] += add_b
+        if all(final[favorite] &gt; final[team]
+               for team in range(1, 5) if team != favorite):
+            answer += 1
+    return answer
+
+
+if __name__ == &#x27;__main__&#x27;:
+    favorite = int(input())
+    completed = int(input())
+    games = [tuple(map(int, input().split())) for _ in range(completed)]
+    print(count_championships(favorite, games))
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3
+3
+1 3 7 5
+3 4 0 8
+2 4 2 2
+</pre></div><div><h3>样例输出</h3><pre>0
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S3: Chances of winning
 Problem Description
 You want to determine the chances that your favourite team will be the champion of a small tour-
 nament.
@@ -80,7 +120,47 @@ match), team 3 will be the champion in all 9 outcomes.
 
 
                                                   8
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc13s3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S3: Chances of winning
+</pre></details></section><section class="card"><h2>测试数据</h2><p>7 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/edge-04.in">edge-04.in</a> / <a href="tests/edge-04.out">output</a></li><li><a href="tests/edge-05.in">edge-05.in</a> / <a href="tests/edge-05.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/senior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc13s3">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Four teams each play every other team once. Given completed games, count the combinations of wins, losses, and ties in the remaining games that make the favorite finish strictly above all three opponents. The required output is a count, not a probability.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Game scores and tournament points are different. A 100:99 win still gives only 3 tournament points to the winner and 0 to the loser. A 2:2 tie gives each team 1 point. Goals must not be added directly to the points table.</li><li>The unordered pairs of four teams are (1,2), (1,3), (1,4), (2,3), (2,4), and (3,4): six games. Order does not matter, so (1,2) and (2,1) describe the same game. combinations generates these six pairs, and we remove the completed games.</li><li>Each unplayed game has exactly three point outcomes: (3,0) for the first team winning, (0,3) for the second winning, and (1,1) for a tie. Two games give 3×3=9 combinations; r games give 3^r. Enumeration checks every complete combination rather than guessing the most helpful results.</li><li>A Cartesian product chooses one item from each group of choices to form all possible combinations. Two groups of win/loss/tie choices produce nine pairs of results. Python&#x27;s product(..., repeat=r) generates complete r-game outcomes one at a time, without storing all 3^r combinations at once.</li><li>Strictly first means the favorite has more points than every opponent. If the favorite and another team both have 7 points, the favorite is not champion even when the other teams have fewer. all(...) checks that all three comparisons hold.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Read favorite T and the G completed games. Initialize points for teams 1 through 4 to zero; array index 0 is unused.</li><li>Compare SA and SB for each completed game. Give the winner 3 points, or give both teams 1 for a tie. Record the completed team pair.</li><li>Generate all six pairs of teams and exclude the completed ones, leaving r=6−G unplayed games.</li><li>Use product to enumerate all combinations of (3,0), (0,3), and (1,1) for those games. Copy the completed-game points for every combination so different combinations cannot affect each other.</li><li>Add the chosen points for each remaining game to that copy. Compare the favorite with each of the other three teams and add 1 to the answer only if all three strict comparisons succeed.</li><li>After all combinations have been checked, print the count. Different actual scores with the same win/loss/tie result are one point outcome and must not be counted separately.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>In sample 2, teams 1, 2, 3, and 4 currently have 1, 2, 6, and 1 points. The remaining games are (1,4) and (2,3). Even if teams 1, 2, or 4 win their last games, they can finish with at most 4, 5, or 4 points. Favorite team 3 keeps at least 6 even if it loses. Thus all 3×3=9 combinations make it champion, and the answer is 9.</p><p>For another example, suppose only (1,2) remains, the points are [6,6,1,1], and team 1 is the favorite. A team-1 win gives [9,6,1,1] and counts once. A team-2 win does not make team 1 champion. A tie gives [7,7,1,1], which also fails because first place is shared. The answer is 1.</p></section><section class="card"><h2>Why does this work?</h2><p>First, comparing the actual scores and awarding 3 points to the winner or 1 to each team correctly computes the points from completed games. Since every pair plays once, generating all six pairs and excluding completed games leaves exactly the unplayed games.</p><p>Second, every unplayed game has exactly one of the three point outcomes. product chooses one for each game and generates each complete sequence exactly once, with no omissions or duplicates. Starting with a copy of the completed-game points and adding each chosen award computes precisely the final points for that sequence. Copying prevents points from another sequence from carrying over.</p><p>Finally, the favorite strictly exceeds all three opponents if and only if it is the unique team with the highest total. The program counts only when all three comparisons hold, excluding every tie for first. Since every possible sequence is checked exactly once, the accumulated count is exactly the requested number of championship outcomes.</p></section><section class="card"><h2>Time and memory</h2><p>Let r=6−G≤6. Processing completed games takes O(G) time. There are 3^r remaining-game outcome sequences. Each copies four teams&#x27; points, processes r games, and checks three opponents, taking O(r+4) time. Total time is O(G+(r+4)×3^r). The largest search has only 3^6=729 sequences, each processing at most six games.</p><p>The input records, remaining pairs, points, and current product tuple require O(G+r+4) space. All combinations are not stored, so space is not O(3^r). With just four teams and six games, these are only a few small lists and tuples.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>SA and SB are game scores, not tournament points. Use them only to decide who earns 3 points or whether both teams earn 1.</li><li>The favorite must strictly beat every opponent. Using ≥ would incorrectly count shared first place.</li><li>Restart every combination from the same completed-game points; do not carry over awards from the previous combination.</li><li>Enumerate games that do not involve the favorite too: they affect opponents&#x27; totals and can determine the champion.</li><li>Every unplayed game needs three outcomes, including a tie. Considering only wins and losses misses valid combinations.</li><li>Count point-outcome combinations, not exact scores or probabilities. There are infinitely many possible scores but only three relevant outcomes per game.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>from itertools import combinations, product
+
+
+def count_championships(favorite, games):
+    points = [0] * 5
+    played = set()
+    for a, b, score_a, score_b in games:
+        played.add((a, b))
+        if score_a &gt; score_b:
+            points[a] += 3
+        elif score_b &gt; score_a:
+            points[b] += 3
+        else:
+            points[a] += 1
+            points[b] += 1
+    remaining = [pair for pair in combinations(range(1, 5), 2)
+                 if pair not in played]
+    answer = 0
+    for outcomes in product(((3, 0), (0, 3), (1, 1)), repeat=len(remaining)):
+        final = points.copy()
+        for (a, b), (add_a, add_b) in zip(remaining, outcomes):
+            final[a] += add_a
+            final[b] += add_b
+        if all(final[favorite] &gt; final[team]
+               for team in range(1, 5) if team != favorite):
+            answer += 1
+    return answer
+
+
+if __name__ == &#x27;__main__&#x27;:
+    favorite = int(input())
+    completed = int(input())
+    games = [tuple(map(int, input().split())) for _ in range(completed)]
+    print(count_championships(favorite, games))
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3
+3
+1 3 7 5
+3 4 0 8
+2 4 2 2
+</pre></div><div><h3>Sample output</h3><pre>0
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem S3: Chances of winning
 Problem Description
 You want to determine the chances that your favourite team will be the champion of a small tour-
 nament.
@@ -156,6 +236,6 @@ match), team 3 will be the champion in all 9 outcomes.
 
 
                                                   8
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>7 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/edge-04.in">edge-04.in</a> / <a href="tests/edge-04.out">output</a></li><li><a href="tests/edge-05.in">edge-05.in</a> / <a href="tests/edge-05.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

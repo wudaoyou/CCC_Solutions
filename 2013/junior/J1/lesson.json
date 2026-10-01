@@ -1,0 +1,45 @@
+{
+  "title": "Next in Line",
+  "zh": {
+    "summary": "已知最小孩子和中间孩子的年龄，按相同的年龄差推算最大孩子的年龄。",
+    "topics": [
+      "等差数列：相邻两项之间的差相同。例如 5、10、15 每次增加 5。",
+      "年龄差：中间孩子比最小孩子大 M−Y 岁，其中 Y 是最小年龄，M 是中间年龄。",
+      "代入公式：最大年龄等于中间年龄再加一次相同的差。"
+    ],
+    "steps": [
+      "读取最小孩子年龄 Y 和中间孩子年龄 M。题目保证 Y 不大于 M。",
+      "计算相邻年龄差 gap = M - Y。",
+      "用 M + gap 计算最大孩子年龄并输出。把 gap 展开后也可写成 2 × M - Y。"
+    ],
+    "example": "输入 Y=12、M=15 时，年龄差是 15-12=3。最大孩子比中间孩子大 3 岁，所以年龄是 15+3=18。",
+    "correctness": "题目保证三个年龄构成等差数列，因此中间到最大的年龄差，必须等于最小到中间的差 M-Y。程序输出 M+(M-Y)，正好是在中间年龄上加上这个差，得到符合规则的最大年龄。",
+    "complexity": "程序只读取两个数并进行固定次数的加减乘法，所以运行时间是 O(1)。O(1) 表示输入年龄变大时，运算次数不增加。额外空间也是 O(1)，只使用固定数量的整数。",
+    "pitfalls": [
+      "要把年龄差加到中间孩子的年龄上；不要重复输出中间年龄或减去差值。",
+      "最小和中间年龄相同是合法情况，此时差为 0，最大年龄也相同。",
+      "输入年龄最多为 50，但推算出的最大年龄可以是 100；不要把答案限制在 50 以内。"
+    ]
+  },
+  "en": {
+    "summary": "Given the youngest and middle children's ages, use the same age difference once more to find the oldest child's age.",
+    "topics": [
+      "Arithmetic sequence: the difference between each pair of neighbours is the same. For example, 5, 10, 15 increases by 5 each time.",
+      "Age difference: the middle child is M−Y years older than the youngest, where Y is the youngest age and M is the middle age.",
+      "Substitution: the oldest age is the middle age plus that same difference."
+    ],
+    "steps": [
+      "Read the youngest age Y and the middle age M. The statement guarantees that Y is at most M.",
+      "Calculate the gap = M - Y between the two given ages.",
+      "Calculate and print M + gap for the oldest age. Expanding the gap also gives 2 × M - Y."
+    ],
+    "example": "For Y=12 and M=15, the gap is 15-12=3. The oldest child is 3 years older than the middle child, so the age is 15+3=18.",
+    "correctness": "The three ages form an arithmetic sequence, so the difference from the middle child to the oldest must equal the difference from the youngest to the middle: M-Y. The program prints M+(M-Y), which adds exactly that difference to the middle age and therefore gives the required oldest age.",
+    "complexity": "The program reads two numbers and performs a fixed number of additions, subtractions, and multiplications, so its running time is O(1). O(1) means the number of operations does not grow with the ages. Extra space is also O(1), since only a fixed number of integers are used.",
+    "pitfalls": [
+      "Add the age gap to the middle child's age; do not repeat the middle age or subtract the gap.",
+      "Equal youngest and middle ages are allowed. Their gap is 0, so the oldest age is equal too.",
+      "The input ages are at most 50, but the calculated oldest age can be 100; do not cap the answer at 50."
+    ]
+  }
+}
