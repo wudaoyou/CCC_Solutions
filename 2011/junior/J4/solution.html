@@ -4,7 +4,56 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2011 J4 · Boring Business</h1></header><p class="eyebrow">2011 / junior / J4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j4">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Boring Business
+<h1>2011 J4 · Boring Business</h1></header><p class="eyebrow">2011 / junior / J4</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j4">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>从题目给定的初始钻孔继续执行方向和长度命令。每条命令结束后输出钻头坐标；如果这条命令经过以前钻过的点，则输出 DANGER 并停止。</p></section><section class="card"><h2>考查知识点</h2><ul><li>坐标模拟：用 (x,y) 记录钻头位置，向右加 x、向下减 y。</li><li>集合查找：visited 保存已经钻过的坐标，判断新坐标是否曾出现。</li><li>路径自交：新钻孔经过旧钻孔的位置；不仅终点，整段路径都要检查。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>用题图中的固定路径初始化已钻过的坐标：从 (0, -1) 依次走 d 2、r 3、d 2、r 2、u 2、r 2、d 4、l 8、u 2，终点为 (-1, -5)。模拟就是按命令逐步更新位置。</li><li>把每个已钻过的整数坐标存进集合 visited。集合是一组不重复的值，可以快速检查某个坐标以前是否出现过。</li><li>读取一条命令后，每次移动一个单位并查集合。逐单位检查整条线段，才能发现线段中途与旧钻孔相交。</li><li>把新位置加入集合，并走完本条命令。输出命令终点和状态 safe 或 DANGER；如果本条命令有任何位置重复，输出后停止。q 命令只结束输入，不输出。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>样例 2 中，r 2 到达 (1, -5)，没有碰到旧路径。接着 d 10 虽然结束在 (1, -15)，途中会在 (1, -7) 穿过旧的水平路径，所以输出“1 -15 DANGER”后停止。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>初始化时，集合包含题图中从 (0, -1) 到 (-1, -5) 的每一个整点。之后对每条命令，算法按顺序检查并加入所经过的每一个新整点。因此集合始终表示已经钻过的位置。若新位置已在集合中，就与旧钻孔相交；若一条线段会相交，它必在该线段经过的某个整点上，逐单位检查不会漏掉中途相交。算法走完整条命令后输出其终点，并在第一次危险命令后停止。</p></section><section class="card"><h2>运行时间与内存</h2><p>设 C 为输入命令总数，S 为初始路径和实际处理命令走过的单位步数。代码先读入全部命令，需 O(C) 时间与空间；每一步做一次集合查找和加入，平均只需固定工作，因此移动部分用 O(S) 时间与空间。总时间和空间为 O(C+S)，意思是工作和存储量随读入命令数及走过的步数之和增长。即使遇到 q 或危险后不再移动，预先读入的命令仍占空间。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>初始路径不是空的；必须先把题图中的整条折线加入集合。</li><li>向下使 y 减少，向上使 y 增加；向左使 x 减少，向右使 x 增加。</li><li>只检查命令终点会漏掉样例 2 这样的线段中途相交。</li><li>发现中途相交后，仍要输出本条命令的最终坐标，然后停止。</li><li>q 后面的整数没有用途；q 本身表示停止输入。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+DIRECTIONS = {&quot;d&quot;: (0, -1), &quot;u&quot;: (0, 1), &quot;l&quot;: (-1, 0), &quot;r&quot;: (1, 0)}
+BASE_COMMANDS = ((&quot;d&quot;, 2), (&quot;r&quot;, 3), (&quot;d&quot;, 2), (&quot;r&quot;, 2), (&quot;u&quot;, 2),
+                 (&quot;r&quot;, 2), (&quot;d&quot;, 4), (&quot;l&quot;, 8), (&quot;u&quot;, 2))
+
+
+def main():
+    data = sys.stdin.read().split()
+    x, y = 0, -1
+    visited = {(x, y)}
+
+    for direction, length in BASE_COMMANDS:
+        dx, dy = DIRECTIONS[direction]
+        for _ in range(length):
+            x += dx
+            y += dy
+            visited.add((x, y))
+
+    for i in range(0, len(data), 2):
+        direction = data[i]
+        length = int(data[i + 1])
+        if direction == &quot;q&quot;:
+            break
+
+        dx, dy = DIRECTIONS[direction]
+        danger = False
+        for _ in range(length):
+            x += dx
+            y += dy
+            point = (x, y)
+            if point in visited:
+                danger = True
+            visited.add(point)
+
+        print(x, y, &quot;DANGER&quot; if danger else &quot;safe&quot;)
+        if danger:
+            break
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>l 2
+d 2
+r 1
+q 0
+</pre></div><div><h3>样例输出</h3><pre>-3 -5 safe
+-3 -7 safe
+-2 -7 safe
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Boring Business
 Problem Description
 Boring is a type of drilling, specifically, the drilling of a tunnel, well, or hole in the earth. With
 some recent events, such as the Deepwater Horizon oil spill and the rescue of Chilean miners, the
@@ -72,7 +121,56 @@ Output for Sample Input 2
 
 
                                                  9
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j4">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Boring Business
+</pre></details></section><section class="card"><h2>测试数据</h2><p>5 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01-endpoint-collision.in">edge-01-endpoint-collision.in</a> / <a href="tests/edge-01-endpoint-collision.out">output</a></li><li><a href="tests/edge-02-ground-boundary.in">edge-02-ground-boundary.in</a> / <a href="tests/edge-02-ground-boundary.out">output</a></li><li><a href="tests/edge-03-depth-boundary.in">edge-03-depth-boundary.in</a> / <a href="tests/edge-03-depth-boundary.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j4">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Continue drilling from the fixed path in the diagram. After each direction and length command, print the drill&#x27;s new coordinate; if the command crosses any earlier drilled point, print DANGER and stop.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Coordinate simulation: track the drill at (x,y); moving right increases x and moving down decreases y.</li><li>Set lookup: visited stores drilled coordinates and tells whether a new coordinate has appeared before.</li><li>Path self-intersection: new drilling passes through an earlier drilled location; check the whole segment, not just its endpoint.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Build the fixed path from the diagram: starting at (0, -1), follow d 2, r 3, d 2, r 2, u 2, r 2, d 4, l 8, u 2. It ends at (-1, -5). Simulation means updating the position as each move happens.</li><li>Store every drilled integer coordinate in a set named visited. A set holds distinct values and can quickly tell whether a coordinate appeared before.</li><li>For each input command, move one unit at a time and check the set. Checking every unit along the line catches a crossing in the middle, not just a repeated endpoint.</li><li>Add each new coordinate and finish the command. Print the command&#x27;s endpoint with safe or DANGER; if any position in the command repeated, stop after printing. A q command ends input and produces no output.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>In sample 2, r 2 reaches (1, -5) safely. The next command, d 10, ends at (1, -15) but crosses the old horizontal path at (1, -7), so the program prints “1 -15 DANGER” and stops.</p></section><section class="card"><h2>Why does this work?</h2><p>At the start, the set contains every integer coordinate along the fixed path from (0, -1) to (-1, -5). For each command, the algorithm checks and adds every coordinate it passes, so the set always represents the drilled locations. A coordinate already in the set means the new drilling intersects an earlier part. Any crossing occurs at a point along the commanded segment, and checking every unit point cannot skip one. The program finishes the command, prints its endpoint, and stops after the first dangerous command.</p></section><section class="card"><h2>Time and memory</h2><p>Let C be the total number of input commands and S the unit steps in the initial path and processed commands. Reading all commands takes O(C) time and space. Each step performs one set lookup and insertion, taking a fixed amount of work on average, so drilling uses O(S) time and space. Total time and space are O(C+S): work and storage grow with the sum of commands read and steps walked. Commands read in advance still use memory even if q or danger ends processing early.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>The initial path is not empty; add the full path from the diagram before reading commands.</li><li>Down decreases y, up increases y, left decreases x, and right increases x.</li><li>Checking only the command endpoint misses crossings in the middle, as sample 2 shows.</li><li>If a crossing happens in the middle, still print the endpoint of that command before stopping.</li><li>The integer after q is unused; q itself ends the input.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+DIRECTIONS = {&quot;d&quot;: (0, -1), &quot;u&quot;: (0, 1), &quot;l&quot;: (-1, 0), &quot;r&quot;: (1, 0)}
+BASE_COMMANDS = ((&quot;d&quot;, 2), (&quot;r&quot;, 3), (&quot;d&quot;, 2), (&quot;r&quot;, 2), (&quot;u&quot;, 2),
+                 (&quot;r&quot;, 2), (&quot;d&quot;, 4), (&quot;l&quot;, 8), (&quot;u&quot;, 2))
+
+
+def main():
+    data = sys.stdin.read().split()
+    x, y = 0, -1
+    visited = {(x, y)}
+
+    for direction, length in BASE_COMMANDS:
+        dx, dy = DIRECTIONS[direction]
+        for _ in range(length):
+            x += dx
+            y += dy
+            visited.add((x, y))
+
+    for i in range(0, len(data), 2):
+        direction = data[i]
+        length = int(data[i + 1])
+        if direction == &quot;q&quot;:
+            break
+
+        dx, dy = DIRECTIONS[direction]
+        danger = False
+        for _ in range(length):
+            x += dx
+            y += dy
+            point = (x, y)
+            if point in visited:
+                danger = True
+            visited.add(point)
+
+        print(x, y, &quot;DANGER&quot; if danger else &quot;safe&quot;)
+        if danger:
+            break
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>l 2
+d 2
+r 1
+q 0
+</pre></div><div><h3>Sample output</h3><pre>-3 -5 safe
+-3 -7 safe
+-2 -7 safe
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J4: Boring Business
 Problem Description
 Boring is a type of drilling, specifically, the drilling of a tunnel, well, or hole in the earth. With
 some recent events, such as the Deepwater Horizon oil spill and the rescue of Chilean miners, the
@@ -140,6 +238,6 @@ Output for Sample Input 2
 
 
                                                  9
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>5 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01-endpoint-collision.in">edge-01-endpoint-collision.in</a> / <a href="tests/edge-01-endpoint-collision.out">output</a></li><li><a href="tests/edge-02-ground-boundary.in">edge-02-ground-boundary.in</a> / <a href="tests/edge-02-ground-boundary.out">output</a></li><li><a href="tests/edge-03-depth-boundary.in">edge-03-depth-boundary.in</a> / <a href="tests/edge-03-depth-boundary.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

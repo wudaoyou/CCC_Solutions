@@ -1,0 +1,47 @@
+{
+  "title": "Who Has Seen The Wind",
+  "zh": {
+    "summary": "从第 1 小时开始，依次用题目公式计算气球高度。找到第一个高度小于或等于 0 的时刻就输出；如果检查到 M 小时仍未触地，就输出指定的未触地句子。",
+    "topics": [
+      "循环枚举：按时间先后检查 1 到 M 小时。",
+      "代入公式：把当前小时和湿度 h 代入高度公式。",
+      "提前停止：由于要找最早时刻，一旦第一次触地就不必继续计算。"
+    ],
+    "steps": [
+      "读取湿度 h 和愿意等待的最长时间 M。",
+      "让 hour 从 1 递增到 M。符号 ** 表示乘方，例如 hour**4 是 hour 的四次方。",
+      "计算 -6×hour 的四次方 + h×hour 的三次方 + 2×hour 的平方 + hour。",
+      "若高度小于或等于 0，保存 hour 并停止循环；变量 landing_hour 初始为 0，表示目前还没找到触地时刻。若所有小时都检查完它仍为 0，就输出未触地的句子。"
+    ],
+    "example": "样例一中 h=30。第 5 小时的高度是 55 米，仍在空中；第 6 小时的高度是 -1218 米，小于 0，所以输出第 6 小时。",
+    "correctness": "循环按 1、2、…、M 的顺序检查每个允许的小时，并用给定公式计算该时刻的真实高度。第一次发现高度小于或等于 0 时，之前检查的所有小时都高于地面，因此当前小时就是最早触地时刻。如果循环结束仍未保存时刻，则 1 到 M 都没有触地。",
+    "complexity": "最多计算 M 次高度，所以时间为 O(M)：M 增加一小时，最坏情况就多做一次计算。程序只保存当前小时、当前高度和结果，额外空间为 O(1)，即固定数量的值。",
+    "pitfalls": [
+      "题目规定高度小于或等于 0 时就算触地；高度正好为 0 也必须停止。",
+      "从 hour=1 开始检查，不要漏掉第一小时；M 小时也要检查。",
+      "输出文本和换行要符合格式；没有触地时不能输出某个小时。"
+    ]
+  },
+  "en": {
+    "summary": "Starting at hour 1, evaluate the balloon's altitude with the given formula. Print the first hour when the altitude is at most 0. If the balloon has not touched the ground by hour M, print the required no-touch sentence.",
+    "topics": [
+      "Looping through a range: check hours 1 through M in time order.",
+      "Substituting into a formula: use the current hour and humidity h to calculate altitude.",
+      "Stopping early: once the first ground contact is found, later hours are not needed."
+    ],
+    "steps": [
+      "Read the humidity h and the maximum waiting time M.",
+      "Let hour increase from 1 through M. The ** operator means exponentiation, so hour**4 is hour to the fourth power.",
+      "Calculate -6 times hour to the fourth, plus h times hour cubed, plus 2 times hour squared, plus hour.",
+      "If the altitude is at most 0, save that hour and stop the loop. The variable landing_hour starts at 0 to mean that no touch has been found yet. If it is still 0 after all hours are checked, print the no-touch sentence."
+    ],
+    "example": "In sample 1, h=30. At hour 5 the altitude is 55 metres, so the balloon is still above ground. At hour 6 the altitude is -1218 metres, which is at most 0, so print hour 6.",
+    "correctness": "The loop checks every allowed hour in the order 1, 2, ..., M and uses the given formula for each altitude. When it first finds an altitude at most 0, every earlier checked hour was above ground, so this is the earliest touch time. If the loop finishes without saving an hour, none of hours 1 through M touched the ground.",
+    "complexity": "The program calculates altitude at most M times, so the running time is O(M): increasing M by one hour adds at most one calculation. It stores only the current hour, altitude, and result, so extra space is O(1), meaning a fixed number of values.",
+    "pitfalls": [
+      "The balloon touches the ground at altitude less than or equal to 0; altitude exactly 0 counts.",
+      "Start checking at hour 1 and include hour M.",
+      "Match the required output text and line breaks; do not print an hour when there is no touch."
+    ]
+  }
+}

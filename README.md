@@ -47,11 +47,12 @@ Foundation stage: structure, official statements, provenance, available official
 | 年份 / Year | 解法与双语讲解 / Solutions and bilingual lessons |
 | --- | --- |
 | 2010 | J1–J5、S2 解法与双语讲解完成；DMOJ 本地引擎 22/22 用例通过 / J1–J5, S2 complete; 22/22 cases passed the local DMOJ engine |
-| 2011–2026 | 待逐年完成 / Pending, in year order |
+| 2011 | J1–J5 解法与双语讲解完成；DMOJ 本地引擎 25/25 用例通过 / J1–J5 complete; 25/25 cases passed the local DMOJ engine |
+| 2012–2026 | 待逐年完成 / Pending, in year order |
 
-2010 的验证记录见 [verification.json](2010/verification.json)，含解法/讲解哈希及独立校验结果；用例覆盖限于官方样例和本地边界。
+2010、2011 的验证记录见 [2010 verification.json](2010/verification.json) 和 [2011 verification.json](2011/verification.json)，含解法/讲解哈希及独立校验结果；用例覆盖限于官方样例和本地边界。
 
-See [2010 verification.json](2010/verification.json) for solution/lesson hashes and independent checks. Coverage is limited to official samples and local edge cases.
+See [2010 verification.json](2010/verification.json) and [2011 verification.json](2011/verification.json) for solution/lesson hashes and independent checks. Coverage is limited to official samples and local edge cases.
 
 2014–2023 已下载所覆盖题目的完整官方测试数据。2020/2021 的重叠 S2 数据来自官方 Junior J5 测试包。2010–2013 的完整官方测试包未在当前官网找到，做题时加入官方样例和独立核对的边界用例，不能据此声称通过完整官方数据。
 
@@ -86,6 +87,7 @@ python3 tools/build_pages.py
 python3 tools/test_site.py
 python3 tools/test_checkers.py
 python3 tools/judge.py 2010/junior/J1
+python3 tools/judge.py 2011  # 按整年评测 / Grade one year
 ```
 
 省略最后一条命令的题目路径会评测全部已写解法。Junior 引用路径也可用。这个简易工具只运行本仓库可信代码，不提供沙盒，也不等同于 DMOJ 分数。
@@ -108,9 +110,9 @@ docker run --rm --network none --cap-add SYS_PTRACE \
   ccc-dmoj:5ef74c5 python /repo/tools/dmoj/grade.py
 ```
 
-可在最后追加 `2010/junior/J1` 只测一题。评测用 Python 3，每个用例限 3 秒 CPU、256 MiB 内存；这是本仓库统一验证条件，不是在线 DMOJ 原题的限制或分数。报告位于 `/tmp/ccc-dmoj-results/dmoj.json`，包含逐例判定、耗时与内存日志。2019 J5 检查替换过程是否有效，2019 S2 检查两数是否为素数且平均值正确；不会因有效答案与参考输出不同而误判。
+可在最后追加 `2010/junior/J1` 只测一题，或 `2011` 评测该年已写解法。评测用 Python 3，每个用例限 3 秒 CPU、256 MiB 内存；这是本仓库统一验证条件，不是在线 DMOJ 原题的限制或分数。报告位于 `/tmp/ccc-dmoj-results/dmoj.json`，包含逐例判定、耗时与内存日志。2019 J5 检查替换过程是否有效，2019 S2 检查两数是否为素数且平均值正确；不会因有效答案与参考输出不同而误判。
 
-Append `2010/junior/J1` to grade one problem. The PY3 executor uses a local limit of 3 CPU seconds and 256 MiB per case. These are repository validation settings, not online DMOJ limits or scores. `/tmp/ccc-dmoj-results/dmoj.json` records verdicts, timing and memory. Semantic validators accept any valid substitution path for 2019 J5 and any valid prime pair for 2019 S2.
+Append `2010/junior/J1` to grade one problem, or `2011` to grade that year’s written solutions. The PY3 executor uses a local limit of 3 CPU seconds and 256 MiB per case. These are repository validation settings, not online DMOJ limits or scores. `/tmp/ccc-dmoj-results/dmoj.json` records verdicts, timing and memory. Semantic validators accept any valid substitution path for 2019 J5 and any valid prime pair for 2019 S2.
 
 在线练习使用 [DMOJ](https://dmoj.ca/)。页面链接按 CCC 题号构造，尚未逐题核对在线可访问性；本仓库未代用户提交到 DMOJ。
 

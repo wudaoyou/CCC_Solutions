@@ -4,7 +4,22 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2011 J3 · Sumac Sequences</h1></header><p class="eyebrow">2011 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j3">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Sumac Sequences
+<h1>2011 J3 · Sumac Sequences</h1></header><p class="eyebrow">2011 / junior / J3</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j3">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>从给定的前两项开始，每次用前一项减去当前项生成下一项；数列在前一项小于当前项时结束。输出包含首尾在内的项数。</p></section><section class="card"><h2>考查知识点</h2><ul><li>状态模拟：只保存当前相邻的两项，就能计算下一项。</li><li>循环条件：只有前一项不小于当前项时，才继续生成下一项。</li><li>计数器：每生成一项就把长度加一。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>读取 t1 和 t2，并把长度设为 2，因为这两项已经属于数列。</li><li>只要 first 大于或等于 second，就计算 next_term = first - second。此时相减不会得到负数。</li><li>把相邻两项向前移动：first 变成旧的 second，second 变成新项；长度加一。</li><li>当 first 小于 second 时，末尾两项已经满足停止条件，不再生成新项，输出长度。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>输入 120 和 71：下一项依次是 49、22、27。生成 27 后，前一项 22 小于当前项 27，所以数列在此结束，长度为 5。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>每次循环都按定义把 first-second 作为下一项，并将这项和它前面的项作为新的相邻两项，因此所有生成的项都与 Sumac 规则一致。循环只在 first 大于或等于 second 时继续；这等价于尚未满足“前一项小于当前项”的停止条件。离开循环时，末尾两项满足题目条件，长度计入了最初两项和每个新生成项。</p></section><section class="card"><h2>运行时间与内存</h2><p>若数列共有 k 项，循环每次只生成一项，因此运行时间为 O(k)，也就是每个数列项处理一次。程序只保存两项和长度，额外空间为 O(1)，即固定数量的值。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>相减顺序是前一项减当前项，不是反过来。</li><li>相邻两项相等时还要继续；只有前一项严格小于当前项才停止。</li><li>长度从 2 开始，因为输入的 t1 和 t2 已经是前两项。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+
+first, second = map(int, sys.stdin.read().split())
+length = 2
+
+while first &gt;= second:
+    next_term = first - second
+    first, second = second, next_term
+    length += 1
+
+print(length)
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>120
+71
+</pre></div><div><h3>样例输出</h3><pre>5
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Sumac Sequences
 Problem Description
 In a sumac sequence, t1 , t2 , .., tm , each term is an integer greater than or equal 0. Also, each term,
 starting with the third, is the difference of the preceding two terms (that is, tn+2 = tn − tn+1 for
@@ -32,7 +47,22 @@ Output for Sample Input
 
 
                                                    7
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j3">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Sumac Sequences
+</pre></details></section><section class="card"><h2>测试数据</h2><p>3 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j3">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Start with the two given terms. Each new term is the previous term minus the current term. The sequence ends when the previous term is smaller than the current term. Print the number of terms, including both ends.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>State simulation: keeping the latest two terms is enough to make the next one.</li><li>Loop condition: make another term only while the previous term is at least the current term.</li><li>Counting: increase the length once for every generated term.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Read t1 and t2, and set the length to 2 because both are already terms in the sequence.</li><li>While first is greater than or equal to second, calculate next_term = first - second. This subtraction is nonnegative under the loop condition.</li><li>Move the pair forward: first becomes the old second, and second becomes the new term. Increase the length by one.</li><li>When first is less than second, the final two terms satisfy the stopping rule. Generate nothing more and print the length.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>For input 120 and 71, the next terms are 49, 22, and 27. After generating 27, the previous term 22 is smaller than 27, so the sequence stops with length 5.</p></section><section class="card"><h2>Why does this work?</h2><p>Each loop computes first-second as the next term required by the definition, then makes the adjacent pair the new current state. Thus every generated term follows the Sumac rule. The loop continues exactly while first is at least second, which means the stopping condition that the previous term is smaller than the current term has not yet been met. When the loop ends, the final pair meets that condition, and the counter includes the first two terms plus every generated term.</p></section><section class="card"><h2>Time and memory</h2><p>If the sequence has k terms, the loop generates one term per iteration, so the running time is O(k): each term is processed once. The program stores only two terms and a counter, so extra space is O(1), meaning a fixed number of values.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Subtract the current term from the previous term, in that order.</li><li>Equal adjacent terms do not stop the sequence; it stops only when the previous term is strictly smaller.</li><li>Start the length at 2 because the input values t1 and t2 are already the first two terms.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>import sys
+
+
+first, second = map(int, sys.stdin.read().split())
+length = 2
+
+while first &gt;= second:
+    next_term = first - second
+    first, second = second, next_term
+    length += 1
+
+print(length)
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>120
+71
+</pre></div><div><h3>Sample output</h3><pre>5
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J3: Sumac Sequences
 Problem Description
 In a sumac sequence, t1 , t2 , .., tm , each term is an integer greater than or equal 0. Also, each term,
 starting with the third, is the difference of the preceding two terms (that is, tn+2 = tn − tn+1 for
@@ -60,6 +90,6 @@ Output for Sample Input
 
 
                                                    7
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>3 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

@@ -4,7 +4,31 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2011 J5 · Unfriend</h1></header><p class="eyebrow">2011 / junior / J5</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j5">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Unfriend
+<h1>2011 J5 · Unfriend</h1></header><p class="eyebrow">2011 / junior / J5</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j5">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>计算 Mark 不删除自己的前提下，有多少种不同的删除人员集合。</p></section><section class="card"><h2>考查知识点</h2><ul><li>邀请关系可以画成一棵树：例如 4 邀请 3，3 邀请 1，就画出 4 → 3 → 1。直接被某人邀请的人是他的孩子；这个人自己，加上从他沿邀请关系往下到达的所有人，组成他的子树。</li><li>乘法原理：若两个互不相连的分支分别有 a、b 种合法选择，合起来就有 a×b 种。例如两名叶子各自可选删或不删，合计 2×2=4 种。</li><li>递归计数：先数更小的子树，再把结果合起来。设 F(v) 是以 v 为根的子树中合法删除方案数；保留 v 时，孩子子树可独立选择，方案数是各 F(child) 的乘积；删除 v 时必须删除整个子树，只有 1 种。因此 F(v)=1+各孩子方案数的乘积。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>按题目给出的父子关系建立孩子列表。输入中每行给出一个人的邀请者，所以把这个人放进邀请者的孩子列表。</li><li>对一个人 v，先递归计算每个孩子子树的方案数，并将这些数相乘，表示保留 v 时的选择。</li><li>再加 1，表示删除 v 并连同子树里所有人一起删除的唯一方案。叶子没有孩子，孩子方案数的乘积为空乘积 1，所以叶子的 F 值是 2：删或不删。</li><li>Mark 是编号 N 的根且不能删除；答案只把他的各个孩子子树方案数相乘，不使用 F(Mark) 中“删除 Mark”的额外方案。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>样例 2 中，4 是 Mark，4 邀请 2 和 3，3 邀请 1。人 1 有 2 种选择，所以 F(3)=1+2=3；人 2 也有 2 种选择。Mark 保留，两个分支独立，答案为 2×3=6。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>对任意非 Mark 的人 v，合法删除集合恰好分成两类：保留 v，或删除 v。若保留 v，题目没有规定必须删除邀请者，因此每个孩子子树都能独立选一个合法集合，组合数是各孩子 F 值的乘积；若删除 v，规则强制删除整棵子树，恰好形成一种集合。两类分别包含和不包含 v，不会重复，因此 F(v)=1+各孩子 F 值的乘积。叶子时该式给出两种选择，向上递归就能正确计数每个子树。根是不能删除的 Mark，故只需组合他的孩子子树选择，所得正是所有合法集合数。</p></section><section class="card"><h2>运行时间与内存</h2><p>每个人只在递归中访问一次，每条父子关系也只在乘积中处理一次，时间为 O(N)，意思是人数增长时工作量也按相同的比例增长。孩子列表和递归调用最多保存 O(N) 个关系与调用，空间也随人数增长。题目 N≤6，最多只有六层递归。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>边的方向要从邀请者指向被邀请者；删除邀请者会强制删除孩子，但删除孩子不会强制删除邀请者。</li><li>保留某人时，仍可以独立删除他的孩子分支；不要误认为必须先删除邀请者。</li><li>Mark 是根且不能删除，最终答案不能包含“删除根”的那 1 种方案。</li><li>空集合也是一种合法方案；乘积没有孩子时按 1 计算。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>from math import prod
+import sys
+
+
+def ways(person, children):
+    return 1 + prod(ways(child, children) for child in children[person])
+
+
+def main():
+    data = list(map(int, sys.stdin.buffer.read().split()))
+    n = data[0]
+    children = [[] for _ in range(n + 1)]
+    for person, parent in enumerate(data[1:], 1):
+        children[parent].append(person)
+
+    print(prod(ways(child, children) for child in children[n]))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>3
+3
+3
+</pre></div><div><h3>样例输出</h3><pre>4
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Unfriend
 Problem Description
 Mark invited some people to join his social network. Some of them invited new people, who
 invited new people, and so on. Now there are N people in the network, numbered from 1 to N .
@@ -61,7 +85,31 @@ are not possible, since when you remove 3, you must also remove 1.
 
 
                                                11
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j5">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Unfriend
+</pre></details></section><section class="card"><h2>测试数据</h2><p>5 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01-smallest-network.in">edge-01-smallest-network.in</a> / <a href="tests/edge-01-smallest-network.out">output</a></li><li><a href="tests/edge-02-chain.in">edge-02-chain.in</a> / <a href="tests/edge-02-chain.out">output</a></li><li><a href="tests/edge-03-star.in">edge-03-star.in</a> / <a href="tests/edge-03-star.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j5">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Count the different sets of people Mark can remove while keeping himself.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>The invitations form a tree. For example, if 4 invited 3 and 3 invited 1, draw 4 → 3 → 1. Someone invited directly by a person is that person&#x27;s child; the person and everyone reached by following invitations downward form a subtree.</li><li>The multiplication rule combines independent choices: if two separate branches have a and b valid choices, together they have a×b choices. For example, two leaves can each be kept or removed, giving 2×2=4 choices.</li><li>Recursive counting solves smaller subtrees first and combines their answers. Let F(v) count valid removals in the subtree rooted at v. If v stays, each child subtree is chosen independently, giving the product of the child F values. If v is removed, the whole subtree must be removed, giving exactly 1 choice. Thus F(v)=1+the product of the child counts.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Build a list of children from the input: each line names a person&#x27;s inviter, so add that person to the inviter&#x27;s child list.</li><li>For a person v, recursively count the choices in each child subtree and multiply those counts. This is the number of choices when v stays.</li><li>Add 1 for the single choice where v and everyone in the subtree are removed. A leaf has no children, so its empty product is 1 and F(v)=2: keep it or remove it.</li><li>Mark is the root numbered N and cannot be removed. Multiply the counts for his child subtrees directly, without adding the choice that removes Mark.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>In sample 2, 4 is Mark, who invited 2 and 3, and 3 invited 1. Person 1 has 2 choices, so F(3)=1+2=3; person 2 also has 2 choices. Mark stays, and the branches are independent, giving 2×3=6.</p></section><section class="card"><h2>Why does this work?</h2><p>For any person v other than Mark, every valid removal set in v&#x27;s subtree belongs to exactly one of two groups: v stays, or v is removed. If v stays, the rules do not require removing an inviter, so each child subtree can independently use any valid set; the number is the product of the child F values. If v is removed, the rule forces the entire subtree to be removed, giving exactly one set. These groups are disjoint because only the second contains v, so F(v)=1+the product of the child counts. For a leaf this gives the two choices, and applying the rule upward counts every valid set in each subtree. Since the root is Mark and cannot be removed, combining only his child subtrees gives exactly the number of allowed sets.</p></section><section class="card"><h2>Time and memory</h2><p>Each person is visited once, and each parent-child link is handled once in a product, taking O(N) time: the work grows in proportion to the number of people. The child lists and recursive calls use O(N) space, which also grows with the number of people. Since N≤6, there are at most six recursive levels.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>Point each relationship from inviter to invited person. Removing an inviter forces removal of the child; removing a child does not force removal of the inviter.</li><li>A person can stay while people in a child branch are removed; do not require removing the inviter first.</li><li>Mark is the root and must stay, so the final answer must exclude the one choice that removes the root.</li><li>The empty removal set is valid; a product with no children is 1.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>from math import prod
+import sys
+
+
+def ways(person, children):
+    return 1 + prod(ways(child, children) for child in children[person])
+
+
+def main():
+    data = list(map(int, sys.stdin.buffer.read().split()))
+    n = data[0]
+    children = [[] for _ in range(n + 1)]
+    for person, parent in enumerate(data[1:], 1):
+        children[parent].append(person)
+
+    print(prod(ways(child, children) for child in children[n]))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>3
+3
+3
+</pre></div><div><h3>Sample output</h3><pre>4
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J5: Unfriend
 Problem Description
 Mark invited some people to join his social network. Some of them invited new people, who
 invited new people, and so on. Now there are N people in the network, numbered from 1 to N .
@@ -118,6 +166,6 @@ are not possible, since when you remove 3, you must also remove 1.
 
 
                                                11
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>5 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01-smallest-network.in">edge-01-smallest-network.in</a> / <a href="tests/edge-01-smallest-network.out">output</a></li><li><a href="tests/edge-02-chain.in">edge-02-chain.in</a> / <a href="tests/edge-02-chain.out">output</a></li><li><a href="tests/edge-03-star.in">edge-03-star.in</a> / <a href="tests/edge-03-star.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>

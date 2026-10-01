@@ -15,10 +15,16 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("problem", nargs="?", help="e.g. 2023/senior/S1; omit to run all")
+    parser.add_argument("problem", nargs="?", help="problem path or year; omit to run all")
     parser.add_argument("--report", type=Path)
     args = parser.parse_args()
-    directories = [ROOT / args.problem] if args.problem else sorted(ROOT.glob("20??/*/*/solution.py"))
+    if args.problem:
+        selected = ROOT / args.problem
+        directories = [selected] if (selected / "solution.py").exists() or (selected / "reference.json").exists() else sorted(selected.glob("*/*/solution.py"))
+    else:
+        directories = sorted(ROOT.glob("20??/*/*/solution.py"))
+    if not directories:
+        parser.error("No written solutions at that path")
     directories = [p.parent if p.is_file() else p for p in directories]
     results = []
     for directory in directories:

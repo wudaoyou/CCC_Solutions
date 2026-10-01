@@ -1,0 +1,47 @@
+{
+  "title": "Which Alien?",
+  "zh": {
+    "summary": "根据目击者报告的触角数和眼睛数，分别检查三种外星人的条件，并输出所有符合条件的名字。没有符合者时不输出任何名字。",
+    "topics": [
+      "比较运算：用大于等于或小于等于检查数量是否达到条件。",
+      "逻辑与：每个物种都要同时满足触角和眼睛两项条件。",
+      "独立条件判断：一个外星人的特征可能同时符合多个物种。"
+    ],
+    "steps": [
+      "读取触角数量和眼睛数量。",
+      "按题目给出的规则逐种检查：TroyMartian 要求触角至少 3 根且眼睛最多 4 只；VladSaturnian 要求触角最多 6 根且眼睛至少 2 只；GraemeMercurian 要求触角最多 2 根且眼睛最多 3 只。",
+      "每种都用单独的 if 判断。条件成立就输出该物种；如果三个条件都不成立，程序自然不会输出名字。"
+    ],
+    "example": "触角数为 2、眼睛数为 3 时，VladSaturnian 的两项条件成立，GraemeMercurian 的两项条件也成立，所以要按顺序输出这两个名字。",
+    "correctness": "程序对每个物种使用的判断，正好是题目规定的触角和眼睛条件，并用 and 要求两项都成立。因此它会输出每个符合目击描述的物种。三个判断彼此独立，所以多个物种都符合时都会输出；没有条件成立时，没有名字会被输出。",
+    "complexity": "程序固定检查三个物种，不会因输入数字大小而增加检查次数，所以运行时间是 O(1)。O(1) 表示只做固定数量的工作；额外空间也是 O(1)，因为只保存触角数和眼睛数。",
+    "pitfalls": [
+      "不要把三个判断写成互斥的 else-if；一次目击描述可能符合不止一个物种。",
+      "至少 3 根要写作大于等于 3；最多 4 只要写作小于等于 4，边界也算符合。",
+      "题目要求输出物种名称；没有物种符合时，输出应为空。",
+      "官方 PDF 会话中有“有几根触角？”等提示文字；本解法按 DMOJ 自动评测格式只输出物种名称，不输出这些提示。"
+    ]
+  },
+  "en": {
+    "summary": "Use the reported antenna and eye counts to check the rules for all three alien species, then print every matching name. If none match, print no names.",
+    "topics": [
+      "Comparisons: use greater-than-or-equal or less-than-or-equal to check a count against a limit.",
+      "Logical AND: each species requires both its antenna rule and its eye rule to be true.",
+      "Independent conditions: one description can match more than one species."
+    ],
+    "steps": [
+      "Read the number of antennae and the number of eyes.",
+      "Check each rule from the statement: TroyMartian needs at least 3 antennae and at most 4 eyes; VladSaturnian needs at most 6 antennae and at least 2 eyes; GraemeMercurian needs at most 2 antennae and at most 3 eyes.",
+      "Use a separate if for each species. Print its name when its condition is true. If all three conditions are false, the program prints no names."
+    ],
+    "example": "With 2 antennae and 3 eyes, both rules for VladSaturnian are true, and both rules for GraemeMercurian are true. Print both names in that order.",
+    "correctness": "For each species, the program checks exactly the antenna and eye conditions in the statement, using and to require both. It therefore prints every species whose rules match the description. The three checks are independent, so multiple matching names are all printed; if no condition is true, no name is printed.",
+    "complexity": "The program always checks three species, so the number of checks does not grow with the input values and the running time is O(1). O(1) means a fixed amount of work. Extra space is also O(1), since only the two counts are stored.",
+    "pitfalls": [
+      "Do not make the species checks mutually exclusive with else-if; one description can match more than one species.",
+      "At least 3 means greater than or equal to 3, and at most 4 means less than or equal to 4, including the boundary values.",
+      "The required output is the species names; when none match, the output should be empty.",
+      "The PDF session includes prompts asking for input. This solution follows DMOJ automated judging and prints only species names, without prompts."
+    ]
+  }
+}

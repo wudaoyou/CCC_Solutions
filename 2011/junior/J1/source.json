@@ -8,5 +8,10 @@
   "test_data": {
     "kind": "samples-and-local-edges",
     "note": "Full official test archive could not be located on the current CEMC site. sample-* cases are transcribed from the official PDF; edge-* cases are independently checked local cases."
+  },
+  "judge_statement_url": "https://dmoj.ca/problem/ccc11j1",
+  "judge_output_note": {
+    "zh": "原试卷样例展示交互提示；本解法与测试按 DMOJ 自动评测格式，只输出匹配的外星人名称，不输出提问提示。",
+    "en": "The original paper shows interactive prompts. This solution and its tests follow the DMOJ automated format: output only matching alien names, without input prompts."
   }
 }

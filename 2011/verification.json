@@ -1,0 +1,104 @@
+{
+  "judge": "DMOJ judge-server",
+  "judge_commit": "5ef74c5d6cad9efb2e86a5bb8ff2c90aaa6e435c",
+  "executor": "PY3",
+  "results": [
+    {
+      "problem": "2011/junior/J1",
+      "cases": 6,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "46e4863c6cd4edabb1df86271e8e132f4fd868ac6dc761f10e339a1742e922fa",
+      "lesson_sha256": "d48454c072c51360748bf78d967147b9b568da7b98439c0b0a20b6f40753b8cc"
+    },
+    {
+      "problem": "2011/junior/J2",
+      "cases": 6,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "46346a95198cf05c89435583e7ddc3ab3c00812b785e9e2814fa1bdebe2c314d",
+      "lesson_sha256": "20b2057d71cd671e47f8e1c78b29d4f9bc3fd12376b78f26f1bb03f75a89ffac"
+    },
+    {
+      "problem": "2011/junior/J3",
+      "cases": 3,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "d6a30c3f6482450c979a1654ed8b96427e1d0b3bf57d6da82472a9c371aef8b8",
+      "lesson_sha256": "eb0091ed81459deeb8dc1cfb5a7fb4fc0062039b21b601e404ee83a99846ccff"
+    },
+    {
+      "problem": "2011/junior/J4",
+      "cases": 5,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "b132ded501f517e0e8ad95fb8146c73d511a06774d8d51ed6a36862bfe45827f",
+      "lesson_sha256": "64fd154d38465bc07789172c2dd667a1418b39d55eea8ff49f673d8023479cb7"
+    },
+    {
+      "problem": "2011/junior/J5",
+      "cases": 5,
+      "passed": true,
+      "test_data_kind": "samples-and-local-edges",
+      "cpu_limit_seconds": 3,
+      "memory_limit_kib": 262144,
+      "verdicts": [
+        "AC",
+        "AC",
+        "AC",
+        "AC",
+        "AC"
+      ],
+      "solution_sha256": "98fd512fcf71a2aa72242eff26f0ce48cb3c5a50c5ffd4970ee68d03518dd85d",
+      "lesson_sha256": "1ac368362b7960b338efec1d2e22d3bce251a885bb3bdd416f7233f18f4af5b9"
+    }
+  ],
+  "verified_on": "2026-10-01",
+  "coverage_note": {
+    "zh": "本年已收录的 Junior J1–J5，用例为官方样例与独立核对的本地边界。完整官方数据未取得，未在线提交；本记录不涵盖尚未收录的 Senior 题。",
+    "en": "Covers the collected Junior J1–J5, using official samples and independently checked local boundaries. Full official data has not been obtained; no online submissions were made. Senior problems not yet collected are outside this record."
+  },
+  "independent_checks": {
+    "J1_count_pairs": 121,
+    "J2_humidity_horizon_boundaries": 490,
+    "J3_small_input_pairs": 7140,
+    "J4_independent_segment_intersection_paths": 600,
+    "J5_all_parent_assignments_N1_to_6": 154
+  }
+}

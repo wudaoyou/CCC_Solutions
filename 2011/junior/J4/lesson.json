@@ -1,0 +1,51 @@
+{
+  "title": "Boring Business",
+  "zh": {
+    "summary": "从题目给定的初始钻孔继续执行方向和长度命令。每条命令结束后输出钻头坐标；如果这条命令经过以前钻过的点，则输出 DANGER 并停止。",
+    "topics": [
+      "坐标模拟：用 (x,y) 记录钻头位置，向右加 x、向下减 y。",
+      "集合查找：visited 保存已经钻过的坐标，判断新坐标是否曾出现。",
+      "路径自交：新钻孔经过旧钻孔的位置；不仅终点，整段路径都要检查。"
+    ],
+    "steps": [
+      "用题图中的固定路径初始化已钻过的坐标：从 (0, -1) 依次走 d 2、r 3、d 2、r 2、u 2、r 2、d 4、l 8、u 2，终点为 (-1, -5)。模拟就是按命令逐步更新位置。",
+      "把每个已钻过的整数坐标存进集合 visited。集合是一组不重复的值，可以快速检查某个坐标以前是否出现过。",
+      "读取一条命令后，每次移动一个单位并查集合。逐单位检查整条线段，才能发现线段中途与旧钻孔相交。",
+      "把新位置加入集合，并走完本条命令。输出命令终点和状态 safe 或 DANGER；如果本条命令有任何位置重复，输出后停止。q 命令只结束输入，不输出。"
+    ],
+    "example": "样例 2 中，r 2 到达 (1, -5)，没有碰到旧路径。接着 d 10 虽然结束在 (1, -15)，途中会在 (1, -7) 穿过旧的水平路径，所以输出“1 -15 DANGER”后停止。",
+    "correctness": "初始化时，集合包含题图中从 (0, -1) 到 (-1, -5) 的每一个整点。之后对每条命令，算法按顺序检查并加入所经过的每一个新整点。因此集合始终表示已经钻过的位置。若新位置已在集合中，就与旧钻孔相交；若一条线段会相交，它必在该线段经过的某个整点上，逐单位检查不会漏掉中途相交。算法走完整条命令后输出其终点，并在第一次危险命令后停止。",
+    "complexity": "设 C 为输入命令总数，S 为初始路径和实际处理命令走过的单位步数。代码先读入全部命令，需 O(C) 时间与空间；每一步做一次集合查找和加入，平均只需固定工作，因此移动部分用 O(S) 时间与空间。总时间和空间为 O(C+S)，意思是工作和存储量随读入命令数及走过的步数之和增长。即使遇到 q 或危险后不再移动，预先读入的命令仍占空间。",
+    "pitfalls": [
+      "初始路径不是空的；必须先把题图中的整条折线加入集合。",
+      "向下使 y 减少，向上使 y 增加；向左使 x 减少，向右使 x 增加。",
+      "只检查命令终点会漏掉样例 2 这样的线段中途相交。",
+      "发现中途相交后，仍要输出本条命令的最终坐标，然后停止。",
+      "q 后面的整数没有用途；q 本身表示停止输入。"
+    ]
+  },
+  "en": {
+    "summary": "Continue drilling from the fixed path in the diagram. After each direction and length command, print the drill's new coordinate; if the command crosses any earlier drilled point, print DANGER and stop.",
+    "topics": [
+      "Coordinate simulation: track the drill at (x,y); moving right increases x and moving down decreases y.",
+      "Set lookup: visited stores drilled coordinates and tells whether a new coordinate has appeared before.",
+      "Path self-intersection: new drilling passes through an earlier drilled location; check the whole segment, not just its endpoint."
+    ],
+    "steps": [
+      "Build the fixed path from the diagram: starting at (0, -1), follow d 2, r 3, d 2, r 2, u 2, r 2, d 4, l 8, u 2. It ends at (-1, -5). Simulation means updating the position as each move happens.",
+      "Store every drilled integer coordinate in a set named visited. A set holds distinct values and can quickly tell whether a coordinate appeared before.",
+      "For each input command, move one unit at a time and check the set. Checking every unit along the line catches a crossing in the middle, not just a repeated endpoint.",
+      "Add each new coordinate and finish the command. Print the command's endpoint with safe or DANGER; if any position in the command repeated, stop after printing. A q command ends input and produces no output."
+    ],
+    "example": "In sample 2, r 2 reaches (1, -5) safely. The next command, d 10, ends at (1, -15) but crosses the old horizontal path at (1, -7), so the program prints “1 -15 DANGER” and stops.",
+    "correctness": "At the start, the set contains every integer coordinate along the fixed path from (0, -1) to (-1, -5). For each command, the algorithm checks and adds every coordinate it passes, so the set always represents the drilled locations. A coordinate already in the set means the new drilling intersects an earlier part. Any crossing occurs at a point along the commanded segment, and checking every unit point cannot skip one. The program finishes the command, prints its endpoint, and stops after the first dangerous command.",
+    "complexity": "Let C be the total number of input commands and S the unit steps in the initial path and processed commands. Reading all commands takes O(C) time and space. Each step performs one set lookup and insertion, taking a fixed amount of work on average, so drilling uses O(S) time and space. Total time and space are O(C+S): work and storage grow with the sum of commands read and steps walked. Commands read in advance still use memory even if q or danger ends processing early.",
+    "pitfalls": [
+      "The initial path is not empty; add the full path from the diagram before reading commands.",
+      "Down decreases y, up increases y, left decreases x, and right increases x.",
+      "Checking only the command endpoint misses crossings in the middle, as sample 2 shows.",
+      "If a crossing happens in the middle, still print the endpoint of that command before stopping.",
+      "The integer after q is unused; q itself ends the input."
+    ]
+  }
+}

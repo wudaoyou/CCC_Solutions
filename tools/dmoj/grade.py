@@ -20,7 +20,8 @@ def main():
     results = []
     solutions = sorted(root.glob("20??/*/*/solution.py"))
     if len(sys.argv) > 1:
-        solutions = [root / sys.argv[1] / "solution.py"]
+        selected = root / sys.argv[1]
+        solutions = [selected / "solution.py"] if (selected / "solution.py").exists() else sorted(selected.glob("*/*/solution.py"))
     for solution in solutions:
         directory = solution.parent
         name = directory.relative_to(root).as_posix()

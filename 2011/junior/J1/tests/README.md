@@ -1,3 +1,3 @@
-完整官方测试包尚未找到。该年份做题时会补入官方样例和独立检查的边界用例；目前未评测。
+完整官方测试包尚未找到。sample-* 对应官方 PDF 的三个样例；edge-* 独立检查物种条件及其边界。官方 PDF 的会话示例包含交互提示，但自动评测版本只要求输出匹配的外星人名称，因此程序与样例输出不包含提示文字。评测版本说明：[DMOJ CCC '11 J1](https://dmoj.ca/problem/ccc11j1)。本地判题结果只覆盖这些随仓库附带的用例，不能代表完整官方数据或在线评测成绩。
 
-Full official data has not been located. Official samples and independently checked edge cases will be added when this year is completed. Not graded yet.
+The full official test archive has not been located. The sample cases correspond to the three official PDF examples; edge cases independently check species rules and their boundaries. The PDF's session examples include interactive prompts, but the automated-judge version expects only matching alien names, so the solution and sample outputs omit prompts. Judge-version statement: [DMOJ CCC '11 J1](https://dmoj.ca/problem/ccc11j1). Local results cover only these bundled cases and do not establish results on the full official data or an online judge.

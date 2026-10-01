@@ -4,7 +4,26 @@
 <script src="../../../assets/language.js" defer></script></head><body><main>
 <header><div class="topbar"><a class="brand" href="../../../index.html">CCC / Solutions</a>
 <div class="languages" role="group" aria-label="Language / 语言"><button data-set-language="zh" aria-pressed="true">中文</button><button data-set-language="en" aria-pressed="false">English</button></div></div>
-<h1>2011 J2 · Who Has Seen The Wind</h1></header><p class="eyebrow">2011 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j2">DMOJ</a></nav><p class="note">题目与数据已整理。解法和双语讲解尚未完成，按年份逐年补充。</p><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Who Has Seen The Wind
+<h1>2011 J2 · Who Has Seen The Wind</h1></header><p class="eyebrow">2011 / junior / J2</p><div data-language="zh"><nav class="links"><a href="problem.txt">官方题目</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j2">DMOJ</a></nav><section class="card"><h2>题目在问什么</h2><p>从第 1 小时开始，依次用题目公式计算气球高度。找到第一个高度小于或等于 0 的时刻就输出；如果检查到 M 小时仍未触地，就输出指定的未触地句子。</p></section><section class="card"><h2>考查知识点</h2><ul><li>循环枚举：按时间先后检查 1 到 M 小时。</li><li>代入公式：把当前小时和湿度 h 代入高度公式。</li><li>提前停止：由于要找最早时刻，一旦第一次触地就不必继续计算。</li></ul></section><section class="card"><h2>一步一步想</h2><ol><li>读取湿度 h 和愿意等待的最长时间 M。</li><li>让 hour 从 1 递增到 M。符号 ** 表示乘方，例如 hour**4 是 hour 的四次方。</li><li>计算 -6×hour 的四次方 + h×hour 的三次方 + 2×hour 的平方 + hour。</li><li>若高度小于或等于 0，保存 hour 并停止循环；变量 landing_hour 初始为 0，表示目前还没找到触地时刻。若所有小时都检查完它仍为 0，就输出未触地的句子。</li></ol></section><section class="card"><h2>用例子走一遍</h2><p>样例一中 h=30。第 5 小时的高度是 55 米，仍在空中；第 6 小时的高度是 -1218 米，小于 0，所以输出第 6 小时。</p></section><section class="card"><h2>为什么这样做是对的</h2><p>循环按 1、2、…、M 的顺序检查每个允许的小时，并用给定公式计算该时刻的真实高度。第一次发现高度小于或等于 0 时，之前检查的所有小时都高于地面，因此当前小时就是最早触地时刻。如果循环结束仍未保存时刻，则 1 到 M 都没有触地。</p></section><section class="card"><h2>运行时间与内存</h2><p>最多计算 M 次高度，所以时间为 O(M)：M 增加一小时，最坏情况就多做一次计算。程序只保存当前小时、当前高度和结果，额外空间为 O(1)，即固定数量的值。</p></section><section class="card"><h2>容易出错的地方</h2><ul><li>题目规定高度小于或等于 0 时就算触地；高度正好为 0 也必须停止。</li><li>从 hour=1 开始检查，不要漏掉第一小时；M 小时也要检查。</li><li>输出文本和换行要符合格式；没有触地时不能输出某个小时。</li></ul></section><section class="card"><h2>Python 3 解法</h2><a href="solution.py">solution.py</a><pre><code>h = int(input())
+maximum_hour = int(input())
+
+landing_hour = 0
+for hour in range(1, maximum_hour + 1):
+    altitude = -6 * hour**4 + h * hour**3 + 2 * hour**2 + hour
+    if altitude &lt;= 0:
+        landing_hour = hour
+        break
+
+if landing_hour == 0:
+    print(&quot;The balloon does not touch ground in the given time.&quot;)
+else:
+    print(&quot;The balloon first touches ground at hour:&quot;)
+    print(landing_hour)
+</code></pre></section><section class="card"><h2>样例输入 / 样例输出</h2><div class="sample-grid"><div><h3>样例输入</h3><pre>30
+10
+</pre></div><div><h3>样例输出</h3><pre>The balloon first touches ground at hour:
+6
+</pre></div></div></section><section class="card"><h2>官方题目</h2><p class="muted">官方题目原文为英文；图表和原版排版请看 PDF。</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Who Has Seen The Wind
 Problem Description
 Margaret has looked at the wind floating over the prairies for a long time. After these observations,
 she has created a formula that will describe the altitude of a weather balloon launched from her
@@ -53,7 +72,26 @@ The balloon does not touch ground in the given time.
 
 
                                 6
-</pre></details></section><section class="card"><h2>测试数据</h2><p>0 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j2">DMOJ</a></nav><p class="note">The problem and data are organized. The solution and bilingual lesson are pending; years will be completed in order.</p><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Who Has Seen The Wind
+</pre></details></section><section class="card"><h2>测试数据</h2><p>6 bundled cases · 完整官方数据未找到；样例与本地用例的覆盖有限</p><a href="source.json">Sources / 来源</a><details><summary>测试数据</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/edge-04.in">edge-04.in</a> / <a href="tests/edge-04.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div><div data-language="en" hidden><nav class="links"><a href="problem.txt">Official problem</a><a href="../../_sources/junior.pdf">PDF</a><a href="https://dmoj.ca/problem/ccc11j2">DMOJ</a></nav><section class="card"><h2>What are we asked to do?</h2><p>Starting at hour 1, evaluate the balloon&#x27;s altitude with the given formula. Print the first hour when the altitude is at most 0. If the balloon has not touched the ground by hour M, print the required no-touch sentence.</p></section><section class="card"><h2>Knowledge and skills</h2><ul><li>Looping through a range: check hours 1 through M in time order.</li><li>Substituting into a formula: use the current hour and humidity h to calculate altitude.</li><li>Stopping early: once the first ground contact is found, later hours are not needed.</li></ul></section><section class="card"><h2>Think step by step</h2><ol><li>Read the humidity h and the maximum waiting time M.</li><li>Let hour increase from 1 through M. The ** operator means exponentiation, so hour**4 is hour to the fourth power.</li><li>Calculate -6 times hour to the fourth, plus h times hour cubed, plus 2 times hour squared, plus hour.</li><li>If the altitude is at most 0, save that hour and stop the loop. The variable landing_hour starts at 0 to mean that no touch has been found yet. If it is still 0 after all hours are checked, print the no-touch sentence.</li></ol></section><section class="card"><h2>Walk through an example</h2><p>In sample 1, h=30. At hour 5 the altitude is 55 metres, so the balloon is still above ground. At hour 6 the altitude is -1218 metres, which is at most 0, so print hour 6.</p></section><section class="card"><h2>Why does this work?</h2><p>The loop checks every allowed hour in the order 1, 2, ..., M and uses the given formula for each altitude. When it first finds an altitude at most 0, every earlier checked hour was above ground, so this is the earliest touch time. If the loop finishes without saving an hour, none of hours 1 through M touched the ground.</p></section><section class="card"><h2>Time and memory</h2><p>The program calculates altitude at most M times, so the running time is O(M): increasing M by one hour adds at most one calculation. It stores only the current hour, altitude, and result, so extra space is O(1), meaning a fixed number of values.</p></section><section class="card"><h2>Common mistakes</h2><ul><li>The balloon touches the ground at altitude less than or equal to 0; altitude exactly 0 counts.</li><li>Start checking at hour 1 and include hour M.</li><li>Match the required output text and line breaks; do not print an hour when there is no touch.</li></ul></section><section class="card"><h2>Python 3 solution</h2><a href="solution.py">solution.py</a><pre><code>h = int(input())
+maximum_hour = int(input())
+
+landing_hour = 0
+for hour in range(1, maximum_hour + 1):
+    altitude = -6 * hour**4 + h * hour**3 + 2 * hour**2 + hour
+    if altitude &lt;= 0:
+        landing_hour = hour
+        break
+
+if landing_hour == 0:
+    print(&quot;The balloon does not touch ground in the given time.&quot;)
+else:
+    print(&quot;The balloon first touches ground at hour:&quot;)
+    print(landing_hour)
+</code></pre></section><section class="card"><h2>Sample input / Sample output</h2><div class="sample-grid"><div><h3>Sample input</h3><pre>30
+10
+</pre></div><div><h3>Sample output</h3><pre>The balloon first touches ground at hour:
+6
+</pre></div></div></section><section class="card"><h2>Official problem</h2><p class="muted">The official statement is in English. See the PDF for figures and original formatting.</p><details><summary>Problem statement (English)</summary><pre class="statement">Problem J2: Who Has Seen The Wind
 Problem Description
 Margaret has looked at the wind floating over the prairies for a long time. After these observations,
 she has created a formula that will describe the altitude of a weather balloon launched from her
@@ -102,6 +140,6 @@ The balloon does not touch ground in the given time.
 
 
                                 6
-</pre></details></section><section class="card"><h2>Test data</h2><p>0 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul></ul></details></section></div>
+</pre></details></section><section class="card"><h2>Test data</h2><p>6 bundled cases · Full official data is unavailable; samples and local cases have limited coverage</p><a href="source.json">Sources / 来源</a><details><summary>Test data</summary><ul><li><a href="tests/edge-01.in">edge-01.in</a> / <a href="tests/edge-01.out">output</a></li><li><a href="tests/edge-02.in">edge-02.in</a> / <a href="tests/edge-02.out">output</a></li><li><a href="tests/edge-03.in">edge-03.in</a> / <a href="tests/edge-03.out">output</a></li><li><a href="tests/edge-04.in">edge-04.in</a> / <a href="tests/edge-04.out">output</a></li><li><a href="tests/sample-01.in">sample-01.in</a> / <a href="tests/sample-01.out">output</a></li><li><a href="tests/sample-02.in">sample-02.in</a> / <a href="tests/sample-02.out">output</a></li></ul></details></section></div>
 <footer>CEMC / University of Waterloo · <a href="https://cemc.uwaterloo.ca/resources/past-contests?contest_category=29">Official contest archive</a> · <a href="https://dmoj.ca/">DMOJ</a></footer>
 </main></body></html>
